@@ -9,20 +9,20 @@
       "ce": "CE-2",
       "ppq": "Yes",
       "note": "",
-      "lead": "Confirm transposition and verify regulations for:",
+      "lead": "Verify that:",
       "criteria": [
         "Confirm the title, date of promulgation and last amendment of all regulations related to aircraft operations.",
-        "Verify that the content of the regulations is consistent, sufficient and properly organized.",
-        "Confirm the transposition of the aircraft operations-related provisions of Annex 6 Parts I, II and III."
+        "Verify that the content of the regulations is consistent, sufficient (addressing all audit areas as needed) and properly organized.",
+        "Confirm the transposition of the aircraft operations-related provisions of Annex 6, Parts I, II and III."
       ]
     },
     {
       "no": "4.003",
-      "question": "Has the State implemented procedures for amending its enabling aircraft operations regulations?",
+      "question": "Has the State implemented procedures for amending its enabling aircraft operations regulations, taking into consideration ICAO provisions and their amendments?",
       "ce": "CE-2",
       "ppq": "",
-      "note": "The establishment of amendment procedures is addressed in LEG PQ 1.009. Dangerous goods regulation amendments are in OPS PQ 4.333.",
-      "lead": "Verify amendment loops:",
+      "note": "The establishment of amendment procedures is addressed in LEG PQ 1.009. Procedures for amending regulations on the transport of dangerous goods by air are addressed in OPS PQ 4.333.",
+      "lead": "Verify that:",
       "criteria": [
         "Review documented evidence of effective implementation of procedures for amending aircraft operations regulations.",
         "Verify that regulations are amended in a timely manner whenever amendments to the related Annex are received.",
@@ -35,10 +35,10 @@
       "ce": "CE-2",
       "ppq": "Yes",
       "note": "The establishment of these procedures is addressed in LEG PQ 1.025.",
-      "lead": "Confirm notification tracks:",
+      "lead": "Verify that:",
       "criteria": [
         "Review documented evidence of the effective implementation.",
-        "Confirm that the differences between SARPs and the State legislation and practices are identified and notified to ICAO using the Compliance Checklist/Electronic Filing of Differences (CC/EFOD) system.",
+        "Confirm that the differences between the SARPs and the State legislation and practices are identified and notified to ICAO using the Compliance Checklist/Electronic Filing of Differences (CC/EFOD) system.",
         "Confirm that significant differences between SARPs/PANS/SUPPS and the State regulations and practices are identified and published in the AIP."
       ]
     },
@@ -48,9 +48,9 @@
       "ce": "CE-1",
       "ppq": "",
       "note": "",
-      "lead": "Review regulatory compliance:",
+      "lead": "Verify that:",
       "criteria": [
-        "Review legislation/regulations to ensure mandatory compliance with interception orders from other States is codified."
+        "Review legislation/regulations to ensure that compliance with interception orders from other States is mandatory for civil aircraft under the State's registry or operated by its air operators."
       ]
     },
     {
@@ -65,11 +65,11 @@
         "Certificate of airworthiness.",
         "Crew members’ licences.",
         "Journey log book.",
-        "Aircraft radio station licences.",
-        "Passenger manifest.",
-        "Cargo manifest.",
+        "Aircraft radio station licence, if it has a radio apparatus.",
+        "Passenger manifest, if it carries passengers.",
+        "Cargo manifest and detailed declarations of the cargo, if it carries cargo.",
         "Certified true copy of the AOC.",
-        "Operations specifications.",
+        "Operations specifications relevant to the aircraft type, issued in conjunction with the AOC.",
         "Document attesting noise certification."
       ]
     },
@@ -79,25 +79,25 @@
       "ce": "CE-1",
       "ppq": "",
       "note": "",
-      "lead": "Verify log tracking:",
+      "lead": "Verify that:",
       "criteria": [
-        "Review legislation/regulations to maintain a journey log book.",
+        "Review legislation/regulations requiring that a journey log book be maintained for every aircraft engaged in international navigation.",
         "Review examples of journey log books."
       ]
     },
     {
       "no": "4.021",
-      "question": "Has the State established an organizational structure for aircraft operations, such as a directorate/department/division/section/office for the certification of commercial air transport operations?",
+      "question": "Has the State established an organizational structure for aircraft operations, such as a directorate/department/division/section/office for the certification and surveillance of commercial air transport operations, and general aviation operations, and does it include the oversight of the transport of dangerous goods by air?",
       "ce": "CE-3",
       "ppq": "",
       "note": "",
       "lead": "Verify that an organizational structure has been:",
       "criteria": [
-        "Established with defined lines of responsibility.",
+        "Established.",
         "Documented.",
         "Approved.",
-        "Confirm existing approved organizational structure for the CAA and aircraft operations directorate, including lines of responsibility.",
-        "Confirm the inclusion of Dangerous Goods."
+        "Confirm that the organizational structure is depicited on charts or equivalent documents.",
+        "Confirm that the structural layout details functions related to dangerous goods oversight."
       ]
     },
     {
@@ -106,27 +106,27 @@
       "ce": "CE-6",
       "ppq": "Yes",
       "note": "",
-      "lead": "Verify inspector manual coordination parameters:",
+      "lead": "Verify that:",
       "criteria": [
         "Verify that the organizational structure identifies the authority responsible for the issuance of licences, certificates, approval, authorizations and surveillance.",
         "Verify that the operations inspectors manual contains processes and procedures for coordination on all certification and surveillance activities involving operations.",
-        "Verify coordination loops for airworthiness.",
-        "Verify coordination loops for personnel licensing.",
-        "Verify coordination loops for other entities, as applicable."
+        "Verify effective implementation with airworthiness.",
+        "Verify effective implementation with personnel licensing.",
+        "Verify effective implementation with other entities, as applicable."
       ]
     },
     {
       "no": "4.025",
-      "question": "Does the flight operations inspection organization have sufficient human resources to carry out its functions and mandate?",
+      "question": "Does the flight operations inspection organization have sufficient human resources to carry out its functions and mandate related to its safety oversight responsibilities?",
       "ce": "CE-3",
       "ppq": "Yes",
       "note": "",
-      "lead": "Review capacity for safety oversight-related tasks, including:",
+      "lead": "Review the resources that are required for safety oversight-related tasks, including:",
       "criteria": [
-        "Review methodology established for determining staffing needs.",
-        "Review ability to attract new inspectors as well as existing vacancies and level of turnover in past years.",
+        "Review the methodology established for determining staffing needs.",
+        "Review the ability to attract new inspectors as well as existing vacancies and level of turnover in the past years.",
         "Review capability to execute reviewing and revising regulations.",
-        "Review capability to execute training technical staff.",
+        "Review capability to execute training of technical staff.",
         "Review capability to execute developing guidance material.",
         "Review capability to execute issuing approvals.",
         "Review capability to execute conducting surveillance.",
@@ -140,7 +140,7 @@
       "ce": "CE-3",
       "ppq": "",
       "note": "",
-      "lead": "Review document detailing functions and responsibilities for inclusion of:",
+      "lead": "Review the document detailing functions and responsibilities for the inclusion of:",
       "criteria": [
         "Certification process of air operators.",
         "Issuance of AOC and operations specifications.",
@@ -165,11 +165,11 @@
     },
     {
       "no": "4.033",
-      "question": "Has the flight operations inspection organization established appropriate minimum qualifications for operations and dangerous goods inspectors?",
+      "question": "Has the flight operations inspection organization established appropriate minimum qualifications and experience requirements for operations and dangerous goods inspectors?",
       "ce": "CE-4",
       "ppq": "Yes",
       "note": "",
-      "lead": "Verify that minimum qualifications include:",
+      "lead": "Verify that minimum qualifications and experience requirements include:",
       "criteria": [
         "Specified number of years in air transport operations.",
         "To be at least as qualified as the personnel to be inspected or supervised.",
@@ -178,7 +178,7 @@
     },
     {
       "no": "4.035",
-      "question": "Have operations inspectors been issued credentials to facilitate their access to facilities, aircraft, and certification and licensing documentation?",
+      "question": "Have operations inspectors been issued credentials to facilitate their access to facilities, aircraft, and certification and licensing documentation for the purpose of inspections and enforcement?",
       "ce": "CE-3",
       "ppq": "",
       "note": "",
@@ -191,14 +191,14 @@
     },
     {
       "no": "4.039",
-      "question": "If the flight operations inspection organization delegates its duties to other entities, have requirements for competency been established?",
+      "question": "If the flight operations inspection organization delegates its duties to other entities, have requirements for competency, qualifications, and experience been established for each delegated authority?",
       "ce": "CE-4",
       "ppq": "",
       "note": "Includes CAA divisions, other State bodies, Contracting States, regional organizations, private agencies or individuals.",
-      "lead": "Verify external qualifications:",
+      "lead": "Verify that:",
       "criteria": [
-        "Verify that competency requirements have been established for each delegated authority.",
-        "Verify that appropriate minimum qualifications and experience requirements have been established for each delegated authority."
+        "Competency requirements have been established for each delegated authority.",
+        "Appropriate minimum qualifications and experience requirements have been established for each delegated authority."
       ]
     },
     {
@@ -207,9 +207,9 @@
       "ce": "CE-3",
       "ppq": "",
       "note": "",
-      "lead": "Verify delegation frameworks:",
+      "lead": "Verify that:",
       "criteria": [
-        "Verify that there is documentation that clearly defines delegated tasks (e.g. letter of agreement, letter of designation of examiners, etc.).",
+        "There is documentation that clearly defines delegated tasks (e.g. letter of agreement, letter of designation of examiners, etc.).",
         "Verify legal basis of each delegation."
       ]
     },
@@ -219,7 +219,7 @@
       "ce": "CE-3",
       "ppq": "",
       "note": "",
-      "lead": "Verify delegation procedures include:",
+      "lead": "Verify that delegation procedures include:",
       "criteria": [
         "Selection criteria.",
         "Examinations or tests.",
@@ -233,10 +233,10 @@
       "ce": "CE-3",
       "ppq": "",
       "note": "",
-      "lead": "Verify delegation validation spans:",
+      "lead": "Verify that:",
       "criteria": [
-        "Verify that the approval specifies the duration of the designation.",
-        "Verify that conditions for renewal are established and specified (e.g. minimum activity, training, etc.).",
+        "The approval specifies the duration of the designation.",
+        "Conditions for renewal are established and specified (e.g. minimum activity, training, etc.).",
         "Review evidence to verify effective implementation of the renewal procedures."
       ]
     },
@@ -246,22 +246,22 @@
       "ce": "CE-7",
       "ppq": "",
       "note": "Surveillance activities include scheduled, unscheduled and unannounced activities.",
-      "lead": "Verify external monitor loops:",
+      "lead": "Verify that:",
       "criteria": [
-        "Verify that a surveillance system has been established and is being implemented.",
-        "Verify that the surveillance activities undertaken conform to the established system.",
-        "Verify that the system includes on-the-job oversight activities of designated examiners."
+        "A surveillance system has been established and is being implemented.",
+        "The surveillance activities undertaken conform to the established system.",
+        "The system includes on-the-job oversight activities of designated examiners."
       ]
     },
     {
       "no": "4.049",
-      "question": "If the flight operations inspection organization delegates responsibilities to designated inspectors/examiners of an AOC holder, has it implemented a system to resolve deficiencies?",
+      "question": "If the flight operations inspection organization delegates responsibilities to designated inspectors/examiners of an AOC holder, has it implemented a system to resolve deficiencies and issues related to the conduct of delegated tasks?",
       "ce": "CE-8",
       "ppq": "",
       "note": "If no surveillance is performed (see OPS 4.047), then this question cannot be satisfactory.",
-      "lead": "Verify resolution execution tracks:",
+      "lead": "Verify that:",
       "criteria": [
-        "Verify that a system has been established and implemented to resolve deficiencies and issues related to the conduct of delegated tasks.",
+        "A system has been established and implemented to resolve deficiencies and issues related to the conduct of delegated tasks.",
         "Review evidence to confirm effective implementation."
       ]
     },
@@ -271,7 +271,7 @@
       "ce": "CE-4",
       "ppq": "",
       "note": "",
-      "lead": "Verify that each training programme details core modules including:",
+      "lead": "Verify that each training programme details:",
       "criteria": [
         "Initial training.",
         "OJT.",
@@ -283,11 +283,11 @@
     },
     {
       "no": "4.053",
-      "question": "Does the flight operations inspection organization establish and implement a periodic training plan detailing and prioritizing the type of training?",
+      "question": "Does the flight operations inspection organization establish and implement a periodic training plan detailing and prioritizing the type of training that will be provided to operations and dangerous goods inspectors during the established period?",
       "ce": "CE-4",
       "ppq": "Yes",
       "note": "",
-      "lead": "Verify plan execution metrics:",
+      "lead": "Verify that:",
       "criteria": [
         "Review most recent training plan for details of training type, priorities, and specified timeframe.",
         "Verify that the training plan outlines the timetable for implementation for each staff member.",
@@ -299,11 +299,11 @@
     },
     {
       "no": "4.059",
-      "question": "Do the flight operations inspection organization and the dangerous goods entities have a system for maintaining training records?",
+      "question": "Do the flight operations inspection organization and the dangerous goods entities have a system for maintaining training records of operations and dangerous goods inspectors?",
       "ce": "CE-4",
       "ppq": "",
       "note": "",
-      "lead": "Verify file maintenance controls:",
+      "lead": "Verify that:",
       "criteria": [
         "Review requirements/instructions for the establishment and maintenance of training records.",
         "Review the system in place.",
@@ -312,11 +312,11 @@
     },
     {
       "no": "4.071",
-      "question": "Do operations and dangerous goods inspectors have access to up-to-date operational documentation and information to support certificates/approvals?",
+      "question": "Do operations and dangerous goods inspectors have access to up-to-date operational documentation and information to support their certification/approval and surveillance activities?",
       "ce": "CE-5",
       "ppq": "",
       "note": "Documents may be available on the Internet, in paper copies, CDs, etc.",
-      "lead": "Verify accessibility of reference materials, such as:",
+      "lead": "Verify accessibility of up-to-date documentation, such as:",
       "criteria": [
         "Operations manual.",
         "Aircraft flight manual.",
@@ -333,7 +333,7 @@
       "ce": "CE-5",
       "ppq": "",
       "note": "Check for field/regional offices as well as Headquarters.",
-      "lead": "Verify library availability grids for:",
+      "lead": "Verify the availability of up-to-date copies of:",
       "criteria": [
         "State laws and regulations.",
         "Orders and instructions.",
@@ -343,11 +343,11 @@
     },
     {
       "no": "4.074",
-      "question": "Is there technical documentation available for the technical staff or another method to ensure receipt, control and distribution of technical documentation?",
+      "question": "Is there a technical library available for the staff of the flight operations inspection organization or another method to ensure receipt, control and distribution of the necessary technical documentation?",
       "ce": "CE-5",
       "ppq": "",
       "note": "",
-      "lead": "Evaluate library management setups:",
+      "lead": "Verify that:",
       "criteria": [
         "Evaluate document control system.",
         "Evaluate method to determine currency of documents."
@@ -355,11 +355,11 @@
     },
     {
       "no": "4.075",
-      "question": "Are operations inspectors provided with comprehensive procedures and checklists to assist them in carrying out functions?",
+      "question": "Are operations inspectors provided with comprehensive procedures and checklists to assist them in carrying out their functions and responsibilities effectively?",
       "ce": "CE-5",
       "ppq": "Yes",
       "note": "Procedures may be compiled into an inspector’s handbook.",
-      "lead": "Verify checklists cover all core processes, including:",
+      "lead": "Verify that instructions and guidance cover:",
       "criteria": [
         "Operations organization.",
         "Operations inspectors’ duties, credentials and authority.",
@@ -381,7 +381,7 @@
       "ce": "CE-5",
       "ppq": "",
       "note": "",
-      "lead": "Verify that standard information packages cover:",
+      "lead": "Verify that the standard information includes:",
       "criteria": [
         "AOC application workflow.",
         "Amendment to an AOC.",
@@ -414,7 +414,7 @@
       "ce": "CE-6",
       "ppq": "",
       "note": "",
-      "lead": "Verify application document pre-checks:",
+      "lead": "Verify that:",
       "criteria": [
         "Verify that the certification process and procedures include an assessment of the applicants’ technical fitness.",
         "Verify that the operations inspectors have guidance material, manuals, checklists, etc. to use in assessing technical fitness.",
@@ -427,7 +427,7 @@
       "ce": "CE-6",
       "ppq": "",
       "note": "",
-      "lead": "Verify management structure oversight:",
+      "lead": "Verify that:",
       "criteria": [
         "Verify that applicable operations inspectors’ guidance material, manuals, etc. have been established and implemented.",
         "Review exchange of letters with the applicant to confirm structural reviews."
@@ -439,7 +439,7 @@
       "ce": "CE-6",
       "ppq": "Yes",
       "note": "Exemptions include exceptions, deviations, variations and extensions. Legal basis under LEG 1.027 and 1.028.",
-      "lead": "Verify exemption risk assessments:",
+      "lead": "Verify that:",
       "criteria": [
         "Verify effective implementation of formal exemption procedures.",
         "Verify that the impact on safety is thoroughly considered.",
@@ -453,7 +453,7 @@
       "ce": "CE-6",
       "ppq": "Yes",
       "note": "",
-      "lead": "Verify certification tracking setups:",
+      "lead": "Verify that:",
       "criteria": [
         "Verify that operations inspectors’ guidance material, manuals, checklists, etc. provide a system to keep track of every exchange with the air operators.",
         "Verify the filing system of the certification process.",
@@ -466,7 +466,7 @@
       "ce": "CE-7",
       "ppq": "",
       "note": "",
-      "lead": "Verify manual currency surveillance:",
+      "lead": "Verify that:",
       "criteria": [
         "Review surveillance policy and programme of air operators to verify that compliance with validity of manuals is monitored.",
         "Sample completed inspection records/checklists.",
@@ -479,7 +479,7 @@
       "ce": "CE-5",
       "ppq": "",
       "note": "",
-      "lead": "Verify manual structure validation rules, checking for:",
+      "lead": "Verify that procedures ensure that the operations manual contains:",
       "criteria": [
         "Procedures established for the approval or acceptance of an air operator’s operations manual.",
         "Compliance statement regarding applicable laws, AOC conditions, and operations specifications.",
@@ -495,7 +495,7 @@
       "ce": "CE-5",
       "ppq": "",
       "note": "",
-      "lead": "Verify MEL/CDL management pipelines:",
+      "lead": "Verify that:",
       "criteria": [
         "Verify procedures established for approval of MEL.",
         "Verify procedures for the use of CDL.",
@@ -508,7 +508,7 @@
       "ce": "CE-6",
       "ppq": "",
       "note": "",
-      "lead": "Verify flight manual update controls:",
+      "lead": "Verify that:",
       "criteria": [
         "Verify the establishment and implementation of relevant State regulations.",
         "Verify applicable certification process controls.",
@@ -521,7 +521,7 @@
       "ce": "CE-6",
       "ppq": "",
       "note": "Applies to custody pending disposition after an accident or incident.",
-      "lead": "Verify flight recorder protection rules:",
+      "lead": "Verify that:",
       "criteria": [
         "Verify that applicable operations inspectors’ guidance material, manuals, checklists, etc. have been established and implemented.",
         "Sample air operators’ manuals to confirm implementation and compliance."
@@ -533,7 +533,7 @@
       "ce": "CE-6",
       "ppq": "",
       "note": "",
-      "lead": "Verify personnel duty profiles:",
+      "lead": "Verify that:",
       "criteria": [
         "Verify that applicable operations inspectors’ guidance material, manuals, checklists, etc. have been established and implemented.",
         "Sample air operators’ manuals to confirm implementation and compliance."
@@ -558,7 +558,7 @@
       "ce": "CE-6",
       "ppq": "",
       "note": "",
-      "lead": "Verify corporate limitation limits:",
+      "lead": "Verify that:",
       "criteria": [
         "Verify that applicable operations inspectors’ guidance material, manuals, checklists, etc. have been established and implemented.",
         "Sample air operators’ manuals to confirm implementation and compliance."
@@ -584,7 +584,7 @@
       "ce": "CE-6",
       "ppq": "",
       "note": "Particularly where terrain clearance is involved.",
-      "lead": "Verify clearance checking lines:",
+      "lead": "Verify that:",
       "criteria": [
         "Verify that applicable operations inspectors’ guidance material, manuals, checklists, etc. have been established and implemented.",
         "Sample air operators’ manuals to confirm implementation and compliance."
@@ -596,7 +596,7 @@
       "ce": "CE-6",
       "ppq": "Yes",
       "note": "",
-      "lead": "Verify terrain avoidance controls:",
+      "lead": "Verify that:",
       "criteria": [
         "Verify that applicable operations inspectors’ guidance material, manuals, checklists, etc. have been established and implemented.",
         "Sample air operators’ manuals to confirm implementation and compliance."
@@ -608,7 +608,7 @@
       "ce": "CE-6",
       "ppq": "Yes",
       "note": "",
-      "lead": "Verify collision avoidance protocols:",
+      "lead": "Verify that:",
       "criteria": [
         "Verify that the approval procedures are in accordance with PANS-OPS and PANS-ATM.",
         "Verify that applicable operations inspectors’ guidance material, manuals, checklists, etc. have been established and implemented.",
@@ -618,11 +618,11 @@
     },
     {
       "no": "4.161",
-      "question": "Does the flight operations inspection organization ensure that the air operator has established a system to provide its operations staff with aircraft operating information?",
+      "question": "Does the flight operations inspection organization ensure that an air operator has established a system to provide its operations staff with aircraft operating information?",
       "ce": "CE-6",
       "ppq": "Yes",
       "note": "Operating limitations are operator-specific approvals from the State and may be more restrictive than Type Certification.",
-      "lead": "Verify update frameworks for technical aircraft data, ensuring inclusion of:",
+      "lead": "Verify that aircraft operating information includes:",
       "criteria": [
         "Organization, update and revision tracking system.",
         "Certification limitations and operating limitations as indicated in the AOC and OPSPEC.",
@@ -638,7 +638,7 @@
       "ce": "CE-6",
       "ppq": "Yes",
       "note": "",
-      "lead": "Verify MEL/CDL fleet integration:",
+      "lead": "Verify that:",
       "criteria": [
         "Verify implementation of procedures to issue the initial approval and approval of subsequent amendments.",
         "Verify implementation of documented coordination procedures between AIR and OPS.",
@@ -652,151 +652,157 @@
       "ce": "CE-6",
       "ppq": "Yes",
       "note": "",
-      "lead": "Verify route guide contents:",
+      "lead": "Verify that:",
       "criteria": [
         "Verify that applicable operations inspectors’ guidance material, manuals, checklists, etc. have been established and implemented.",
         "Sample route guides to ensure they contain information relating to communication facilities, navigation aids, aerodromes, instrument approaches, arrivals, and departures."
       ]
     },
-    {
+{
       "no": "4.181",
-      "question": "Has the State promulgated regulations for the air operator to establish training programmes as part of the flight safety documents system?",
+      "question": "Has the State promulgated regulations for the air operator to establish and maintain training programmes, as part of the flight safety documents system, which include initial, recurrent, transition (conversion), re-qualification, upgrade, recency of experience, familiarization, differences and other specialized training, as applicable?",
       "ce": "CE-2",
       "ppq": "",
       "note": "",
-      "lead": "Verify that training regulations cover all modules, including:",
+      "lead": "Verify that:",
       "criteria": [
-        "Initial training lines.",
-        "Recurrent training loops.",
-        "Transition (conversion) training.",
-        "Re-qualification and upgrade parameters.",
-        "Recency of experience and familiarization rules.",
-        "Differences and specialized tracking.",
-        "Ensure regulations explicitly address human factors training."
+        "Verify regulations.",
+        "Ensure that regulations cover all types of training, including human factors."
       ]
     },
     {
       "no": "4.183",
-      "question": "Does the flight operations inspection organization ensure that an air operator outlines flight crew training detail across all distinct tracks?",
+      "question": "Does the flight operations inspection organization ensure that an air operator outlines, in its training programmes, not only details of the initial and recurrent flight crew training, but also transition (conversion), re-qualification, upgrade, recency of experience, familiarization, differences and other specialized training, as applicable?",
       "ce": "CE-6",
       "ppq": "Yes",
       "note": "",
-      "lead": "Verify syllabus compliance across categories:",
+      "lead": "Verify that:",
       "criteria": [
         "Verify that applicable operations inspectors’ guidance material, manuals, checklists, etc. have been established and implemented.",
-        "Sample air operators’ manuals to confirm implementation and compliance.",
-        "Review training deployment logs during industry visits to confirm implementation."
+        "Sample some air operators’ manuals to confirm implementation and compliance.",
+        "Review evidence during industry visit to confirm implementation."
       ]
     },
     {
       "no": "4.185",
-      "question": "Has the flight operations inspection organization established procedures to verify that an air operator has outlined details of cabin crew safety duties?",
+      "question": "Has the flight operations inspection organization established procedures to verify that an air operator has outlined details of the cabin crew’s safety duties and functions in the cabin crew training programme?",
       "ce": "CE-5",
       "ppq": "",
       "note": "",
-      "lead": "Verify cabin training evaluation tools:",
+      "lead": "Verify that:",
       "criteria": [
-        "Verify inspectors’ procedures to ensure that review of the cabin crew training programme is integrated into standard checks."
+        "Verify inspectors’ procedures to ensure that review of the cabin crew training programme is part of the procedures."
       ]
     },
     {
       "no": "4.189",
-      "question": "Does the flight operations inspection organization ensure that the air operator implements all manual regulations before an AOC or approval is granted?",
+      "question": "Does the flight operations inspection organization ensure that the air operator takes into account, reviews and implements all regulations related to the contents of the operations manual, as part of the flight safety documents system, before the AOC or any specific approval is granted?",
       "ce": "CE-6",
       "ppq": "Yes",
       "note": "A clear chronological certification process must be demonstrated.",
-      "lead": "Verify gateway certification order:",
+      "lead": "Verify that:",
       "criteria": [
-        "Verify inspectors’ procedures for approval of the operations manual.",
+        "Verify inspectors’ procedures for approval of operations manual.",
         "Verify that the inspection phase of the certification process is performed after the review of the manuals.",
         "Verify that the operations manual is reviewed before granting of the AOC or any specific approval.",
         "Confirm implementation of the certification process and results of inspections before granting the AOC.",
-        "Sample a specific case file to verify chronology."
+        "Sample a specific case."
       ]
     },
     {
       "no": "4.203",
-      "question": "Does the flight operations inspection organization ensure that the air operator maintains a non-punitive flight data analysis programme?",
+      "question": "Does the flight operations inspection organization ensure that: a) the air operator has established and maintained a flight data analysis programme; b) the flight data analysis programme is non-punitive and contains safeguards to protect the source(s) of the data?",
       "ce": "CE-6",
       "ppq": "",
       "note": "",
-      "lead": "Verify FDAP safeguards:",
+      "lead": "Verify that:",
       "criteria": [
         "Verify that applicable operations inspectors’ guidance material, manuals, checklists, etc. have been established and implemented.",
-        "Sample air operators’ manuals to confirm implementation and compliance.",
-        "Verify that the programme contains explicit safeguards to protect data sources during industry visits."
+        "Sample some air operators’ manuals to confirm implementation and compliance.",
+        "Review evidence during industry visit to confirm implementation."
       ]
     },
     {
       "no": "4.211",
-      "question": "Does the flight operations inspection organization ensure that the air operator provides compliant training facilities and simulators?",
+      "question": "Does the flight operations inspection organization ensure that: a) the air operator provides ground and flight training facilities, simulators and/or cockpit procedure training devices (e.g. fixed-based simulator [FBS], computer based training [CBT], etc.) and syllabus materials; and b) if a separate training organization is approved to provide air operators’ flight crew training, does the flight operations inspection organization ensure that the training provided and flight documentation used correctly reflect the air operators’ flight safety documents system?",
       "ce": "CE-6",
       "ppq": "Yes",
       "note": "",
-      "lead": "Verify training environment metrics:",
+      "lead": "Verify that:",
       "criteria": [
-        "Verify that the operator provides ground and flight training facilities, simulators and/or cockpit procedure training devices (FBS, CBT) and syllabus materials.",
-        "If a separate training organization is contracted, ensure that the training provided and documentation used correctly reflect the air operator’s flight safety documents system.",
-        "Sample manuals to confirm tracking of approved training facilities (including FSTD qualifications) and records."
+        "Verify that applicable operations inspectors’ guidance material, manuals, checklists, etc. have been established and implemented.",
+        "Sample some air operators’ manuals to confirm implementation and compliance of: a) air operator’s training programme; b) list of approved training facilities (including approval of flight simulation training devices); and c) training programme and records."
       ]
     },
     {
       "no": "4.221",
-      "question": "Does the flight operations inspection organization have procedures to verify training regulations and inspect them before granting certifications?",
+      "question": "Does the flight operations inspection organization have procedures to: a) verify that all applicable regulations are addressed in the flight crew training programmes; and b) thoroughly analyse and inspect these programmes before granting the AOC or any specific approval?",
       "ce": "CE-5",
       "ppq": "",
       "note": "",
-      "lead": "Verify inspector check routines for training manuals to ensure they address:",
+      "lead": "Review operations inspectors’ approval procedures to ensure that these are sufficiently detailed to cover all training and that the following are addressed:",
       "criteria": [
-        "Training policies and administrative support directives.",
-        "Lists of designated instructors and line check examiners.",
+        "Training policies and directives.",
+        "Administrative support of air operator.",
+        "List of designated instructors and line check examiners.",
         "Comprehensive syllabi, including lesson plans for approved training.",
         "Procedures for the conduct of examinations and manoeuvre tolerances.",
-        "Procedures requiring flight crew to be trained and examined on abnormal and emergency conditions.",
-        "Procedures for remedial training and subsequent examination of flight crew unable to achieve standards.",
-        "A formal process to obtain authority approval for subsequent changes to the training manual."
+        "Procedures to require that flight crew members are properly trained and examined on abnormal and emergency conditions.",
+        "Procedures for remedial training and subsequent examination of flight crew unable to achieve or maintain required standards.",
+        "A process to obtain authority’s approval for subsequent changes to the training manual."
       ]
     },
     {
       "no": "4.222",
-      "question": "Does the flight operations inspection organization ensure that crew members have the required qualifications before being scheduled for flight duties?",
+      "question": "Does the flight operations inspection organization ensure that the air operator’s flight crew members, cabin crew members and flight dispatch/flight operations officers have the required training and qualifications before being scheduled to perform flight duties?",
       "ce": "CE-7",
       "ppq": "Yes",
       "note": "",
-      "lead": "Verify pre-flight scheduling qualification validations:",
+      "lead": "Verify that:",
       "criteria": [
-        "Review surveillance policy and programme to verify that compliance with training requirements for flight crew, cabin crew, and dispatchers is monitored.",
+        "Review surveillance policy and programme to verify that compliance with training requirements is monitored.",
         "Sample completed inspection records/checklists.",
-        "Confirm effective implementation by verifying air operators’ training files during industry visits."
+        "During the industry visit, confirm effective implementation by verifying air operators’ training files."
       ]
     },
     {
       "no": "4.231",
-      "question": "Does the flight operations inspection organization ensure that an air operator establishes a flight dispatch/flight operations officers’ training programme?",
+      "question": "Does the flight operations inspection organization ensure that an air operator establishes a flight dispatch/flight operations officers’ training programme prior to the issuance of an AOC?",
       "ce": "CE-6",
       "ppq": "",
       "note": "",
-      "lead": "Verify dispatcher training coverage, checking for syllabus compliance in:",
+      "lead": "Sample some air operators’ manuals to confirm implementation and compliance with the following:",
       "criteria": [
-        "Civil air law/regulations, aviation instruction, and operations manual utilization.",
-        "Aircraft performance, navigation, and flight planning/monitoring.",
-        "Rules of the air, communication, air traffic management, and meteorology.",
-        "Mass/balance control, MEL/CDL use, and transport of dangerous goods by air.",
-        "Security procedures, emergency response planning, and mandatory flight observation.",
-        "Recurrent training programmes and records."
+        "Civil air law and regulations.",
+        "Aviation instruction.",
+        "Use of operations manual.",
+        "Aircraft performance.",
+        "Navigation.",
+        "Flight planning and monitoring.",
+        "Rules of the air, communication and air traffic management.",
+        "Meteorology.",
+        "Mass and balance control.",
+        "Use of MEL/configuration deviation list (CDL).",
+        "Transport of dangerous goods by air.",
+        "Security procedures.",
+        "Emergency response plan.",
+        "Flight observation.",
+        "Recurrent training programme.",
+        "Verify that applicable operations inspectors’ guidance material, manuals, checklists, etc. have been established and implemented.",
+        "Review evidence during industry visit to confirm implementation."
       ]
     },
     {
       "no": "4.235",
-      "question": "Does the flight operations inspection organization ensure that the air operator maintains the proficiency of flight dispatch ground instructors?",
+      "question": "Does the flight operations inspection organization ensure that the air operator maintains, on a recurrent basis, the knowledge, skills and qualifications of flight dispatch/flight operations officers ground instructors?",
       "ce": "CE-7",
       "ppq": "",
       "note": "",
-      "lead": "Verify instructor surveillance loops:",
+      "lead": "Verify that:",
       "criteria": [
         "Verify that the surveillance programme includes surveillance of flight dispatch instructors.",
-        "Review related operations inspectors’ oversight procedures.",
-        "Sample training records of dispatch instructors during industry visits."
+        "Review related operations inspectors’ procedures.",
+        "Sample flight dispatch/flight operations officers ground instructors training programme and records during the visit to the industry to confirm implementation."
       ]
     },
     {
@@ -805,366 +811,976 @@
       "ce": "CE-6",
       "ppq": "",
       "note": "",
-      "lead": "Verify cabin safety training pipelines, ensuring coverage of:",
+      "lead": "Sample some air operators’ manuals to confirm implementation and compliance with the following:",
       "criteria": [
-        "Basic instructions on functions, duties, and responsibilities of cabin crew members.",
-        "Introduction to aircraft systems and type limitations.",
-        "Aircraft emergency evacuation, life safety equipment use, and passenger briefing guidelines.",
-        "Cabin crew assignment rules, coordination, and two-way communication protocols.",
-        "Knowledge and skills related to the transport of dangerous goods and security procedures.",
-        "Recurrent training blocks including an examination to determine competence."
-      ]
-    },
-{
-      "no": "4.243",
-      "question": "Does the flight operations inspection organization ensure that the air operator establishes a cabin crew recurrent training programme?",
-      "ce": "CE-6",
-      "ppq": "",
-      "note": "",
-      "lead": "Verify that the cabin crew recurrent training is conducted annually and includes:",
-      "criteria": [
-        "Touch drills for emergency equipment operation.",
-        "Evacuation drills and cabin smoke/fire simulation exercises.",
-        "Review of crew coordination, communication, and first aid procedures.",
-        "An examination to determine continuing competence."
+        "Basic instructions on the different functions, duties and responsibilities of cabin crew members.",
+        "Introduction to aircraft systems and limitations.",
+        "Aircraft emergency evacuation, life safety equipment and related information to passengers.",
+        "Cabin crew members assignment, coordination and two-way communication.",
+        "Knowledge and skills related to the transport of dangerous goods.",
+        "Security procedures.",
+        "Recurrent training programme including an examination to determine competence.",
+        "Verify that applicable operations inspectors’ guidance material, manuals, checklists, etc. have been established and implemented.",
+        "Review evidence during industry visit to confirm implementation."
       ]
     },
     {
-      "no": "4.251",
-      "question": "Has the State established and implemented an effective process for the certification of commercial air transport operators (AOC issuance)?",
-      "ce": "CE-6",
-      "ppq": "Yes",
+      "no": "4.243",
+      "question": "Has the State established a policy and related procedures to ensure that air operators select and appoint cabin crew instructors who meet at least the appropriate minimum experience and knowledge requirements?",
+      "ce": "CE-5",
+      "ppq": "",
       "note": "",
-      "lead": "Verify the formal 5-stage certification framework execution:",
+      "lead": "Verify that:",
       "criteria": [
-        "Pre-application phase and initial statement of intent review.",
-        "Formal application phase including financial, legal, and operational package assessments.",
-        "Document evaluation phase encompassing all manuals (OM, TPM, MCM, MEL).",
-        "Demonstration and inspection phase (proving flights, base audits, emergency evacuation drills).",
-        "Certification phase and structured issuance of the AOC and corresponding Operations Specifications."
+        "Verify regulations or policy and/or procedure regarding the selection criteria for cabin crew who are charged with tasks as instructors (ground or in flight)."
+      ]
+    },
+    {
+      "no": "4.247",
+      "question": "Has the flight operations inspection organization established a surveillance programme to ensure that the appointed instructors for cabin crew maintain their competency?",
+      "ce": "CE-7",
+      "ppq": "",
+      "note": "",
+      "lead": "Verify that:",
+      "criteria": [
+        "Check if surveillance programme includes surveillance of cabin crew instructors.",
+        "Review related operations inspectors’ procedures.",
+        "Review surveillance policy and programme/plan to confirm maintenance of competency is addressed."
       ]
     },
     {
       "no": "4.253",
-      "question": "Does the flight operations inspection organization ensure that the air operator conducts required demonstration and proving flights before specific approvals are granted?",
-      "ce": "CE-6",
-      "ppq": "Yes",
+      "question": "Does the flight operations inspection organization ensure that the air operator is managing flight and cabin crew fatigue within the prescriptive limits established by the State?",
+      "ce": "CE-7",
+      "ppq": "",
       "note": "",
-      "lead": "Verify proving flight records for:",
+      "lead": "Review surveillance policy and programme of air operators to verify that:",
       "criteria": [
-        "Initial operator certification pipelines.",
-        "Introduction of new aircraft types or variants into the fleet.",
-        "Authorizations for specific operations (e.g., EDTO, Category II/III low visibility operations)."
+        "Fatigue is being managed with scheduling practices that allow adequate sleep recovery, limit periods of wakefulness, accommodate circadian influences on sleep and performance, and recognize the impact of workload on fatigued individuals.",
+        "Compliance with prescriptive limitation regulations is monitored.",
+        "Fatigue is recognized as a safety hazard to be managed using existing SMS processes.",
+        "Sample completed inspection records/checklists for flight and cabin crews fatigue management.",
+        "During the industry visit, confirm effective implementation by verifying air operators’ fatigue management practices."
+      ]
+    },
+    {
+      "no": "4.254",
+      "question": "If State approves variations to the prescriptive fatigue management regulations, does it do so according to an established process?",
+      "ce": "CE-6",
+      "ppq": "",
+      "note": "",
+      "lead": "Verify that:",
+      "criteria": [
+        "Verify implementation of the operations inspectors’ procedures to issue a variation based on an assessment by the regulator of the comprehensive risk assessment provided by the operator to support their application for a variation, and an application that is within the definition of the 'exceptional circumstances' determined by the regulator.",
+        "Confirm effective implementation by verifying records of variation approval.",
+        "Verify inclusion of the risk assessment results in the records.",
+        "During the industry visit, confirm effective implementation by verifying that the air operator’s variation is in accordance with the approval issued by the operations organization."
       ]
     },
     {
       "no": "4.255",
-      "question": "Does the State issue an Air Operator Certificate (AOC) and associated Operations Specifications that conform strictly to the layout and content requirements of Annex 6?",
-      "ce": "CE-6",
-      "ppq": "Yes",
+      "question": "If the State approves the use of a Fatigue Risk Management System (FRMS) allowing an operator to move outside of prescribed limits, has the State promulgated FRMS regulations?",
+      "ce": "CE-2",
+      "ppq": "",
       "note": "",
-      "lead": "Verify certificate layout integrity:",
+      "lead": "Verify that:",
       "criteria": [
-        "The AOC contains the operator's name, identification, contact details, issuance date, and validity.",
-        "The Operations Specifications (OPSPECs) are unambiguous and enumerate explicit aircraft types, registration blocks, and specific operational scopes.",
-        "Authorized areas of magnetic tracking, specific approvals (PBN, RVSM, MNPS, EDTO, All Weather Operations, EFB, Dangerous Goods) are explicitly documented."
+        "Verify that FRMS regulations have been promulgated for pilots and for cabin crews.",
+        "Verify that the content of the FRMS regulations complies with the ICAO requirements."
+      ]
+    },
+    {
+      "no": "4.256",
+      "question": "If the State authorizes air operators to use Fatigue Risk Management System (FRMS), has the flight operations inspection organization established an approval process?",
+      "ce": "CE-5",
+      "ppq": "",
+      "note": "",
+      "lead": "Verify that:",
+      "criteria": [
+        "Verify that there is a documented FRMS approval process.",
+        "Verify that the authority requires the operator to identify maximum values for flight times and/or flight duty periods and duty periods as well as minimum values for rest periods.",
+        "Verify that the approval process includes the need to define a trial period.",
+        "Verify that the requirements for obtaining approval are available to operators."
+      ]
+    },
+    {
+      "no": "4.257",
+      "question": "If the State authorizes air operators to use the Fatigue Risk Management System (FRMS), does the flight operations inspection organization follow the established FRMS approval process?",
+      "ce": "CE-6",
+      "ppq": "",
+      "note": "",
+      "lead": "Verify that:",
+      "criteria": [
+        "Verify that the inspectors reviewed and monitored the operator’s progress during the preparation and trial of the FRMS, as part of the FRMS approval process.",
+        "Verify that approval was granted based on it being applied only in those particular operations, routes or trips defined, and evidence that the FRMS delivered a level of safety acceptable to the regulator.",
+        "Verify that the authority allows operators to move outside of prescriptive limitations only under the following conditions: a) in accordance with approved variations; b) during a defined trial period of an FRMS as part of FRMS approval process; and c) in accordance with an approved FRMS.",
+        "Confirm effective implementation of the approval process by reviewing the FRMS approval documentation of at least one authorized air operator."
+      ]
+    },
+    {
+      "no": "4.259",
+      "question": "If the State authorizes air operators to use Fatigue Risk Management System (FRMS), does the flight operations inspection organization implement an effective FRMS surveillance programme?",
+      "ce": "CE-7",
+      "ppq": "",
+      "note": "",
+      "lead": "Verify that:",
+      "criteria": [
+        "Verify inspectors’ procedures and checklists for FRMS audit/inspection.",
+        "Check that records are maintained by the air operators and reviewed by the authority.",
+        "Review surveillance programme to ensure that air operators are visited at least once a year.",
+        "Verify that the State monitors the FRMS performance indicators agreed upon with the air operator.",
+        "Sample completed inspection records/checklists to ensure that all aspects are checked."
+      ]
+    },
+    {
+      "no": "4.260",
+      "question": "If the State authorizes air operators to use Fatigue Risk Management System (FRMS), has the flight operations inspection organization established and implemented enforcement procedures in case deficiencies are identified in an FRMS?",
+      "ce": "CE-8",
+      "ppq": "",
+      "note": "",
+      "lead": "Verify that:",
+      "criteria": [
+        "Verify that there are established processes allowing for different levels of actions to be taken by the authority, from warnings to withdrawal of FRMS approval.",
+        "Verify implementation by sampling completed inspection records to ensure that appropriate actions were taken in case deficiencies are identified."
       ]
     },
     {
       "no": "4.261",
-      "question": "Has the flight operations inspection organization established and implemented a comprehensive continuous surveillance programme for certified air operators?",
-      "ce": "CE-7",
+      "question": "Does the flight operations inspection organization ensure that the air operator has established an organizational and management system for the operational control of all flights in accordance with specific operating regulations applicable to aircraft operations with the related policies, processes, standards and procedures?",
+      "ce": "CE-6",
       "ppq": "Yes",
       "note": "",
-      "lead": "Verify surveillance delivery and audit master logs:",
+      "lead": "Verify that:",
       "criteria": [
-        "An annual surveillance plan is established based on operator risk profiles and size.",
-        "Oversight activities cover base inspections, station audits, ramp checks, flight inspections, and cabin safety assessments.",
-        "Audit findings are formally communicated, tracked systematically, and subject to corrective action plan (CAP) workflows."
-      ]
-    },
-    {
-      "no": "4.265",
-      "question": "Does the flight operations inspection organization conduct systematic ramp inspections on domestic and foreign aircraft?",
-      "ce": "CE-7",
-      "ppq": "Yes",
-      "note": "",
-      "lead": "Verify ramp check performance metrics:",
-      "criteria": [
-        "Ramp inspection checklists cover flight deck documentation, crew composition, cabin configurations, external aircraft conditions, and emergency gear currency.",
-        "Procedures are implemented to upload data to centralized regional safety registries where applicable.",
-        "Immediate safety concerns are addressed prior to aircraft departure (e.g., grounding protocols)."
+        "Verify that applicable operations inspectors’ guidance material, manuals, checklists, etc. have been established and implemented.",
+        "Sample some air operators’ manuals to confirm implementation and compliance with the establishment of operational control system including aircraft tracking and location of an aeroplane in distress, and risk management (assessment and mitigations) when intending to operate over or near conflict zones.",
+        "Verify definition of responsibilities, authorities, policies, processes, standards and procedures.",
+        "Verify that for the initiation, continuation, diversion, and termination of flights, the operations manual contains the functions and responsibilities of flight crew and flight operations officers/flight dispatchers.",
+        "Verify that the authority approves the method of control and supervision of flight operations when it is used."
       ]
     },
     {
       "no": "4.271",
-      "question": "Has the State established a process to ensure that operations inspectors carry out systematically documented en-route flight inspections?",
-      "ce": "CE-7",
-      "ppq": "Yes",
+      "question": "Does the flight operations inspection organization ensure that the air operator has established policy and procedures for flight crew to record and report on: a) routine meteorological observation during: i) en-route; and ii) climb-out phases of the flight; and b) special and other non-routine observations during any phase of the flight; and c) volcanic activity?",
+      "ce": "CE-6",
+      "ppq": "",
       "note": "",
-      "lead": "Verify en-route audit logs:",
+      "lead": "Verify that:",
       "criteria": [
-        "Inspectors utilize dedicated flight deck observation checklists.",
-        "Assessments encompass flight crew compliance with SOPs, ATC clearances, weather parsing, fuel management, and checklists initialization.",
-        "Cabin crew safety duties and passenger management compliance are simultaneously observed."
+        "Verify that applicable operations inspectors’ guidance material, manuals, checklists, etc. have been established and implemented.",
+        "Sample some air operators’ manuals to confirm implementation and compliance."
+      ]
+    },
+    {
+      "no": "4.281",
+      "question": "Does the flight operations inspection organization ensure that the air operator makes available to flight crew and operational personnel, at any aerodrome authorized in its AOC and corresponding operations specifications, pre-flight aeronautical information essential for the safety, regularity and efficiency of air navigation?",
+      "ce": "CE-6",
+      "ppq": "",
+      "note": "",
+      "lead": "Sample some air operators’ manuals to confirm implementation and compliance with the following:",
+      "criteria": [
+        "Provision of pre-flight information.",
+        "That information provided includes elements of the integrated Aeronautical Information Package, maps and charts, NOTAMs, AIP and AIC.",
+        "Verify that applicable operations inspectors’ guidance material, manuals, checklists, etc. have been established and implemented.",
+        "Review evidence during industry visit to confirm implementation."
       ]
     },
     {
       "no": "4.301",
-      "question": "Has the State promulgated regulations governing the transport of dangerous goods by air in full compliance with Annex 18 and Doc 9284 (Technical Instructions)?",
-      "ce": "CE-2",
-      "ppq": "Yes",
-      "note": "",
-      "lead": "Verify dangerous goods legal transposition:",
-      "criteria": [
-        "Classification, packaging, labeling, and placarding mandates match Doc 9284.",
-        "Shipper's responsibilities and dangerous goods transport document requirements are codified.",
-        "Prohibitions on specific dangerous goods configurations are aligned with current amendments."
-      ]
-    },
-    {
-      "no": "4.305",
-      "question": "Has the State designated a specific authority responsible for the oversight and enforcement of dangerous goods transport regulations?",
-      "ce": "CE-3",
+      "question": "Does the flight operations inspection organization approve the method for determining aerodrome operating minima for aeroplane operators?",
+      "ce": "CE-6",
       "ppq": "",
       "note": "",
-      "lead": "Verify agency mandates:",
+      "lead": "Verify that:",
       "criteria": [
-        "The designated entity has explicit legal powers to inspect, audit, investigate, and penalize violations related to dangerous goods.",
-        "Coordination channels between the dangerous goods authority and the main flight operations branch are formally documented."
+        "Verify that applicable operations inspectors’ guidance material, manuals, checklists, etc. have been established and implemented.",
+        "Sample some air operators’ manuals to confirm implementation and compliance."
       ]
     },
     {
-      "no": "4.311",
-      "question": "Are specific procedures and comprehensive checklists available to dangerous goods inspectors to support certification and continuous oversight?",
-      "ce": "CE-5",
-      "ppq": "Yes",
-      "note": "",
-      "lead": "Verify dangerous goods inspector toolkits:",
-      "criteria": [
-        "Checklists encompass dangerous goods acceptance processes, storage configurations, segregation verifications, and loading safety controls.",
-        "Procedures outline audit methods for operators holding specific approvals as well as those not authorized to transport dangerous goods (no-carry operators)."
-      ]
-    },
-    {
-      "no": "4.315",
-      "question": "Does the designated authority ensure that air operators have established and implemented dangerous goods training programmes approved by the State?",
+      "no": "4.303",
+      "question": "Does the flight operations inspection organization approve the method for determining heliport operating minima for helicopter operators?",
       "ce": "CE-6",
-      "ppq": "Yes",
+      "ppq": "",
       "note": "",
-      "lead": "Verify training syllabi validations for:",
+      "lead": "Verify that:",
       "criteria": [
-        "Flight crew and cabin crew safety parameters.",
-        "Flight dispatchers, load planners, and cargo acceptance personnel.",
-        "Ground handling agency personnel and security screeners.",
-        "Confirm that recurrent training plans are executed within 24-month cycles."
+        "Verify that applicable operations inspectors’ guidance material, manuals, checklists, etc. have been established and implemented.",
+        "Sample some air operators’ manuals to confirm implementation and compliance."
       ]
     },
     {
       "no": "4.321",
-      "question": "Does the dangerous goods authority conduct systematic continuous surveillance audits on shippers, freight forwarders, and operators?",
-      "ce": "CE-7",
+      "question": "Does the flight operations inspection organization ensure that the air operator has established an organizational structure which includes the responsibilities and authority for the management of all ground handling functions prior to the issuance of an AOC?",
+      "ce": "CE-6",
+      "ppq": "Yes",
+      "note": "",
+      "lead": "Verify implementation by checking operations manuals for ground handling structure and lines of responsibilities associated with the following, when applicable:",
+      "criteria": [
+        "Ramp operations.",
+        "Passenger services.",
+        "Baggage services.",
+        "Cabin services.",
+        "Weight and balance control.",
+        "Ground support equipment.",
+        "Fuel services.",
+        "Verify implementation of operations inspectors’ procedures to confirm air operator’s establishment of an organizational structure for ground handling functions, with description of related responsibilities and authorities."
+      ]
+    },
+    {
+      "no": "4.323",
+      "question": "Does the flight operations inspection organization ensure that the air operator has established aircraft ground handling training requirements, subcontracting policies, handling processes, procedures and practices for all ground handling operations?",
+      "ce": "CE-6",
       "ppq": "",
       "note": "",
-      "lead": "Verify dangerous goods oversight execution:",
+      "lead": "Verify that:",
       "criteria": [
-        "Annual audit schedules incorporate dangerous goods cargo facilities and acceptance areas.",
-        "Surveillance targets encompass the verification of NOTOC (Notification to Captain) logs and incident reporting frameworks."
+        "Verify implementation of the operations inspectors’ procedures as part of the certification process to ensure that air operator’s procedures include training requirements, subcontracting policies, handling processes, and procedures and practices for all ground handling operations.",
+        "Review evidence to confirm effective implementation (e.g. operations manual, weight and balance manual, handling manual and training programme for ground handlers)."
       ]
     },
     {
       "no": "4.325",
-      "question": "Has the State established a system for the mandatory reporting and investigation of dangerous goods accidents, incidents, and undeclared cargo?",
-      "ce": "CE-8",
+      "question": "Does the flight operations inspection organization ensure that the air operator maintains permanently its ground handling responsibility, when all or part of the functions and tasks related to ground handling services have been contracted to a service provider?",
+      "ce": "CE-7",
+      "ppq": "",
+      "note": "",
+      "lead": "Verify that:",
+      "criteria": [
+        "Verify the surveillance policy and programme.",
+        "Verify that operations inspectors’ procedures and checklists are used for inspection of ground handling responsibilities.",
+        "Review completed operations inspectors’ checklists to confirm effective implementation of surveillance programme."
+      ]
+    },
+    {
+      "no": "4.331",
+      "question": "Has the State promulgated regulation on the transport of dangerous goods by air to transpose the provisions of Annex 18?",
+      "ce": "CE-2",
       "ppq": "Yes",
       "note": "",
-      "lead": "Verify enforcement and investigation loops:",
+      "lead": "Verify that:",
       "criteria": [
-        "Reporting mechanisms require operators to notify the authority within specified hour limits.",
-        "Investigation protocols map root causes, container failures, and label misrepresentations.",
-        "Graduated enforcement penalties (sanctions, license suspensions) are actively executed against non-compliant entities."
+        "Confirm the title, date of promulgation and last amendment of all regulations related to dangerous goods.",
+        "Verify that the content of the regulations is consistent, sufficient and properly organized.",
+        "Confirm the transposition of the dangerous goods-related provisions of Annex 18.",
+        "Verify if the State has incorporated the provisions of Annex 18 and the Technical Instructions (TI or Doc 9284) either directly or by reference."
+      ]
+    },
+    {
+      "no": "4.332",
+      "question": "Has the State notified ICAO of variations from the Technical Instructions (TI or Doc 9284)?",
+      "ce": "CE-2",
+      "ppq": "",
+      "note": "If the State’s policy is to be in full compliance with the TI, it is Satisfactory.",
+      "lead": "Verify that:",
+      "criteria": [
+        "Verify the process in place for such notification."
+      ]
+    },
+    {
+      "no": "4.333",
+      "question": "Has the State implemented procedures to amend its enabling regulations in the area of dangerous goods subsequent to an Annex 18 amendment?",
+      "ce": "CE-2",
+      "ppq": "",
+      "note": "The establishment of amendment procedures is addressed in LEG PQ 1.009.",
+      "lead": "Verify that:",
+      "criteria": [
+        "Review documented evidence of the effective implementation of procedures for amending dangerous goods regulations.",
+        "Verify that regulations are amended in a timely manner whenever amendments to the related Annex or Technical Instructions (TI or Doc 9284) are received.",
+        "Verify the action taken by the State after receipt of the last amendments to Annex 18."
+      ]
+    },
+    {
+      "no": "4.334",
+      "question": "Has the State implemented procedures for identifying and notifying to ICAO differences between ICAO Standards and national regulations in the area of dangerous goods, if any?",
+      "ce": "CE-2",
+      "ppq": "Yes",
+      "note": "The establishment of these procedures is addressed in LEG PQ 1.025. States may also notify differences to ICAO using other means.",
+      "lead": "Verify that:",
+      "criteria": [
+        "Review documented evidence of the effective implementation.",
+        "Confirm that the differences between SARPs and the State legislation and practices are identified and notified to ICAO using the Compliance Checklist/Electronic Filing of Differences (CC/EFOD) system.",
+        "Confirm that significant differences between SARPs/PANS/SUPPS and the State regulations and practices are identified and published in the AIP."
+      ]
+    },
+    {
+      "no": "4.335",
+      "question": "Has the State designated and specified to ICAO the appropriate national authority responsible for the transport of dangerous goods by air?",
+      "ce": "CE-3",
+      "ppq": "",
+      "note": "Required even if State does not issue approvals for the transport of dangerous goods. If multiple authorities have responsibilities, identify them individually.",
+      "lead": "Verify that:",
+      "criteria": [
+        "Cross-check State Aviation Activity Questionnaire (SAAQ) and confirm with ICAO."
+      ]
+    },
+    {
+      "no": "4.337",
+      "question": "Are all the functions and responsibilities of the entities/individuals responsible for dangerous goods clearly defined?",
+      "ce": "CE-3",
+      "ppq": "",
+      "note": "",
+      "lead": "Review documents detailing functions and responsibilities for inclusion of the following tasks:",
+      "criteria": [
+        "Development and/or revision of specific regulations.",
+        "Issuance of exemptions and approvals related to dangerous goods.",
+        "Issuance of specific approvals to air operators to transport dangerous goods by air.",
+        "Review of dangerous goods training programmes of all air operators.",
+        "Review of dangerous goods procedures for all air operators.",
+        "Review of dangerous goods training programmes for all entities on the ground involved in the transport of dangerous goods by air.",
+        "Inspection of air operators related to dangerous goods.",
+        "Inspections of shippers and handling companies related to dangerous goods.",
+        "Gathering dangerous goods incidents and accidents information.",
+        "Certification of general aviation operations."
+      ]
+    },
+    {
+      "no": "4.343",
+      "question": "Has the State established procedures to: a) approve the dangerous goods training programme of AOC holders; and b) grant specific approval to transport dangerous goods by air?",
+      "ce": "CE-5",
+      "ppq": "",
+      "note": "",
+      "lead": "Review the dangerous goods inspectors’ procedures and ensure that they include:",
+      "criteria": [
+        "Review of AOC holder’s dangerous goods procedures.",
+        "Training programmes for all AOC holders.",
+        "On-site inspections before granting of specific approvals to applicants."
+      ]
+    },
+    {
+      "no": "4.345",
+      "question": "Does the State grant specific approvals for the transport of dangerous goods by air?",
+      "ce": "CE-6",
+      "ppq": "Yes",
+      "note": "",
+      "lead": "Verify that:",
+      "criteria": [
+        "Review procedures and process for granting specific approvals.",
+        "Review records of specific approvals for transport of dangerous goods."
+      ]
+    },
+    {
+      "no": "4.347",
+      "question": "Does the organization/individual responsible for the transport of dangerous goods by air ensure that: a) authorized air operators have developed and use an acceptance checklist to prevent acceptance of dangerous goods for transport by air unless they are accompanied by a completed dangerous goods transport document; and b) their marking, package, overpack or freight container have been inspected in accordance with the acceptance procedure contained in the Technical Instructions (TI or Doc 9284)?",
+      "ce": "CE-6",
+      "ppq": "",
+      "note": "",
+      "lead": "Verify that:",
+      "criteria": [
+        "Review inspectors’ procedures for issuance of specific approvals to transport dangerous goods.",
+        "Sample completed checklists used by authorized air operators."
+      ]
+    },
+    {
+      "no": "4.349",
+      "question": "Does the organization/individual responsible for the transport of dangerous goods by air ensure that authorized air operators will not load dangerous goods into the aircraft unless the appropriate loading, segregation and inspection for damage or leakage procedures are followed?",
+      "ce": "CE-6",
+      "ppq": "",
+      "note": "",
+      "lead": "Verify that:",
+      "criteria": [
+        "Review authorization process and inspection procedures for issuance of specific approvals to transport dangerous goods.",
+        "Sample completed checklists or other mechanisms used by authorized air operators."
+      ]
+    },
+    {
+      "no": "4.351",
+      "question": "Does the organization/individual responsible for the transport of dangerous goods by air ensure that: a) the air operator of an aircraft in which dangerous goods are carried provides the pilot-in-command with written information (e.g. Notification to Captain or NOTOC); and b) the written information is retained on the ground and readily accessible to the aerodromes of last departure and next scheduled arrival, as specified in the Technical Instructions (TI or Doc 9284)?",
+      "ce": "CE-6",
+      "ppq": "",
+      "note": "",
+      "lead": "Verify that:",
+      "criteria": [
+        "Review authorization process and inspection procedures for issuance of specific approvals to transport dangerous goods by air.",
+        "Sample completed checklists or other documented mechanisms used by authorized air operators."
+      ]
+    },
+    {
+      "no": "4.355",
+      "question": "Does the organization/individual responsible for the transport of dangerous goods by air ensure that the air operator authorized to transport dangerous goods has established in-flight procedures for emergency response for aircraft incidents involving dangerous goods?",
+      "ce": "CE-6",
+      "ppq": "",
+      "note": "",
+      "lead": "Verify that:",
+      "criteria": [
+        "Review authorization process and inspector’s procedures.",
+        "Verify implementation of inspector’s procedures.",
+        "Sample documented procedures in operations manual.",
+        "Review air operator’s procedures during industry visit."
+      ]
+    },
+    {
+      "no": "4.357",
+      "question": "Has the State established procedures for the surveillance of all the air operators related to the transport of dangerous goods by air?",
+      "ce": "CE-5",
+      "ppq": "",
+      "note": "",
+      "lead": "Verify that:",
+      "criteria": [
+        "Verify that there is an inspection policy, which covers authorized or non-authorized air operators, national and foreign operators, with regular and random inspections.",
+        "Verify the inspection checklists and guidance used by the inspectors.",
+        "Verify that the inspections cover handling responsibilities if subcontracted to an external handling company and that the air operator provides subcontractor with appropriate documents and manuals."
+      ]
+    },
+    {
+      "no": "4.358",
+      "question": "Does the State ensure that passengers are warned as to the types of dangerous goods that they are prohibited or restricted from transporting aboard an aircraft?",
+      "ce": "CE-6",
+      "ppq": "Yes",
+      "note": "This PQ is applicable to all air operators.",
+      "lead": "Verify that:",
+      "criteria": [
+        "Check the passenger awareness system."
+      ]
+    },
+    {
+      "no": "4.359",
+      "question": "Does the organization/individual responsible for the transport of dangerous goods by air carry out regular and random inspections of all entities, except air operators, involved in the transport of dangerous goods by air to confirm compliance with Annex 18 and the Technical Instructions (TI or Doc 9284)?",
+      "ce": "CE-7",
+      "ppq": "Yes",
+      "note": "The establishment of this PQ is covered in PQ 4.360.",
+      "lead": "Verify that:",
+      "criteria": [
+        "Sample completed dangerous goods inspection records.",
+        "Review if the programme implemented enables the surveillance of all entities."
+      ]
+    },
+{
+      "no": "4.360",
+      "question": "Has the State established procedures related to the oversight of entities, other than air operators, established in the State and involved in the transport of dangerous goods by air to confirm compliance with dangerous goods regulations?",
+      "ce": "CE-5",
+      "ppq": "",
+      "note": "",
+      "lead": "Verify that:",
+      "criteria": [
+        "Verify that dangerous goods inspection procedures include a review of training programmes as well as regular and random onsite inspections of all entities established in the State as being involved in the transport of dangerous goods by air (shippers and cargo handling companies in particular)[cite: 3].",
+        "Review the inspection checklists for each kind of inspection[cite: 3].",
+        "Review the inspection policy and the frequency chosen for each type of inspection[cite: 3]."
+      ]
+    },
+    {
+      "no": "4.361",
+      "question": "Does the organization/individual responsible for the transport of dangerous goods by air ensure that the organizations or agencies, which are involved in the transport of dangerous goods by air, have established and implemented initial and recurrent dangerous goods training programmes?",
+      "ce": "CE-6",
+      "ppq": "Yes",
+      "note": "",
+      "lead": "Verify that the dangerous goods inspectors have reviewed/approved the specific training programmes to be established and maintained by:",
+      "criteria": [
+        "Shippers of dangerous goods, including packers and shippers' agents[cite: 3].",
+        "Agencies which perform, on behalf of the air operator, the act of accepting, handling, loading, unloading, transferring or other processing of cargo[cite: 3].",
+        "Agencies located at an aerodrome which perform, on behalf of the air operator, the act of processing passengers[cite: 3].",
+        "Agencies not located at an aerodrome which perform, on behalf of the air operator, the act of checking in passengers[cite: 3].",
+        "Agencies other than air operators involved in processing cargo[cite: 3].",
+        "Designated Postal Operators (has to be approved by State)[cite: 3].",
+        "Agencies engaged in the security screening of passengers and their baggage[cite: 3].",
+        "Any other person or agency performing a function on behalf of the air operator[cite: 3].",
+        "Review the files for each type of agencies[cite: 3].",
+        "Sample dangerous goods training records to confirm implementation[cite: 3]."
+      ]
+    },
+    {
+      "no": "4.363",
+      "question": "Are dangerous goods training programmes of air operators reviewed and approved by the organization/individual responsible for the transport of dangerous goods by air before specific approval is granted?",
+      "ce": "CE-6",
+      "ppq": "",
+      "note": "This PQ is for air operators applying for a specific approval to transport dangerous goods.",
+      "lead": "Verify that:",
+      "criteria": [
+        "Review certification records[cite: 3].",
+        "Verify air operator’s training programme to ensure that it covers all employees[cite: 3].",
+        "Review and sample air operator’s training records to confirm implementation[cite: 3]."
+      ]
+    },
+    {
+      "no": "4.365",
+      "question": "For air operators which choose not to transport dangerous goods, are the dangerous goods training programmes intended to help the ground and flight personnel recognize and refuse dangerous goods, reviewed and approved by the organization/individual responsible for the transport of dangerous goods by air?",
+      "ce": "CE-6",
+      "ppq": "",
+      "note": "This PQ is for air operators that do not intend to transport dangerous goods.",
+      "lead": "Verify that:",
+      "criteria": [
+        "Verify implementation of related procedure for the review and approval of training programmes[cite: 3].",
+        "Sample operations manuals of AOC holders not authorized to transport dangerous goods by air[cite: 3].",
+        "Sample dangerous goods recognition training programmes and records during the industry visit[cite: 3]."
+      ]
+    },
+    {
+      "no": "4.366",
+      "question": "Are dangerous goods procedures of air operators reviewed by the organization/individual responsible for the transport of dangerous goods by air, as part of the flight safety documents system of the air operator?",
+      "ce": "CE-6",
+      "ppq": "Yes",
+      "note": "This PQ is for air operators that do not intend to transport dangerous goods.",
+      "lead": "Verify implementation of dangerous goods inspectors’ procedures to ensure:",
+      "criteria": [
+        "Exceptions related to passengers are covered[cite: 3].",
+        "That air operators not authorized to transport dangerous goods have a policy to not transport spare parts for maintenance purposes that should be categorized as dangerous goods (Company Material [COMAT])[cite: 3].",
+        "Procedures to report incident involving undeclared dangerous goods are covered[cite: 3].",
+        "Review certification records[cite: 3]."
+      ]
+    },
+    {
+      "no": "4.367",
+      "question": "Does the flight operations inspection organization or the organization/individual responsible for the transport of dangerous goods by air ensure that dangerous goods procedures and training programmes are incorporated in either the operations manual or a separate document as part of the flight safety documents system?",
+      "ce": "CE-6",
+      "ppq": "",
+      "note": "This PQ is for air operators applying for a specific approval to transport dangerous goods.",
+      "lead": "Verify that:",
+      "criteria": [
+        "Verify regulations[cite: 3].",
+        "Review certification process and inspectors’ procedures[cite: 3].",
+        "Sample operations manual or separate document as part of flight safety documents system[cite: 3].",
+        "Sample training programmes and records during the industry visit[cite: 3]."
+      ]
+    },
+    {
+      "no": "4.369",
+      "question": "Does the organization/individual responsible for the transport of dangerous goods by air ensure that the air operator has established procedures to convey information to emergency services and to appropriate authorities in the event of an incident or accident of an aircraft carrying dangerous goods?",
+      "ce": "CE-6",
+      "ppq": "",
+      "note": "This PQ is for air operators applying for a specific approval to transport dangerous goods.",
+      "lead": "Verify that:",
+      "criteria": [
+        "Review authorization process and inspector’s procedures[cite: 3].",
+        "Sample documented procedures in operations manual[cite: 3].",
+        "Confirm knowledge of these procedures during industry visit[cite: 3]."
+      ]
+    },
+    {
+      "no": "4.371",
+      "question": "Has the organization/individual responsible of the transport of dangerous goods by air established and implemented: a) procedures to take appropriate actions in case of violation (e.g. enforcement and penalties), and b) a system to track identified deficiencies and to ensure timely resolution?",
+      "ce": "CE-8",
+      "ppq": "",
+      "note": "This PQ is applicable to all entities, including air operators.",
+      "lead": "Verify that:",
+      "criteria": [
+        "Review the system to inform the entities inspected of the deficiencies detected, how their corrective action plan is assessed, etc[cite: 3].",
+        "Sample cases of discrepancies or violations and the actions taken by the State[cite: 3]."
+      ]
+    },
+    {
+      "no": "4.373",
+      "question": "Has the State established and implemented a process for reporting dangerous goods incidents and accidents, with procedures for investigating and compiling information concerning accidents or incidents involving dangerous goods, which occur in its territory and which involve the transport of dangerous goods originating in or destined for another State?",
+      "ce": "CE-8",
+      "ppq": "",
+      "note": "",
+      "lead": "Verify that:",
+      "criteria": [
+        "Review the incident reporting system (this includes undeclared, misdeclared and unintentional release of dangerous goods) in place for investigation and for compiling information[cite: 3].",
+        "See definition of dangerous goods incident[cite: 3].",
+        "Review promotion done by the State to ensure that such incidents are reported[cite: 3]."
+      ]
+    },
+    {
+      "no": "4.383",
+      "question": "Has the State established procedures for the acceptance or approval of aircraft leasing arrangements?",
+      "ce": "CE-5",
+      "ppq": "",
+      "note": "",
+      "lead": "Verify procedures established for the type of leases allowed (dry, wet, or damp leases) address as a minimum flight crew training, cabin crew training, operational control, dispatch and flight watch, and crew members scheduling, and also the following approvals as applicable:",
+      "criteria": [
+        "The method for establishing minimum flight altitudes (4.2.7.3)[cite: 3].",
+        "The method of determining aerodrome operating minima (4.2.8.1)[cite: 3].",
+        "Flight time, flight duty periods and rest periods (4.10.2a)[cite: 3].",
+        "EDTO (4.7)[cite: 3].",
+        "Aircraft-specific minimum equipment list (MEL) (6.1.3)[cite: 3].",
+        "Performance-based navigation operations (7.2.2 b)[cite: 3].",
+        "RVSM operations (7.2.6 b))[cite: 3].",
+        "Procedures for electronic navigation data management (7.5.1)[cite: 3].",
+        "Training in the transport of dangerous goods (9.3.1)[cite: 3].",
+        "Pilot-in-command area, route and aerodrome qualifications (9.4.3.5)[cite: 3].",
+        "Use of flight simulation training devices[cite: 3].",
+        "Verify procedures for coordination with airworthiness and licensing for related requirements[cite: 3]."
+      ]
+    },
+    {
+      "no": "4.384",
+      "question": "Has the State implemented a process for the acceptance or approval of aircraft leasing arrangements, including coordination on airworthiness-related aspects?",
+      "ce": "CE-6",
+      "ppq": "",
+      "note": "",
+      "lead": "Verify implementation of the procedures to address as a minimum flight crew training, cabin crew training, operational control, dispatch and flight watch, and crew members scheduling, and also the following as applicable:",
+      "criteria": [
+        "The method for establishing minimum flight altitudes (4.2.7.3)[cite: 3].",
+        "The method of determining aerodrome operating minima (4.2.8.1)[cite: 3].",
+        "Flight time, flight duty periods and rest periods (4.10.2a)[cite: 3].",
+        "EDTO (4.7)[cite: 3].",
+        "Aircraft-specific minimum equipment list (MEL) (6.1.3)[cite: 3].",
+        "Performance-based navigation operations (7.2.2 b)[cite: 3].",
+        "RVSM operations (7.2.6 b))[cite: 3].",
+        "Procedures for electronic navigation data management (7.5.1)[cite: 3].",
+        "Training in the transport of dangerous goods (9.3.1)[cite: 3].",
+        "Pilot-in-command area, route and aerodrome qualifications (9.4.3.5)[cite: 3].",
+        "Use of flight simulation training devices[cite: 3].",
+        "Verify coordination on airworthiness-related aspects[cite: 3]."
+      ]
+    },
+    {
+      "no": "4.385",
+      "question": "If the State has entered into any agreement under the provisions of Article 83 bis to the Chicago Convention, has the State established procedures for the transfer of licensing and operations-related tasks and functions, including notification to ICAO?",
+      "ce": "CE-5",
+      "ppq": "",
+      "note": "Verify the process to transfer out, not in.",
+      "lead": "Verify that:",
+      "criteria": [
+        "Verify procedures for evaluating capability of State accepting oversight duties[cite: 3].",
+        "Verify guidance on the recognition of licences and certificates[cite: 3].",
+        "Verify that notification to ICAO of transfer agreements is included in the procedure[cite: 3].",
+        "Verify in the agreement or in another document which of the two parties has the responsibility for the notification to ICAO[cite: 3]."
+      ]
+    },
+    {
+      "no": "4.387",
+      "question": "If the State has entered into any agreement under the provisions of Article 83 bis to the Chicago Convention as State of Registry, does the State carry out an assessment of the capability of the State of the Operator accepting the transfer?",
+      "ce": "CE-6",
+      "ppq": "",
+      "note": "Verify the process to transfer out, not in.",
+      "lead": "Verify that:",
+      "criteria": [
+        "Verify procedures for evaluating the capability of the State accepting oversight duties to cover provisions in Annexes 1, 2 and 6[cite: 3].",
+        "Review implementation of related procedures[cite: 3].",
+        "Sample an agreement, together with its agreement summary, to confirm assessment and notification to ICAO[cite: 3].",
+        "Review the method in place to ensure that a certified true copy of the agreement summary is on board the aircraft[cite: 3]."
+      ]
+    },
+    {
+      "no": "4.390",
+      "question": "Has the State implemented a process to issue approvals for the transport of dangerous goods by air?",
+      "ce": "CE-6",
+      "ppq": "Yes",
+      "note": "The approval referred to in this PQ is different than dangerous goods specific approval issued to an air operator as a part of operations specifications associated with the AOC.",
+      "lead": "Verify that:",
+      "criteria": [
+        "Review application forms and their contents[cite: 3].",
+        "Review the procedure to assess the application forms and the policy and criteria to issue approvals as State of Origin or State of Operator and as applicable (deviation stipulated in the Technical Instructions (TI) or Doc 9284)[cite: 3]."
+      ]
+    },
+    {
+      "no": "4.392",
+      "question": "Has the State implemented a process to grant exemptions from the provisions of the Technical Instructions for the safe transport of dangerous goods by air, when the State is the State of Origin, Operator, Transit, Overflight and Destination?",
+      "ce": "CE-6",
+      "ppq": "Yes",
+      "note": "The legal basis for the granting of exemptions is addressed in LEG PQ 1.027. The establishment of a policy and associated procedures for the granting of exemptions is addressed in LEG PQ 1.028.",
+      "lead": "Verify that:",
+      "criteria": [
+        "Review completed application forms and their contents[cite: 3].",
+        "Review the procedure to assess the application forms and the policy and criteria to grant exemptions (e.g. extreme urgency, other forms of transport inappropriate, public interest, etc.)[cite: 3].",
+        "Ensure that the procedure includes determination of equivalent level of safety[cite: 3]."
       ]
     },
     {
       "no": "4.401",
-      "question": "Has the State established regulations and procedures for the approval of aircraft dry and wet leasing arrangements?",
-      "ce": "CE-2",
+      "question": "Does the flight operations inspection organization ensure that the air operator has established: a) policy and procedures to enable cabin crew to discreetly communicate to flight crew in the event of suspicious activity or security breaches in the passenger cabin; and b) policy and procedures with respect to flight crew compartment access?",
+      "ce": "CE-6",
       "ppq": "",
       "note": "",
-      "lead": "Verify leasing regulation bounds:",
+      "lead": "Verify that:",
       "criteria": [
-        "Delineation of operational control responsibilities between the lessor and lessee.",
-        "Verification that aircraft comply with target airworthiness standards and air operator specifications.",
-        "Coordination mechanisms between the State of the Operator and the State of Registry are clear."
+        "Verify State regulations[cite: 3].",
+        "Review certification process[cite: 3].",
+        "Review operations inspectors’ procedures[cite: 3].",
+        "Sample operations manual or security manual to confirm implementation[cite: 3]."
       ]
     },
     {
       "no": "4.405",
-      "question": "If the State has ratified Article 83 bis of the Chicago Convention, has it modified its legal framework to give full effect to transfer agreements?",
-      "ce": "CE-1",
-      "ppq": "",
-      "note": "If the State has not executed Article 83 bis transfer protocols, this question is Not Applicable.",
-      "lead": "Verify transfer treaty provisions:",
-      "criteria": [
-        "Legislation permits the formal delegation of safety oversight duties (OPS, AIR, PEL) to or from another Contracting State.",
-        "Procedures ensure that every Article 83 bis agreement is registered with the ICAO Council.",
-        "Certified copies of the transfer summaries are systematically distributed to affected flight crews and inspector groups."
-      ]
-    },
-    {
-      "no": "4.411",
-      "question": "Does the flight operations inspection organization verify compliance with specific operator parameters under an active Article 83 bis agreement?",
+      "question": "Does the flight operations inspection organization ensure that the air operator has, on board all its aircraft, a checklist of the procedures to be followed: a) in searching for a bomb; b) for inspecting an aircraft for concealed weapons, explosives and other dangerous devices; and c) appropriate course of action to be taken in case a bomb or suspicious object is found?",
       "ce": "CE-6",
       "ppq": "",
       "note": "",
-      "lead": "Verify transferred operational surveillance:",
+      "lead": "Verify that:",
       "criteria": [
-        "Inspectors utilize targeted checklist items matching delegated parameters.",
-        "Ramp and en-route checks confirm that transferred airworthiness and operations logs are accurate and present on board."
+        "Verify certification process and operations inspectors’ procedures[cite: 3].",
+        "Sample operations manual or security manual to confirm implementation of such guidance[cite: 3]."
       ]
     },
     {
-      "no": "4.501",
-      "question": "Has the State established specific operating regulations for the authorization of Extended Diversion Time Operations (EDTO)?",
-      "ce": "CE-2",
-      "ppq": "Yes",
+      "no": "4.409",
+      "question": "Does the State ensure that a security training programme for flight and cabin crew is established by the operator and approved by the State before the AOC is granted?",
+      "ce": "CE-6",
+      "ppq": "",
       "note": "",
-      "lead": "Verify EDTO regulatory benchmarks:",
+      "lead": "Review the certification process and procedures to ensure that the programme is reviewed in detail and sample training programme to confirm that the following are addressed:",
       "criteria": [
-        "Codification of threshold times based on engine configurations and airframe configurations.",
-        "Requirements for diversion aerodrome availability and meteorological forecasting limits.",
-        "En-route fuel reserve calculation mandates tailored for worst-case system failures."
+        "Security of the flight crew compartment[cite: 3].",
+        "Aircraft search procedure checklist[cite: 3].",
+        "Determination of the seriousness of any occurrences[cite: 3].",
+        "Crew communication and coordination[cite: 3].",
+        "Appropriate self-defence responses[cite: 3].",
+        "Use, as authorized by the State of the Operator, of non-lethal protective devices assigned to crew members[cite: 3].",
+        "Understanding of behaviour of terrorists[cite: 3].",
+        "Live situational training exercises regarding various threat conditions[cite: 3].",
+        "Post-flight concerns for the crew[cite: 3]."
       ]
     },
     {
-      "no": "4.505",
-      "question": "Has the flight operations inspection organization implemented a formal approval process for operators requesting EDTO specifications?",
+      "no": "4.421",
+      "question": "Has the State promulgated regulations and additional requirements for an air operator applying for approval to operate a single-engine turbine powered aeroplane at night and/or in Instrument Meteorological Conditions (IMC)?",
+      "ce": "CE-2",
+      "ppq": "",
+      "note": "If State’s requirements do not allow such operations, the PQ is “Not Applicable”.",
+      "lead": "Verify that:",
+      "criteria": [
+        "Verify regulations[cite: 3].",
+        "Review additional requirements, such as engine trend monitoring system, redundant electrical generating systems, radio altimeter, airborne weather radar, etc[cite: 3]."
+      ]
+    },
+    {
+      "no": "4.433",
+      "question": "Do the AOC and associated operations specifications issued by the authority contain all the elements and follow the format/layout outlined in the relevant provisions of Annex 6?",
+      "ce": "CE-6",
+      "ppq": "",
+      "note": "",
+      "lead": "Verify certification process and operations inspectors’ procedures, and sample AOCs and operations specifications to verify if they contain the following:",
+      "criteria": [
+        "State of the Operator and issuing authority[cite: 3].",
+        "AOC number and expiration date[cite: 3].",
+        "Operator name, trading name (if different) & address[cite: 3].",
+        "Date of issue and name, signature and title of authority representative[cite: 3].",
+        "The location, in a controlled document carried on board where the contact details of operational management can be found[cite: 3].",
+        "Verify that the AOC and operations specifications follow the layout of A6, Part I, App. 6, para. 3 or A6, Part III, App. 3, para. 3 to the Chicago Convention[cite: 3]."
+      ]
+    },
+    {
+      "no": "4.434",
+      "question": "Has the flight operations inspection organization established procedures for the issuance of other approvals and authorizations contained in the operations specifications?",
+      "ce": "CE-5",
+      "ppq": "",
+      "note": "",
+      "lead": "Review certification process and operations procedures for issuance of specific approvals (RVSM, EDTO including conducting applicants’ safety risk assessment, PBN authorization required (AR), and other), and verify that coordination with airworthiness includes:",
+      "criteria": [
+        "Documented process, including inspectors’ procedures, inspectors’ guidance, and inspectors’ checklists[cite: 3].",
+        "Defined areas of responsibility[cite: 3]."
+      ]
+    },
+    {
+      "no": "4.435",
+      "question": "Does the flight operations inspection organization ensure that the air operator has taken into account, reviewed and implemented all regulations before operations specifications are granted?",
       "ce": "CE-6",
       "ppq": "Yes",
       "note": "",
-      "lead": "Verify EDTO package approvals:",
+      "lead": "Verify that:",
       "criteria": [
-        "Evaluation of the air operator's configuration maintenance programme (CMP) compliance.",
-        "Review of EDTO-specific flight crew training, dispatcher training, and flight dispatch procedures.",
-        "Validation of the operator's reliability monitoring system (engine shutdown track, system degradation rates).",
-        "Proving flights are observed to verify validation before operational specifications are updated."
+        "Verify implementation of the certification process and operations inspectors’ procedures[cite: 3].",
+        "Review the related air operators procedures for: a) RVSM; b) EDTO; c) PBN authorization required (AR); and d) other[cite: 3].",
+        "Review implementation of documented coordination procedures with airworthiness[cite: 3].",
+        "Sample issued AOCs/operations specifications[cite: 3]."
       ]
     },
     {
-      "no": "4.601",
-      "question": "Has the State promulgated regulations governing Performance-Based Navigation (PBN) operational authorizations?",
-      "ce": "CE-2",
-      "ppq": "Yes",
+      "no": "4.437",
+      "question": "Has the State established approval procedures for the conduct of CAT II and III instrument approaches?",
+      "ce": "CE-5",
+      "ppq": "",
       "note": "",
-      "lead": "Verify PBN legal transpositions:",
+      "lead": "Verify that:",
       "criteria": [
-        "Alignment with ICAO PBN Manual (Doc 9613) specifications.",
-        "Delineation of navigation specifications (RNAV 1, RNAV 2, RNAV 5, RNP 1, RNP 2, RNP 4, RNP APCH, RNP AR APCH).",
-        " codification of cockpit equipment redundancies and signal tracking requirements."
+        "Verify procedures for approval of such operations[cite: 3]."
       ]
     },
     {
-      "no": "4.605",
-      "question": "Does the flight operations inspection organization implement a structured process for the issuance of PBN specific approvals?",
+      "no": "4.439",
+      "question": "Does the flight operations inspection organization carry out an operations evaluation for the conduct of CAT II and III instrument approaches?",
       "ce": "CE-6",
-      "ppq": "Yes",
+      "ppq": "",
       "note": "",
-      "lead": "Verify PBN specific check routines:",
+      "lead": "Verify that:",
       "criteria": [
-        "Review of airframe and avionics qualification data (AFM statements, compliance certifications).",
-        "Evaluation of database management protocols (NAV DATA integrity, 28-day AIRAC cycle update controls).",
-        "Assessment of pilot PBN training syllabi, operating manuals, and standard operating procedures.",
-        "Review evidence of formal OPSPEC updates matching the granted navigation capabilities."
+        "Verify the process used, including flight crew training[cite: 3].",
+        "Review evidence to confirm effective implementation[cite: 3].",
+        "Confirm that CAT II and III instrument approach and landing operations shall not be authorized unless runway visual range (RVR) information is provided[cite: 3]."
       ]
     },
     {
-      "no": "4.701",
-      "question": "Has the State established specific operating regulations requiring operators to obtain an authorization for Low Visibility Operations (All Weather Operations - AWOP)?",
-      "ce": "CE-2",
-      "ppq": "Yes",
+      "no": "4.441",
+      "question": "Has the flight operations inspection organization established a formal inspection policy and procedures to be used by operations inspectors for conducting inspections of AOC holders and foreign air operators?",
+      "ce": "CE-5",
+      "ppq": "",
       "note": "",
-      "lead": "Verify AWOP regulatory bounds:",
+      "lead": "Verify policy/procedures for inclusion of:",
       "criteria": [
-        "Definition of Category II, Category IIIa, Category IIIb, and Category IIIc minima criteria.",
-        "Codification of airport low visibility procedures (LVP) compliance requirements.",
-        "Equipment failure alert system limits and automatic flight control requirements."
+        "Identification of inspections to be carried out for AOC holders and foreign air operators[cite: 3].",
+        "Guidelines for scheduling inspections and intervals between each inspection[cite: 3].",
+        "Standardized checklists for inspections[cite: 3].",
+        "Inspection/audit process[cite: 3]."
       ]
     },
     {
-      "no": "4.705",
-      "question": "Does the flight operations inspection organization execute a rigorous evaluation process for the issuance of Category II/III specific approvals?",
+      "no": "4.443",
+      "question": "Is a formal surveillance programme implemented to verify that all AOC holders in the State comply, on a continuing basis, with national regulations, international standards, AOCs and corresponding operations specifications?",
+      "ce": "CE-7",
+      "ppq": "Yes",
+      "note": "Inspections include scheduled, unscheduled and unannounced inspections.",
+      "lead": "Verify that:",
+      "criteria": [
+        "Verify surveillance programme for previous and current year (planned and completed)[cite: 3].",
+        "Confirm appropriate frequency of inspection (may be based on proven safety indicators or results of previous inspections)[cite: 3].",
+        "Sample inspection records of surveillance of air operators[cite: 3]."
+      ]
+    },
+    {
+      "no": "4.445",
+      "question": "Does the established surveillance programme monitor the AOC holders’ financial condition and any negative trends?",
+      "ce": "CE-7",
+      "ppq": "",
+      "note": "",
+      "lead": "Verify that:",
+      "criteria": [
+        "Verify surveillance programme[cite: 3].",
+        "Verify monitoring procedures[cite: 3].",
+        "Sample inspections records[cite: 3]."
+      ]
+    },
+    {
+      "no": "4.447",
+      "question": "Does the surveillance policy and programme of the CAA include the necessary processes and procedures for coordination among its different departments or directorates (i.e. transportation, finances, legal, operations, personnel licensing, airworthiness, etc.)?",
+      "ce": "CE-7",
+      "ppq": "",
+      "note": "",
+      "lead": "Verify that:",
+      "criteria": [
+        "Verify that surveillance policy provides for coordination[cite: 3].",
+        "Review operations inspectors’ procedures[cite: 3].",
+        "Verify surveillance programme records to confirm that all relevant aspects from other departments are reviewed (like ramp inspections)[cite: 3]."
+      ]
+    },
+    {
+      "no": "4.448",
+      "question": "Is a formal surveillance programme implemented to verify that foreign air operators comply, on a continuing basis, with international standards, AOCs and corresponding operations specifications?",
+      "ce": "CE-7",
+      "ppq": "",
+      "note": "Inspections include scheduled, unscheduled and unannounced inspections.",
+      "lead": "Verify that:",
+      "criteria": [
+        "Verify surveillance programme for previous and current year (planned and completed)[cite: 3].",
+        "Confirm appropriate frequency of inspection (may be based on proven safety indicators or results of previous inspections)[cite: 3].",
+        "Sample inspection records of surveillance of foreign air operators[cite: 3]."
+      ]
+    },
+    {
+      "no": "4.449",
+      "question": "What actions are taken by the CAA if the deficiencies identified during the conduct of inspections are not rectified in a timely manner?",
+      "ce": "CE-8",
+      "ppq": "",
+      "note": "",
+      "lead": "Verify the system for AOC holders of the State and foreign air operators, and:",
+      "criteria": [
+        "Verify operations inspectors’ procedures and enforcement procedures[cite: 3].",
+        "Verify examples of graduated actions taken, such as: a) imposition of fines; b) restrictions/limitations; and c) suspension/revocation of certificate[cite: 3]."
+      ]
+    },
+    {
+      "no": "4.450",
+      "question": "Does the surveillance programme include ramp inspections of aircraft operated by AOC holders and foreign air operators, based on risk?",
+      "ce": "CE-7",
+      "ppq": "Yes",
+      "note": "Inspections include scheduled, unscheduled and unannounced inspections.",
+      "lead": "Review evidence on policy on items to be checked during ramp inspections, taking into account both high-risk items and all other items over a series of inspections, such as:",
+      "criteria": [
+        "Flight deck – general (e.g. condition, emergency exit, equipment)[cite: 3].",
+        "Flight deck — documentation (e.g. manuals, checklists, route guide, MEL, documents to be carried on board & flight deck safety equipment)[cite: 3].",
+        "Cabin/Safety[cite: 3].",
+        "Aircraft external condition, e.g. previous structural repairs; obvious damage; leakage (e.g. apparent corrosion)[cite: 3].",
+        "Cargo (condition of cargo compartment and containers; dangerous goods; safety of cargo on board)[cite: 3].",
+        "General (additional remarks; refuelling; language for communication)[cite: 3]."
+      ]
+    },
+    {
+      "no": "4.451",
+      "question": "Has the flight operations inspection organization implemented a documented process or a system to track the deficiencies identified and to accept/validate the corrective actions taken by the air operators?",
+      "ce": "CE-8",
+      "ppq": "",
+      "note": "",
+      "lead": "Verify that:",
+      "criteria": [
+        "Sample inspection reports and correspondence with the air operator[cite: 3].",
+        "Verify the system to track the deficiencies within the CAA[cite: 3].",
+        "Confirm that deficiencies are rectified in a timely manner[cite: 3]."
+      ]
+    },
+    {
+      "no": "4.453",
+      "question": "Does the flight operations inspection organization maintain a system which monitors and records progress, including actions taken by the air operator in resolving identified safety issues, to make it possible to track past deficiencies and regulatory non-compliance?",
+      "ce": "CE-8",
+      "ppq": "",
+      "note": "",
+      "lead": "Verify that:",
+      "criteria": [
+        "Review operations inspectors’ procedures[cite: 3].",
+        "Review air operator’s files[cite: 3].",
+        "Verify monitoring system to ensure that the CAA takes into account past deficiencies when establishing its surveillance programme and performing risk assessment[cite: 3]."
+      ]
+    },
+    {
+      "no": "4.460",
+      "question": "Does the flight operations inspection organization ensure that the air operator has established a procedure for the crew to evaluate a traveller with a suspected communicable disease, based on the presence of a fever and certain other signs or symptoms?",
       "ce": "CE-6",
-      "ppq": "Yes",
+      "ppq": "",
       "note": "",
-      "lead": "Verify AWOP package sign-offs:",
+      "lead": "Verify that:",
       "criteria": [
-        "Review of ground and flight crew simulation training data.",
-        "Assessment of operator low-visibility checklists, runway visual range (RVR) parsing rules, and crew coordination protocols.",
-        "Observations of simulator sessions and proving flights prior to updating operational specifications."
+        "Review operations inspectors’ procedures to ensure that they check air operators’ related procedures[cite: 3].",
+        "Confirm effective implementation by verifying that an air operator’s operations manual or cabin crew manual contains related procedures[cite: 3].",
+        "Check that the procedure includes the transmission, as required, of a General Declaration form to the State authorities[cite: 3]."
       ]
     },
     {
-      "no": "4.801",
-      "question": "Has the State established regulations and procedures for the operational evaluation and approval of Electronic Flight Bags (EFB)?",
-      "ce": "CE-2",
-      "ppq": "Yes",
-      "note": "",
-      "lead": "Verify EFB regulatory framework scope:",
-      "criteria": [
-        "Classification criteria for EFB hardware (Portable vs Installed) and software applications (Type A vs Type B).",
-        "Codification of transitional paperless periods and operational evaluation rules."
-      ]
-    },
-    {
-      "no": "4.805",
-      "question": "Does the flight operations inspection organization verify EFB system safety prior to operator implementation?",
+      "no": "4.462",
+      "question": "Does the flight operations inspection organization ensure that the air operator has established procedures for the pilot-in-command to report promptly to air traffic control (ATC) a suspected communicable disease, with transmission of the following information: a) aircraft identification; b) departure aerodrome; c) destination aerodrome; d) estimated time of arrival; e) number of persons on board; f) number of suspected case(s) on board; and g) nature of the public health risk, if known?",
       "ce": "CE-6",
-      "ppq": "Yes",
+      "ppq": "",
       "note": "",
-      "lead": "Verify EFB technical clearances:",
+      "lead": "Review operations inspectors’ procedures to ensure that they check air operators’ related procedures, and confirm effective implementation by verifying that an air operator’s operations manual has procedures for reporting suspected communicable diseases, including transmission of the following information:",
       "criteria": [
-        "Assessment of data security, human-machine interface (HMI) configurations, and battery thermal runaway protection plans.",
-        "Review of crew EFB procedures, power loss fallback checklists, and software revision controls.",
-        "Sample case files to verify structured EFB approvals in the corresponding Operations Specifications."
+        "Aircraft identification[cite: 3].",
+        "Departure aerodrome[cite: 3].",
+        "Destination aerodrome[cite: 3].",
+        "Estimated time of arrival[cite: 3].",
+        "Number of persons on board[cite: 3].",
+        "Number of suspected case(s) on board[cite: 3].",
+        "Nature of the public health risk, if known[cite: 3]."
       ]
     },
     {
       "no": "4.901",
-      "question": "Has the State promulgated specific operating regulations to require air operators to implement a safety management system (SMS)?",
+      "question": "Has the State promulgated specific operating regulations to require operators of aeroplanes or helicopters authorized to conduct international commercial air transport (air operators) to implement a safety management system (SMS)?",
       "ce": "CE-2",
       "ppq": "",
-      "note": "Applicable to commercial air transport operators in accordance with Annex 6 Parts I and III.",
-      "lead": "Verify regulatory framework requires:",
+      "note": "This PQ is only applicable to commercial air transport operators in accordance with Annex 6 Parts I and III.",
+      "lead": "Verify that the regulations:",
       "criteria": [
-        "Air operators to implement an SMS that is acceptable to the State.",
-        "The SMS to be established in accordance with the framework elements contained in Appendix 2 to Annex 19.",
-        "Full compliance with current Annex 19 standards."
+        "Require air operators to implement an SMS that is acceptable to the State[cite: 3].",
+        "Require the SMS to be established in accordance with the SMS framework elements contained in Appendix 2 to Annex 19[cite: 3].",
+        "Comply with the latest amendments to Annex 19[cite: 3]."
       ]
     },
     {
       "no": "4.905",
-      "question": "Does the State ensure that the personnel responsible for the acceptance and continuous surveillance of air operators SMS are qualified to perform their functions?",
+      "question": "Does the State ensure that the personnel responsible for the acceptance and continuous surveillance of air operators SMS are qualified to perform their functions and responsibilities?",
       "ce": "CE-4",
       "ppq": "",
-      "note": "",
-      "lead": "Verify safety management qualifications and records:",
+      "note": "The framework components and elements in Appendix 2 to Annex 19 are listed in PQ 4.901.",
+      "lead": "Verify that:",
       "criteria": [
-        "State has identified explicit competency requirements for personnel responsible for SMS surveillance.",
-        "Training programme content addresses the SMS framework elements in Appendix 2 to Annex 19.",
-        "Training plan implementation and tracking logs are systematically retained."
+        "The State has identified competency requirements for personnel responsible for the acceptance and continuous surveillance of an SMS[cite: 3].",
+        "The content of the training programme addresses the SMS framework elements contained in Appendix 2 to Annex 19[cite: 3].",
+        "The training also includes (but is not limited to) the following: a) evaluation and acceptance of an air operator’ SMS; b) evaluation and acceptance of an air operator’s safety performance indicators (SPIs); c) continuous surveillance of the air operator’s SMS in a safety management environment; d) hazard identification and risk management processes and methodologies; e) protection of safety data, safety information and related sources; f) enforcement under the framework of SMS; and g) soft skills (e.g. effective communication skills, negotiation skills, conflict resolution, etc.)[cite: 3].",
+        "A training plan has been implemented[cite: 3].",
+        "Initial, OJT and recurrent training, as applicable, with specified-time periods are included[cite: 3].",
+        "Training records are systematically retained[cite: 3]."
       ]
     },
     {
       "no": "4.909",
-      "question": "Has the State provided comprehensive guidance material to the industry on the establishment and management of an air operator SMS?",
+      "question": "Has the State provided guidance material to the industry on the establishment and management of an SMS?",
       "ce": "CE-5",
       "ppq": "",
-      "note": "",
-      "lead": "Verify SMS industry guidance parameters:",
+      "note": "The framework components and elements in Appendix 2 to Annex 19 are listed in PQ 4.901.",
+      "lead": "Verify that the guidance material:",
       "criteria": [
-        "Includes the explicit processes for the establishment and management of an operational SMS.",
-        "Addresses the SMS framework elements contained in Appendix 2 to Annex 19.",
-        "Is updated, made accessible to operators, and corresponds with the complexity of commercial air transport activities."
+        "Includes the processes for the establishment and management of an SMS[cite: 3].",
+        "Addresses the SMS framework elements contained in Appendix 2 to Annex 19[cite: 3].",
+        "Is updated and made accessible to air operators[cite: 3].",
+        "Corresponds with activities conducted by the air operators[cite: 3]."
       ]
     },
     {
@@ -1172,13 +1788,12 @@
       "question": "Has the State established procedures for the acceptance of air operators SMS?",
       "ce": "CE-5",
       "ppq": "",
-      "note": "",
-      "lead": "Verify that the established procedures describe processes for acceptance and at least include:",
+      "note": "The framework components and elements in Appendix 2 to Annex 19, are listed in PQ 4.901.",
+      "lead": "Verify that the established procedures:",
       "criteria": [
-        "Safety policy, safety objectives, regulatory SMS requirements, and system description.",
-        "Safety accountabilities, key safety personnel, and mandatory/voluntary safety reporting procedures.",
-        "Hazard identification, risk assessment, safety investigations, and performance indicator monitoring.",
-        "SMS training, safety communication, internal audits, management of change, documentation, and emergency response plan (ERP) coordination."
+        "Describe the processes for the acceptance of an SMS, where the SMS manual at least includes: a) safety policy and safety objectives; b) reference to any applicable regulatory SMS requirements; c) system description; d) safety accountabilities and key safety personnel; e) voluntary and mandatory safety reporting system processes and procedures; f) hazard identification and safety risk assessment processes and procedures; g) safety investigation procedures; h) procedures for establishing and monitoring safety performance indicators; i) SMS training processes and procedures and communication; j) safety communication processes and procedures; k) internal audit procedures; l) management of change procedures; m) SMS documentation management procedures; and n) where applicable, coordination of emergency response planning[cite: 3].",
+        "Address the SMS framework elements contained in Appendix 2 to Annex 19[cite: 3].",
+        "Are updated and made accessible to personnel responsible for the acceptance of an SMS[cite: 3]."
       ]
     },
     {
@@ -1187,10 +1802,10 @@
       "ce": "CE-5",
       "ppq": "",
       "note": "",
-      "lead": "Verify SMS continuous audit tracking lines:",
+      "lead": "Verify that the established procedures:",
       "criteria": [
-        "Verify that the established procedures describe the processes for continuous surveillance of an active operator SMS.",
-        "Are systematically updated and made accessible to inspectors responsible for operational surveillance."
+        "Describe the processes for the continuous surveillance of an SMS[cite: 3].",
+        "Are updated and made accessible to personnel responsible for the surveillance of an SMS[cite: 3]."
       ]
     },
     {
@@ -1199,9 +1814,9 @@
       "ce": "CE-6",
       "ppq": "",
       "note": "",
-      "lead": "Verify institutional SMS approvals:",
+      "lead": "Verify that:",
       "criteria": [
-        "Review evidence of implemented procedures for accepting an SMS including the maintenance of SMS operational logs."
+        "Review evidence of implemented procedures for accepting an SMS including the maintenance of SMS operational records[cite: 3]."
       ]
     },
     {
@@ -1210,10 +1825,12 @@
       "ce": "CE-7",
       "ppq": "",
       "note": "This verification needs to be reviewed during the industry visit.",
-      "lead": "Verify that the State ensures that the air operators maintain active processes to:",
+      "lead": "Verify that the State ensures the air operators maintain a process to:",
       "criteria": [
-        "Identify hazards associated with their flight and ground operations.",
-        "Assess safety risks and mitigate safety risks appropriately."
+        "Identify hazards associated with their aviation products or services[cite: 3].",
+        "Assess safety risks[cite: 3].",
+        "Mitigate safety risks[cite: 3].",
+        "Actively identify hazards, assess safety risks and mitigate them appropriately[cite: 3]."
       ]
     },
     {
@@ -1221,11 +1838,11 @@
       "question": "Does the State ensure that safety performance indicators and targets established by air operators are acceptable to the State?",
       "ce": "CE-6",
       "ppq": "",
-      "note": "Reviewed during the industry visit.",
-      "lead": "Verify performance alignment parameters:",
+      "note": "SPIs acceptance may also be done later in the implementation process. This verification needs to be reviewed during the industry visit.",
+      "lead": "Verify that:",
       "criteria": [
-        "Review State’s mechanism for accepting individual air operator SPIs and targets to ensure they are specific, measurable, achievable, relevant, and timebound.",
-        "Verify that the State ensures that the operator's proposed SPIs are reviewed and accepted as part of SMS acceptance."
+        "Review the State’s mechanism for accepting individual air operators’ safety performance indicators (SPIs) and targets (when applicable) to verify that proposed SPIs and respective targets (as applicable), are developed in a manner that supports the effort to meet their safety objectives, and are formulated in a manner to ensure that they are specific, measurable, achievable, relevant and timebound[cite: 3].",
+        "Verify that the State ensures that the air operators’ proposed SPIs are reviewed and accepted as part of the SMS acceptance[cite: 3]."
       ]
     },
     {
@@ -1234,11 +1851,11 @@
       "ce": "CE-7",
       "ppq": "",
       "note": "",
-      "lead": "Verify that the State has established and implemented a mechanism to ensure air operators periodically validate:",
+      "lead": "Verify that the State has established and implemented a mechanism to ensure that the air operators periodically review its safety performance including the means to:",
       "criteria": [
-        "The effectiveness of safety risks controls.",
-        "The identification of changes that may affect the level of safety risks associated with aircraft operations.",
-        "The identification and management of safety risks that may arise from those changes."
+        "Validate the effectiveness of safety risks controls[cite: 3].",
+        "Validate the identification of changes that may affect the level of safety risks associated with their aviation products or services[cite: 3].",
+        "Validate the identification and management of the safety risks that may arise from those changes[cite: 3]."
       ]
     },
     {
@@ -1246,11 +1863,11 @@
       "question": "Does the State ensure that the air operators personnel involved in SMS are qualified to perform their functions and responsibilities?",
       "ce": "CE-7",
       "ppq": "",
-      "note": "Review training records during the industry visit.",
-      "lead": "Verify training check routines for industry staff:",
+      "note": "The scope of the safety training programme should be appropriate to each individual’s involvement in the SMS. Review the training records of the air operators’ personnel during the industry visit.",
+      "lead": "Verify that:",
       "criteria": [
-        "Verify that the State has established and implemented a mechanism to validate that air operator personnel involved in SMS are qualified.",
-        "Sample the surveillance activities records to confirm enforcement."
+        "Verify that the State has established and implemented a mechanism to validate that the air operators’ personnel involved in SMS are qualified to perform their functions and responsibilities[cite: 3].",
+        "Sample surveillance activities records[cite: 3]."
       ]
     },
     {
@@ -1259,11 +1876,13 @@
       "ce": "CE-7",
       "ppq": "",
       "note": "This PQ is applicable to commercial air transport operators.",
-      "lead": "Verify safety communication channels:",
+      "lead": "Verify that the State ensures the air operators develop and maintain a formal mean for safety communication that includes:",
       "criteria": [
-        "Verify that the State ensures that the air operators develop and maintain a formal mean for safety communication that includes ensuring personnel are aware of the SMS to a degree commensurate with positions.",
-        "Conveying safety-critical information, explaining why particular actions are taken to improve safety, and why safety procedures are introduced or changed.",
-        "Considering communicating to external organizations any of their safety related information."
+        "Ensuring personnel are aware of the SMS to a degree commensurate with their positions[cite: 3].",
+        "Conveying safety-critical information[cite: 3].",
+        "Explaining why particular actions are taken to improve safety[cite: 3].",
+        "Explaining why safety procedures are introduced or changed[cite: 3].",
+        "Have considered communicating to external organizations any of their safety related information[cite: 3]."
       ]
     }
   ]
