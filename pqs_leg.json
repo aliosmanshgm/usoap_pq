@@ -1,0 +1,308 @@
+{
+  "area_id": "LEG",
+  "area_name": "Primary Aviation Legislation & Regulations",
+  "total_pqs": 23,
+  "pqs": [
+    {
+      "no": "1.001",
+      "question": "Has the State promulgated primary aviation legislation to enable it to address its obligations?",
+      "ce": "CE-1",
+      "ppq": "Yes",
+      "note": "",
+      "lead": "Legislation verification:",
+      "criteria": [
+        "Confirm title, date of promulgation and last amendment of all primary aviation legislation.",
+        "Verify that the content of the primary aviation legislation is consistent, sufficient (addressing all audit areas as needed) and properly organized."
+      ]
+    },
+    {
+      "no": "1.005",
+      "question": "Does the primary aviation legislation provide for the introduction/adoption and subsequent promulgation of specific operating regulations?",
+      "ce": "CE-1",
+      "ppq": "Yes",
+      "note": "",
+      "lead": "Verify that provisions allow for the introduction/adoption of specific operating regulations and at least cover:",
+      "criteria": [
+        "All Annexes in the areas of PEL, OPS (including dangerous goods), AIR, AIG, ANS and AGA."
+      ]
+    },
+    {
+      "no": "1.007",
+      "question": "Has the State established a rulemaking process to enable the timely development and promulgation of specific operating regulations in compliance with the Annexes?",
+      "ce": "CE-2",
+      "ppq": "Yes",
+      "note": "",
+      "lead": "Verify rulemaking process conformance:",
+      "criteria": [
+        "The rulemaking process includes all applicable steps, in conformance with the State’s legal system, as well as realistic timelines for the various steps.",
+        "The procedures or other means of compliance require that current specific operating regulations repeal previous specific operating regulations, if required.",
+        "All relevant entities (safety oversight entities/investigation authority) are included in the process (during the development and/or consultation) for PEL, OPS (including dangerous goods), AIR, AIG, ANS and AGA."
+      ]
+    },
+    {
+      "no": "1.009",
+      "question": "Has the State established a process for amending its specific operating regulations or, if necessary, its primary aviation legislation?",
+      "ce": "CE-2",
+      "ppq": "Yes",
+      "note": "Implementation of this PQ will be verified in all audit areas.",
+      "lead": "Review amendment evaluation structures:",
+      "criteria": [
+        "Review the established process for evaluating amendments to all Annexes and for determining the need to amend specific operating regulations or primary aviation legislation.",
+        "Verify that the process includes all applicable steps and timelines, including the necessary coordination between the relevant technical and legal experts when necessary."
+      ]
+    },
+    {
+      "no": "1.011",
+      "question": "Does the State make the primary aviation legislation, specific operating regulations, directives, orders, circulars, publications, etc. readily available to the public?",
+      "ce": "CE-5",
+      "ppq": "",
+      "note": "The State may make documents available through official gazette, web access, library, etc.",
+      "lead": "Review the means for making the following documents available to the public:",
+      "criteria": [
+        "Primary aviation legislation accessibility.",
+        "Specific operating regulations accessibility.",
+        "Directives, orders, circulars, publications accessibility."
+      ]
+    },
+    {
+      "no": "1.013",
+      "question": "Does the primary aviation legislation provide for the establishment of a civil aviation organization(s)?",
+      "ce": "CE-1",
+      "ppq": "Yes",
+      "note": "This PQ is not linked to the AIG PQ 6.003.",
+      "lead": "Review relevant institutional legislation:",
+      "criteria": [
+        "Review primary aviation legislation for autonomous CAAs or appropriate legal basis in other cases.",
+        "Verify the level of authority delegated to the CAA(s)."
+      ]
+    },
+    {
+      "no": "1.015",
+      "question": "Does the primary aviation legislation clearly delegate authority to each Director General (DG)/Chief Executive Officer (CEO)?",
+      "ce": "CE-1",
+      "ppq": "Yes",
+      "note": "This PQ is not linked to AIG PQ 6.004.",
+      "lead": "Review relevant legislation and verify delegated authority blocks for:",
+      "criteria": [
+        "The legislation stipulates explicit delegated authority for executive functions.",
+        "The legislation includes all DGs/CEOs dealing with civil aviation safety oversight.",
+        "The authority delegated covers the following audit areas: PEL, OPS (including dangerous goods), AIR, ANS and AGA."
+      ]
+    },
+    {
+      "no": "1.019",
+      "question": "If the State has transferred safety oversight responsibilities to a supranational organization, is there an appropriate legal basis?",
+      "ce": "CE-1",
+      "ppq": "",
+      "note": "",
+      "lead": "Verify transfer parameters:",
+      "criteria": [
+        "Identify the legal instrument(s) for the transfer.",
+        "Confirm notification to ICAO of the transfer of responsibilities."
+      ]
+    },
+    {
+      "no": "1.023",
+      "question": "Does the primary aviation legislation provide for the issuance of additional binding instruments, such as orders and directives?",
+      "ce": "CE-1",
+      "ppq": "Yes",
+      "note": "The primary aviation legislation may also provide for the issuance of non-binding instructions, such as circulars and instructions.",
+      "lead": "Verify regulatory enforcement requirements:",
+      "criteria": [
+        "The inclusion of provisions for the issuance of additional binding instruments in the primary aviation legislation.",
+        "The enforcement capability for non-compliance.",
+        "The relevant delegation of authority for the issuance of additional binding instruments, including orders and directives."
+      ]
+    },
+    {
+      "no": "1.025",
+      "question": "Has the State established procedures for identifying and notifying to ICAO differences between ICAO SARPs and its legislation?",
+      "ce": "CE-2",
+      "ppq": "Yes",
+      "note": "Implementation of this PQ will be verified in all audit areas.",
+      "lead": "Verify notifications and workflow:",
+      "criteria": [
+        "The procedures used for the identification and notification of differences, including for specific operating regulations adopted by reference.",
+        "The procedures address each entity responsible for the relevant Annex, including AIG, when an entity separate from the CAA has been established.",
+        "The procedures include all applicable steps and timelines, including the necessary coordination between the relevant technical and legal experts when necessary."
+      ]
+    },
+    {
+      "no": "1.027",
+      "question": "Does the legislation provide for the granting of exemptions?",
+      "ce": "CE-2",
+      "ppq": "Yes",
+      "note": "The term “exemptions” also includes exceptions, deviations, variations and prolonged extensions. This PQ does not apply to AIG.",
+      "lead": "Verify basic legal framework:",
+      "criteria": [
+        "The legislation explicitly provides for the granting of exemptions."
+      ]
+    },
+    {
+      "no": "1.028",
+      "question": "Has the State established a policy and associated procedures for the granting of exemptions?",
+      "ce": "CE-5",
+      "ppq": "",
+      "note": "This PQ does not apply to AIG.",
+      "lead": "Verify that the policy and procedures include:",
+      "criteria": [
+        "The criteria for the conduct and review of risk assessments, analyses, aeronautical studies, etc.",
+        "The limitations or other conditions imposed, as applicable, when an exemption is granted.",
+        "The recording and publication of exemptions granted."
+      ]
+    },
+    {
+      "no": "1.029",
+      "question": "If the State has adopted specific operating regulations from another State, has it established processes for ensuring amendments?",
+      "ce": "CE-2",
+      "ppq": "",
+      "note": "Verify in all audit areas, particularly in AIR regarding national code of airworthiness.",
+      "lead": "Process validation parameters:",
+      "criteria": [
+        "Determine if the State has adopted specific operating regulations from another State.",
+        "Verify that the processes take into consideration the latest amendments to the Annexes to the Chicago Convention, including filing of differences."
+      ]
+    },
+    {
+      "no": "1.051",
+      "question": "Does the primary aviation legislation provide for the enforcement of applicable legislation?",
+      "ce": "CE-1",
+      "ppq": "Yes",
+      "note": "This PQ does not apply to AIG.",
+      "lead": "Verify deterrence and enforcement capabilities:",
+      "criteria": [
+        "Enforcement provisions are included in the primary aviation legislation.",
+        "The legislation specifies clear penalties.",
+        "The penalties are sufficient to serve as a deterrent.",
+        "The above enforcement scope is in place for PEL, OPS (including dangerous goods), AIR, ANS and AGA."
+      ]
+    },
+    {
+      "no": "1.053",
+      "question": "Does the legislation provide authority for issuance, suspension, revocation and restriction of documents?",
+      "ce": "CE-1",
+      "ppq": "Yes",
+      "note": "The aircraft radio station licence is often issued/suspended/revoked by an entity other than the CAA.",
+      "lead": "Verify legal authority for action on the following documents:",
+      "criteria": [
+        "Personnel licences.",
+        "Air operator certificates (AOCs).",
+        "Certificates of registration.",
+        "Certificates of airworthiness.",
+        "Aircraft radio station licences.",
+        "Aerodrome certificates.",
+        "Authorizations, permits and related certificates."
+      ]
+    },
+    {
+      "no": "1.055",
+      "question": "Has the CAA established an enforcement policy and associated procedures?",
+      "ce": "CE-5",
+      "ppq": "",
+      "note": "This PQ does not apply to AIG.",
+      "lead": "Enforcement alignment validation:",
+      "criteria": [
+        "Verify that the policy and procedures call for enforcement actions that are commensurate with the level/type of infraction or violation identified.",
+        "Verify that the procedures address coordination with the CAA’s legal experts when needed."
+      ]
+    },
+    {
+      "no": "1.101",
+      "question": "Does the primary aviation legislation enable civil aviation inspectors to have unrestricted and unlimited access?",
+      "ce": "CE-1",
+      "ppq": "",
+      "note": "This PQ is not linked to AIG PQ 6.021.",
+      "lead": "Verify unrestricted inspector access rights to the following areas:",
+      "criteria": [
+        "Inclusion of explicit access provisions in the primary aviation legislation.",
+        "Access to Aircraft and flight decks.",
+        "Access to Aerodromes and field installations.",
+        "Access to Air navigation services facilities.",
+        "Access to Hangars, maintenance lines, and approved maintenance organizations (AMOs).",
+        "Access to Workshops and technical facilities.",
+        "Access to Ramps and operations areas.",
+        "Access to Fuel storage and fueling facilities.",
+        "Access to Air operator offices and administrative facilities.",
+        "Access to Cargo handling areas and storage warehouses.",
+        "Access to Aviation training organizations facilities."
+      ]
+    },
+    {
+      "no": "1.103",
+      "question": "Does the primary aviation legislation enable inspectors to access and inspect aviation documents?",
+      "ce": "CE-1",
+      "ppq": "",
+      "note": "This PQ is not linked to AIG PQ 6.023.",
+      "lead": "Verify document inspection rights for:",
+      "criteria": [
+        "Inclusion of related document access provisions in the primary aviation legislation.",
+        "Access to Manuals and corporate logs.",
+        "Access to Certificates, approvals, authorizations, permits.",
+        "Access to Operating procedures and quality documents.",
+        "Access to Technical files, logs and aircraft records.",
+        "Access to Personnel files and tracking databases.",
+        "Access to Personnel licences and logs."
+      ]
+    },
+    {
+      "no": "1.107",
+      "question": "Does the legislation provide for a clear delegation of sufficient legal authority to civil aviation inspectors?",
+      "ce": "CE-1",
+      "ppq": "",
+      "note": "",
+      "lead": "Verify delegation frameworks:",
+      "criteria": [
+        "Verify provisions in the legislation on delegation of authority to inspectors, either directly or through a sub-delegation framework (e.g., Director General/Chief Executive Officer).",
+        "Confirm that inspectors are legally empowered to carry out surveillance activities (e.g., periodic and random inspections, audits, testing, etc.)."
+      ]
+    },
+    {
+      "no": "1.109",
+      "question": "Has the State established legislation to empower inspectors to prevent an aircraft from flying?",
+      "ce": "CE-1",
+      "ppq": "Yes",
+      "note": "This PQ applies to OPS and AIR only.",
+      "lead": "Verify aircraft grounding laws and timelines:",
+      "criteria": [
+        "Inclusion of explicit grounding provisions in the primary aviation legislation.",
+        "The process established, in cases when the inspectors are not empowered to directly prevent an aircraft from flying.",
+        "Confirm that the process in place can be executed and applied in a timely manner."
+      ]
+    },
+    {
+      "no": "1.111",
+      "question": "Has the State established legislation to empower inspectors to prohibit any person from exercising the privileges of a license?",
+      "ce": "CE-1",
+      "ppq": "Yes",
+      "note": "This PQ does not apply to AIG.",
+      "lead": "Verify license privilege prohibition requirements:",
+      "criteria": [
+        "Inclusion of privilege prohibition provisions in the primary aviation legislation.",
+        "Confirm that the emergency restriction process in place can be applied in a timely manner."
+      ]
+    },
+    {
+      "no": "1.151",
+      "question": "If the State has ratified Article 83 bis, has it modified its primary aviation legislation to recognize transfer protocols?",
+      "ce": "CE-1",
+      "ppq": "",
+      "note": "If State has not ratified Article 83 bis, this PQ is “Not Applicable”.",
+      "lead": "Verify validation capabilities under Article 83 bis:",
+      "criteria": [
+        "The primary aviation legislation (or detailed regulations) enables the State to recognize the validity of crew licences, certificates of airworthiness and/or radio station licences issued or rendered valid by the State of the Operator under an Article 83 bis agreement."
+      ]
+    },
+    {
+      "no": "1.205",
+      "question": "Has the State established and implemented a process to ensure the identification and publication in the State’s AIP of significant differences?",
+      "ce": "CE-2",
+      "ppq": "Yes",
+      "note": "Coordinate with all audit areas to ensure that State policy and procedures are implemented.",
+      "lead": "Verify process mapping and publishing lines:",
+      "criteria": [
+        "The establishment and effective implementation of procedures and guidelines for identifying significant differences (including coordination with all concerned entities).",
+        "The establishment and implementation of procedures for publishing significant differences in the AIP, including coordination with the AIS provider."
+      ]
+    }
+  ]
+}
