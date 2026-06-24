@@ -3,33 +3,915 @@
   "area_name": "Personnel Licensing and Training",
   "total_pqs": 100,
   "pqs": [
-    { "no": "3.001", "question": "Has the State promulgated specific operating regulations to transpose the provisions of Annex 1?", "ce": "CE-2", "ppq": "Yes", "note": "", "lead": "Confirm transposition and verify regulations for:", "criteria": ["Confirm title, date of promulgation and the latest amendment of all regulations related to personnel licensing.", "Verify that the contents of the regulations are consistent, sufficient and properly organized.", "Transposition of personnel licensing provisions for all licences and ratings, including remote pilot licences.", "Transposition of provisions for medical assessment.", "Transposition of provisions for approval of training organizations.", "Transposition of provisions for qualification/approval of flight simulation training devices.", "Transposition of provisions for language used for radiotelephony communications (language proficiency requirements)."] },
-    { "no": "3.003", "question": "In addition to the promulgated regulations, has the Licensing Authority issued orders, directives and/or instructions in support of its personnel licensing activities?", "ce": "CE-2", "ppq": "Yes", "note": "", "lead": "Confirm the validation of instructions:", "criteria": ["Confirm the title, content and date of issuance of the last amendment to orders, directives and instructions.", "Verify approval process and enforceability."] },
-    { "no": "3.005", "question": "Has the State implemented procedures for amending its specific PEL regulations, taking into consideration ICAO provisions and their amendments?", "ce": "CE-2", "ppq": "", "note": "The establishment of amendment procedures is addressed in LEG PQ 1.009.", "lead": "Verify execution of PEL amendments:", "criteria": ["Review documented evidence of effective implementation of procedures for amending PEL regulations.", "Verify that regulations are amended in a timely manner whenever amendments to Annex 1 are received.", "Verify the action taken by the State after receipt of the latest amendments to Annex 1."] },
-    { "no": "3.007", "question": "Has the State implemented procedures for identifying and notifying differences if any, to ICAO?", "ce": "CE-2", "ppq": "Yes", "note": "The establishment of these procedures is addressed in LEG PQ 1.025.", "lead": "Confirm the system tracking differences:", "criteria": ["Review documented evidence of effective implementation.", "Confirm that differences between SARPs and State legislation are notified to ICAO using the CC/EFOD system.", "Confirm that significant differences between SARPs/PANS/SUPPS and State regulations are identified and published in the AIP."] },
-    { "no": "3.015", "question": "Has the State implemented procedures for granting exemptions in the area of personnel licensing?", "ce": "CE-2", "ppq": "Yes", "note": "The term 'exemptions' includes exceptions, deviations, variations and extensions. Legal basis is under LEG 1.027 and 1.028.", "lead": "Verify exemptions workflow:", "criteria": ["Verify implementation of procedures for recording and publishing exemptions granted.", "Review examples of exemptions granted in the area of personnel licensing.", "Verify implementation of the risk assessment system before granting of exemption."] },
-    { "no": "3.101", "question": "Has the State established an organizational structure for personnel licensing?", "ce": "CE-3", "ppq": "", "note": "This PQ is not linked to ORG PQ 2.010.", "lead": "Assess operational setup:", "criteria": ["Evaluate current approved organizational structure for CAA and personnel licensing office, including lines of responsibility."] },
-    { "no": "3.103", "question": "Are the functions and responsibilities of the personnel licensing office clearly defined?", "ce": "CE-3", "ppq": "", "note": "", "lead": "Verify office mandates:", "criteria": ["Review the document detailing functions and responsibilities of the PEL Office."] },
-    { "no": "3.105", "question": "Have job descriptions been established for technical personnel and key management personnel of the personnel licensing office?", "ce": "CE-3", "ppq": "", "note": "", "lead": "Verify staff description packages:", "criteria": ["Review job descriptions for all personnel licensing staff.", "Check the job description including all tasks related to Annex 1 (licensing, medical, training organizations approval and surveillance)."] },
-    { "no": "3.109", "question": "Does the personnel licensing office have sufficient human resources to carry out its functions and mandate?", "ce": "CE-3", "ppq": "Yes", "note": "", "lead": "Verify manpower resources and oversight task delivery:", "criteria": ["Review methodology established for determining staffing needs, if available.", "Review the ability to attract new officers as well as existing vacancies and level of turnover in the past years.", "Review ability to carry out reviewing and revising regulations.", "Review ability to carry out training of technical staff and development of guidance material.", "Review ability to carry out issuance of licences and ratings.", "Review ability to carry out surveillance and resolving identified safety concerns."] },
-    { "no": "3.111", "question": "Has the State established appropriate minimum qualification and experience requirements for its personnel licensing staff?", "ce": "CE-4", "ppq": "", "note": "", "lead": "Review qualification and experience requirements:", "criteria": ["Review qualification and experience requirements for recruitment and assignment of personnel licensing staff of the Licensing Authority depending on their responsibilities in the personnel licensing issuance process and oversight system."] },
-    { "no": "3.112", "question": "Does the State ensure that all personnel licensing staff meet the established minimum qualification and experience requirements?", "ce": "CE-4", "ppq": "", "note": "", "lead": "Verify qualifications match:", "criteria": ["Sample recruitment files.", "Cross-check with established requirements."] },
-    { "no": "3.113", "question": "Is a formal training programme established that details the type of training that should be provided to personnel licensing inspectorate staff and other technical personnel?", "ce": "CE-4", "ppq": "", "note": "", "lead": "Confirm inclusion of:", "criteria": ["Review contents of training programme for each job (inspectorate staff and other technical personnel).", "Review contents of training programme for all activities (i.e. issuance of all licences, medical, training organizations approval).", "Initial training metrics.", "On-the-job training parameters.", "Recurrent training cycles.", "Specialized training with timelines to be provided, as applicable."] },
-    { "no": "3.114", "question": "Have personnel licensing staff been issued credentials to facilitate access to aircraft, aviation facilities and documents for the purpose of inspections and enforcement?", "ce": "CE-3", "ppq": "", "note": "This PQ is only applicable to those performing inspection and enforcement activities.", "lead": "Review credentials to ensure:", "criteria": ["Reference to empowering legislation.", "Method established to control currency of credential.", "Inspector's photo."] },
-    { "no": "3.115", "question": "Has a periodic training plan been established and implemented, which details and prioritizes the type of training that will be provided to personnel licensing inspectorate staff and other technical personnel during the established period?", "ce": "CE-4", "ppq": "", "note": "", "lead": "Verify that the type and frequency of training that has been successfully completed are sufficient:", "criteria": ["Review the most recent training plan for each inspectorate staff and other technical personnel.", "Check training files.", "Verify that the completed training (initial, recurrent, specialized and OJT) is sufficient for staff to acquire/maintain required knowledge and skills.", "The training plan should reflect the schedule for implementing the training programme in the following year(s)."] },
-    { "no": "3.119", "question": "Has a system been established to maintain the training records of personnel licensing staff?", "ce": "CE-4", "ppq": "", "note": "", "lead": "Verify record keeping parameters:", "criteria": ["Review requirements/instructions for the establishment and maintenance of training records.", "Verify that the system in place complies with system description.", "Verify that training records are systematically retained."] },
-    { "no": "3.153", "question": "Are the relevant ICAO documents and other technical publications readily available to the personnel licensing inspectorate staff and other technical personnel?", "ce": "CE-5", "ppq": "", "note": "Check for field/regional offices as well as headquarters.", "lead": "Verify accessibility of documents and that they are up to date:", "criteria": ["Evaluate method to ensure receipt, control and distribution of the necessary technical documentation.", "Evaluate method to determine currency of documents.", "Verify accessibility to State laws and regulations, orders and instructions.", "Verify accessibility to current copy of Annex 1 and copies of ICAO guidance material (i.e. Doc 9379, Doc 9841, Doc 9625, etc.)."] },
-    { "no": "3.154", "question": "Is there a technical library available for the staff of the personnel licensing office or another method to ensure receipt, control and distribution of the necessary technical documentation?", "ce": "CE-5", "ppq": "", "note": "", "lead": "Evaluate infrastructure layout:", "criteria": ["Evaluate document receipt, control, and distribution system.", "Evaluate method to determine currency of documents."] },
-    { "no": "3.155", "question": "Are personnel licensing staff provided with comprehensive guidance material and procedures that are sufficiently detailed to enable them to carry out their functions and responsibilities effectively?", "ce": "CE-5", "ppq": "Yes", "note": "", "lead": "Review manual distribution architectures:", "criteria": ["Review the PEL Procedures Manual, if available, or the list of procedures available.", "Review management process and distribution process of the documents used to ensure that all staff use comprehensive and up-to-date documents."] },
-    { "no": "3.201", "question": "Has the State established methods to inform applicants of the requirements to be met for the various licences and ratings and the documents to be submitted for the application process?", "ce": "CE-5", "ppq": "", "note": "", "lead": "Review communication portals:", "criteria": ["Review available methods for informing applicants of the different licences and ratings.", "Review list of application forms for all types of licences, ratings or examinations.", "Review the forms to ensure that they contain information relating to age, knowledge, experience, skills and medical information of the applicant."] },
-    { "no": "3.203", "question": "Does the State implement a process for the systematic review and evaluation of submitted application forms for the issuance of licences and ratings and for examinations?", "ce": "CE-6", "ppq": "Yes", "note": "Applies to all types of licences, ratings and examinations.", "lead": "Verify processing layers:", "criteria": ["Review implementation of processes and procedures for the evaluation of applications for licences, ratings or examinations.", "Review responsibilities of PEL staff in assessing documents provided by applicants (e.g. different steps, who is doing what).", "Sample cases for review."] },
-    { "no": "3.207", "question": "Has the State established a procedure for appealing the Licensing Authority’s decisions?", "ce": "CE-5", "ppq": "", "note": "", "lead": "Verify legal appeal pipelines:", "criteria": ["Review documented description of the appeal process.", "Review established and documented processes and procedures.", "Review documented procedure used to inform the applicant of the appeal process for licences, ratings, examinations and medical decisions."] },
-    { "no": "3.253", "question": "Has the State systematically implemented a process for the renewal of licences and ratings?", "ce": "CE-7", "ppq": "Yes", "note": "", "lead": "Verify competency cycles:", "criteria": ["Review procedures and conditions for the renewal of licences issued.", "Review the competency requirements such as recent experience requirements, recurrent training and testing.", "Confirm effective implementation."] },
-    { "no": "3.405", "question": "Has the State implemented a process for the evaluation of medical reports submitted by the designated medical examiners (DME)?", "ce": "CE-6", "ppq": "Yes", "note": "", "lead": "Verify medical file reviews:", "criteria": ["Verify that the process and methods in place for the evaluation of medical reports comply with Docs 8984 and 9379.", "Review evidence to confirm effective implementation, such as audit reports of medical assessments and analysis of medical outcomes."] },
-    { "no": "3.415", "question": "Does the Licensing Authority perform medical assessment audits?", "ce": "CE-7", "ppq": "Yes", "note": "The purpose is to ensure DMEs meet standards for good medical practice and aeromedical risk assessment (Doc 8984).", "lead": "Verify medical oversight:", "criteria": ["Confirm that the aeromedical audit process is established.", "Review evidence to confirm effective implementation via audit reports."] },
-    { "no": "3.751", "question": "Has the State implemented procedures for the approval of domestic and foreign aviation training organizations (TOs)?", "ce": "CE-6", "ppq": "Yes", "note": "", "lead": "Verify training organization approval criteria for pilots, ATCOs, and maintenance personnel:", "criteria": ["Check procedures for approval of domestic and foreign TOs.", "Check if procedures cover required pilot TOs, air traffic controller and maintenance TOs.", "Check training organization administered by authority, if applicable.", "Check if procedures cover approval of training programmes, review of manual content, quality assurance, and synthetic device qualification."] },
-    { "no": "3.901", "question": "Has the State promulgated specific operating regulations to require approved training organizations (ATOs) to implement a safety management system (SMS)?", "ce": "CE-2", "ppq": "", "note": "Applicable only to ATOs exposed to safety risks related to aircraft operations.", "lead": "Verify regulatory framework requires:", "criteria": ["Implementation of an SMS that is acceptable to the State.", "SMS establishment in accordance with the framework elements contained in Appendix 2 to Annex 19.", "Compliance with the latest amendments to Annex 19."] },
-    { "no": "3.905", "question": "Does the State ensure that the personnel responsible for the acceptance and continuous surveillance of ATOs SMS are qualified?", "ce": "CE-4", "ppq": "", "note": "Applicable to ATOs exposed to operational safety risks.", "lead": "Verify safety management qualifications and records:", "criteria": ["State has identified competency requirements for personnel responsible for SMS surveillance.", "Training programme content addresses the SMS framework elements in Appendix 2 to Annex 19.", "Training plan implementation and tracking records are systematically retained."] },
-    { "no": "3.913", "question": "Has the State established procedures for the acceptance of ATOs SMS?", "ce": "CE-5", "ppq": "", "note": "", "lead": "Verify that procedures describe SMS manual acceptance and cover:", "criteria": ["Safety policy, safety objectives and regulatory requirements.", "System description, safety accountabilities and key safety personnel.", "Voluntary/mandatory reporting system, hazard identification and risk assessment processes.", "Safety performance indicators, internal audits, management of change and emergency planning coordination."] }
+    {
+      "no": "3.001",
+      "question": "Has the State promulgated specific operating regulations to transpose the provisions of Annex 1?",
+      "ce": "CE-2",
+      "ppq": "Yes",
+      "note": "",
+      "lead": "Confirm transposition and verify regulations for:",
+      "criteria": [
+        "Confirm the title, date of promulgation and the latest amendment of all regulations related to personnel licensing.",
+        "Verify that the contents of the regulations are consistent, sufficient and properly organized.",
+        "Confirm the transposition of the personnel licensing related provisions for all licences and ratings, including remote pilot licences.",
+        "Confirm the transposition of the personnel licensing related provisions for medical assessment.",
+        "Confirm the transposition of the personnel licensing related provisions for approval of training organizations.",
+        "Confirm the transposition of the personnel licensing related provisions for qualification/approval of flight simulation training devices.",
+        "Confirm the transposition of the personnel licensing related provisions for language used for radiotelephony communications (i.e. language proficiency requirements)."
+      ]
+    },
+    {
+      "no": "3.003",
+      "question": "In addition to the promulgated regulations, has the Licensing Authority issued orders, directives and/or instructions in support of its personnel licensing activities?",
+      "ce": "CE-2",
+      "ppq": "Yes",
+      "note": "",
+      "lead": "Verify administrative backing:",
+      "criteria": [
+        "Confirm the title, content and date of issuance of the last amendment to orders, directives and instructions.",
+        "Verify approval process and enforceability."
+      ]
+    },
+    {
+      "no": "3.005",
+      "question": "Has the State implemented procedures for amending its specific PEL regulations, taking into consideration ICAO provisions and their amendments?",
+      "ce": "CE-2",
+      "ppq": "",
+      "note": "The establishment of amendment procedures is addressed in LEG PQ 1.009.",
+      "lead": "Verify amendment loops:",
+      "criteria": [
+        "Review documented evidence of effective implementation of procedures for amending PEL regulations.",
+        "Verify that regulations are amended in a timely manner whenever amendments to Annex 1 are received.",
+        "Verify the action taken by the State after receipt of the latest amendments to Annex 1."
+      ]
+    },
+    {
+      "no": "3.007",
+      "question": "Has the State implemented procedures for identifying and notifying differences if any, to ICAO?",
+      "ce": "CE-2",
+      "ppq": "Yes",
+      "note": "The establishment of these procedures is addressed in LEG PQ 1.025.",
+      "lead": "Confirm the notification tracks:",
+      "criteria": [
+        "Review documented evidence of effective implementation.",
+        "Confirm that the differences between the SARPs and the State legislation and practices are identified and notified to ICAO using the Compliance Checklist/Electronic Filing of Differences (CC/EFOD) system.",
+        "Confirm that significant differences between SARPs/PANS/SUPPS and the State regulations and practices are identified and published in the AIP."
+      ]
+    },
+    {
+      "no": "3.015",
+      "question": "Has the State implemented procedures for granting exemptions in the area of personnel licensing?",
+      "ce": "CE-2",
+      "ppq": "Yes",
+      "note": "The term 'exemptions' also includes exceptions, deviations, variations and prolonged extensions. Legal basis under LEG 1.027 and 1.028.",
+      "lead": "Verify exemption handling workflow:",
+      "criteria": [
+        "Verify implementation of procedures for recording and publishing exemptions granted.",
+        "Review examples of exemptions granted in the area of personnel licensing.",
+        "Verify implementation of the risk assessment system before granting of exemption."
+      ]
+    },
+    {
+      "no": "3.101",
+      "question": "Has the State established an organizational structure for personnel licensing?",
+      "ce": "CE-3",
+      "ppq": "",
+      "note": "This PQ is not linked to ORG PQ 2.010.",
+      "lead": "Evaluate framework setup:",
+      "criteria": [
+        "Evaluate current approved organizational structure for CAA and personnel licensing office, including lines of responsibility."
+      ]
+    },
+    {
+      "no": "3.103",
+      "question": "Are the functions and responsibilities of the personnel licensing office clearly defined?",
+      "ce": "CE-3",
+      "ppq": "",
+      "note": "",
+      "lead": "Verify mandate descriptions:",
+      "criteria": [
+        "Review the document detailing functions and responsibilities of the PEL Office."
+      ]
+    },
+    {
+      "no": "3.105",
+      "question": "Have job descriptions been established for technical personnel and key management personnel of the personnel licensing office?",
+      "ce": "CE-3",
+      "ppq": "",
+      "note": "",
+      "lead": "Verify technical staff documentation profiles:",
+      "criteria": [
+        "Review job descriptions for all personnel licensing staff.",
+        "Check the job description including all tasks related to Annex 1 (e.g. licensing, medical, training organizations approval and surveillance)."
+      ]
+    },
+    {
+      "no": "3.109",
+      "question": "Does the personnel licensing office have sufficient human resources to carry out its functions and mandate?",
+      "ce": "CE-3",
+      "ppq": "Yes",
+      "note": "",
+      "lead": "Verify staffing methodology and capacity for baseline oversight tasks:",
+      "criteria": [
+        "Review methodology established for determining staffing needs, if available.",
+        "Review the ability to attract new officers as well as existing vacancies and level of turnover in the past years.",
+        "Review ability to carry out reviewing and revising regulations.",
+        "Review ability to carry out training of technical staff.",
+        "Review ability to carry out development of guidance material.",
+        "Review ability to carry out issuance of licences and rating.",
+        "Review ability to carry out conducting surveillance.",
+        "Review ability to carry out resolving identified safety concerns."
+      ]
+    },
+    {
+      "no": "3.111",
+      "question": "Has the State established appropriate minimum qualification and experience requirements for its personnel licensing staff?",
+      "ce": "CE-4",
+      "ppq": "",
+      "note": "",
+      "lead": "Review deployment requirements based on technical tasks:",
+      "criteria": [
+        "Review qualification and experience requirements for recruitment and assignment of personnel licensing staff of the Licensing Authority depending on their responsibilities in the personnel licensing issuance process and oversight system."
+      ]
+    },
+    {
+      "no": "3.112",
+      "question": "Does the State ensure that all personnel licensing staff meet the established minimum qualification and experience requirements?",
+      "ce": "CE-4",
+      "ppq": "",
+      "note": "",
+      "lead": "Cross-check inspectorate competencies:",
+      "criteria": [
+        "Sample recruitment files.",
+        "Cross-check with established requirements."
+      ]
+    },
+    {
+      "no": "3.113",
+      "question": "Is a formal training programme established that details the type of training that should be provided to personnel licensing inspectorate staff and other technical personnel?",
+      "ce": "CE-4",
+      "ppq": "",
+      "note": "",
+      "lead": "Verify structured training specifications for positions across:",
+      "criteria": [
+        "Review contents of training programme for each job (inspectorate staff and other technical personnel).",
+        "Review contents of training programme for all activities (i.e. issuance of all licences, medical, training organizations approval).",
+        "Confirm inclusion of initial training modules.",
+        "Confirm inclusion of on-the-job (OJT) structures.",
+        "Confirm inclusion of recurrent training cycles.",
+        "Confirm inclusion of specialized training, with timelines to be provided, as applicable."
+      ]
+    },
+    {
+      "no": "3.114",
+      "question": "Have personnel licensing staff been issued credentials to facilitate access to aircraft, aviation facilities and documents for the purpose of inspections and enforcement?",
+      "ce": "CE-3",
+      "ppq": "",
+      "note": "This PQ is only applicable to those performing inspection and enforcement activities.",
+      "lead": "Review credentials to ensure:",
+      "criteria": [
+        "Reference to empowering legislation.",
+        "Method established to control currency of credential.",
+        "Inspector's photo."
+      ]
+    },
+    {
+      "no": "3.115",
+      "question": "Has a periodic training plan been established and implemented, which details and prioritizes the type of training that will be provided to personnel licensing inspectorate staff and other technical personnel during the established period?",
+      "ce": "CE-4",
+      "ppq": "",
+      "note": "",
+      "lead": "Verify compliance with training continuity profiles:",
+      "criteria": [
+        "Review the most recent training plan for each inspectorate staff and other technical personnel.",
+        "Check training files.",
+        "Verify that the type and frequency of training that has been successfully completed (initial, recurrent, specialized and OJT) are sufficient for the inspectorate staff and other technical personnel to acquire/maintain the required level of knowledge, skills and qualifications in accordance with their assigned duties and responsibilities.",
+        "The training plan should reflect, for each inspectorate staff and other technical personnel, the schedule for implementing the training programme in the following year(s)."
+      ]
+    },
+    {
+      "no": "3.119",
+      "question": "Has a system been established to maintain the training records of personnel licensing staff?",
+      "ce": "CE-4",
+      "ppq": "",
+      "note": "",
+      "lead": "Verify training record integrity:",
+      "criteria": [
+        "Review requirements/instructions for the establishment and maintenance of training records.",
+        "Verify that the system in place complies with system description.",
+        "Verify that training records are systematically retained."
+      ]
+    },
+    {
+      "no": "3.153",
+      "question": "Are the relevant ICAO documents and other technical publications readily available to the personnel licensing inspectorate staff and other technical personnel?",
+      "ce": "CE-5",
+      "ppq": "",
+      "note": "Check for field/regional offices as well as headquarters.",
+      "lead": "Verify publication library tracks and distribution controls for:",
+      "criteria": [
+        "Evaluate method to ensure receipt, control and distribution of the necessary technical documentation.",
+        "Evaluate method to determine currency of documents.",
+        "Verify accessibility of up-to-date State laws and regulations.",
+        "Verify accessibility of orders and instructions.",
+        "Verify accessibility of current copy of Annex 1.",
+        "Verify accessibility of copies of ICAO guidance material (i.e. Doc 9379, Doc 9841, Doc 9625, etc.)."
+      ]
+    },
+    {
+      "no": "3.154",
+      "question": "Is there a technical library available for the staff of the personnel licensing office or another method to ensure receipt, control and distribution of the necessary technical documentation?",
+      "ce": "CE-5",
+      "ppq": "",
+      "note": "",
+      "lead": "Evaluate manual library logs:",
+      "criteria": [
+        "Evaluate document receipt, control, and distribution system.",
+        "Evaluate method to determine currency of documents."
+      ]
+    },
+    {
+      "no": "3.155",
+      "question": "Are personnel licensing staff provided with comprehensive guidance material and procedures that are sufficiently detailed to enable them to carry out their functions and responsibilities effectively?",
+      "ce": "CE-5",
+      "ppq": "Yes",
+      "note": "",
+      "lead": "Verify manual distribution workflows:",
+      "criteria": [
+        "Review the PEL Procedures Manual, if available, or the list of procedures available.",
+        "Review management process.",
+        "Review distribution process of the documents used to ensure that all staff use comprehensive and up-to-date documents."
+      ]
+    },
+    {
+      "no": "3.201",
+      "question": "Has the State established methods to inform applicants of the requirements to be met for the various licences and ratings and the documents to be submitted for the application process?",
+      "ce": "CE-5",
+      "ppq": "",
+      "note": "",
+      "lead": "Review public information portals:",
+      "criteria": [
+        "Review available methods for informing applicants of the different licences and ratings.",
+        "Review list of application forms for all types of licences, ratings or examinations.",
+        "Review the forms to ensure that they contain information relating to age, knowledge, experience, skills and medical information of the applicant."
+      ]
+    },
+    {
+      "no": "3.203",
+      "question": "Does the State implement a process for the systematic review and evaluation of submitted application forms for the issuance of licences and ratings and for examinations?",
+      "ce": "CE-6",
+      "ppq": "Yes",
+      "note": "Applies to all types of licences, ratings and examinations.",
+      "lead": "Verify application review steps:",
+      "criteria": [
+        "Review implementation of processes and procedures for the evaluation of applications for licences, ratings or examinations.",
+        "Review responsibilities of PEL staff in assessing documents provided by applicants (e.g. different steps, who is doing what).",
+        "Sample cases for review."
+      ]
+    },
+    {
+      "no": "3.207",
+      "question": "Has the State established a procedure for appealing the Licensing Authority’s decisions?",
+      "ce": "CE-5",
+      "ppq": "",
+      "note": "",
+      "lead": "Verify legal appeal workflows:",
+      "criteria": [
+        "Review documented description of the appeal process.",
+        "Review established and documented processes and procedures.",
+        "Review documented procedure used to inform the applicant of the appeal process for licences, ratings, examinations and medical decisions."
+      ]
+    },
+    {
+      "no": "3.253",
+      "question": "Has the State promulgated regulations to ensure that privileges granted by a pilot licence, or by related ratings, are not exercised unless the holder maintains competency and meets requirements for recency of experience?",
+      "ce": "CE-2",
+      "ppq": "",
+      "note": "",
+      "lead": "Verify competency continuity codes:",
+      "criteria": [
+        "Verify regulations for all pilot licences and ratings issued, including instructor rating (e.g. list, conditions of issuance and renewal, maintenance of competency, recency of experience, etc.).",
+        "Ensure that such requirements also apply if a pilot is not employed by a commercial air operator."
+      ]
+    },
+    {
+      "no": "3.256",
+      "question": "Has the State established a system to re-establish or reinstate the privileges of expired licences and ratings?",
+      "ce": "CE-5",
+      "ppq": "",
+      "note": "The implementation of a system to re-establish or reinstate the privileges of expired licences and ratings is addressed in PEL PQ 3.257 (CE-6).",
+      "lead": "Verify policy configuration for privilege restoration:",
+      "criteria": [
+        "Review documented requirements (e.g. number of hours of mandatory re-training, examinations, etc.) to reinstate the privileges of expired licences and ratings.",
+        "Review documented process and procedures to reinstate the privileges of expired licences and ratings."
+      ]
+    },
+    {
+      "no": "3.257",
+      "question": "Has the State implemented a system to re-establish or reinstate the privileges of expired licences and ratings?",
+      "ce": "CE-6",
+      "ppq": "",
+      "note": "The establishment of this system is addressed in PEL PQ 3.256 (CE-5).",
+      "lead": "Verify action implementation for privilege restoration:",
+      "criteria": [
+        "Review implementation of requirements (e.g. number of hours of mandatory re-training, examinations, etc.) to reinstate the privileges of expired licences and ratings.",
+        "Review implementation of procedure to reinstate the privileges of expired licences and ratings.",
+        "Sample cases to confirm effective implementation."
+      ]
+    },
+    {
+      "no": "3.259",
+      "question": "If the State issues civil licences to military pilots, has a system been implemented for issuing civil pilot licences and ratings and granting exemptions?",
+      "ce": "CE-6",
+      "ppq": "Yes",
+      "note": "The establishment of a policy and procedures for granting exemptions is addressed in LEG PQ 1.028.",
+      "lead": "Verify conversion tracks:",
+      "criteria": [
+        "Review the rules and procedures followed for the conversion of military qualifications and experience to equivalent civil licences and ratings.",
+        "Sample cases for review to confirm effective implementation."
+      ]
+    },
+    {
+      "no": "3.261",
+      "question": "Has the State systematically implemented a process for the renewal of licences and ratings?",
+      "ce": "CE-7",
+      "ppq": "Yes",
+      "note": "",
+      "lead": "Verify license currency checking lines:",
+      "criteria": [
+        "Review procedures and conditions for the renewal of licences issued.",
+        "Review the competency requirements such as recent experience requirements, recurrent training and testing.",
+        "Confirm effective implementation."
+      ]
+    },
+    {
+      "no": "3.263",
+      "question": "What action does the Licensing Authority take in the event that sufficient evidence exists to demonstrate that a pilot licence holder has not performed his/her duties in accordance with the prescribed procedures and privileges of his/her licence?",
+      "ce": "CE-8",
+      "ppq": "",
+      "note": "",
+      "lead": "Verify pilot enforcement metrics:",
+      "criteria": [
+        "Review enforcement system or procedures.",
+        "Review evidence to confirm effective implementation of a graduated response system (warnings, sanctions)."
+      ]
+    },
+    {
+      "no": "3.301",
+      "question": "Has the State implemented procedures for the issuance of pilot licences and ratings on the basis of foreign licences (licence conversion)?",
+      "ce": "CE-6",
+      "ppq": "Yes",
+      "note": "",
+      "lead": "Verify pilot license conversion workflows:",
+      "criteria": [
+        "Review the established procedures for the conversion of a foreign licence.",
+        "Review evidence to confirm effective implementation."
+      ]
+    },
+    {
+      "no": "3.302",
+      "question": "Has the State promulgated regulations for the conversion/validation of all type of licences, other than pilot licences?",
+      "ce": "CE-2",
+      "ppq": "",
+      "note": "",
+      "lead": "Verify baseline codes for alternative licenses:",
+      "criteria": [
+        "Verify regulations and additional requirements for conversion/validation of licences other than pilot licences."
+      ]
+    },
+    {
+      "no": "3.303",
+      "question": "Has the State implemented procedures for the validation of foreign pilot licences and ratings?",
+      "ce": "CE-6",
+      "ppq": "Yes",
+      "note": "",
+      "lead": "Verify pilot validation tracks:",
+      "criteria": [
+        "Review the established procedures for the validation of a foreign licence.",
+        "Review evidence to confirm effective implementation."
+      ]
+    },
+    {
+      "no": "3.305",
+      "question": "Has the State promulgated regulations for the conversion/validation of the commercial pilot, multi-crew pilot and airline transport pilot licences that are used for air transport purposes?",
+      "ce": "CE-2",
+      "ppq": "Yes",
+      "note": "",
+      "lead": "Verify air transport licensing codes:",
+      "criteria": [
+        "Verify regulations and additional requirements for the conversion/validation of these commercial and airline transport licences."
+      ]
+    },
+    {
+      "no": "3.307",
+      "question": "Does the Licensing Authority contact the foreign licence issuing State systematically to ensure the validity of the licence to be converted or validated?",
+      "ce": "CE-6",
+      "ppq": "Yes",
+      "note": "Contacting the issuing State is the best methodology, but other processes and procedures may be available.",
+      "lead": "Verify inter-state confirmation logs:",
+      "criteria": [
+        "Review implementation of process and procedures for confirmation of the validity of the foreign licence.",
+        "Review evidence to confirm effective implementation for all types of licences."
+      ]
+    },
+    {
+      "no": "3.309",
+      "question": "Does the State have a system to ensure that the original licence submitted for a licence validation or conversion is in full compliance with Annex 1?",
+      "ce": "CE-6",
+      "ppq": "",
+      "note": "",
+      "lead": "Verify compliance audit logs for external files:",
+      "criteria": [
+        "Review implementation of process and procedures for confirmation of the licence’s conformity with requirements of Annex 1.",
+        "Review evidence to confirm effective implementation for all types of licences."
+      ]
+    },
+    {
+      "no": "3.310",
+      "question": "Has the State implemented a systematic process to answer queries from other States in order to confirm the validity of the licences issued?",
+      "ce": "CE-6",
+      "ppq": "",
+      "note": "",
+      "lead": "Verify external query pipeline responses:",
+      "criteria": [
+        "Review process and procedures established and implemented for answering queries from other States.",
+        "Review evidence to confirm effective implementation for all types of licences."
+      ]
+    },
+    {
+      "no": "3.313",
+      "question": "Have procedures been implemented for the validation/conversion of foreign licences and ratings of aircraft maintenance technicians/engineers/mechanics?",
+      "ce": "CE-6",
+      "ppq": "",
+      "note": "Applicable only if such validation/conversion is performed in the State.",
+      "lead": "Verify maintenance personnel validation logs:",
+      "criteria": [
+        "Review validation/conversion procedures for aircraft maintenance personnel.",
+        "Review evidence to confirm effective implementation."
+      ]
+    },
+    {
+      "no": "3.315",
+      "question": "Have procedures been implemented for the validation/conversion of foreign licences of flight operations officers/flight dispatchers?",
+      "ce": "CE-6",
+      "ppq": "",
+      "note": "Applicable only if such validation/conversion is performed in the State.",
+      "lead": "Verify flight dispatcher validation logs:",
+      "criteria": [
+        "Review validation/conversion procedures for flight operations officers/flight dispatchers.",
+        "Review evidence to confirm effective implementation."
+      ]
+    },
+    {
+      "no": "3.317",
+      "question": "Have procedures been implemented for the validation/conversion of foreign licences and ratings of air traffic controllers?",
+      "ce": "CE-6",
+      "ppq": "",
+      "note": "Applicable only if such validation/conversion is performed in the State.",
+      "lead": "Verify controller validation logs:",
+      "criteria": [
+        "Review validation/conversion procedures for air traffic controllers.",
+        "Review evidence to confirm effective implementation."
+      ]
+    },
+    {
+      "no": "3.319",
+      "question": "Have procedures been established and implemented for issue/validation/conversion of foreign licences and ratings for remote pilot licences?",
+      "ce": "CE-6",
+      "ppq": "Yes",
+      "note": "Applicable only if such issuance/validation/conversion is performed in the State.",
+      "lead": "Verify RPAS license validation logs:",
+      "criteria": [
+        "Review procedures for issue/validation/conversion of remote pilot licences.",
+        "Review evidence to confirm effective implementation."
+      ]
+    },
+    {
+      "no": "3.321",
+      "question": "Have procedures been established and implemented for automatic validation of licences?",
+      "ce": "CE-6",
+      "ppq": "",
+      "note": "Applicable only if such issue/validation/conversion is performed in the State.",
+      "lead": "Verify automatic validation systems:",
+      "criteria": [
+        "Review automatic validation procedures.",
+        "Review evidence to confirm effective implementation."
+      ]
+    },
+    {
+      "no": "3.401",
+      "question": "Has the State promulgated regulations for medical examinations of applicants of various licences by medical examiners?",
+      "ce": "CE-2",
+      "ppq": "",
+      "note": "",
+      "lead": "Verify aero-medical framework codes:",
+      "criteria": [
+        "Verify regulations regarding medical provisions for licensing, including designation of medical examiners and requirement of a medical assessor.",
+        "Review regulations for the applicant to sign and furnish to medical examiners, a declaration, whose content conforms to the requirements of Annex 1.",
+        "Check promulgation of latest amendments to Annex 1."
+      ]
+    },
+    {
+      "no": "3.403",
+      "question": "Does the State use the services of medical assessors to evaluate reports submitted to the Licensing Authority by designated medical examiners (DME)?",
+      "ce": "CE-3",
+      "ppq": "",
+      "note": "Alternative systems can be acceptable, but they must guarantee evaluation of medical reports and effective oversight of all DMEs, medical centres/facilities.",
+      "lead": "Verify medical assessor configurations:",
+      "criteria": [
+        "Qualifications, experience, functions and responsibility of the medical assessor must be clearly described.",
+        "Review the process and documented evidence of the appointment of the medical assessor."
+      ]
+    },
+    {
+      "no": "3.405",
+      "question": "Has the State implemented a process for the evaluation of medical reports submitted by the designated medical examiners (DME)?",
+      "ce": "CE-6",
+      "ppq": "Yes",
+      "note": "",
+      "lead": "Verify check routines for incoming medical forms:",
+      "criteria": [
+        "Verify that the process and methods in place for the evaluation of medical reports comply with Docs 8984 and 9379.",
+        "Review evidence to confirm effective implementation, e.g. audit reports of medical assessments and analysis of medical outcomes."
+      ]
+    },
+    {
+      "no": "3.409",
+      "question": "Has the State established the appropriate actions to be taken in case of a false declaration by an applicant to a designated medical examiner (DME)?",
+      "ce": "CE-8",
+      "ppq": "",
+      "note": "",
+      "lead": "Verify fraud prosecution/enforcement workflows:",
+      "criteria": [
+        "Review procedures outlining actions to be taken.",
+        "Review evidence to confirm effective implementation, i.e. reports and evidence of a graduated response system (warnings, sanctions, etc. that have been issued)."
+      ]
+    },
+    {
+      "no": "3.411",
+      "question": "Do designated medical examiners (DME) systematically submit signed reports to the Licensing Authority after completing the medical examination of an applicant?",
+      "ce": "CE-6",
+      "ppq": "",
+      "note": "Detailed medical information must be available only through the medical section or medical assessor to ensure medical confidentiality.",
+      "lead": "Verify submission loops for DME logs:",
+      "criteria": [
+        "If the medical examination is carried out by 2 or more examiners, verify that an appointed examiner is responsible for coordinating the results and signing of the report.",
+        "If reports are submitted electronically, verify that adequate identification of the examiner has been established.",
+        "Review evidence to confirm effective implementation, i.e. records of submission and acknowledgement of receipt.",
+        "Verify that all reports are available at the Licensing Authority for proper review and analysis by an appropriately qualified and experienced medical personnel."
+      ]
+    },
+    {
+      "no": "3.415",
+      "question": "Does the Licensing Authority perform medical assessment audits?",
+      "ce": "CE-7",
+      "ppq": "Yes",
+      "note": "The purpose of such audits is to ensure that DMEs meet applicable standards for good medical practice and aeromedical risk assessment.",
+      "lead": "Verify medical examiner audits:",
+      "criteria": [
+        "Confirm that audit process is established.",
+        "Review evidence to confirm effective implementation, i.e. audit reports."
+      ]
+    },
+    {
+      "no": "3.417",
+      "question": "Has the Licensing Authority implemented a system to ensure the confidentiality of medical reports and records at all times?",
+      "ce": "CE-7",
+      "ppq": "",
+      "note": "",
+      "lead": "Verify medical confidentiality architectures:",
+      "criteria": [
+        "Ensure the Licensing Authority checks the confidentiality system at designated medical examiners’ (DME) facilities or/and medical centres.",
+        "Check confidentiality system of the reports kept by Licensing Authority.",
+        "Check the policy and procedures established to determine to what extent pertinent medical information is presented to relevant officials of the Licensing Authority and other stakeholders.",
+        "Review reports/complaints for any breach of medical confidentiality."
+      ]
+    },
+    {
+      "no": "3.419",
+      "question": "If the medical Standards prescribed in Chapter 6 of Annex 1 for a particular licence type are not fully met, has the State implemented a system for the possible issuance or renewal of the appropriate medical assessment following conditions as stipulated in Annex 1?",
+      "ce": "CE-6",
+      "ppq": "Yes",
+      "note": "",
+      "lead": "Verify borderline medical waiver operations:",
+      "criteria": [
+        "Confirm that accredited medical conclusion indicates that exercise of privileges is not likely to jeopardize flight safety under special circumstances.",
+        "Confirm relevant ability, skills and experience of the applicant and operational conditions have been given due consideration.",
+        "Confirm the licence is endorsed with any special limitation or limitations when safe performance is dependent on compliance.",
+        "Confirm that procedures for coordination between medical assessors, other subject matter experts (SMEs) and Licensing Authority are established.",
+        "Review minutes of medical review/board meetings to confirm consultation with SMEs, operations department, etc.",
+        "Review reports including analysis of loss of licence due to medical reasons and trend analysis of findings of the outcome of the medical certification.",
+        "Review policy, procedures and evidence of communication for the justification and outcome of the medical certification decision."
+      ]
+    },
+    {
+      "no": "3.421",
+      "question": "Has the State implemented a process describing circumstances under which a medical examination may be deferred?",
+      "ce": "CE-5",
+      "ppq": "",
+      "note": "If the policy formally adopted by the State is that the medical examination cannot be deferred, the PQ is “Not Applicable”.",
+      "lead": "Verify deferral policies:",
+      "criteria": [
+        "Confirm that the process developed and implemented complies with the regulations.",
+        "If deferred, review the frequency and reasons for deferral."
+      ]
+    },
+{
+      "no": "3.425",
+      "question": "Has the State implemented a system to ensure that medical examiners have practical knowledge and experience in the aviation environment?",
+      "ce": "CE-4",
+      "ppq": "",
+      "note": "",
+      "lead": "Verify that medical examiners have:",
+      "criteria": [
+        "Practical knowledge and experience in the conditions in which the holders of licences and ratings carry out their duties.",
+        "Procedures and evidence of the training and check programs implemented by the Licensing Authority."
+      ]
+    },
+    {
+      "no": "3.427",
+      "question": "Has the State implemented a system to ensure that medical examiners are designated for a specific period?",
+      "ce": "CE-5",
+      "ppq": "",
+      "note": "",
+      "lead": "Verify designation cycles:",
+      "criteria": [
+        "Review documentation confirming that the designation of medical examiners is for a specific period.",
+        "Verify that renewal of designation is subject to the review of their competence and performance."
+      ]
+    },
+    {
+      "no": "3.501",
+      "question": "Has the State established and implemented an effective system for the preparation and conduct of knowledge examinations?",
+      "ce": "CE-6",
+      "ppq": "Yes",
+      "note": "This applies to all categories of licences and ratings.",
+      "lead": "Verify examination security and delivery frameworks:",
+      "criteria": [
+        "Review processes and procedures for the preparation and security of the examination question bank.",
+        "Verify methods used for the conduct of knowledge examinations to prevent cheating and compromises.",
+        "Verify that the knowledge testing system ensures clear coverage of all requirements specified in Annex 1."
+      ]
+    },
+    {
+      "no": "3.503",
+      "question": "Has the Licensing Authority established a formal method to select, qualify and approve theoretical knowledge examiners?",
+      "ce": "CE-5",
+      "ppq": "",
+      "note": "",
+      "lead": "Verify examiner assessment setups:",
+      "criteria": [
+        "Review documented qualification and selection criteria for theoretical knowledge examiners.",
+        "Verify procedures for monitoring the performance and standardization of these examiners."
+      ]
+    },
+    {
+      "no": "3.507",
+      "question": "Does the Licensing Authority monitor the conduct of knowledge examinations at all testing centers?",
+      "ce": "CE-7",
+      "ppq": "Yes",
+      "note": "",
+      "lead": "Verify exam center oversight tracks:",
+      "criteria": [
+        "Review surveillance plans and inspection reports of testing centers and exam facilities.",
+        "Verify that unannounced inspections are conducted to ensure testing integrity."
+      ]
+    },
+    {
+      "no": "3.601",
+      "question": "Has the State established and implemented a structured system for the conduct of practical skill tests?",
+      "ce": "CE-6",
+      "ppq": "Yes",
+      "note": "Applies to pilots, air traffic controllers, maintenance personnel, and flight dispatchers.",
+      "lead": "Verify practical test execution guidelines:",
+      "criteria": [
+        "Review standard operating procedures and test tolerances for practical skill assessments.",
+        "Verify that practical tests are designed to evaluate both normal and emergency procedures according to Annex 1 parameters."
+      ]
+    },
+    {
+      "no": "3.605",
+      "question": "Has the Licensing Authority established a formal process to designate, qualify and authorize flight examiners and practical assessors?",
+      "ce": "CE-5",
+      "ppq": "Yes",
+      "note": "",
+      "lead": "Verify practical examiner controls:",
+      "criteria": [
+        "Review documented requirements for the selection, designation, and authorization of flight examiners (FE) and skill assessors.",
+        "Verify that credentials or authorizations specify the scope of privileges granted.",
+        "Verify that examiners are prohibited from testing applicants to whom they provided flight instruction for that license/rating, unless explicitly authorized under specific risk-mitigated conditions."
+      ]
+    },
+    {
+      "no": "3.609",
+      "question": "Does the Licensing Authority implement a standardization and monitoring program for designated flight examiners and practical assessors?",
+      "ce": "CE-7",
+      "ppq": "Yes",
+      "note": "",
+      "lead": "Verify examiner surveillance cycles:",
+      "criteria": [
+        "Review documented procedures for the periodic oversight of designated flight examiners (e.g., check on an examiner / examiner monitoring flights).",
+        "Sample surveillance records to confirm that examiners are periodically evaluated by CAA inspectors during actual skill tests."
+      ]
+    },
+    {
+      "no": "3.701",
+      "question": "Has the State implemented a reliable system for the processing, generation, issuance, and delivery of personnel licences?",
+      "ce": "CE-6",
+      "ppq": "Yes",
+      "note": "",
+      "lead": "Verify license production workflows:",
+      "criteria": [
+        "Verify that the format and content of the issued licences strictly comply with the layout and specifications established in Annex 1.",
+        "Verify security controls implemented to prevent unauthorized generation, counterfeiting, or alteration of licences.",
+        "Review the process for signing and validating licences by authorized personnel of the Licensing Authority."
+      ]
+    },
+    {
+      "no": "3.705",
+      "question": "Does the Licensing Authority maintain a secure, comprehensive, and up-to-date personnel licensing registry or database?",
+      "ce": "CE-6",
+      "ppq": "",
+      "note": "",
+      "lead": "Verify registry configurations:",
+      "criteria": [
+        "Verify that the database accurately records the status of all licences, ratings, validations, and medical assessments.",
+        "Verify data backup procedures and access controls implemented to prevent unauthorized data loss or modification."
+      ]
+    },
+    {
+      "no": "3.801",
+      "question": "Has the State established a process for the formal certification, approval, and continuous surveillance of Approved Training Organizations (ATOs)?",
+      "ce": "CE-6",
+      "ppq": "Yes",
+      "note": "",
+      "lead": "Verify ATO certification pipelines:",
+      "criteria": [
+        "Review documented procedures outlining the 5-stage certification process for ATOs.",
+        "Verify that approvals are dependent on the evaluation of training manuals, facilities, equipment, instructor qualifications, and quality assurance systems.",
+        "Confirm that the specific scope of training privileges is clearly documented in the training specifications."
+      ]
+    },
+    {
+      "no": "3.805",
+      "question": "Does the Licensing Authority implement a structured continuous surveillance program for all approved domestic and foreign training organizations?",
+      "ce": "CE-7",
+      "ppq": "Yes",
+      "note": "",
+      "lead": "Verify ATO surveillance delivery:",
+      "criteria": [
+        "Review the established annual surveillance plan covering all certified ATOs.",
+        "Verify that surveillance activities include audits of training records, instructor standardization checks, and facility/synthetic training device inspections.",
+        "Sample completed audit reports and check tracking lists for timely resolution of findings."
+      ]
+    },
+    {
+      "no": "3.809",
+      "question": "Has the State established formal mechanisms for the qualification, evaluation, and approval of Flight Simulation Training Devices (FSTDs)?",
+      "ce": "CE-6",
+      "ppq": "",
+      "note": "",
+      "lead": "Verify synthetic device metrics:",
+      "criteria": [
+        "Review procedures for the initial qualification and recurrent evaluation of FSTDs used by certified training organizations.",
+        "Verify that FSTD approvals specify the level of qualification and the specific training/checking credits allowed."
+      ]
+    },
+    {
+      "no": "3.901",
+      "question": "Has the State promulgated specific operating regulations to require approved training organizations (ATOs) to implement a safety management system (SMS)?",
+      "ce": "CE-2",
+      "ppq": "",
+      "note": "Applicable only to ATOs exposed to safety risks related to aircraft operations during the provision of their services.",
+      "lead": "Verify regulatory framework requires:",
+      "criteria": [
+        "Implementation of an SMS that is acceptable to the State.",
+        "SMS establishment in accordance with the framework elements contained in Appendix 2 to Annex 19.",
+        "Compliance with the latest amendments to Annex 19."
+      ]
+    },
+    {
+      "no": "3.905",
+      "question": "Does the State ensure that the personnel responsible for the acceptance and continuous surveillance of ATOs SMS are qualified?",
+      "ce": "CE-4",
+      "ppq": "",
+      "note": "Applicable to ATOs exposed to operational safety risks.",
+      "lead": "Verify safety management qualifications and records:",
+      "criteria": [
+        "State has identified competency requirements for personnel responsible for SMS surveillance.",
+        "Training programme content addresses the SMS framework elements in Appendix 2 to Annex 19.",
+        "Training plan implementation and tracking records are systematically retained."
+      ]
+    },
+    {
+      "no": "3.909",
+      "question": "Are personnel licensing staff responsible for the acceptance and continuous surveillance of ATOs SMS provided with comprehensive guidance material and procedures?",
+      "ce": "CE-5",
+      "ppq": "",
+      "note": "",
+      "lead": "Verify SMS inspector tools:",
+      "criteria": [
+        "Review SMS assessment manuals and guidance material provided to inspectors.",
+        "Verify that specific checklists are available for evaluating an ATO's SMS processes, safety performance indicators, and safety culture."
+      ]
+    },
+    {
+      "no": "3.913",
+      "question": "Has the State established procedures for the acceptance of ATOs SMS?",
+      "ce": "CE-5",
+      "ppq": "",
+      "note": "",
+      "lead": "Verify that procedures describe SMS manual acceptance and cover:",
+      "criteria": [
+        "Safety policy, safety objectives and regulatory requirements.",
+        "System description, safety accountabilities and key safety personnel.",
+        "Voluntary/mandatory reporting system, hazard identification and risk assessment processes.",
+        "Safety performance indicators, internal audits, management of change and emergency planning coordination."
+      ]
+    },
+    {
+      "no": "3.917",
+      "question": "Does the State ensure that the ATOs identify safety hazards and manage associated risks effectively?",
+      "ce": "CE-6",
+      "ppq": "",
+      "note": "",
+      "lead": "Verify risk management controls:",
+      "criteria": [
+        "Verify that the State ensures that the ATOs have established and implemented a process to identify hazards associated with their training operations.",
+        "Verify that the safety risk assessment process covers probability, severity, and tolerability levels."
+      ]
+    },
+    {
+      "no": "3.921",
+      "question": "Does the State ensure that the ATOs develop and implement safety risk mitigation strategies?",
+      "ce": "CE-6",
+      "ppq": "",
+      "note": "",
+      "lead": "Verify action implementation for risk control:",
+      "criteria": [
+        "Verify that the State ensures that the ATOs implement appropriate safety risk mitigation/control actions to maintain safety risks at an acceptable level.",
+        "Sample cases of risk assessment files during surveillance activities."
+      ]
+    },
+    {
+      "no": "3.925",
+      "question": "Does the State ensure that the ATOs establish and maintain safety performance indicators (SPIs) and safety performance targets (SPTs)?",
+      "ce": "CE-6",
+      "ppq": "",
+      "note": "",
+      "lead": "Verify performance mapping parameters:",
+      "criteria": [
+        "Verify that the State ensures that the ATOs have a mechanism to select and monitor SPIs and SPTs acceptable to the State.",
+        "Verify that the SPIs encompass both operational safety risks and process implementation risks."
+      ]
+    },
+    {
+      "no": "3.929",
+      "question": "Does the State evaluate the effectiveness of an ATO's SMS through continuous surveillance?",
+      "ce": "CE-7",
+      "ppq": "",
+      "note": "",
+      "lead": "Verify system audit loops:",
+      "criteria": [
+        "Verify that the State has a mechanism to assess the maturity and effectiveness of an ATO's safety management system.",
+        "Review surveillance audit files to check documented evidence of continuous SMS evaluations."
+      ]
+    },
+    {
+      "no": "3.933",
+      "question": "Does the State ensure that the ATOs establish and implement a formal safety training programme for all relevant personnel?",
+      "ce": "CE-6",
+      "ppq": "",
+      "note": "",
+      "lead": "Verify training deployment rules:",
+      "criteria": [
+        "Verify that the State ensures that the ATOs have a safety training programme that is appropriate to each individual’s involvement in the SMS.",
+        "Verify that training records are systematically maintained by the ATO."
+      ]
+    },
+    {
+      "no": "3.937",
+      "question": "Does the State ensure that the ATOs personnel involved in safety management tasks are qualified?",
+      "ce": "CE-7",
+      "ppq": "",
+      "note": "",
+      "lead": "Verify competency validation metrics:",
+      "criteria": [
+        "Verify that the State has established and implemented a mechanism to validate that the ATOs personnel involved in SMS are qualified to perform their functions and responsibilities.",
+        "Sample the surveillance activities records to verify compliance."
+      ]
+    },
+    {
+      "no": "3.941",
+      "question": "Does the State ensure that the ATOs continually promote safety and communicate safety-critical information effectively?",
+      "ce": "CE-7",
+      "ppq": "",
+      "note": "This PQ is only applicable to approved training organizations (ATOs) in accordance with Annex 1 that are exposed to safety risks related to aircraft operations during the provision of their services.",
+      "lead": "Verify safety communication channels:",
+      "criteria": [
+        "Verify that the State ensures that the ATOs develop and maintain a formal mean for safety communication that includes ensuring personnel are aware of the SMS commensurate with their positions.",
+        "Conveying safety-critical information, explaining why particular actions are taken to improve safety, and why safety procedures are introduced or changed."
+      ]
+    }
   ]
 }
