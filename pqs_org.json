@@ -1,0 +1,194 @@
+{
+  "area_id": "ORG",
+  "area_name": "Civil Aviation Organization",
+  "total_pqs": 13,
+  "pqs": [
+    {
+      "no": "2.010",
+      "question": "Has an organizational structure been established at the State level depicting the authorities with functions related to safety oversight or aircraft accident and incident investigation in the State and their reporting lines?",
+      "ce": "CE-3",
+      "ppq": "Yes",
+      "note": "This PQ addresses the organizational structure for civil aviation activities at the State level. Separate PQs, in each audit area, address the organizational structure at the CAA Department/investigation authority level.",
+      "lead": "Evaluate current approved organizational structures (charts) or other equivalent documents and confirm:",
+      "criteria": [
+        "The inclusion of Personnel licensing and training (PEL).",
+        "The inclusion of Aircraft operations (OPS).",
+        "The inclusion of Airworthiness of aircraft (AIR).",
+        "The inclusion of Aircraft accident and incident investigation (AIG).",
+        "The inclusion of Air navigation services (ANS).",
+        "The inclusion of Aerodromes and ground aids (AGA).",
+        "Confirm that the authority responsible for aircraft accident and serious incident investigation may be permanent or established on an ad hoc basis."
+      ]
+    },
+    {
+      "no": "2.011",
+      "question": "Are the functions and responsibilities of each authority with functions related to safety oversight or aircraft accident and incident investigation clearly defined?",
+      "ce": "CE-3",
+      "ppq": "Yes",
+      "note": "Separate PQs, in each audit area, address functions and responsibilities at the CAA Department/investigation authority level.",
+      "lead": "Review documents and verify:",
+      "criteria": [
+        "Review documents defining the functions and responsibilities of each authority at the State level with functions related to safety oversight or aircraft accident and incident investigation.",
+        "Verify inclusion of key functions and responsibilities in each area."
+      ]
+    },
+    {
+      "no": "2.013",
+      "question": "If Regional Offices (ROs) have been established for authorities which perform functions related to safety oversight or aircraft accident and incident investigation, are their roles and responsibilities clearly defined?",
+      "ce": "CE-3",
+      "ppq": "",
+      "note": "",
+      "lead": "Review guidelines for:",
+      "criteria": [
+        "Document(s) defining the functions and responsibilities of ROs.",
+        "Organizational structure(s)/chart(s).",
+        "Document(s) defining the level of authority of the ROs."
+      ]
+    },
+    {
+      "no": "2.017",
+      "question": "If the State has delegated or transferred safety oversight-related tasks to other entities, have procedures or mechanisms been established to ensure that the State’s obligation for safety oversight of the delegated or transferred tasks is being met?",
+      "ce": "CE-3",
+      "ppq": "",
+      "note": "",
+      "lead": "Review parameter structures:",
+      "criteria": [
+        "Review the specific tasks which have been delegated or transferred.",
+        "Review the procedures or mechanisms established (e.g. jointly with the other States having delegated or transferred tasks to the same entity) to review the performance of tasks by the other entities."
+      ]
+    },
+    {
+      "no": "2.019",
+      "question": "When there is more than one authority (organization) with functions related to safety oversight or aircraft accident and incident investigation, have procedures been established to ensure that all areas are covered and that there is no overlap of responsibilities?",
+      "ce": "CE-3",
+      "ppq": "",
+      "note": "",
+      "lead": "Review the coordination matrix to:",
+      "criteria": [
+        "Verify if State has identified one specific authority responsible for coordination of all ICAO-related matters.",
+        "Review the system in place to identify any area for which there may be overlaps.",
+        "Identify if tasks related to safety oversight or accident/incident investigation have not been assigned to any entity."
+      ]
+    },
+    {
+      "no": "2.023",
+      "question": "Has the State established and implemented mechanisms to avoid perceived or potential conflict of interest of inspectorate staff?",
+      "ce": "CE-3",
+      "ppq": "Yes",
+      "note": "This PQ is not linked to AIG.",
+      "lead": "Review mechanisms in place, and in cases where the CAA has inspectors seconded from a service provider in the State, review formal arrangements to either:",
+      "criteria": [
+        "Exclude the seconded personnel from performing safety oversight functions on the service provider that employs them.",
+        "Effectively mitigate the risk of perceived or potential conflict of interest.",
+        "Verify deployment configurations in all specific technical areas: PEL, OPS, AIR, ANS and AGA."
+      ]
+    },
+    {
+      "no": "2.051",
+      "question": "Has the State established and implemented a mechanism to ensure that each safety oversight authority has sufficient financial resources to meet its national and international obligations?",
+      "ce": "CE-3",
+      "ppq": "Yes",
+      "note": "A separate PQ is used for the investigation authority (AIG 6.105).",
+      "lead": "Review mechanisms and verify that sufficient financial resources are available for:",
+      "criteria": [
+        "Review mechanisms to fund the authorities (e.g. State budget, fees and charges).",
+        "Review mechanisms to determine budget needs.",
+        "Review actual budget allocated.",
+        "Development of regulations, procedures and other guidance material.",
+        "Training capabilities.",
+        "Surveillance activities.",
+        "Resolution of safety deficiencies.",
+        "Confirm implementations in the following technical scopes: PEL, OPS, AIR, ANS and AGA."
+      ]
+    },
+    {
+      "no": "2.053",
+      "question": "Has the State established a mechanism to ensure that each safety oversight authority has sufficient personnel to meet its national and international obligations?",
+      "ce": "CE-3",
+      "ppq": "",
+      "note": "A separate PQ is used for the investigation authority (AIG 6.113). The implementation of this mechanism is addressed by the following PQs: PEL 3.109; OPS 4.025; AIR 5.033; AIR 5.473; ANS 7.061; ANS 7.209; ANS 7.269; ANS 7.373; ANS 7.417; ANS 7.487 & AGA 8.039.",
+      "lead": "Verify structural manpower resources:",
+      "criteria": [
+        "Methodology to identify staff needs for all specialties.",
+        "The process to establish and fill the required posts initially and on an ongoing basis.",
+        "State’s ability to accomplish all required activities including: development of regulations, procedures and guidance material.",
+        "State’s ability to accomplish training activities.",
+        "State’s ability to accomplish surveillance activities.",
+        "State’s ability to accomplish resolution of safety deficiencies."
+      ]
+    },
+    {
+      "no": "2.101",
+      "question": "Does each safety oversight entity/investigation authority have an active role in the selection and recruitment of sufficiently qualified and experienced technical personnel?",
+      "ce": "CE-4",
+      "ppq": "Yes",
+      "note": "",
+      "lead": "Verify active recruitment processes across technical layers:",
+      "criteria": [
+        "That competency requirements are established by the respective safety oversight entities/investigation authority, if applicable, responsible for each technical and managerial post.",
+        "Active participation of the respective safety oversight entity/investigation authority, if applicable, in the recruitment and the selection of prospective personnel.",
+        "Confirm active execution in each audit area as applicable: PEL, OPS, AIR, AIG (only when there is a permanent investigation authority), ANS and AGA."
+      ]
+    },
+    {
+      "no": "2.103",
+      "question": "Is each safety oversight entity/investigation authority able to attract, recruit and retain sufficiently qualified/experienced technical personnel?",
+      "ce": "CE-3",
+      "ppq": "",
+      "note": "",
+      "lead": "Verify retention performance:",
+      "criteria": [
+        "Review rates of vacancy and of turnover for the personnel of all safety oversight entities/the investigation authority.",
+        "Verify ability to offer competitive terms of employment and compensation packages.",
+        "Verify active levels in each audit area as applicable: PEL, OPS, AIR, AIG (only when there is a permanent investigation authority), ANS and AGA."
+      ]
+    },
+    {
+      "no": "2.105",
+      "question": "Has each safety oversight entity/investigation authority established a training policy for technical personnel?",
+      "ce": "CE-4",
+      "ppq": "",
+      "note": "",
+      "lead": "Review and verify that the training policy commits to providing and requiring structured member files for:",
+      "criteria": [
+        "Review that a documented training policy is established and signed at the management level of the authority.",
+        "Initial parameters (e.g. induction and basic training).",
+        "On-the-job training (OJT).",
+        "Recurrent training intervals.",
+        "Specialized/advanced training blocks.",
+        "The training policy requirements for the establishment of a training programme for each technical staff position and training plans for each technical staff member."
+      ]
+    },
+    {
+      "no": "2.205",
+      "question": "Are appropriate facilities available to the personnel of each safety oversight entity?",
+      "ce": "CE-5",
+      "ppq": "",
+      "note": "This PQ is not linked to AIG.",
+      "lead": "Assess adequacy of facilities for the performance of duties and responsibilities for each safety oversight entity across:",
+      "criteria": [
+        "Personnel licensing and training entity (PEL).",
+        "Aircraft operations oversight entity (OPS).",
+        "Airworthiness oversight entity (AIR).",
+        "Air navigation services oversight entity (ANS).",
+        "Aerodromes and ground aids oversight entity (AGA)."
+      ]
+    },
+    {
+      "no": "2.207",
+      "question": "Are appropriate equipment and transportation available to the personnel of each safety oversight entity?",
+      "ce": "CE-5",
+      "ppq": "",
+      "note": "This PQ is not linked to AIG.",
+      "lead": "Assess equipment and mobility levels, confirming availability for PEL, OPS, AIR, ANS and AGA:",
+      "criteria": [
+        "Assess adequacy of equipment for the personnel for the performance of duties and responsibilities for each safety oversight entity, including photocopiers.",
+        "Assess adequacy of computers/laptops/notebooks.",
+        "Assess adequacy of printing facilities.",
+        "Assess adequacy of telephone/mobiles and Internet infrastructure.",
+        "Assess adequacy of microfiche/microfilm reader, if needed.",
+        "Assess whether relevant personnel have access to adequate transportation to perform their duties."
+      ]
+    }
+  ]
+}
