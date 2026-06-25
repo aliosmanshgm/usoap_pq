@@ -220,15 +220,15 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
     import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
-    // FIREBASE PROJE AYARLARINIZI BURAYA YERLEŞTİRİN
-    const firebaseConfig = {
-        apiKey: "YOUR_API_KEY",
-        authDomain: "YOUR_PROJECT.firebaseapp.com",
-        projectId: "YOUR_PROJECT_ID",
-        storageBucket: "YOUR_PROJECT.appspot.com",
-        messagingSenderId: "YOUR_SENDER_ID",
-        appId: "YOUR_APP_ID"
-    };
+    // BURAYI KENDİ FIREBASE PROJE VERİLERİNİZLE DEĞİŞTİRİN
+    	const firebaseConfig = {
+        apiKey: "AIzaSyAyiUrIOI7zkxgj_gTpPTt7qczaW7WPPCc",
+  	    authDomain: "firestore-669de.firebaseapp.com",
+  	    projectId: "firestore-669de",
+  	    storageBucket: "firestore-669de.firebasestorage.app",
+  	    messagingSenderId: "19378300872",
+  	    appId: "1:19378300872:web:b14960ae129ed4ec34c2fd",
+    	};
 
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
