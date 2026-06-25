@@ -1,308 +1,588 @@
 {
   "area_id": "LEG",
-  "area_name": "Primary Aviation Legislation & Regulations",
+  "area_name": "Primary Aviation Legislation & Specific Operating Regulations",
   "total_pqs": 23,
   "pqs": [
     {
       "no": "1.001",
-      "question": "Has the State promulgated primary aviation legislation to enable it to address its obligations?",
       "ce": "CE-1",
-      "ppq": "Yes",
-      "note": "",
-      "lead": "Legislation verification:",
+      "site_type": "Off-Site",
+      "ppq": "PPQ",
+      "question_en": "Has the State promulgated primary aviation legislation to enable it to address its obligations as a signatory to the Chicago Convention?",
+      "question_tr": "Devlet, Chicago Sözleşmesi'ne taraf bir Devlet olarak yükümlülüklerini yerine getirmesini sağlayacak temel havacılık mevzuatını yayımlamış mıdır?",
       "criteria": [
-        "Confirm title, date of promulgation and last amendment of all primary aviation legislation.",
-        "Verify that the content of the primary aviation legislation is consistent, sufficient (addressing all audit areas as needed) and properly organized."
-      ]
+        {
+          "en": "1) Confirm title, date of promulgation and last amendment of all primary aviation legislation.",
+          "tr": "1) Tüm temel havacılık mevzuatının başlığını, yayımlanma tarihini ve son değişiklik tarihini teyit edin."
+        },
+        {
+          "en": "2) Verify that the content of the primary aviation legislation is consistent, sufficient (addressing all audit areas as needed) and properly organized.",
+          "tr": "2) Temel havacılık mevzuatının içeriğinin tutarlı, yeterli (gerektiğinde tüm denetim alanlarını kapsayacak şekilde) ve uygun biçimde düzenlenmiş olduğunu doğrulayın."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
     },
     {
       "no": "1.005",
-      "question": "Does the primary aviation legislation provide for the introduction/adoption and subsequent promulgation of specific operating regulations?",
       "ce": "CE-1",
-      "ppq": "Yes",
-      "note": "",
-      "lead": "Verify that provisions allow for the introduction/adoption of specific operating regulations and at least cover:",
+      "site_type": "Off-Site",
+      "ppq": "PPQ",
+      "question_en": "Does the primary aviation legislation provide for the introduction/adoption and subsequent promulgation of specific operating regulations?",
+      "question_tr": "Temel havacılık mevzuatı, spesifik işletme düzenlemelerinin ihdas edilmesine/benimsenmesine ve müteakiben yayımlanmasına imkân sağlıyor mu?",
       "criteria": [
-        "All Annexes in the areas of PEL, OPS (including dangerous goods), AIR, AIG, ANS and AGA."
-      ]
+        {
+          "en": "Verify that provisions allow for the introduction/adoption of specific operating regulations and at least cover all Annexes in the areas of PEL, OPS (including dangerous goods), AIR, AIG, ANS and AGA.",
+          "tr": "Hükümlerin, spesifik işletme düzenlemelerinin ihdas edilmesine/benimsenmesine imkân sağladığını ve en azından PEL, OPS (tehlikeli maddeler dâhil), AIR, AIG, ANS ve AGA alanlarındaki tüm Ekleri kapsadığını doğrulayın."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
     },
     {
       "no": "1.007",
-      "question": "Has the State established a rulemaking process to enable the timely development and promulgation of specific operating regulations in compliance with the Annexes?",
       "ce": "CE-2",
-      "ppq": "Yes",
-      "note": "",
-      "lead": "Verify rulemaking process conformance:",
+      "site_type": "Off-Site",
+      "ppq": "PPQ",
+      "question_en": "Has the State established a rulemaking process to enable the timely development and promulgation of specific operating regulations in compliance with the Annexes to the Chicago Convention?",
+      "question_tr": "Devlet, Chicago Sözleşmesi'nin Eklerine uygun spesifik işletme düzenlemelerinin zamanında geliştirilmesini ve yayımlanmasını sağlayacak bir kural koyma süreci oluşturmuş mudur?",
       "criteria": [
-        "The rulemaking process includes all applicable steps, in conformance with the State’s legal system, as well as realistic timelines for the various steps.",
-        "The procedures or other means of compliance require that current specific operating regulations repeal previous specific operating regulations, if required.",
-        "All relevant entities (safety oversight entities/investigation authority) are included in the process (during the development and/or consultation) for PEL, OPS (including dangerous goods), AIR, AIG, ANS and AGA."
-      ]
+        {
+          "en": "1) Review the rulemaking process and verify that it includes all applicable steps, in conformance with the State’s legal system, as well as realistic timelines for the various steps.",
+          "tr": "1) Kural koyma sürecini inceleyin ve Devletin hukuk sistemine uygun olarak tüm geçerli adımları ve çeşitli adımlar için gerçekçi zaman çizelgelerini içerdiğini doğrulayın."
+        },
+        {
+          "en": "2) Verify that procedures or other means of compliance require that current specific operating regulations repeal previous specific operating regulations, if required.",
+          "tr": "2) Gerektiğinde, mevcut spesifik işletme düzenlemelerinin önceki spesifik işletme düzenlemelerini yürürlükten kaldırmasını gerektiren prosedürlerin veya diğer uyum yöntemlerinin mevcut olduğunu doğrulayın."
+        },
+        {
+          "en": "3) Confirm that all relevant entities (e.g. CAA, separate entities established for safety oversight and the accident investigation authority) are included in the process (during the development and/or consultation phase) for all audit areas: PEL, OPS (including dangerous goods), AIR, AIG, ANS and AGA.",
+          "tr": "3) Tüm denetim alanları [PEL, OPS (tehlikeli maddeler dâhil), AIR, AIG, ANS ve AGA] için ilgili tüm kurumların (örneğin SHGM, emniyet gözetimi için kurulmuş ayrı kurumlar ve kaza inceleme kuruluşu) sürece (geliştirme ve/veya istişare aşamasında) dâhil edildiğini teyit edin."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
     },
     {
       "no": "1.009",
-      "question": "Has the State established a process for amending its specific operating regulations or, if necessary, its primary aviation legislation?",
       "ce": "CE-2",
-      "ppq": "Yes",
-      "note": "Implementation of this PQ will be verified in all audit areas.",
-      "lead": "Review amendment evaluation structures:",
+      "site_type": "Off-Site",
+      "ppq": "PPQ",
+      "question_en": "Has the State established a process for amending its specific operating regulations or, if necessary, its primary aviation legislation, taking into consideration ICAO provisions and their amendments?",
+      "question_tr": "Devlet, ICAO hükümlerini ve bunlardaki değişiklikleri dikkate alarak spesifik işletme düzenlemelerini veya gerekirse temel havacılık mevzuatını değiştirmek için bir süreç oluşturmuş mudur?",
       "criteria": [
-        "Review the established process for evaluating amendments to all Annexes and for determining the need to amend specific operating regulations or primary aviation legislation.",
-        "Verify that the process includes all applicable steps and timelines, including the necessary coordination between the relevant technical and legal experts when necessary."
-      ]
+        {
+          "en": "1) Review the established process for evaluating amendments to all Annexes and for determining the need to amend specific operating regulations or primary aviation legislation.",
+          "tr": "1) Tüm Eklerdeki değişiklikleri değerlendirmek ve spesifik işletme düzenlemelerini veya temel havacılık mevzuatını değiştirme ihtiyacını belirlemek için oluşturulan süreci inceleyin."
+        },
+        {
+          "en": "2) Verify that the process includes all applicable steps and timelines, including the necessary coordination between the relevant technical and legal experts when necessary.",
+          "tr": "2) Sürecin, gerektiğinde ilgili teknik ve hukuki uzmanlar arasında gerekli koordinasyon da dâhil olmak üzere tüm geçerli adımları ve zaman çizelgelerini içerdiğini doğrulayın."
+        },
+        {
+          "en": "3) Verify implementation in all audit areas: PEL, OPS, AIR, AIG, ANS and AGA.",
+          "tr": "3) Tüm denetim alanlarında (PEL, OPS, AIR, AIG, ANS ve AGA) uygulandığını doğrulayın."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
     },
     {
       "no": "1.011",
-      "question": "Does the State make the primary aviation legislation, specific operating regulations, directives, orders, circulars, publications, etc. readily available to the public?",
       "ce": "CE-5",
+      "site_type": "Off-Site",
       "ppq": "",
-      "note": "The State may make documents available through official gazette, web access, library, etc.",
-      "lead": "Review the means for making the following documents available to the public:",
+      "question_en": "Does the State make the primary aviation legislation, specific operating regulations, directives, orders, circulars, publications, etc. readily available to the public?",
+      "question_tr": "Devlet; temel havacılık mevzuatını, spesifik işletme düzenlemelerini, direktifleri, emirleri, genelgeleri, yayınları vb. halkın erişimine kolayca sunuyor mu?",
       "criteria": [
-        "Primary aviation legislation accessibility.",
-        "Specific operating regulations accessibility.",
-        "Directives, orders, circulars, publications accessibility."
-      ]
+        {
+          "en": "1) Review the means for making the documents available to the public (e.g. official gazette, web access, library, etc.).",
+          "tr": "1) Belgelerin halkın erişimine sunulma yöntemlerini inceleyin (örneğin resmi gazete, web erişimi, kütüphane vb.)."
+        },
+        {
+          "en": "2) Confirm that the means of access are dynamic and that amendments are made available in a timely manner.",
+          "tr": "2) Erişim yöntemlerinin dinamik olduğunu ve değişikliklerin zamanında erişime sunulduğunu teyit edin."
+        }
+      ],
+      "note_en": "The State may make these documents available through various means (e.g. official gazette, web access, library, etc.).",
+      "tr": "Devlet bu belgeleri çeşitli yollarla (örneğin resmi gazete, web erişimi, kütüphane vb.) erişilebilir kılabilir."
     },
     {
       "no": "1.013",
-      "question": "Does the primary aviation legislation provide for the establishment of a civil aviation organization(s)?",
       "ce": "CE-1",
-      "ppq": "Yes",
-      "note": "This PQ is not linked to the AIG PQ 6.003.",
-      "lead": "Review relevant institutional legislation:",
+      "site_type": "Off-Site",
+      "ppq": "PPQ",
+      "question_en": "Does the primary aviation legislation provide for the establishment of a civil aviation organization(s) tasked with safety oversight functions?",
+      "question_tr": "Temel havacılık mevzuatı, emniyet gözetimi fonksiyonlarıyla görevlendirilmiş sivil havacılık kuruluşu/kuruluşlarının kurulmasını öngörüyor mu?",
       "criteria": [
-        "Review primary aviation legislation for autonomous CAAs or appropriate legal basis in other cases.",
-        "Verify the level of authority delegated to the CAA(s)."
-      ]
+        {
+          "en": "1) Review the primary aviation legislation and verify that it contains provisions for the establishment of an authority/authorities with safety oversight functions.",
+          "tr": "1) Temel havacılık mevzuatını inceleyin ve emniyet gözetimi fonksiyonlarına sahip bir otorite/otoritelerin kurulmasına yönelik hükümler içerdiğini doğrulayın."
+        },
+        {
+          "en": "2) Verify that the primary aviation legislation provides for the appropriate level of authority and delegation of functions to the CAA(s) to enable it/them to manage safety oversight responsibilities.",
+          "tr": "2) Temel havacılık mevzuatının, emniyet gözetimi sorumluluklarını yönetebilmesi için SHGM'ye/SHGM'lere uygun düzeyde yetki ve fonksiyon delegasyonu sağladığını doğrulayın."
+        },
+        {
+          "en": "3) Confirm with the following audit areas: PEL, OPS (including dangerous goods), AIR, ANS and AGA.",
+          "tr": "3) Aşağıdaki denetim alanlarıyla teyit edin: PEL, OPS (tehlikeli maddeler dâhil), AIR, ANS ve AGA."
+        }
+      ],
+      "note_en": "This PQ is not linked to the AIG PQ 6.003.",
+      "tr": "Bu PQ, AIG PQ 6.003 ile bağlantılı değildir."
     },
     {
       "no": "1.015",
-      "question": "Does the primary aviation legislation clearly delegate authority to each Director General (DG)/Chief Executive Officer (CEO)?",
       "ce": "CE-1",
-      "ppq": "Yes",
-      "note": "This PQ is not linked to AIG PQ 6.004.",
-      "lead": "Review relevant legislation and verify delegated authority blocks for:",
+      "site_type": "Off-Site",
+      "ppq": "PPQ",
+      "question_en": "Does the primary aviation legislation clearly delegate authority to each Director General (DG)/Chief Executive Officer (CEO) of the safety oversight entities to perform functions related to civil aviation safety?",
+      "call_sign": "",
+      "question_tr": "Temel havacılık mevzuatı, emniyet gözetimi kurumlarının her bir Genel Müdürüne (DG)/En Üst Yöneticisine (CEO), sivil havacılık emniyeti ile ilgili fonksiyonları yerine getirmeleri için açıkça yetki delege ediyor mu?",
       "criteria": [
-        "The legislation stipulates explicit delegated authority for executive functions.",
-        "The legislation includes all DGs/CEOs dealing with civil aviation safety oversight.",
-        "The authority delegated covers the following audit areas: PEL, OPS (including dangerous goods), AIR, ANS and AGA."
-      ]
+        {
+          "en": "1) Review the primary aviation legislation and verify that it clearly delegates authority to each DG/CEO of the entities established with functions related to civil aviation safety.",
+          "tr": "1) Temel havacılık mevzuatını inceleyin ve sivil havacılık emniyeti ile ilgili fonksiyonlarla kurulmuş kurumların her bir Genel Müdürüne/CEO'suna açıkça yetki delege ettiğini doğrulayın."
+        },
+        {
+          "en": "2) Confirm with the following audit areas: PEL, OPS (including dangerous goods), AIR, ANS and AGA.",
+          "tr": "2) Aşağıdaki denetim alanlarıyla teyit edin: PEL, OPS (tehlikeli maddeler dâhil), AIR, ANS ve AGA."
+        }
+      ],
+      "note_en": "This PQ is not linked to AIG PQ 6.004.",
+      "tr": "Bu PQ, AIG PQ 6.004 ile bağlantılı değildir."
     },
     {
       "no": "1.019",
-      "question": "If the State has transferred safety oversight responsibilities to a supranational organization, is there an appropriate legal basis?",
       "ce": "CE-1",
+      "site_type": "Off-Site",
       "ppq": "",
-      "note": "",
-      "lead": "Verify transfer parameters:",
+      "question_en": "If the State has transferred safety oversight responsibilities to a supranational organization or a regional safety oversight organization (RSOO), is there an appropriate legal basis in the primary aviation legislation or through another legal instrument to recognize the transfer and enable the organization to perform safety oversight tasks on behalf of the State?",
+      "question_tr": "Devlet, emniyet gözetimi sorumluluklarını uluslarüstü bir kuruluşa veya bir bölgesel emniyet gözetimi kuruluşuna (RSOO) devretmişse, devrin tanınması ve kuruluşun Devlet adına emniyet gözetimi görevlerini yerine getirebilmesi için temel havacılık mevzuatında veya başka bir hukuki araçta uygun bir hukuki dayanak mevcut mudur?",
       "criteria": [
-        "Identify the legal instrument(s) for the transfer.",
-        "Confirm notification to ICAO of the transfer of responsibilities."
-      ]
+        {
+          "en": "1) Confirm whether the State has transferred safety oversight responsibilities to a supranational organization/RSOO.",
+          "tr": "1) Devletin emniyet gözetimi sorumluluklarını uluslarüstü bir kuruluşa/RSOO'ya devredip devretmediğini teyit edin."
+        },
+        {
+          "en": "2) If yes, identify the legal instrument (e.g. primary legislation, act, treaty, convention, regulation, etc.) that gives full legal effect to the transfer of responsibilities and recognizes the tasks performed on behalf of the State by the organization.",
+          "tr": "2) Cevap evet ise, sorumlulukların devrine tam hukuki geçerlilik kazandıran ve kuruluş tarafından Devlet adına yerine getirilen görevleri tanıyan hukuki aracı (örneğin temel mevzuat, kanun, anlaşma, sözleşme, yönetmelik vb.) belirleyin."
+        },
+        {
+          "en": "3) Confirm that the transfer of responsibilities has been notified to ICAO.",
+          "tr": "3) Sorumluluk devrinin ICAO'ya bildirildiğini teyit edin."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
     },
     {
       "no": "1.023",
-      "question": "Does the primary aviation legislation provide for the issuance of additional binding instruments, such as orders and directives?",
       "ce": "CE-1",
-      "ppq": "Yes",
-      "note": "The primary aviation legislation may also provide for the issuance of non-binding instructions, such as circulars and instructions.",
-      "lead": "Verify regulatory enforcement requirements:",
+      "site_type": "Off-Site",
+      "ppq": "PPQ",
+      "question_en": "Does the primary aviation legislation provide for the issuance of additional binding instruments, such as orders and directives, to enforce specific operating regulations?",
+      "question_tr": "Temel havacılık mevzuatı, spesifik işletme düzenlemelerini uygulamaya koymak için emirler ve direktifler gibi ilave bağlayıcı araçların çıkarılmasını öngörüyor mu?",
       "criteria": [
-        "The inclusion of provisions for the issuance of additional binding instruments in the primary aviation legislation.",
-        "The enforcement capability for non-compliance.",
-        "The relevant delegation of authority for the issuance of additional binding instruments, including orders and directives."
-      ]
+        {
+          "en": "1) Verify that the primary aviation legislation enables the safety oversight entity/entities to issue additional binding instruments (e.g. orders, directives, requirements, etc.).",
+          "tr": "1) Temel havacılık mevzuatının, emniyet gözetimi kurumuna/kurumlarına ilave bağlayıcı araçlar (örneğin emirler, direktifler, gereklilikler vb.) çıkarma yetkisi verdiğini doğrulayın."
+        },
+        {
+          "en": "2) Verify that non-compliance with these additional instruments is enforceable.",
+          "tr": "2) Bu ilave araçlara uyulmamasının yaptırıma tabi olduğunu doğrulayın."
+        },
+        {
+          "en": "3) Confirm with the following audit areas: PEL, OPS (including dangerous goods), AIR, ANS and AGA.",
+          "tr": "3) Aşağıdaki denetim alanlarıyla teyit edin: PEL, OPS (tehlikeli maddeler dâhil), AIR, ANS ve AGA."
+        }
+      ],
+      "note_en": "The primary aviation legislation may also provide for the issuance of non-binding instructions, such as circulars and instructions.",
+      "tr": "Temel havacılık mevzuatı, genelgeler ve talimatlar gibi bağlayıcı olmayan talimatların çıkarılmasını da öngörebilir."
     },
     {
       "no": "1.025",
-      "question": "Has the State established procedures for identifying and notifying to ICAO differences between ICAO SARPs and its legislation?",
       "ce": "CE-2",
-      "ppq": "Yes",
-      "note": "Implementation of this PQ will be verified in all audit areas.",
-      "lead": "Verify notifications and workflow:",
+      "site_type": "Off-Site",
+      "ppq": "PPQ",
+      "question_en": "Has the State established procedures for identifying and notifying to ICAO differences between ICAO SARPs and its national legislation and practices?",
+      "question_tr": "Devlet, ICAO SARP'ları ile kendi ulusal mevzuatı ve uygulamaları arasındaki farklılıkları belirlemek ve ICAO'ya bildirmek için prosedürler oluşturmuş mudur?",
       "criteria": [
-        "The procedures used for the identification and notification of differences, including for specific operating regulations adopted by reference.",
-        "The procedures address each entity responsible for the relevant Annex, including AIG, when an entity separate from the CAA has been established.",
-        "The procedures include all applicable steps and timelines, including the necessary coordination between the relevant technical and legal experts when necessary."
-      ]
+        {
+          "en": "1) Review the procedures used for the identification and notification of differences, including for specific operating regulations adopted by reference.",
+          "tr": "1) Atıfta bulunularak benimsenen spesifik işletme düzenlemeleri de dâhil olmak üzere, farklılıkların belirlenmesi ve bildirilmesi için kullanılan prosedürleri inceleyin."
+        },
+        {
+          "en": "2) Verify that the procedures address each entity responsible for the relevant Annex, including AIG, when an entity separate from the CAA has been established.",
+          "tr": "2) SHGM'den ayrı bir kurum kurulduğunda, kaza inceleme (AIG) dâhil olmak üzere, prosedürlerin ilgili Ek'ten sorumlu her bir kurumu kapsadığını doğrulayın."
+        },
+        {
+          "en": "3) Verify that the procedures include all applicable steps and timelines, including the necessary coordination between the relevant technical and legal experts when necessary.",
+          "tr": "3) Prosedürlerin, gerektiğinde ilgili teknik ve hukuki uzmanlar arasında gerekli koordinasyon da dâhil olmak üzere tüm geçerli adımları ve zaman çizelgelerini içerdiğini doğrulayın."
+        },
+        {
+          "en": "4) Verify implementation in all audit areas: PEL, OPS, AIR, AIG, ANS and AGA.",
+          "tr": "4) Tüm denetim alanlarında (PEL, OPS, AIR, AIG, ANS ve AGA) uygulandığını doğrulayın."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
     },
     {
       "no": "1.027",
-      "question": "Does the legislation provide for the granting of exemptions?",
       "ce": "CE-2",
-      "ppq": "Yes",
-      "note": "The term “exemptions” also includes exceptions, deviations, variations and prolonged extensions. This PQ does not apply to AIG.",
-      "lead": "Verify basic legal framework:",
+      "site_type": "Off-Site",
+      "ppq": "PPQ",
+      "question_en": "Does the legislation provide for the granting of exemptions from the regulations?",
+      "question_tr": "Mevzuat, düzenlemelerden muafiyet tanınmasını öngörüyor mu?",
       "criteria": [
-        "The legislation explicitly provides for the granting of exemptions."
-      ]
+        {
+          "en": "1) Verify that the primary aviation legislation or specific operating regulations explicitly provide for the granting of exemptions from the regulations.",
+          "tr": "1) Temel havacılık mevzuatının veya spesifik işletme düzenlemelerinin, düzenlemelerden muafiyet tanınmasını açıkça öngördüğünü doğrulayın."
+        },
+        {
+          "en": "2) Confirm with the following audit areas: PEL, OPS (including dangerous goods), AIR, ANS and AGA.",
+          "tr": "2) Aşağıdaki denetim alanlarıyla teyit edin: PEL, OPS (tehlikeli maddeler dâhil), AIR, ANS ve AGA."
+        }
+      ],
+      "note_en": "The term “exemptions” also includes exceptions, deviations, variations and prolonged extensions. This PQ does not apply to AIG.",
+      "tr": "“Muafiyetler” terimi ayrıca istisnaları, sapmaları, varyasyonları ve uzatılmış süreleri de kapsar. Bu PQ, AIG için geçerli değildir."
     },
     {
       "no": "1.028",
-      "question": "Has the State established a policy and associated procedures for the granting of exemptions?",
       "ce": "CE-5",
+      "site_type": "Off-Site",
       "ppq": "",
-      "note": "This PQ does not apply to AIG.",
-      "lead": "Verify that the policy and procedures include:",
+      "question_en": "Has the State established a policy and associated procedures for the granting of exemptions?",
+      "question_tr": "Devlet, muafiyetlerin tanınması için bir politika ve ilgili prosedürleri oluşturmuş mudur?",
       "criteria": [
-        "The criteria for the conduct and review of risk assessments, analyses, aeronautical studies, etc.",
-        "The limitations or other conditions imposed, as applicable, when an exemption is granted.",
-        "The recording and publication of exemptions granted."
-      ]
+        {
+          "en": "1) Verify that the policy and procedures require a detailed analysis of the justification for the exemption and the impact on safety (e.g. through a risk assessment, aeronautical study, etc.).",
+          "tr": "1) Politika ve prosedürlerin, muafiyet gerekçesinin ve emniyet üzerindeki etkinin detaylı bir analizini (örneğin bir risk değerlendirmesi, havacılık çalışması vb. yoluyla) gerektirdiğini doğrulayın."
+        },
+        {
+          "en": "2) Verify that the policy and procedures include rules/criteria for the conduct and review of risk assessments, analyses, aeronautical studies, etc.",
+          "tr": "2) Politika ve prosedürlerin; risk değerlendirmelerinin, analizlerin, havacılık çalışmalarının vb. yürütülmesi ve gözden geçirilmesine yönelik kuralları/kriterleri içerdiğini doğrulayın."
+        },
+        {
+          "en": "3) Verify that the policy and procedures address the limitations or other conditions imposed, as applicable, when an exemption is granted.",
+          "tr": "3) Politika ve prosedürlerin, bir muafiyet tanındığında duruma göre getirilen sınırlamaları veya diğer koşulları kapsadığını doğrulayın."
+        },
+        {
+          "en": "4) Verify that the policy and procedures address the recording and publication of exemptions granted.",
+          "tr": "4) Politika ve prosedürlerin, tanınan muafiyetlerin kaydedilmesini ve yayımlanmasını kapsadığını doğrulayın."
+        },
+        {
+          "en": "5) Confirm with the following audit areas: PEL, OPS (including dangerous goods), AIR, ANS and AGA.",
+          "tr": "5) Aşağıdaki denetim alanlarıyla teyit edin: PEL, OPS (tehlikeli maddeler dâhil), AIR, ANS ve AGA."
+        }
+      ],
+      "note_en": "This PQ does not apply to AIG.",
+      "tr": "Bu PQ, AIG için geçerli değildir."
     },
     {
       "no": "1.029",
-      "question": "If the State has adopted specific operating regulations from another State, has it established processes for ensuring amendments?",
       "ce": "CE-2",
+      "site_type": "Off-Site",
       "ppq": "",
-      "note": "Verify in all audit areas, particularly in AIR regarding national code of airworthiness.",
-      "lead": "Process validation parameters:",
+      "question_en": "If the State has adopted specific operating regulations from another State, has it established processes for ensuring that these regulations are automatically or systematically amended to address the latest amendments to ICAO SARPs?",
+      "question_tr": "Devlet, başka bir Devletin spesifik işletme düzenlemelerini benimsemişse, bu düzenlemelerin ICAO SARP'larındaki son değişiklikleri kapsayacak şekilde otomatik veya sistematik olarak değiştirilmesini sağlayacak süreçler oluşturmuş mudur?",
       "criteria": [
-        "Determine if the State has adopted specific operating regulations from another State.",
-        "Verify that the processes take into consideration the latest amendments to the Annexes to the Chicago Convention, including filing of differences."
-      ]
+        {
+          "en": "1) Determine whether the State has adopted specific operating regulations from another State.",
+          "tr": "1) Devletin başka bir Devletten spesifik işletme düzenlemeleri benimseyip benimsemediğini belirleyin."
+        },
+        {
+          "en": "2) If yes, verify that the processes take into consideration the latest amendments to the Annexes to the Chicago Convention, including filing of differences to ICAO.",
+          "tr": "2) Cevap evet ise, süreçlerin ICAO'ya farklılıkların bildirilmesi de dâhil olmak üzere, Chicago Sözleşmesi'nin Eklerindeki son değişiklikleri dikkate aldığını doğrulayın."
+        },
+        {
+          "en": "3) Verify in all audit areas: PEL, OPS, AIR (particularly regarding national code of airworthiness), ANS and AGA.",
+          "tr": "3) Tüm denetim alanlarında doğrulayın: PEL, OPS, AIR (özellikle ulusal uçuşa elverişlilik koduyla ilgili olarak), ANS ve AGA."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
     },
     {
       "no": "1.051",
-      "question": "Does the primary aviation legislation provide for the enforcement of applicable legislation?",
       "ce": "CE-1",
-      "ppq": "Yes",
-      "note": "This PQ does not apply to AIG.",
-      "lead": "Verify deterrence and enforcement capabilities:",
+      "site_type": "Off-Site",
+      "ppq": "PPQ",
+      "question_en": "Does the primary aviation legislation provide for the enforcement of applicable legislation, regulations and other binding legal instruments?",
+      "question_tr": "Temel havacılık mevzuatı; geçerli mevzuatın, düzenlemelerin ve diğer bağlayıcı hukuki araçların uygulanmasını (enforcement) öngörüyor mu?",
       "criteria": [
-        "Enforcement provisions are included in the primary aviation legislation.",
-        "The legislation specifies clear penalties.",
-        "The penalties are sufficient to serve as a deterrent.",
-        "The above enforcement scope is in place for PEL, OPS (including dangerous goods), AIR, ANS and AGA."
-      ]
+        {
+          "en": "1) Verify that the primary aviation legislation contains enforcement provisions.",
+          "tr": "1) Temel havacılık mevzuatının yaptırım (enforcement) hükümleri içerdiğini doğrulayın."
+        },
+        {
+          "en": "2) Verify that the primary aviation legislation specifies penalties (e.g. administrative, civil and/or criminal) and that these are sufficient to serve as a deterrent.",
+          "tr": "2) Temel havacılık mevzuatının cezaları (örneğin idari, hukuki ve/veya cezai) belirttiğini ve bunların caydırıcı olmak için yeterli olduğunu doğrulayın."
+        },
+        {
+          "en": "3) Confirm with the following audit areas: PEL, OPS (including dangerous goods), AIR, ANS and AGA.",
+          "tr": "3) Aşağıdaki denetim alanlarıyla teyit edin: PEL, OPS (tehlikeli maddeler dâhil), AIR, ANS ve AGA."
+        }
+      ],
+      "note_en": "This PQ does not apply to AIG.",
+      "tr": "Bu PQ, AIG için geçerli değildir."
     },
     {
       "no": "1.053",
-      "question": "Does the legislation provide authority for issuance, suspension, revocation and restriction of documents?",
       "ce": "CE-1",
-      "ppq": "Yes",
-      "note": "The aircraft radio station licence is often issued/suspended/revoked by an entity other than the CAA.",
-      "lead": "Verify legal authority for action on the following documents:",
+      "site_type": "Off-Site",
+      "ppq": "PPQ",
+      "question_en": "Does the primary aviation legislation or other binding legal instruments provide for the authority to enforce specific safety enforcement actions such as the issuance, suspension, revocation and restriction of personnel licences, certificates, approvals and authorizations?",
+      "question_tr": "Temel havacılık mevzuatı veya diğer bağlayıcı hukuki araçlar; personel lisanslarının, sertifikalarının, onaylarının ve yetkilerinin verilmesi, askıya alınması, iptal edilmesi ve sınırlandırılması gibi spesifik emniyet yaptırım eylemlerinin yürütülmesi için yetki sağlıyor mu?",
       "criteria": [
-        "Personnel licences.",
-        "Air operator certificates (AOCs).",
-        "Certificates of registration.",
-        "Certificates of airworthiness.",
-        "Aircraft radio station licences.",
-        "Aerodrome certificates.",
-        "Authorizations, permits and related certificates."
-      ]
+        {
+          "en": "1) Verify that the primary aviation legislation or other binding instruments explicitly provide authority for the enforcement of specific safety actions on the following documents:",
+          "tr": "1) Temel havacılık mevzuatının veya diğer bağlayıcı araçların, aşağıdaki belgeler üzerinde spesifik emniyet eylemlerinin uygulanması için açıkça yetki sağladığını doğrulayın:"
+        },
+        {
+          "en": "a) personnel licences;",
+          "tr": "a) personel lisansları;"
+        },
+        {
+          "en": "b) air operator certificates (AOCs);",
+          "tr": "b) hava işletme sertifikaları (AOC'ler);"
+        },
+        {
+          "en": "c) certificates of registration;",
+          "tr": "c) tescil sertifikaları;"
+        },
+        {
+          "en": "d) certificates of airworthiness;",
+          "tr": "d) uçuşa elverişlilik sertifikaları;"
+        },
+        {
+          "en": "e) aircraft radio station licences;",
+          "tr": "e) hava aracı telsiz istasyonu lisansları;"
+        },
+        {
+          "en": "f) aerodrome certificates; and",
+          "tr": "f) havaalanı sertifikaları ve"
+        },
+        {
+          "en": "g) other authorizations, permits and related certificates.",
+          "tr": "g) diğer yetkiler, izinler ve ilgili sertifikalar."
+        },
+        {
+          "en": "2) Confirm with the following audit areas: PEL, OPS (including dangerous goods), AIR, ANS and AGA.",
+          "tr": "2) Aşağıdaki denetim alanlarıyla teyit edin: PEL, OPS (tehlikeli maddeler dâhil), AIR, ANS ve AGA."
+        }
+      ],
+      "note_en": "The aircraft radio station licence is often issued/suspended/revoked by an entity other than the CAA.",
+      "tr": "Hava aracı telsiz istasyonu lisansı sıklıkla SHGM dışındaki bir kurum tarafından düzenlenir/askıya alınır/iptal edilir."
     },
     {
       "no": "1.055",
-      "question": "Has the CAA established an enforcement policy and associated procedures?",
       "ce": "CE-5",
+      "site_type": "Off-Site",
       "ppq": "",
-      "note": "This PQ does not apply to AIG.",
-      "lead": "Enforcement alignment validation:",
+      "question_en": "Has the CAA established an enforcement policy and associated procedures to guide its technical personnel on enforcement actions?",
+      "question_tr": "SHGM, teknik personeline yaptırım eylemlerinde rehberlik edecek bir yaptırım politikası ve ilgili prosedürleri oluşturmuş mudur?",
       "criteria": [
-        "Verify that the policy and procedures call for enforcement actions that are commensurate with the level/type of infraction or violation identified.",
-        "Verify that the procedures address coordination with the CAA’s legal experts when needed."
-      ]
+        {
+          "en": "1) Verify that the policy and procedures call for enforcement actions that are commensurate with the level/type of infraction or violation identified.",
+          "tr": "1) Politika ve prosedürlerin, tespit edilen kural ihlalinin veya usulsüzlüğünün düzeyiyle/türüyle orantılı yaptırım eylemleri gerektirdiğini doğrulayın."
+        },
+        {
+          "en": "2) Verify that the procedures address coordination with the CAA’s legal experts when needed.",
+          "tr": "2) Prosedürlerin, ihtiyaç duyulduğunda SHGM'nin hukuk uzmanlarıyla koordinasyonu kapsadığını doğrulayın."
+        },
+        {
+          "en": "3) Confirm with the following audit areas: PEL, OPS (including dangerous goods), AIR, ANS and AGA.",
+          "tr": "3) Aşağıdaki denetim alanlarıyla teyit edin: PEL, OPS (tehlikeli maddeler dâhil), AIR, ANS ve AGA."
+        }
+      ],
+      "note_en": "This PQ does not apply to AIG.",
+      "tr": "Bu PQ, AIG için geçerli değildir."
     },
     {
       "no": "1.101",
-      "question": "Does the primary aviation legislation enable civil aviation inspectors to have unrestricted and unlimited access?",
       "ce": "CE-1",
+      "site_type": "On-Site",
       "ppq": "",
-      "note": "This PQ is not linked to AIG PQ 6.021.",
-      "lead": "Verify unrestricted inspector access rights to the following areas:",
+      "question_en": "Does the primary aviation legislation or other binding legal instruments enable civil aviation inspectors to have unrestricted and unlimited access to civil aircraft, aviation facilities, aerodromes, and organizations performing aviation activities in the State for the purpose of carrying out surveillance?",
+      "question_tr": "Temel havacılık mevzuatı veya diğer bağlayıcı hukuki araçlar, sivil havacılık denetçilerinin gözetim gerçekleştirmek amacıyla Devlet içindeki sivil hava araçlarına, havacılık tesislerine, havaalanlarına ve havacılık faaliyetleri yürüten kuruluşlara kısıtlamasız ve sınırsız erişimini sağlıyor mu?",
       "criteria": [
-        "Inclusion of explicit access provisions in the primary aviation legislation.",
-        "Access to Aircraft and flight decks.",
-        "Access to Aerodromes and field installations.",
-        "Access to Air navigation services facilities.",
-        "Access to Hangars, maintenance lines, and approved maintenance organizations (AMOs).",
-        "Access to Workshops and technical facilities.",
-        "Access to Ramps and operations areas.",
-        "Access to Fuel storage and fueling facilities.",
-        "Access to Air operator offices and administrative facilities.",
-        "Access to Cargo handling areas and storage warehouses.",
-        "Access to Aviation training organizations facilities."
-      ]
+        {
+          "en": "1) Verify that the primary aviation legislation or other binding legal instruments explicitly enable civil aviation inspectors to have unrestricted and unlimited access to:",
+          "tr": "1) Temel havacılık mevzuatının veya diğer bağlayıcı hukuki araçların, sivil havacılık denetçilerine aşağıdakilere kısıtlamasız ve sınırsız erişim sağladığını doğrulayın:"
+        },
+        {
+          "en": "a) civil aircraft (including flight decks);",
+          "tr": "a) sivil hava araçları (uçuş kokpitleri dâhil);"
+        },
+        {
+          "en": "b) aviation facilities;",
+          "tr": "b) havacılık tesisleri;"
+        },
+        {
+          "en": "c) aerodromes; and",
+          "tr": "c) havaalanları ve"
+        },
+        {
+          "en": "d) organizations performing aviation activities (e.g. air operators, maintenance organizations, training organizations, air navigation services providers, etc.).",
+          "tr": "d) havacılık faaliyetleri yürüten kuruluşlar (örneğin hava işletmeleri, bakım kuruluşları, eğitim kuruluşları, hava seyrüsefer hizmet sağlayıcıları vb.)."
+        },
+        {
+          "en": "2) Confirm with the following audit areas: PEL, OPS (including dangerous goods), AIR, ANS and AGA.",
+          "tr": "2) Aşağıdaki denetim alanlarıyla teyit edin: PEL, OPS (tehlikeli maddeler dâhil), AIR, ANS ve AGA."
+        }
+      ],
+      "note_en": "This PQ is not linked to AIG PQ 6.021.",
+      "tr": "Bu PQ, AIG PQ 6.021 ile bağlantılı değildir."
     },
     {
       "no": "1.103",
-      "question": "Does the primary aviation legislation enable inspectors to access and inspect aviation documents?",
       "ce": "CE-1",
+      "site_type": "On-Site",
       "ppq": "",
-      "note": "This PQ is not linked to AIG PQ 6.023.",
-      "lead": "Verify document inspection rights for:",
+      "question_en": "Does the primary aviation legislation or other binding legal instruments enable civil aviation inspectors to access, inspect, copy and/or retain aviation documents and records for the purpose of carrying out surveillance?",
+      "question_tr": "Temel havacılık mevzuatı veya diğer bağlayıcı hukuki araçlar, sivil havacılık denetçilerinin gözetim gerçekleştirmek amacıyla havacılık belgelerine ve kayıtlarına erişmesini, bunları incelemesini, kopyalamasını ve/veya bunlara el koymasını sağlıyor mu?",
       "criteria": [
-        "Inclusion of related document access provisions in the primary aviation legislation.",
-        "Access to Manuals and corporate logs.",
-        "Access to Certificates, approvals, authorizations, permits.",
-        "Access to Operating procedures and quality documents.",
-        "Access to Technical files, logs and aircraft records.",
-        "Access to Personnel files and tracking databases.",
-        "Access to Personnel licences and logs."
-      ]
+        {
+          "en": "1) Verify that the primary aviation legislation or other binding instruments explicitly enable civil aviation inspectors to access, inspect, copy and/or retain aviation documents and records.",
+          "tr": "1) Temel havacılık mevzuatının veya diğer bağlayıcı araçların, sivil havacılık denetçilerine havacılık belgelerine ve kayıtlarına erişme, bunları inceleme, kopyalama ve/veya bunlara el koyma yetkisini açıkça verdiğini doğrulayın."
+        },
+        {
+          "en": "2) Confirm with the following audit areas: PEL, OPS (including dangerous goods), AIR, ANS and AGA.",
+          "tr": "2) Aşağıdaki denetim alanlarıyla teyit edin: PEL, OPS (tehlikeli maddeler dâhil), AIR, ANS ve AGA."
+        }
+      ],
+      "note_en": "This PQ is not linked to AIG PQ 6.023.",
+      "tr": "Bu PQ, AIG PQ 6.023 ile bağlantılı değildir."
     },
     {
       "no": "1.107",
-      "question": "Does the legislation provide for a clear delegation of sufficient legal authority to civil aviation inspectors?",
       "ce": "CE-1",
+      "site_type": "Off-Site",
       "ppq": "",
-      "note": "",
-      "lead": "Verify delegation frameworks:",
+      "question_en": "Does the legislation provide for a clear delegation of sufficient legal authority to civil aviation inspectors to perform surveillance activities?",
+      "question_tr": "Mevzuat, sivil havacılık denetçilerine gözetim faaliyetlerini yürütmeleri için yeterli hukuki yetkinin açıkça delege edilmesini öngörüyor mu?",
       "criteria": [
-        "Verify provisions in the legislation on delegation of authority to inspectors, either directly or through a sub-delegation framework (e.g., Director General/Chief Executive Officer).",
-        "Confirm that inspectors are legally empowered to carry out surveillance activities (e.g., periodic and random inspections, audits, testing, etc.)."
-      ]
+        {
+          "en": "1) Verify provisions in the legislation on delegation of authority to inspectors, either directly or through a sub-delegation framework (e.g., from the Director General/Chief Executive Officer).",
+          "tr": "1) Mevzuatta, denetçilere yetki delege edilmesine ilişkin hükümleri doğrudan veya bir alt delegasyon çerçevesi aracılığıyla (örneğin Genel Müdürden/CEO'dan) doğrulayın."
+        },
+        {
+          "en": "2) Confirm that inspectors are legally empowered to carry out surveillance activities (e.g., periodic and random inspections, audits, testing, etc.).",
+          "tr": "2) Denetçilerin gözetim faaliyetlerini (örneğin periyodik ve rastgele denetimler, denetlemeler, testler vb.) yürütmek için yasal olarak yetkilendirildiğini teyit edin."
+        },
+        {
+          "en": "3) Confirm with the following audit areas: PEL, OPS (including dangerous goods), AIR, ANS and AGA.",
+          "tr": "3) Aşağıdaki denetim alanlarında doğrulayın: PEL, OPS (tehlikeli maddeler dâhil), AIR, ANS ve AGA."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
     },
     {
       "no": "1.109",
-      "question": "Has the State established legislation to empower inspectors to prevent an aircraft from flying?",
       "ce": "CE-1",
-      "ppq": "Yes",
-      "note": "This PQ applies to OPS and AIR only.",
-      "lead": "Verify aircraft grounding laws and timelines:",
+      "site_type": "On-Site",
+      "ppq": "PPQ",
+      "question_en": "Has the State established legislation to empower civil aviation inspectors to prevent an aircraft from flying if it is unsafe or if it does not comply with applicable aviation requirements?",
+      "question_tr": "Devlet, emniyetsiz olması veya geçerli havacılık gerekliliklerine uymaması durumunda sivil havacılık denetçilerine bir hava aracını uçuştan men etme yetkesi veren mevzuatı oluşturmuş mudur?",
       "criteria": [
-        "Inclusion of explicit grounding provisions in the primary aviation legislation.",
-        "The process established, in cases when the inspectors are not empowered to directly prevent an aircraft from flying.",
-        "Confirm that the process in place can be executed and applied in a timely manner."
-      ]
+        {
+          "en": "1) Verify that the primary aviation legislation or other binding legal instruments empower civil aviation inspectors to prevent an aircraft from flying.",
+          "tr": "1) Temel havacılık mevzuatının veya diğer bağlayıcı hukuki araçların sivil havacılık denetçilerine bir hava aracını uçuştan men etme yetkisi verdiğini doğrulayın."
+        },
+        {
+          "en": "2) If the inspectors are not empowered to directly prevent an aircraft from flying, review the process established to enable the inspectors to initiate an prompt action to prevent the aircraft from flying.",
+          "tr": "2) Denetçilerin bir hava aracını doğrudan uçuştan men etme yetkisi yoksa, denetçilerin hava aracının uçmasını önlemek amacıyla acil bir eylem başlatmasını sağlamak için oluşturulan süreci inceleyin."
+        },
+        {
+          "en": "3) Confirm that the process in place can be executed and applied in a timely manner.",
+          "tr": "3) Yürürlükteki sürecin zamanında yürütülebileceğini ve uygulanabileceğini teyit edin."
+        },
+        {
+          "en": "4) Confirm with the following audit areas: OPS and AIR.",
+          "tr": "4) Aşağıdaki denetim alanlarıyla teyit edin: OPS ve AIR."
+        }
+      ],
+      "note_en": "This PQ applies to OPS and AIR only.",
+      "tr": "Bu PQ yalnızca OPS ve AIR için geçerlidir."
     },
     {
       "no": "1.111",
-      "question": "Has the State established legislation to empower inspectors to prohibit any person from exercising the privileges of a license?",
       "ce": "CE-1",
-      "ppq": "Yes",
-      "note": "This PQ does not apply to AIG.",
-      "lead": "Verify license privilege prohibition requirements:",
+      "site_type": "On-Site",
+      "ppq": "PPQ",
+      "question_en": "Has the State established legislation to empower civil aviation inspectors to prohibit any person from exercising the privileges of a license, certificate, approval, or authorization if it is unsafe or if it does not comply with applicable aviation requirements?",
+      "question_tr": "Devlet, emniyetsiz olması veya geçerli havacılık gerekliliklerine uymaması durumunda sivil havacılık denetçilerine, herhangi bir kişinin bir lisans, sertifika, onay veya yetkiden doğan imtiyazları kullanmasını yasaklama yetkisi veren mevzuatı oluşturmuş mudur?",
       "criteria": [
-        "Inclusion of privilege prohibition provisions in the primary aviation legislation.",
-        "Confirm that the emergency restriction process in place can be applied in a timely manner."
-      ]
+        {
+          "en": "1) Verify that the primary aviation legislation or other binding legal instruments empower civil aviation inspectors to prohibit a person from exercising the privileges of a license, certificate, approval or authorization.",
+          "tr": "1) Temel havacılık mevzuatının veya diğer bağlayıcı hukuki araçların, sivil havacılık denetçilerine bir kişinin bir lisans, sertifika, onay veya yetkiden doğan imtiyazları kullanmasını yasaklama yetkisi verdiğini doğrulayın."
+        },
+        {
+          "en": "2) If the inspectors are not empowered to directly prohibit a person from exercising the privileges, review the process established to enable the inspectors to initiate prompt action to enforce the prohibition.",
+          "tr": "2) Denetçilerin bir kişinin imtiyazları kullanmasını doğrudan yasaklama yetkisi yoksa, denetçilerin yasağı uygulamak için acil bir eylem başlatmasını sağlamak amacıyla oluşturulan süreci inceleyin."
+        },
+        {
+          "en": "3) Confirm that the process in place can be applied in a timely manner.",
+          "tr": "3) Yürürlükteki sürecin zamanında uygulanabileceğini teyit edin."
+        },
+        {
+          "en": "4) Confirm with the following audit areas: PEL, OPS (including dangerous goods), AIR, ANS and AGA.",
+          "tr": "4) Aşağıdaki denetim alanlarıyla teyit edin: PEL, OPS (tehlikeli maddeler dâhil), AIR, ANS ve AGA."
+        }
+      ],
+      "note_en": "This PQ does not apply to AIG.",
+      "tr": "Bu PQ, AIG için geçerli değildir."
     },
     {
       "no": "1.151",
-      "question": "If the State has ratified Article 83 bis, has it modified its primary aviation legislation to recognize transfer protocols?",
       "ce": "CE-1",
+      "site_type": "Off-Site",
       "ppq": "",
-      "note": "If State has not ratified Article 83 bis, this PQ is “Not Applicable”.",
-      "lead": "Verify validation capabilities under Article 83 bis:",
+      "question_en": "If the State has ratified Article 83 bis to the Convention on International Civil Aviation, has it modified its primary aviation legislation or detailed regulations to enable it to recognize the transfer of certain functions and duties from the State of Registry to the State of the Operator (or vice versa) under an Article 83 bis agreement?",
+      "question_tr": "Devlet, Uluslararası Sivil Havacılık Sözleşmesi'nin 83 üncü maddesini (Article 83 bis) onaylamışsa, bir 83 bis anlaşması kapsamında tescil Devletinden işletici Devlete (veya tersi) belirli fonksiyon ve görevlerin devrini tanımasını sağlayacak şekilde temel havacılık mevzuatını veya detaylı düzenlemelerini değiştirmiş midir?",
       "criteria": [
-        "The primary aviation legislation (or detailed regulations) enables the State to recognize the validity of crew licences, certificates of airworthiness and/or radio station licences issued or rendered valid by the State of the Operator under an Article 83 bis agreement."
-      ]
+        {
+          "en": "1) Check whether the State has ratified Article 83 bis.",
+          "tr": "1) Devletin Article 83 bis'i onaylayıp onaylamadığını kontrol edin."
+        },
+        {
+          "en": "2) If yes, verify that the primary aviation legislation (or detailed regulations) enables the State to recognize the validity of crew licences, certificates of airworthiness and/or radio station licences issued or rendered valid by the State of the Operator under an Article 83 bis agreement.",
+          "tr": "2) Cevap evet ise, temel havacılık mevzuatının (veya detaylı düzenlemelerin) Devletin, bir Article 83 bis anlaşması kapsamında işletici Devlet tarafından düzenlenen veya geçerli kılınan ekip lisanslarının, uçuşa elverişlilik sertifikalarının ve/veya telsiz istasyonu lisanslarının geçerliliğini tanımasına imkân sağladığını doğrulayın."
+        },
+        {
+          "en": "3) Confirm with the following audit areas: PEL, OPS and AIR.",
+          "tr": "3) Aşağıdaki denetim alanlarıyla teyit edin: PEL, OPS ve AIR."
+        }
+      ],
+      "note_en": "If the State has not ratified Article 83 bis, this PQ is “Not Applicable”.",
+      "tr": "Devlet Article 83 bis'i onaylamamışsa bu PQ “Geçersiz (N/A)” olarak kabul edilir."
     },
     {
       "no": "1.205",
-      "question": "Has the State established and implemented a process to ensure the identification and publication in the State’s AIP of significant differences?",
       "ce": "CE-2",
-      "ppq": "Yes",
-      "note": "Coordinate with all audit areas to ensure that State policy and procedures are implemented.",
-      "lead": "Verify process mapping and publishing lines:",
+      "site_type": "Off-Site",
+      "ppq": "PPQ",
+      "question_en": "Has the State established and implemented a process to ensure the identification and publication in the State’s AIP of significant differences between its national regulations and practices and ICAO SARPs?",
+      "question_tr": "Devlet, kendi ulusal düzenlemeleri ve uygulamaları ile ICAO SARP'ları arasındaki önemli farklılıkların belirlenmesini ve Devletin AIP'sinde yayımlanmasını sağlayacak bir süreç oluşturmuş ve uygulamaya koymuş mudur?",
       "criteria": [
-        "The establishment and effective implementation of procedures and guidelines for identifying significant differences (including coordination with all concerned entities).",
-        "The establishment and implementation of procedures for publishing significant differences in the AIP, including coordination with the AIS provider."
-      ]
+        {
+          "en": "1) Verify the establishment and effective implementation of procedures and guidelines for identifying significant differences (including coordination with all concerned entities).",
+          "tr": "1) Önemli farklılıkların belirlenmesine yönelik prosedürlerin ve kılavuz ilkelerin oluşturulmasını ve etkin bir şekilde uygulanmasını (ilgili tüm kurumlarla koordinasyon dâhil) doğrulayın."
+        },
+        {
+          "en": "2) Verify the establishment and implementation of procedures for publishing significant differences in the AIP, including coordination with the AIS provider.",
+          "tr": "2) AIS sağlayıcısı ile koordinasyon dâhil olmak üzere, önemli farklılıkların AIP'de yayımlanmasına yönelik prosedürlerin oluşturulmasını ve uygulanmasını doğrulayın."
+        },
+        {
+          "en": "3) Coordinate with all audit areas (PEL, OPS, AIR, ANS and AGA) to ensure that State policy and procedures are implemented.",
+          "tr": "3) Devlet politikası ve prosedürlerinin uygulandığından emin olmak için tüm denetim alanlarıyla (PEL, OPS, AIR, ANS ve AGA) koordine edin."
+        }
+      ],
+      "note_en": "This PQ is not linked to AIG.",
+      "tr": "Bu PQ, AIG ile bağlantılı değildir."
     }
   ]
 }
