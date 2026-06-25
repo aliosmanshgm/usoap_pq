@@ -20,8 +20,8 @@
           "tr": "2) Düzenlemelerin içeriklerinin tutarlı, yeterli ve uygun biçimde düzenlenmiş olduğunu doğrulayın."
         },
         {
-          "en": "3) Confirm the transposition of the personnel licensing related provisions for: a) all licences and ratings, including remote pilot licences; b) medical assessment; c) approval of training organizations; d) qualification/approval of flight simulation training devices; and e) language used for radiotelephony communications (i.e. language proficiency requirements).",
-          "tr": "3) Personel lisanslandırmasına ilişkin hükümlerin aşağıdaki konular için iç hukuka aktarıldığını teyit edin: a) uzaktan pilot lisansları dâhil tüm lisanslar ve yetkiler; b) sağlık değerlendirmesi; c) eğitim kuruluşlarının onayı; d) sentetik uçuş eğitim cihazlarının yeterlilik/onayı; ve e) telsiz telefon haberleşmesinde kullanılan dil (yani dil yeterliliği gereklilikleri)."
+          "en": "3) Confirm the transposition of the personnel licensing related provisions for:\n   a) all licences and ratings, including remote pilot licences;\n   b) medical assessment;\n   c) approval of training organizations;\n   d) qualification/approval of flight simulation training devices; and\n   e) language used for radiotelephony communications (i.e. language proficiency requirements).",
+          "tr": "3) Personel lisanslandırmasına ilişkin hükümlerin aşağıdaki konular için iç hukuka aktarıldığını teyit edin:\na) uzaktan pilot lisansları dâhil tüm lisanslar ve yetkiler;\nb) sağlık değerlendirmesi;\nc) eğitim kuruluşlarının onayı;\nd) sentetik uçuş eğitim cihazlarının yeterlilik/onayı; ve\ne) telsiz telefon haberleşmesinde kullanılan dil (yani dil yeterliliği gereklilikleri)."
         }
       ],
       "note_en": "",
@@ -85,7 +85,7 @@
         },
         {
           "en": "3) Confirm that significant differences between SARPs/PANS/SUPPS and the State regulations and practices are identified and published in the AIP.",
-          "tr": "3) SARP'lar/PANS/SUPPS ile Devlet düzenlemeleri ve uygulamaları arasındaki önemli farklılıkların belirlendiğini ve AIP'de yayımlandığını teyit edin."
+          "tr": "3) SARP'lar/PANS/SUPPS ile Devlet düzenlemeleri ve uygulamaları arasındaki önemli farklılıklerin belirlendiğini ve AIP'de yayımlandığını teyit edin."
         }
       ],
       "note_en": "",
@@ -128,8 +128,8 @@
       "question_tr": "Devlet; personel lisanslarının ve yetkilerinin verilmesi ve sürdürülmesi için bir müdürlük/daire başkanlığı/bölüm/kısım/ofis gibi personel lisanslandırmaya yönelik bir kurumsal yapı oluşturmuş mudur?",
       "criteria": [
         {
-          "en": "1) Verify that an organizational structure has been: a) established with defined lines of responsibility; b) documented; and c) approved.",
-          "tr": "1) Kurumsal yapının aşağıdaki şekilde olduğunu doğrulayın: a) tanımlanmış sorumluluk hatlarıyla oluşturulmuş; b) dokümante edilmiş; ve c) onaylanmış."
+          "en": "1) Verify that an organizational structure has been:\n  a) established with defined lines of responsibility;\n  b) documented; and\n  c) approved.",
+          "tr": "1) Kurumsal yapının aşağıdaki şekilde olduğunu doğrulayın:\na) tanımlanmış sorumluluk hatlarıyla oluşturulmuş;\nb) dokümante edilmiş; ve\nc) onaylanmış."
         },
         {
           "en": "2) Confirm existing approved organizational structure for the CAA and personnel licensing department/office, including lines of responsibility.",
@@ -148,8 +148,8 @@
       "question_tr": "Personel lisanslandırma ofisinin tüm fonksiyonları ve sorumlulukları açıkça tanımlanmış mıdır?",
       "criteria": [
         {
-          "en": "Review the document detailing functions and responsibilities of the PEL Office for inclusion of: a) issue and maintenance of personnel licences and ratings; b) validation of foreign licences; c) system of approval and surveillance of training organizations; d) qualification and approval of flight simulation training devices; e) language proficiency system; and f) medical assessment system.",
-          "tr": "PEL Ofisinin fonksiyon ve sorumluluklarını detaylandıran belgeyi şu hususları içermesi bakımından inceleyin: a) personel lisanslarının ve yetkilerinin verilmesi ve sürdürülmesi; b) yabancı lisansların geçerli kılınması (validasyon); c) eğitim kuruluşlarının onay ve gözetim sistemi; d) sentetik uçuş eğitim cihazlarının yeterlilik ve onayı; e) dil yeterliliği sistemi; ve f) sağlık değerlendirme sistemi."
+          "en": "Review the document detailing functions and responsibilities of the PEL Office for inclusion of:\n  a) issue and maintenance of personnel licences and ratings;\n  b) validation of foreign licences;\n  c) system of approval and surveillance of training organizations;\n  d) qualification and approval of flight simulation training devices;\n  e) language proficiency system; and\n  f) medical assessment system.",
+          "tr": "PEL Ofisinin fonksiyon ve sorumluluklarını detaylandıran belgeyi şu hususları içermesi bakımından inceleyin:\na) personel lisanslarının ve yetkilerinin verilmesi ve sürdürülmesi;\nb) yabancı lisansların geçerli kılınması (validasyon);\nc) eğitim kuruluşlarının onay ve gözetim sistemi;\nd) sentetik uçuş eğitim cihazlarının yeterlilik ve onayı;\ne) dil yeterliliği sistemi; ve\nf) sağlık değerlendirme sistemi."
         }
       ],
       "note_en": "",
@@ -164,12 +164,12 @@
       "question_tr": "Personel lisanslandırma ofisinin teknik personeli ve kilit yönetici personeli için görev tanımları oluşturulmuş mudur?",
       "criteria": [
         {
-          "en": "Verify that job descriptions have been developed for: a) technical staff (including external/delegated personnel, if any); and b) management personnel.",
-          "tr": "Görev tanımlarının şu kişiler için geliştirildiğini doğrulayın: a) teknik personel (varsa harici/delege edilmiş personel dâhil); ve b) yönetici personel."
+          "en": "1) Verify that job descriptions have been developed for:\n  a) technical staff (including external/delegated personnel, if any); and\n  b) management personnel.",
+          "tr": "1) Görev tanımlarının şu kişiler için geliştirildiğini doğrulayın:\na) teknik personel (varsa harici/delege edilmiş personel dâhil); ve\nb) yönetici personel."
         },
         {
-          "en": "Verify that the job descriptions cover all tasks related to Annex 1 (e.g. licensing, medical, training organizations approval and surveillance).",
-          "tr": "Görev tanımlarının Ek 1 ile ilgili tüm görevleri (örneğin lisanslandırma, sağlık, eğitim kuruluşları onayı ve gözetimi) kapsadığını doğrulayın."
+          "en": "2) Verify that the job descriptions cover all tasks related to Annex 1 (e.g. licensing, medical, training organizations approval and surveillance).",
+          "tr": "2) Görev tanımlarının Ek 1 ile ilgili tüm görevleri (örneğin lisanslandırma, sağlık, eğitim kuruluşları onayı ve gözetimi) kapsadığını doğrulayın."
         }
       ],
       "note_en": "",
@@ -184,8 +184,8 @@
       "question_tr": "Personel lisanslandırma ofisi, emniyet gözetimi sorumluluklarına ilişkin fonksiyonlarını ve görev yetkisini yerine getirmek için yeterli insan kaynağına sahip midir?",
       "criteria": [
         {
-          "en": "Review the capacity of the personnel licensing office for safety oversight-related tasks, including: a) review methodology established for determining staffing needs; b) review ability to attract new inspectors as well as existing vacancies and level of turnover in past years; c) capability to execute reviewing and revising regulations; d) training technical staff; e) developing guidance material; f) issuing approvals; g) conducting surveillance; and h) resolving identified safety concerns.",
-          "tr": "Emniyet gözetimiyle ilgili görevler için personel lisanslandırma ofisinin kapasitesini inceleyin; şunlar dâhil: a) personel ihtiyacını belirlemek için oluşturulan inceleme metodolojisi; b) yeni denetçileri çekme yeteneğinin yanı sıra mevcut boş kadrolar ve geçmiş yıllardaki personel sirkülasyon düzeyi; c) düzenlemeleri gözden geçirme ve revize etme yeteneği; d) teknik personelin eğitimi; e) rehber materyal geliştirme; f) onayların verilmesi; g) gözetim yürütme; ve h) tespit edilen emniyet endişelerini giderme."
+          "en": "Review the capacity of the personnel licensing office for safety oversight-related tasks, including:\n  a) review methodology established for determining staffing needs;\n  b) review ability to attract new inspectors as well as existing vacancies and level of turnover in past years;\n  c) capability to execute reviewing and revising regulations;\n  d) training technical staff;\n  e) developing guidance material;\n  f) issuing approvals;\n  g) conducting surveillance; and\n  h) resolving identified safety concerns.",
+          "tr": "Emniyet gözetimiyle ilgili görevler için personel lisanslandırma ofisinin kapasitesini inceleyin; şunlar dâhil:\na) personel ihtiyacını belirlemek için oluşturulan inceleme metodolojisi;\nb) yeni denetçileri çekme yeteneğinin yanı sıra mevcut boş kadrolar ve geçmiş yıllardaki personel sirkülasyon düzeyi;\nc) düzenlemeleri gözden geçirme ve revize etme yeteneği;\nd) teknik personelin eğitimi;\ne) rehber materyal geliştirme;\nf) onayların verilmesi;\ng) gözetim yürütme; ve\nh) tespit edilen emniyet endişelerini giderme."
         }
       ],
       "note_en": "",
@@ -200,8 +200,8 @@
       "question_tr": "Lisanslandırma Otoritesi, teknik personeli için uygun minimum nitelik ve deneyim gereklilikleri belirlemiş midir?",
       "criteria": [
         {
-          "en": "Verify that minimum qualifications and experience requirements include: a) specified academic background/technical training; b) operational experience compatible with the activities that they are authorized to certify or supervise; and c) to be at least as qualified as the personnel to be inspected or supervised.",
-          "tr": "Minimum nitelik ve deneyim gerekliliklerinin şunları içerdiğini doğrulayın: a) belirlenmiş akademik geçmiş/teknik eğitim; b) sertifikalandırmaya veya denetlemeye yetkili oldukları faaliyetlerle uyumlu operasyonel deneyim; ve c) denetlenecek veya gözetlenecek personel kadar en azından nitelikli olmak."
+          "en": "Verify that minimum qualifications and experience requirements include:\n  a) specified academic background/technical training;\n  b) operational experience compatible with the activities that they are authorized to certify or supervise; and\n  c) to be at least as qualified as the personnel to be inspected or supervised.",
+          "tr": "Minimum nitelik ve deneyim gerekliliklerinin şunları içerdiğini doğrulayın:\na) belirlenmiş akademik geçmiş/teknik eğitim;\nb) sertifikalandırmaya veya denetlemeye yetkili oldukları faaliyetlerle uyumlu operasyonel deneyim; ve\nc) denetlenecek veya gözetlenecek personel kadar en azından nitelikli olmak."
         }
       ],
       "note_en": "",
@@ -240,8 +240,8 @@
       "question_tr": "Lisanslandırma Otoritesi, teknik personeli için resmi bir eğitim programı oluşturmuş mudur?",
       "criteria": [
         {
-          "en": "Verify that each training programme details: a) initial training; b) on-the-job training (OJT); c) recurrent training; d) specialized training requirements; and e) minimum duration for each type of training.",
-          "tr": "Her bir eğitim programının şunları detaylandırdığını doğrulayın: a) temel eğitim; b) iş başı eğitimi (OJT); c) yenileme eğitimi; d) uzmanlık eğitimi gereklilikleri; ve e) her bir eğitim türü için minimum süre."
+          "en": "Verify that each training programme details:\n  a) initial training;\n  b) on-the-job training (OJT);\n  c) recurrent training;\n  d) specialized training requirements; and\n  e) minimum duration for each type of training.",
+          "tr": "Her bir eğitim programının şunları detaylandırdığını doğrulayın:\na) temel eğitim;\nb) iş başı eğitimi (OJT);\nc) yenileme eğitimi;\nd) uzmanlık eğitimi gereklilikleri; ve\ne) her bir eğitim türü için minimum süre."
         }
       ],
       "note_en": "",
@@ -256,8 +256,8 @@
       "question_tr": "Personel lisanslandırma personeline, denetim ve yaptırım amacıyla hava araçlarına, havacılık tesislerine ve belgelere erişimlerini kolaylaştıracak kimlik belgeleri verilmiş midir?",
       "criteria": [
         {
-          "en": "Review credentials to ensure that they include the following: a) reference to empowering legislation; b) methods established to control currency of credentials; and c) inspector’s photo.",
-          "tr": "Kimlik belgelerinin şu hususları içerdiğinden emin olmak için inceleyin: a) yetkilendirme mevzuatına atıf; b) kimlik belgelerinin geçerliliğini kontrol etmek için oluşturulan yöntemler; ve c) denetçinin fotoğrafı."
+          "en": "Review credentials to ensure that they include the following:\n  a) reference to empowering legislation;\n  b) methods established to control currency of credentials; and\n  c) inspector’s photo.",
+          "tr": "Kimlik belgelerinin şu hususları içerdiğinden emin olmak için inceleyin:\na) yetkilendirme mevzuatına atıf;\nb) kimlik belgelerinin geçerliliğini kontrol etmek için oluşturulan yöntemler; ve\nc) denetçinin fotoğrafı."
         }
       ],
       "note_en": "",
@@ -344,8 +344,8 @@
       "question_tr": "Teknik personele, fonksiyonlarını ve sorumluluklarını etkili bir şekilde yerine getirmelerini sağlamak üzere kapsamlı prosedürler ve kontrol listeleri sağlanmış mıdır?",
       "criteria": [
         {
-          "en": "Verify that instructions and guidance cover: a) PEL office organization; b) PEL personnel’s duties, credentials and authority; c) processing application forms; d) validation of foreign licences; e) approval and surveillance of training organizations; f) qualification and approval of flight simulation training devices; g) language proficiency system; h) medical assessment system; i) quality assurance; and j) follow-up on discrepancy and enforcement action. Verify that there is a mechanism to approve the procedures and to ensure their currency.",
-          "tr": "Talimatların ve rehberliğin şu hususları kapsadığını doğrulayın: a) PEL ofis organizasyonu; b) PEL personelinin görevleri, kimlik belgeleri ve yetkileri; c) başvuru formlarının işleme alınması; d) yabancı lisansların geçerli kılınması; e) eğitim kuruluşlarının onayı ve gözetimi; f) sentetik uçuş eğitim cihazlarının yeterlilik ve onayı; g) dil yeterliliği sistemi; h) sağlık değerlendirme sistemi; i) kalite güvencesi; ve j) uygunsuzlukların takibi ve yaptırım eylemi. Prosedürleri onaylamak ve güncelliğini sağlamak için bir mekanizma olduğunu doğrulayın."
+          "en": "Verify that instructions and guidance cover:\n  a) PEL office organization;\n  b) PEL personnel’s duties, credentials and authority;\n  c) processing application forms;\n  d) validation of foreign licences;\n  e) approval and surveillance of training organizations;\n  f) qualification and approval of flight simulation training devices;\n  g) language proficiency system;\n  h) medical assessment system;\n  i) quality assurance; and\n  j) follow-up on discrepancy and enforcement action.\nVerify that there is a mechanism to approve the procedures and to ensure their currency.",
+          "tr": "Talimatların ve rehberliğin şu hususları kapsadığını doğrulayın:\na) PEL ofis organizasyonu;\nb) PEL personelinin görevleri, kimlik belgeleri ve yetkileri;\nc) başvuru formlarının işleme alınması;\nd) yabancı lisansların geçerli kılınması;\ne) eğitim kuruluşlarının onayı ve gözetimi;\nf) sentetik uçuş eğitim cihazlarının yeterlilik ve onayı;\ng) dil yeterliliği sistemi;\nh) sağlık değerlendirme sistemi;\ni) kalite güvencesi; ve\nj) uygunsuzlukların takibi ve yaptırım eylemi.\nProsedürleri onaylamak ve güncelliğini sağlamak için bir mekanizma olduğunu doğrulayın."
         }
       ],
       "note_en": "",
@@ -360,8 +360,8 @@
       "question_tr": "Lisanslandırma Otoritesi, başvuru sahiplerini çeşitli lisans ve yetkiler için karşılanması gereken gereklilikler ve başvuru sürecinde sunulacak belgeler hakkında bilgilendirecek yöntemler oluşturmuş mudur?",
       "criteria": [
         {
-          "en": "Verify that standard information (e.g. application forms, brochures, website) is accessible to the public and includes requirements for: a) issuing new licences/ratings; b) renewal/re-issue of licences/ratings; and c) validation of foreign licences.",
-          "tr": "Standart bilgilerin (örneğin başvuru formları, broşürler, web sitesi) halkın erişimine açık olduğunu ve şu hususlara yönelik gereklilikleri içerdiğini doğrulayın: a) yeni lisansların/yetkilerin verilmesi; b) lisansların/yetkilerin yenilenmesi/yeniden düzenlenmesi; ve c) yabancı lisansların geçerli kılınması."
+          "en": "Verify that standard information (e.g. application forms, brochures, website) is accessible to the public and includes requirements for:\n  a) issuing new licences/ratings;\n  b) renewal/re-issue of licences/ratings; and\n  c) validation of foreign licences.",
+          "tr": "Standart bilgilerin (örneğin başvuru formları, broşürler, web sitesi) halkın erişimine açık olduğunu ve şu hususlara yönelik gereklilikleri içerdiğini doğrulayın:\na) yeni lisansların/yetkilerin verilmesi;\nb) lisansların/yetkilerin yenilenmesi/yeniden düzenlenmesi; ve\nc) yabancı lisansların geçerli kılınması."
         }
       ],
       "note_en": "",
@@ -376,8 +376,8 @@
       "question_tr": "Bir başvuru sahibinin lisans veya yetki almak/yenilemek ya da bir sınava girmek için doldurması ve sunması gereken resmi bir başvuru formu mevcut mudur?",
       "criteria": [
         {
-          "en": "Verify that application forms contain at least the following information: a) applicant's identity; b) type of license/rating requested; c) evidence of meeting prerequisite requirements (e.g. age, experience, training, medical fitness); and d) date and signature of the applicant.",
-          "tr": "Başvuru formlarının en azından şu bilgileri içerdiğini doğrulayın: a) başvuru sahibinin kimliği; b) talep edilen lisans/yetki türü; c) ön koşul gerekliliklerinin karşılandığına dair kanıtlar (örneğin yaş, deneyim, eğitim, sağlık durumu); ve d) başvuru sahibinin tarihi ve imzası."
+          "en": "Verify that application forms contain at least the following information:\n  a) applicant's identity;\n  b) type of license/rating requested;\n  c) evidence of meeting prerequisite requirements (e.g. age, experience, training, medical fitness); and\n  d) date and signature of the applicant.",
+          "tr": "Başvuru formlarının en azından şu bilgileri içerdiğini doğrulayın:\na) başvuru sahibinin kimliği;\nb) talep edilen lisans/yetki türü;\nc) ön koşul gerekliliklerinin karşılandığına dair kanıtlar (örneğin yaş, deneyim, eğitim, sağlık durumu); ve\nd) başvuru sahibinin tarihi ve imzası."
         }
       ],
       "note_en": "",
@@ -581,7 +581,7 @@
         },
         {
           "en": "3) Sample completed surveillance records.",
-          "tr": "3) Tamamlanmış gözetim kayıtlarını örnekleyin."
+          "tr": "3) Tamamlanan gözetim kayıtlarını örnekleyin."
         }
       ],
       "note_en": "",
@@ -629,14 +629,13 @@
         },
         {
           "en": "3) Sample completed surveillance reports and track the resolution of identified deficiencies.",
-          "tr": "3) Tamamlanmış gözetim raporlarını örnekleyin ve tespit edilen eksikliklerin giderilmesini takip edin."
+          "tr": "3) Tamamlanan gözetim raporlarını örnekleyin ve tespit edilen eksikliklerin giderilmesini takip edin."
         }
       ],
       "note_en": "",
       "note_tr": ""
-    }
-},
-{
+    },
+    {
       "no": "3.307",
       "ce": "CE-6",
       "site_type": "On-Site",
@@ -653,8 +652,8 @@
           "tr": "2) Tüm lisans türleri için etkin uygulamayı teyit eden kanıtları inceleyin."
         },
         {
-          "en": "Note to the auditor: Contacting the issuing State is the best methodology, but other processes and procedures may be available.",
-          "tr": "Denetçiye not: Lisansı düzenleyen Devlet ile temas kurulması en iyi yöntemdir; ancak başka süreç ve prosedürler de mevcut olabilir."
+          "en": "Note to the auditor:\nContacting the issuing State is the best methodology, but other processes and procedures may be available.",
+          "tr": "Denetçiye not:\nLisansı düzenleyen Devlet ile temas kurulması en iyi yöntemdir; ancak başka süreç ve prosedürler de mevcut olabilir."
         }
       ],
       "note_en": "",
@@ -827,7 +826,7 @@
     {
       "no": "3.403",
       "ce": "CE-3",
-            "site_type": "Off-Site",
+      "site_type": "Off-Site",
       "ppq": "",
       "question_en": "Has the State appointed an aviation medical assessor (or assessors) to evaluate medical reports and oversee the medical assessment system?",
       "question_tr": "Devlet, sağlık raporlarını değerlendirmek ve sağlık değerlendirme sistemini denetlemek üzere bir havacılık sağlık değerlendiricisi (veya değerlendiricileri) görevlendirmiş midir?",
@@ -942,7 +941,7 @@
         },
         {
           "en": "3) Sample completed reports.",
-          "tr": "3) Tamamlanmış raporları örnekleyin."
+          "tr": "3) Tamamlanan raporları örnekleyin."
         }
       ],
       "note_en": "",
@@ -1030,7 +1029,7 @@
       "site_type": "On-Site",
       "ppq": "PPQ",
       "question_en": "Has the State implemented a process for the approval of training organizations involved in the training of aircraft maintenance technicians/engineers/mechanics?",
-      "question_tr": "Devlet, hava aracı bakım teknisyenlerinin/mühendislerinin/mekaniklerinin eğitiminde yer alan eğitim kuruluşlarının onaylanmasına yönelik bir süreç uygulamış mıdır?",
+      "question_tr": "Devlet, hava aracılığı bakım teknisyenlerinin/mühendislerinin/mekaniklerinin eğitiminde yer alan eğitim kuruluşlarının onaylanmasına yönelik bir süreç uygulamış mıdır?",
       "criteria": [
         {
           "en": "1) Review the approval process and procedures established for maintenance training organizations.",
@@ -1106,7 +1105,7 @@
       "criteria": [
         {
           "en": "1) Review the enforcement policy and documented actions taken in case of non-compliance.",
-          "tr": "1) Yaptırım politikasını ve uygunsuzluk durumunda gerçekleştirilen dokümante edilmiş eylemleri inceleyin."
+          "tr": "1) Yaktırım politikasını ve uygunsuzluk durumunda gerçekleştirilen dokümante edilmiş eylemleri inceleyin."
         },
         {
           "en": "2) Sample enforcement records to verify that appropriate actions (e.g. warnings, suspensions, or revocations) are executed.",
@@ -1262,7 +1261,7 @@
         },
         {
           "en": "2) Verify that individual records are updated systematically to reflect any changes in license status.",
-          "tr": "2) Münferit kayıtların, lisans durumundaki değişiklikleri yansıtacak şekilde sistematik olarak güncellendiğini doğrulayın."
+          "tr": "2) Münferit kayıtların, lisans durumundaki değişiklikleri yansıtacak şekilde sistemetik olarak güncellendiğini doğrulayın."
         }
       ],
       "note_en": "",
