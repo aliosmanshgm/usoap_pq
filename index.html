@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SHGM - USOAP CMA Dynamic Audit Dashboard</title>
+    <title>SHGM - USOAP CMA Multilingual Dashboard</title>
     <style>
         :root {
             --primary-color: #1e3a8a;
@@ -18,6 +18,8 @@
             --note-border: #f97316;
             --ppq-color: #dc2626;
             --ppq-bg: #fee2e2;
+            --site-bg: #f0fdfa;
+            --site-color: #0d9488;
         }
 
         body {
@@ -30,18 +32,18 @@
 
         /* Sidebar Menü */
         .sidebar {
-            width: 290px; background-color: #0f172a; color: white;
+            width: 300px; background-color: #0f172a; color: white;
             display: flex; flex-direction: column; padding: 20px 0;
             box-shadow: 2px 0 5px rgba(0,0,0,0.1); flex-shrink: 0;
         }
 
         .sidebar h2 {
-            font-size: 15px; padding: 0 20px 10px 20px; margin: 0;
-            color: #94a3b8; letter-spacing: 0.5px;
+            font-size: 14px; padding: 0 20px 10px 20px; margin: 0;
+            color: #94a3b8; letter-spacing: 0.5px; text-transform: uppercase;
         }
 
         .setup-btn {
-            margin: 10px 20px 20px 20px; padding: 10px; 
+            margin: 10px 20px 20px 20px; padding: 11px; 
             background-color: var(--success-color); color: white; 
             border: none; border-radius: 6px; cursor: pointer; 
             font-weight: bold; font-size: 13px; transition: opacity 0.2s;
@@ -52,8 +54,8 @@
         .menu-list { list-style: none; padding: 0; margin: 0; width: 100%; border-top: 1px solid #334155; }
 
         .menu-item {
-            padding: 15px 20px; cursor: pointer; font-weight: 600; color: #cbd5e1;
-            transition: all 0.2s; display: flex; justify-content: space-between; align-items: center; font-size: 13.5px;
+            padding: 12px 20px; cursor: pointer; font-weight: 600; color: #cbd5e1;
+            transition: all 0.2s; display: flex; justify-content: space-between; align-items: center; font-size: 13px;
         }
 
         .menu-item:hover, .menu-item.active {
@@ -66,9 +68,26 @@
         header {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white; padding: 20px; border-radius: 12px; margin-bottom: 25px;
+            position: relative;
         }
-        header h1 { margin: 0; font-size: 21px; }
+        header h1 { margin: 0; font-size: 21px; padding-right: 120px; }
         header p { margin: 5px 0 0 0; opacity: 0.9; font-size: 13px; }
+
+        /* Dil Değiştirme Butonu */
+        .lang-switch-box {
+            position: absolute; right: 20px; top: 25px;
+            background: rgba(255,255,255,0.2); padding: 4px;
+            border-radius: 8px; display: flex; gap: 4px;
+        }
+        .lang-btn {
+            background: none; border: none; color: white; padding: 6px 12px;
+            font-size: 12px; font-weight: bold; border-radius: 6px; cursor: pointer;
+            transition: all 0.2s; opacity: 0.7;
+        }
+        .lang-btn.active {
+            background: white; color: var(--primary-color); opacity: 1;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
 
         /* Dashboard Özet Kartları */
         .dashboard-summary {
@@ -91,7 +110,7 @@
         .score-box h4 { margin: 0; font-size: 16px; }
         .score-box span { font-size: 11px; font-weight: 600; display: block; margin-top: 2px; }
 
-        /* Esnek Başlık ve Hizalama */
+        /* Protokol Soruları Listesi */
         .pq-list { background: white; border: 1px solid var(--border-color); border-radius: 12px; padding: 15px; }
         .pq-item { border: 1px solid var(--border-color); border-radius: 8px; margin-bottom: 15px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.02); }
         
@@ -102,15 +121,17 @@
         }
         .pq-header:hover { background-color: #e2e8f0; }
         
-        .pq-left-block { display: flex; align-items: flex-start; gap: 15px; flex-grow: 1; }
-        .pq-meta-left { display: flex; align-items: center; gap: 6px; flex-shrink: 0; margin-top: 2px; }
+        .pq-left-block { display: flex; align-items: flex-start; gap: 12px; flex-grow: 1; }
+        .pq-meta-left { display: flex; align-items: center; gap: 5px; flex-shrink: 0; margin-top: 2px; }
         
         .pq-title-wrapper { display: flex; align-items: flex-start; gap: 8px; }
         .pq-num-lead { font-weight: 800; color: var(--primary-color); font-size: 13.5px; white-space: nowrap; }
         .pq-title { font-weight: 600; font-size: 13.5px; color: #1e293b; line-height: 1.5; text-align: left; }
         
+        /* Rozetler (Badges) */
         .badge-ce { background-color: var(--primary-color); color: white; padding: 3px 6px; border-radius: 4px; font-size: 10px; font-weight: bold; min-width: 32px; text-align: center; }
         .badge-ppq { background-color: var(--ppq-bg); color: var(--ppq-color); border: 1px solid var(--ppq-color); padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: bold; }
+        .badge-site { background-color: var(--site-bg); color: var(--site-color); border: 1px solid var(--site-color); padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: bold; }
         .badge-count { background-color: #cbd5e1; color: #475569; padding: 4px 10px; border-radius: 4px; font-size: 11px; font-weight: 700; white-space: nowrap; }
         
         .pq-meta-right { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
@@ -122,8 +143,6 @@
         .pq-content { padding: 20px; border-top: 1px solid var(--border-color); display: none; background-color: #fff; }
         .auditor-note { background-color: var(--note-bg); border-left: 4px solid var(--note-border); padding: 10px 15px; margin-bottom: 15px; font-size: 13px; color: #7c2d12; white-space: pre-line; }
         
-        .guidance-lead-text { font-size: 13.5px; font-weight: 700; color: #1e3a8a; margin: 5px 0 12px 0; padding-bottom: 5px; border-bottom: 1px dashed var(--border-color); }
-
         /* Kriter ve Seçenekler */
         .criterion-item {
             background: #f8fafc; border-left: 3px solid var(--secondary-color); padding: 12px 15px;
@@ -151,8 +170,9 @@
 <div class="sidebar">
     <h2>USOAP CMA Areas (Live)</h2>
     <button class="setup-btn" onclick="syncActiveAreaToFirebase()">Sync Area to Firebase</button>
+    
     <ul class="menu-list">
-        <li class="menu-item" onclick="switchArea('LEG')" id="menu_LEG"><span>LEG (Legislation)</span></li>
+        <li class="menu-item active" onclick="switchArea('LEG')" id="menu_LEG"><span>LEG (Legislation)</span></li>
         <li class="menu-item" onclick="switchArea('ORG')" id="menu_ORG"><span>ORG (Civil Aviation Org.)</span></li>
         <li class="menu-item" onclick="switchArea('PEL')" id="menu_PEL"><span>PEL (Personnel Licensing)</span></li>
         <li class="menu-item" onclick="switchArea('OPS')" id="menu_OPS"><span>OPS (Aircraft Operations)</span></li>
@@ -168,21 +188,26 @@
     <header>
         <h1 id="areaTitle">Loading Area...</h1>
         <p>Firebase Realtime Dynamic Compliance Matrix</p>
+        
+        <div class="lang-switch-box">
+            <button class="lang-btn active" id="btnLangTR" onclick="setLanguage('tr')">TR</button>
+            <button class="lang-btn" id="btnLangEN" onclick="setLanguage('en')">EN</button>
+        </div>
     </header>
 
     <div class="dashboard-summary">
         <div class="progress-container">
-            <span style="font-size: 13px; font-weight: 600; display:block; margin-bottom: 5px;">Effective Implementation (EI) Score</span>
+            <span id="txtEiLabel" style="font-size: 13px; font-weight: 600; display:block; margin-bottom: 5px;">Etkin Uygulama (EI) Oranı</span>
             <div class="progress-bar-bg">
                 <div id="mainProgressBar" class="progress-bar-fill"></div>
                 <div id="mainProgressText" class="progress-text">%0</div>
             </div>
         </div>
         <div class="score-boxes-wrapper">
-            <div class="score-box s-box"><h4 id="countS">0</h4><span>Satisfactory</span></div>
-            <div class="score-box ns-box"><h4 id="countNS">0</h4><span>Not Sat.</span></div>
-            <div class="score-box na-box"><h4 id="countNA">0</h4><span>N/A</span></div>
-            <div class="score-box ei-box"><h3 id="scorePercentage">%0</h3><span>Current EI</span></div>
+            <div class="score-box s-box"><h4 id="countS">0</h4><span id="lblS">Uyumlu</span></div>
+            <div class="score-box ns-box"><h4 id="countNS">0</h4><span id="lblNS">Uyumsuz</span></div>
+            <div class="score-box na-box"><h4 id="countNA">0</h4><span id="lblNA">Geçersiz</span></div>
+            <div class="score-box ei-box"><h3 id="scorePercentage">%0</h3><span id="lblCurrentEi">Mevcut EI</span></div>
         </div>
     </div>
 
@@ -195,37 +220,68 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
     import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
-    	// BURAYI KENDİ FIREBASE PROJE VERİLERİNİZLE DEĞİŞTİRİN
-    	const firebaseConfig = {
-        apiKey: "AIzaSyAyiUrIOI7zkxgj_gTpPTt7qczaW7WPPCc",
-  	authDomain: "firestore-669de.firebaseapp.com",
-  	projectId: "firestore-669de",
-  	storageBucket: "firestore-669de.firebasestorage.app",
-  	messagingSenderId: "19378300872",
-  	appId: "1:19378300872:web:b14960ae129ed4ec34c2fd",
-    	};
+    // FIREBASE PROJE AYARLARINIZI BURAYA YERLEŞTİRİN
+    const firebaseConfig = {
+        apiKey: "YOUR_API_KEY",
+        authDomain: "YOUR_PROJECT.firebaseapp.com",
+        projectId: "YOUR_PROJECT_ID",
+        storageBucket: "YOUR_PROJECT.appspot.com",
+        messagingSenderId: "YOUR_SENDER_ID",
+        appId: "YOUR_APP_ID"
+    };
 
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
-    let currentArea = 'SSP';
+    let currentArea = 'LEG';
     let currentAreaData = null; 
     let currentUserData = {};   
+    let currentLang = 'tr'; // Varsayılan dil Türkçe olarak açılır
+
+    // DİL SEÇİM MOTORU
+    window.setLanguage = function(lang) {
+        currentLang = lang;
+        document.getElementById('btnLangTR').classList.toggle('active', lang === 'tr');
+        document.getElementById('btnLangEN').classList.toggle('active', lang === 'en');
+        
+        // Statik Etiketlerin Çevirisi
+        if(lang === 'tr') {
+            document.getElementById('txtEiLabel').innerText = "Etkin Uygulama (EI) Oranı";
+            document.getElementById('lblS').innerText = "Uyumlu";
+            document.getElementById('lblNS').innerText = "Uyumsuz";
+            document.getElementById('lblNA').innerText = "Geçersiz";
+            document.getElementById('lblCurrentEi').innerText = "Mevcut EI";
+        } else {
+            document.getElementById('txtEiLabel').innerText = "Effective Implementation (EI) Score";
+            document.getElementById('lblS').innerText = "Satisfactory";
+            document.getElementById('lblNS').innerText = "Not Sat.";
+            document.getElementById('lblNA').innerText = "N/A";
+            document.getElementById('lblCurrentEi').innerText = "Current EI";
+        }
+
+        if(currentAreaData) {
+            document.getElementById('areaTitle').innerText = (currentLang === 'tr' ? currentAreaData.area_name : currentAreaData.area_name) + ` (${currentArea})`;
+            renderPQs();
+        }
+    }
 
     // DİNAMİK YEREL DOSYA SENKRONİZASYONU
     window.syncActiveAreaToFirebase = async function() {
-        if(!confirm(`${currentArea} alanına ait yerel JSON veri seti Firebase üzerine yazılacaktır. Emin misiniz?`)) return;
+        const msg = currentLang === 'tr' 
+            ? `${currentArea} alanına ait yerel JSON veri seti Firebase üzerine yazılacaktır. Emin misiniz?`
+            : `Local JSON data set for area ${currentArea} will be written to Firebase. Are you sure?`;
+        if(!confirm(msg)) return;
         
         try {
             const response = await fetch(`pqs_${currentArea.toLowerCase()}.json`);
-            if(!response.ok) throw new Error("Yerel JSON dosyası bulunamadı! Lütfen pqs_pel.json dosyasını oluşturduğunuzdan emin olun.");
+            if(!response.ok) throw new Error(`pqs_${currentArea.toLowerCase()}.json dosyası bulunamadı!`);
             
             const localData = await response.json();
             await setDoc(doc(db, "audit_structures", currentArea), localData);
-            alert(`${currentArea} veri paketi Firebase ile başarıyla senkronize edildi!`);
+            alert(`${currentArea} veri paketi başarıyla senkronize edildi!`);
             switchArea(currentArea);
         } catch (error) {
-            alert("Senkronizasyon Hatası: " + error.message);
+            alert("Hata: " + error.message);
         }
     }
 
@@ -252,7 +308,7 @@
                 document.getElementById('areaTitle').innerText = currentAreaData.area_name + ` (${currentArea})`;
                 renderPQs();
             } else {
-                container.innerHTML = `<div class="loading" style="color:red;">Şablon Firebase'de yok. Lütfen yerel 'pqs_${currentArea.toLowerCase()}.json' dosyasını hazırlayıp üstteki 'Sync Area to Firebase' butonuna basın.</div>`;
+                container.innerHTML = `<div class="loading" style="color:red;">Şablon Firebase'de yok. Lütfen yerel 'pqs_${currentArea.toLowerCase()}.json' dosyasını GitHub reponuza ekleyip 'Sync Area to Firebase' butonuna basın.</div>`;
             }
         } catch (error) {
             container.innerHTML = `<div class="loading" style="color:red;">Hata: ${error.message}</div>`;
@@ -268,19 +324,25 @@
             const pqItem = document.createElement('div');
             pqItem.className = 'pq-item';
 
-            let noteHtml = pq.note ? `<div class="auditor-note"><strong>Note:</strong> ${pq.note}</div>` : '';
-            let ppqBadge = pq.ppq === "Yes" ? `<span class="badge-ppq">PPQ</span>` : '';
-            let leadHtml = pq.lead ? `<div class="guidance-lead-text">${pq.lead}</div>` : '';
+            // Dil Durumuna Göre Soru ve Not Seçimi
+            let qText = currentLang === 'tr' ? pq.question_tr : pq.question_en;
+            let noteText = currentLang === 'tr' ? pq.note_tr : pq.note_en;
+            
+            let noteHtml = noteText ? `<div class="auditor-note"><strong>Note / Not:</strong> ${noteText}</div>` : '';
+            let ppqBadge = pq.ppq ? `<span class="badge-ppq">${pq.ppq}</span>` : '';
+            let siteBadge = pq.site_type ? `<span class="badge-site">${pq.site_type}</span>` : '';
 
             let criteriaHtml = '';
             pq.criteria.forEach((criterion, cIdx) => {
                 const key = `${pqIdx}_${cIdx}`;
                 if (!currentUserData.status[key]) currentUserData.status[key] = "NA";
                 const currentStatus = currentUserData.status[key];
+                
+                let cText = currentLang === 'tr' ? criterion.tr : criterion.en;
 
                 criteriaHtml += `
                     <div class="criterion-item">
-                        <div class="criterion-text">${criterion}</div>
+                        <div class="criterion-text">${cText}</div>
                         <div class="status-options">
                             <input type="radio" name="rad_${pqIdx}_${cIdx}" id="rad_S_${pqIdx}_${cIdx}" value="S" ${currentStatus === 'S' ? 'checked' : ''}>
                             <label for="rad_S_${pqIdx}_${cIdx}">S</label>
@@ -295,6 +357,7 @@
 
             if (!currentUserData.notes[pqIdx]) currentUserData.notes[pqIdx] = "";
             const savedNote = currentUserData.notes[pqIdx];
+            let lblNotesBox = currentLang === 'tr' ? 'Mevzuat Dayanağı / Bulgu Notları:' : 'Compliance Basis / Audit Finding Notes:';
 
             pqItem.innerHTML = `
                 <div class="pq-header" id="pq_hdr_${pqIdx}">
@@ -302,10 +365,11 @@
                         <div class="pq-meta-left">
                             <span class="badge-ce">${pq.ce || currentArea}</span>
                             ${ppqBadge}
+                            ${siteBadge}
                         </div>
                         <div class="pq-title-wrapper">
                             <span class="pq-num-lead">PQ ${pq.no} -</span>
-                            <div class="pq-title">${pq.question}</div>
+                            <div class="pq-title">${qText}</div>
                         </div>
                     </div>
                     <div class="pq-meta-right">
@@ -315,10 +379,9 @@
                 </div>
                 <div class="pq-content">
                     ${noteHtml}
-                    ${leadHtml}
                     ${criteriaHtml}
                     <div class="audit-notes-box">
-                        <label>Mevzuat Dayanağı / Bulgu Notları:</label>
+                        <label style="font-size:12px; font-weight:bold; color:var(--primary-color); display:block; margin-bottom:5px;">${lblNotesBox}</label>
                         <textarea id="note_${pqIdx}">${savedNote}</textarea>
                     </div>
                 </div>
@@ -369,11 +432,14 @@
             badge.className = "pq-status-badge";
 
             if (hasNS) {
-                badge.innerText = "NOT SATISFACTORY"; badge.classList.add("status-ns"); countNS++;
+                badge.innerText = currentLang === 'tr' ? "UYUMSUZ (NS)" : "NOT SATISFACTORY"; 
+                badge.classList.add("status-ns"); countNS++;
             } else if (hasS) {
-                badge.innerText = "SATISFACTORY"; badge.classList.add("status-s"); countS++;
+                badge.innerText = currentLang === 'tr' ? "UYUMLU (S)" : "SATISFACTORY"; 
+                badge.classList.add("status-s"); countS++;
             } else {
-                badge.innerText = "NOT APPLICABLE"; countNA++;
+                badge.innerText = currentLang === 'tr' ? "GEÇERSİZ (NA)" : "NOT APPLICABLE"; 
+                countNA++;
             }
         });
 
@@ -389,7 +455,9 @@
         document.getElementById('scorePercentage').innerText = `%${eiPercentage}`;
     }
 
-    switchArea('SSP');
+    // İlk açılışta dili kur ve yükle
+    setLanguage('tr');
+    switchArea('LEG');
 </script>
 </body>
 </html>
