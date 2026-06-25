@@ -1,107 +1,1625 @@
 {
   "area_id": "PEL",
   "area_name": "Personnel Licensing and Training",
-  "total_pqs": 100,
+  "total_pqs": 89,
   "pqs": [
-    { "no": "3.001", "question": "Has the State promulgated specific operating regulations to transpose the provisions of Annex 1?", "ce": "CE-2", "ppq": "Yes", "note": "", "lead": "Confirm transposition and verify regulations for:", "criteria": ["Confirm the title, date of promulgation and the latest amendment of all regulations related to personnel licensing.", "Verify that the contents of the regulations are consistent, sufficient and properly organized.", "Confirm the transposition of the personnel licensing related provisions for all licences and ratings, including remote pilot licences.", "Confirm the transposition of the personnel licensing related provisions for medical assessment.", "Confirm the transposition of the personnel licensing related provisions for approval of training organizations.", "Confirm the transposition of the personnel licensing related provisions for qualification/approval of flight simulation training devices.", "Confirm the transposition of the personnel licensing related provisions for language used for radiotelephony communications (i.e. language proficiency requirements)."] },
-    { "no": "3.003", "question": "In addition to the promulgated regulations, has the Licensing Authority issued orders, directives and/or instructions in support of its personnel licensing activities?", "ce": "CE-2", "ppq": "Yes", "note": "", "lead": "Verify administrative backing:", "criteria": ["Confirm the title, content and date of issuance of the last amendment to orders, directives and instructions.", "Verify approval process and enforceability."] },
-    { "no": "3.005", "question": "Has the State implemented procedures for amending its specific PEL regulations, taking into consideration ICAO provisions and their amendments?", "ce": "CE-2", "ppq": "", "note": "The establishment of amendment procedures is addressed in LEG PQ 1.009.", "lead": "Verify amendment loops:", "criteria": ["Review documented evidence of effective implementation of procedures for amending PEL regulations.", "Verify that regulations are amended in a timely manner whenever amendments to Annex 1 are received.", "Verify the action taken by the State after receipt of the latest amendments to Annex 1."] },
-    { "no": "3.007", "question": "Has the State implemented procedures for identifying and notifying differences if any, to ICAO?", "ce": "CE-2", "ppq": "Yes", "note": "The establishment of these procedures is addressed in LEG PQ 1.025.", "lead": "Confirm the notification tracks:", "criteria": ["Review documented evidence of effective implementation.", "Confirm that the differences between the SARPs and the State legislation and practices are identified and notified to ICAO using the Compliance Checklist/Electronic Filing of Differences (CC/EFOD) system.", "Confirm that significant differences between SARPs/PANS/SUPPS and the State regulations and practices are identified and published in the AIP."] },
-    { "no": "3.015", "question": "Has the State implemented procedures for granting exemptions in the area of personnel licensing?", "ce": "CE-2", "ppq": "Yes", "note": "The term 'exemptions' also includes exceptions, deviations, variations and prolonged extensions. Legal basis under LEG 1.027 and 1.028.", "lead": "Verify exemption handling workflow:", "criteria": ["Verify implementation of procedures for recording and publishing exemptions granted.", "Review examples of exemptions granted in the area of personnel licensing.", "Verify implementation of the risk assessment system before granting of exemption."] },
-    { "no": "3.101", "question": "Has the State established an organizational structure for personnel licensing?", "ce": "CE-3", "ppq": "", "note": "This PQ is not linked to ORG PQ 2.010.", "lead": "Evaluate framework setup:", "criteria": ["Evaluate current approved organizational structure for CAA and personnel licensing office, including lines of responsibility."] },
-    { "no": "3.103", "question": "Are the functions and responsibilities of the personnel licensing office clearly defined?", "ce": "CE-3", "ppq": "", "note": "", "lead": "Verify mandate descriptions:", "criteria": ["Review the document detailing functions and responsibilities of the PEL Office."] },
-    { "no": "3.105", "question": "Have job descriptions been established for technical personnel and key management personnel of the personnel licensing office?", "ce": "CE-3", "ppq": "", "note": "", "lead": "Verify technical staff documentation profiles:", "criteria": ["Review job descriptions for all personnel licensing staff.", "Check the job description including all tasks related to Annex 1 (e.g. licensing, medical, training organizations approval and surveillance)."] },
-    { "no": "3.109", "question": "Does the personnel licensing office have sufficient human resources to carry out its functions and mandate?", "ce": "CE-3", "ppq": "Yes", "note": "", "lead": "Verify staffing capacity for baseline oversight tasks, including:", "criteria": ["Review methodology established for determining staffing needs, if available.", "Review the ability to attract new officers as well as existing vacancies and level of turnover in the past years.", "Review ability to carry out reviewing and revising regulations.", "Review ability to carry out training of technical staff.", "Review ability to carry out development of guidance material.", "Review ability to carry out issuance of licences and rating.", "Review ability to carry out conducting surveillance.", "Review ability to carry out resolving identified safety concerns."] },
-    { "no": "3.111", "question": "Has the State established appropriate minimum qualification and experience requirements for its personnel licensing staff?", "ce": "CE-4", "ppq": "", "note": "", "lead": "Review deployment requirements based on technical tasks:", "criteria": ["Review qualification and experience requirements for recruitment and assignment of personnel licensing staff of the Licensing Authority depending on their responsibilities in the personnel licensing issuance process and oversight system."] },
-    { "no": "3.112", "question": "Does the State ensure that all personnel licensing staff meet the established minimum qualification and experience requirements?", "ce": "CE-4", "ppq": "", "note": "", "lead": "Cross-check inspectorate competencies:", "criteria": ["Sample recruitment files.", "Cross-check with established requirements."] },
-    { "no": "3.113", "question": "Is a formal training programme established that details the type of training that should be provided to personnel licensing inspectorate staff and other technical personnel?", "ce": "CE-4", "ppq": "", "note": "", "lead": "Verify structured training specifications, confirming inclusion of:", "criteria": ["Review contents of training programme for each job (inspectorate staff and other technical personnel).", "Review contents of training programme for all activities (i.e. issuance of all licences, medical, training organizations approval).", "Initial training modules.", "On-the-job training (OJT) structures.", "Recurrent training cycles.", "Specialized training with timelines to be provided, as applicable."] },
-    { "no": "3.114", "question": "Have personnel licensing staff been issued credentials to facilitate access to aircraft, aviation facilities and documents for the purpose of inspections and enforcement?", "ce": "CE-3", "ppq": "", "note": "This PQ is only applicable to those performing inspection and enforcement activities.", "lead": "Review credentials to ensure:", "criteria": ["Reference to empowering legislation.", "Method established to control currency of credential.", "Inspector's photo."] },
-    { "no": "3.115", "question": "Has a periodic training plan been established and implemented, which details and prioritizes the type of training that will be provided to personnel licensing inspectorate staff and other technical personnel during the established period?", "ce": "CE-4", "ppq": "", "note": "", "lead": "Verify compliance with training continuity profiles:", "criteria": ["Review the most recent training plan for each inspectorate staff and other technical personnel.", "Check training files.", "Verify that the completed training (initial, recurrent, specialized and OJT) is sufficient for staff to acquire/maintain knowledge.", "The training plan should reflect the schedule for implementing the training programme in the following year(s)."] },
-    { "no": "3.119", "question": "Has a system been established to maintain the training records of personnel licensing staff?", "ce": "CE-4", "ppq": "", "note": "", "lead": "Verify training record integrity:", "criteria": ["Review requirements/instructions for the establishment and maintenance of training records.", "Verify that the system in place complies with system description.", "Verify that training records are systematically retained."] },
-    { "no": "3.153", "question": "Are the relevant ICAO documents and other technical publications readily available to the personnel licensing inspectorate staff and other technical personnel?", "ce": "CE-5", "ppq": "", "note": "Check for field/regional offices as well as headquarters.", "lead": "Verify publication library tracks and distribution controls for:", "criteria": ["Evaluate method to ensure receipt, control and distribution of the necessary technical documentation.", "Evaluate method to determine currency of documents.", "Verify accessibility of up-to-date State laws and regulations.", "Verify accessibility of orders and instructions.", "Verify accessibility of current copy of Annex 1.", "Verify accessibility of copies of ICAO guidance material (i.e. Doc 9379, Doc 9841, Doc 9625, etc.)."] },
-    { "no": "3.154", "question": "Is there a technical library available for the staff of the personnel licensing office or another method to ensure receipt, control and distribution of the necessary technical documentation?", "ce": "CE-5", "ppq": "", "note": "", "lead": "Evaluate library distribution layouts:", "criteria": ["Evaluate document receipt, control, and distribution system.", "Evaluate method to determine currency of documents."] },
-    { "no": "3.155", "question": "Are personnel licensing staff provided with comprehensive guidance material and procedures that are sufficiently detailed to enable them to carry out their functions and responsibilities effectively?", "ce": "CE-5", "ppq": "Yes", "note": "", "lead": "Verify manual distribution workflows:", "criteria": ["Review the PEL Procedures Manual, if available, or the list of procedures available.", "Review management process.", "Review distribution process of the documents used to ensure that all staff use comprehensive and up-to-date documents."] },
-    { "no": "3.201", "question": "Has the State established methods to inform applicants of the requirements to be met for the various licences and ratings and the documents to be submitted for the application process?", "ce": "CE-5", "ppq": "", "note": "", "lead": "Review public information portals:", "criteria": ["Review available methods for informing applicants of the different licences and ratings.", "Review list of application forms for all types of licences, ratings or examinations.", "Review the forms to ensure that they contain information relating to age, knowledge, experience, skills and medical information of the applicant."] },
-    { "no": "3.203", "question": "Does the State implement a process for the systematic review and evaluation of submitted application forms for the issuance of licences and ratings and for examinations?", "ce": "CE-6", "ppq": "Yes", "note": "Applies to all types of licences, ratings and examinations.", "lead": "Verify application review steps:", "criteria": ["Review implementation of processes and procedures for the evaluation of applications for licences, ratings or examinations.", "Review responsibilities of PEL staff in assessing documents provided by applicants (e.g. different steps, who is doing what).", "Sample cases for review."] },
-    { "no": "3.207", "question": "Has the State established a procedure for appealing the Licensing Authority’s decisions?", "ce": "CE-5", "ppq": "", "note": "", "lead": "Verify legal appeal workflows:", "criteria": ["Review documented description of the appeal process.", "Review established and documented processes and procedures.", "Review documented procedure used to inform the applicant of the appeal process for licences, ratings, examinations and medical decisions."] },
-    { "no": "3.253", "question": "Has the State promulgated regulations to ensure that privileges granted by a pilot licence, or by related ratings, are not exercised unless the holder maintains competency and meets requirements for recency of experience?", "ce": "CE-2", "ppq": "", "note": "", "lead": "Verify competency continuity codes:", "criteria": ["Verify regulations for all pilot licences and ratings issued, including instructor rating (e.g. list, conditions of issuance and renewal, maintenance of competency, recency of experience, etc.).", "Ensure that such requirements also apply if a pilot is not employed by a commercial air operator."] },
-    { "no": "3.256", "question": "Has the State established a system to re-establish or reinstate the privileges of expired licences and ratings?", "ce": "CE-5", "ppq": "", "note": "The implementation of a system to re-establish or reinstate the privileges of expired licences and ratings is addressed in PEL PQ 3.257 (CE-6).", "lead": "Verify policy configuration for privilege restoration:", "criteria": ["Review documented requirements (e.g. number of hours of mandatory re-training, examinations, etc.) to reinstate the privileges of expired licences and ratings.", "Review documented process and procedures to reinstate the privileges of expired licences and ratings."] },
-    { "no": "3.257", "question": "Has the State implemented a system to re-establish or reinstate the privileges of expired licences and ratings?", "ce": "CE-6", "ppq": "", "note": "The establishment of this system is addressed in PEL PQ 3.256 (CE-5).", "lead": "Verify action implementation for privilege restoration:", "criteria": ["Review implementation of requirements (e.g. number of hours of mandatory re-training, examinations, etc.) to reinstate the privileges of expired licences and ratings.", "Review implementation of procedure to reinstate the privileges of expired licences and ratings.", "Sample cases to confirm effective implementation."] },
-    { "no": "3.259", "question": "If the State issues civil licences to military pilots, has a system been implemented for issuing civil pilot licences and ratings and granting exemptions?", "ce": "CE-6", "ppq": "Yes", "note": "The establishment of a policy and procedures for granting exemptions is addressed in LEG PQ 1.028.", "lead": "Verify conversion tracks:", "criteria": ["Review the rules and procedures followed for the conversion of military qualifications and experience to equivalent civil licences and ratings.", "Sample cases for review to confirm effective implementation."] },
-    { "no": "3.261", "question": "Has the State systematically implemented a process for the renewal of licences and ratings?", "ce": "CE-7", "ppq": "Yes", "note": "", "lead": "Verify license currency checking lines:", "criteria": ["Review procedures and conditions for the renewal of licences issued.", "Review the competency requirements such as recent experience requirements, recurrent training and testing.", "Confirm effective implementation."] },
-    { "no": "3.263", "question": "What action does the Licensing Authority take in the event that sufficient evidence exists to demonstrate that a pilot licence holder has not performed his/her duties in accordance with the prescribed procedures and privileges of his/her licence?", "ce": "CE-8", "ppq": "", "note": "", "lead": "Verify pilot enforcement metrics:", "criteria": ["Review enforcement system or procedures.", "Review evidence to confirm effective implementation of a graduated response system (warnings, sanctions)."] },
-    { "no": "3.301", "question": "Has the State implemented procedures for the issuance of pilot licences and ratings on the basis of foreign licences (licence conversion)?", "ce": "CE-6", "ppq": "Yes", "note": "", "lead": "Verify pilot license conversion workflows:", "criteria": ["Review the established procedures for the conversion of a foreign licence.", "Review evidence to confirm effective implementation."] },
-    { "no": "3.302", "question": "Has the State promulgated regulations for the conversion/validation of all type of licences, other than pilot licences?", "ce": "CE-2", "ppq": "", "note": "", "lead": "Verify baseline codes for alternative licenses:", "criteria": ["Verify regulations and additional requirements for conversion/validation of licences other than pilot licences."] },
-    { "no": "3.303", "question": "Has the State implemented procedures for the validation of foreign pilot licences and ratings?", "ce": "CE-6", "ppq": "Yes", "note": "", "lead": "Verify pilot validation tracks:", "criteria": ["Review the established procedures for the validation of a foreign licence.", "Review evidence to confirm effective implementation."] },
-    { "no": "3.305", "question": "Has the State promulgated regulations for the conversion/validation of the commercial pilot, multi-crew pilot and airline transport pilot licences that are used for air transport purposes?", "ce": "CE-2", "ppq": "Yes", "note": "", "lead": "Verify air transport licensing codes:", "criteria": ["Verify regulations and additional requirements for the conversion/validation of these commercial and airline transport licences."] },
-    { "no": "3.307", "question": "Does the Licensing Authority contact the foreign licence issuing State systematically to ensure the validity of the licence to be converted or validated?", "ce": "CE-6", "ppq": "Yes", "note": "Contacting the issuing State is the best methodology, but other processes and procedures may be available.", "lead": "Verify inter-state confirmation logs:", "criteria": ["Review implementation of process and procedures for confirmation of the validity of the foreign licence.", "Review evidence to confirm effective implementation for all types of licences."] },
-    { "no": "3.309", "question": "Does the State have a system to ensure that the original licence submitted for a licence validation or conversion is in full compliance with Annex 1?", "ce": "CE-6", "ppq": "", "note": "", "lead": "Verify compliance audit logs for external files:", "criteria": ["Review implementation of process and procedures for confirmation of the licence’s conformity with requirements of Annex 1.", "Review evidence to confirm effective implementation for all types of licences."] },
-    { "no": "3.310", "question": "Has the State implemented a systematic process to answer queries from other States in order to confirm the validity of the licences issued?", "ce": "CE-6", "ppq": "", "note": "", "lead": "Verify external query pipeline responses:", "criteria": ["Review process and procedures established and implemented for answering queries from other States.", "Review evidence to confirm effective implementation for all types of licences."] },
-    { "no": "3.313", "question": "Have procedures been implemented for the validation/conversion of foreign licences and ratings of aircraft maintenance technicians/engineers/mechanics?", "ce": "CE-6", "ppq": "", "note": "Applicable only if such validation/conversion is performed in the State.", "lead": "Verify maintenance personnel validation logs:", "criteria": ["Review validation/conversion procedures for aircraft maintenance personnel.", "Review evidence to confirm effective implementation."] },
-    { "no": "3.315", "question": "Have procedures been implemented for the validation/conversion of foreign licences of flight operations officers/flight dispatchers?", "ce": "CE-6", "ppq": "", "note": "Applicable only if such validation/conversion is performed in the State.", "lead": "Verify flight dispatcher validation logs:", "criteria": ["Review validation/conversion procedures for flight operations officers/flight dispatchers.", "Review evidence to confirm effective implementation."] },
-    { "no": "3.317", "question": "Have procedures been implemented for the validation/conversion of foreign licences and ratings of air traffic controllers?", "ce": "CE-6", "ppq": "", "note": "Applicable only if such validation/conversion is performed in the State.", "lead": "Verify controller validation logs:", "criteria": ["Review validation/conversion procedures for air traffic controllers.", "Review evidence to confirm effective implementation."] },
-    { "no": "3.319", "question": "Have procedures been established and implemented for issue/validation/conversion of foreign licences and ratings for remote pilot licences?", "ce": "CE-6", "ppq": "Yes", "note": "Applicable only if such issuance/validation/conversion is performed in the State.", "lead": "Verify RPAS license validation logs:", "criteria": ["Review procedures for issue/validation/conversion of remote pilot licences.", "Review evidence to confirm effective implementation."] },
-    { "no": "3.321", "question": "Have procedures been established and implemented for automatic validation of licences?", "ce": "CE-6", "ppq": "", "note": "Applicable only if such issue/validation/conversion is performed in the State.", "lead": "Verify automatic validation systems:", "criteria": ["Review automatic validation procedures.", "Review evidence to confirm effective implementation."] },
-    { "no": "3.401", "question": "Has the State promulgated regulations for medical examinations of applicants of various licences by medical examiners?", "ce": "CE-2", "ppq": "", "note": "", "lead": "Verify aero-medical framework codes:", "criteria": ["Verify regulations regarding medical provisions for licensing, including designation of medical examiners and requirement of a medical assessor.", "Review regulations for the applicant to sign and furnish to medical examiners, a declaration, whose content conforms to the requirements of Annex 1.", "Check promulgation of latest amendments to Annex 1."] },
-    { "no": "3.403", "question": "Does the State use the services of medical assessors to evaluate reports submitted to the Licensing Authority by designated medical examiners (DME)?", "ce": "CE-3", "ppq": "", "note": "Alternative systems can be acceptable, but they must guarantee evaluation of medical reports and effective oversight of all DMEs, medical centres/facilities.", "lead": "Verify medical assessor configurations:", "criteria": ["Qualifications, experience, functions and responsibility of the medical assessor must be clearly described.", "Review the process and documented evidence of the appointment of the medical assessor."] },
-    { "no": "3.405", "question": "Has the State implemented a process for the evaluation of medical reports submitted by the designated medical examiners (DME)?", "ce": "CE-6", "ppq": "Yes", "note": "", "lead": "Verify check routines for incoming medical forms:", "criteria": ["Verify that the process and methods in place for the evaluation of medical reports comply with Docs 8984 and 9379.", "Review evidence to confirm effective implementation, e.g. audit reports of medical assessments and analysis of medical outcomes."] },
-    { "no": "3.409", "question": "Has the State established the appropriate actions to be taken in case of a false declaration by an applicant to a designated medical examiner (DME)?", "ce": "CE-8", "ppq": "", "note": "", "lead": "Verify fraud prosecution/enforcement workflows:", "criteria": ["Review procedures outlining actions to be taken.", "Review evidence to confirm effective implementation, i.e. reports and evidence of a graduated response system (warnings, sanctions, etc. that have been issued)."] },
-    { "no": "3.411", "question": "Do designated medical examiners (DME) systematically submit signed reports to the Licensing Authority after completing the medical examination of an applicant?", "ce": "CE-6", "ppq": "", "note": "Detailed medical information must be available only through the medical section or medical assessor to ensure medical confidentiality.", "lead": "Verify submission loops for DME logs:", "criteria": ["If the medical examination is carried out by 2 or more examiners, verify that an appointed examiner is responsible for coordinating the results and signing of the report.", "If reports are submitted electronically, verify that adequate identification of the examiner has been established.", "Review evidence to confirm effective implementation, i.e. records of submission and acknowledgement of receipt.", "Verify that all reports are available at the Licensing Authority for proper review and analysis by an appropriately qualified and experienced medical personnel."] },
-    { "no": "3.415", "question": "Does the Licensing Authority perform medical assessment audits?", "ce": "CE-7", "ppq": "Yes", "note": "The purpose of such audits is to ensure that DMEs meet applicable standards for good medical practice and aeromedical risk assessment.", "lead": "Verify medical examiner audits:", "criteria": ["Confirm that audit process is established.", "Review evidence to confirm effective implementation, i.e. audit reports."] },
-    { "no": "3.417", "question": "Has the Licensing Authority implemented a system to ensure the confidentiality of medical reports and records at all times?", "ce": "CE-7", "ppq": "", "note": "", "lead": "Verify medical confidentiality architectures:", "criteria": ["Ensure the Licensing Authority checks the confidentiality system at designated medical examiners’ (DME) facilities or/and medical centres.", "Check confidentiality system of the reports kept by Licensing Authority.", "Check the policy and procedures established to determine to what extent pertinent medical information is presented to relevant officials of the Licensing Authority and other stakeholders.", "Review reports/complaints for any breach of medical confidentiality."] },
-    { "no": "3.419", "question": "If the medical Standards prescribed in Chapter 6 of Annex 1 for a particular licence type are not fully met, has the State implemented a system for the possible issuance or renewal of the appropriate medical assessment following conditions as stipulated in Annex 1?", "ce": "CE-6", "ppq": "Yes", "note": "", "lead": "Verify borderline medical waiver operations:", "criteria": ["Confirm that accredited medical conclusion indicates that exercise of privileges is not likely to jeopardize flight safety under special circumstances.", "Confirm relevant ability, skills and experience of the applicant and operational conditions have been given due consideration.", "Confirm the licence is endorsed with any special limitation or limitations when safe performance is dependent on compliance.", "Confirm that procedures for coordination between medical assessors, other subject matter experts (SMEs) and Licensing Authority are established.", "Review minutes of medical review/board meetings to confirm consultation with SMEs, operations department, etc.", "Review reports including analysis of loss of licence due to medical reasons and trend analysis of findings of the outcome of the medical certification.", "Review policy, procedures and evidence of communication for the justification and outcome of the medical certification decision."] },
-    { "no": "3.421", "question": "Has the State implemented a process describing circumstances under which a medical examination may be deferred?", "ce": "CE-5", "ppq": "", "note": "If the policy formally adopted by the State is that the medical examination cannot be deferred, the PQ is “Not Applicable”.", "lead": "Verify deferral policies:", "criteria": ["Confirm that the process developed and implemented complies with the regulations.", "If deferred, review the frequency and reasons for deferral."] },
-    { "no": "3.422", "question": "If the State authorizes its national licence holders to perform their medical examinations in a foreign State, has a system been implemented to ensure proper designation and surveillance?", "ce": "CE-6", "ppq": "", "note": "", "lead": "Verify overseas medical infrastructures:", "criteria": ["Check if overseas DMEs are properly designated, trained and in good standing with the overseas Licensing Authority.", "Check the system for receiving and assessing medical reports carried out by the foreign authority.", "Review evidence to ensure effective implementation via list of foreign DMEs and audit reports."] },
-    { "no": "3.423", "question": "If the State has not established any system for assessing the medical fitness of licence applicants, has it implemented practices to ensure medical fitness via validation?", "ce": "CE-6", "ppq": "", "note": "", "lead": "Verify external validation practices:", "criteria": ["Evaluate procedures and practices implemented for the validation or conversion of foreign medical assessments.", "Review evidence to confirm effective implementation, e.g. number of foreign validations and trend analysis of medical findings."] },
-    { "no": "3.451", "question": "Has the State established a procedure for the designation of medical examiners and provided guidance material to them?", "ce": "CE-5", "ppq": "Yes", "note": "", "lead": "Verify designation parameters for DMEs:", "criteria": ["Check conditions and duration of the designation and scope of authority given (e.g. issuance of waivers, classes, etc.).", "Check guidelines provided to the medical examiners (e.g. template reports, manual for the medical assessment, etc.).", "Check methods for informing medical examiners of new medical-related provisions."] },
-    { "no": "3.453", "question": "Does the State require designated medical examiners (DMEs) to demonstrate their competence in aviation medicine before designation?", "ce": "CE-6", "ppq": "Yes", "note": "", "lead": "Verify pre-designation baseline competence:", "criteria": ["Verify that, before initial designation, the DMEs undergo required training and demonstrate adequate competency in aviation medicine.", "Verify that DMEs have practical knowledge and experience of the conditions in which licence holders carry out duties (flight/simulator observation).", "Review evidence via publication of DME list and file reviews."] },
-    { "no": "3.457", "question": "Does the State ensure that designated medical examiners (DMEs) attend refresher training in aviation medicine at regular intervals?", "ce": "CE-6", "ppq": "", "note": "", "lead": "Verify training refreshes:", "criteria": ["Review procedures for renewal of designation.", "Verify that, before the renewal of designation, the DMEs undergo refresher training within intervals of 3 to 5 years.", "Sample DME training files to confirm effective implementation."] },
-    { "no": "3.459", "question": "Has the State implemented a system for the supervision and control of designated medical examiners (DME)?", "ce": "CE-7", "ppq": "", "note": "", "lead": "Verify DME oversight lines:", "criteria": ["Verify inclusion of premises and equipment inspections in the DME oversight system.", "Verify demonstration of use of latest ICAO SARPs and up-to-date refresher training.", "Verify timely transmittal of reports to the Licensing Authority’s medical department."] },
-    { "no": "3.461", "question": "What action does the Licensing Authority take in the event that sufficient evidence exists to demonstrate that a designated medical examiner (DME) has not performed his/her duties in accordance with the prescribed procedures?", "ce": "CE-8", "ppq": "", "note": "", "lead": "Verify DME enforcement pipelines:", "criteria": ["Review enforcement system and/or procedures.", "Review evidence to confirm effective implementation of a graduated response system (warnings, sanctions)."] },
-    { "no": "3.463", "question": "Has the State implemented appropriate aviation-related health promotion for licence holders subject to a medical assessment?", "ce": "CE-6", "ppq": "", "note": "", "lead": "Verify proactive health systems:", "criteria": ["Verify analysis of in-flight incapacitation events and findings during medical assessments.", "Review list of appropriate topics identified for health promotion and communication with stakeholders."] },
-    { "no": "3.501", "question": "If the Licensing Authority develops, conducts and/or corrects its own written and oral examinations for the issuance of all or some licences and ratings by the State, has the State implemented an appropriate and comprehensive system?", "ce": "CE-6", "ppq": "Yes", "note": "", "lead": "Verify internal exam mechanics:", "criteria": ["Check if guidance to examiners on how to prepare examinations has been developed.", "Check if there are procedures for developing and revising questionnaires periodically using a question pool.", "Review evidence to confirm implementation for all types of exams organized (pilots, ATCOs, aircraft maintenance engineers)."] },
-    { "no": "3.503", "question": "If the Licensing Authority issues licences and ratings by using written and oral examinations that it did not develop and/or conduct and/or correct, has the State implemented a system to ensure consistency?", "ce": "CE-6", "ppq": "Yes", "note": "This PQ is also APPLICABLE if the State accepts results of examinations taken in a foreign State by its nationals.", "lead": "Verify delegated testing standardization:", "criteria": ["Check that there is a formal system implemented concerning delegation for the development/conduct/correction of examinations.", "Check that there is a system for the surveillance of delegated persons or organizations."] },
-    { "no": "3.505", "question": "Has the State established appropriate minimum qualification requirements for examiners who prepare questions or assess examinations?", "ce": "CE-4", "ppq": "", "note": "This PQ is also APPLICABLE for examiners if some part of the examination process is delegated.", "lead": "Verify exam designer baselines:", "criteria": ["Verify the document/procedures detailing the knowledge and experience requirement for designation as an examiner for pilots, ATCOs, and maintenance engineers.", "Review existing examiner's records to confirm effective implementation."] },
-    { "no": "3.507", "question": "Has the State implemented a process for the designation of examiners for written and oral exams?", "ce": "CE-6", "ppq": "", "note": "", "lead": "Verify examiner appointment loops:", "criteria": ["Review process for the selection, designation and appointment of examiners for pilots, ATCOs, and maintenance engineers.", "Review list of examiners, including specialty and type of exam authorized to prepare and conduct.", "Check the implementation of the system for their designation (official letter, duration, etc.)."] },
-    { "no": "3.601", "question": "Has the State implemented a comprehensive system for the designation of flight and practical examiners?", "ce": "CE-6", "ppq": "Yes", "note": "Applicable also for practical examiners for air traffic controller and aircraft maintenance engineer licences.", "lead": "Verify practical tester authorization grids:", "criteria": ["Verify the requirements for the designation and qualifications of flight and practical examiners.", "Review procedures for designation, duration of designation, and defined duties/responsibilities.", "Sample designated examiner files and records to confirm implementation.", "Review the system implemented for flight and practical examinations to ensure applicants meet knowledge and skill requirements specified for Annex 1."] },
-    { "no": "3.605", "question": "Has the State implemented a system for the supervision and control of flight and practical test delivery, which ensures consistency and reliability of testing by the designated flight and practical examiners?", "ce": "CE-7", "ppq": "", "note": "Applicable also for practical examiners for air traffic controller and aircraft maintenance engineer licences.", "lead": "Verify tester supervision metrics:", "criteria": ["Evaluate system for supervision by the authority of the designated flight and practical examiners while performing functions.", "Review frequency of surveillance established.", "Verify guidance material for examiners and/or post assessment by the Licensing Authority."] },
-    { "no": "3.607", "question": "How does the State ensure the maintenance of qualification and proficiency of flight and practical examiners?", "ce": "CE-4", "ppq": "", "note": "", "lead": "Verify examiner proficiency continuity:", "criteria": ["Verify recurrent training rules for flight and practical examiners.", "Verify conditions for renewal of designated flight and practical examiners.", "Verify supervision done by the Licensing Authority."] },
-    { "no": "3.609", "question": "What action does the Licensing Authority take in the event that sufficient evidence exists to demonstrate that a flight or practical examiner has not performed his/her duties in accordance with the prescribed procedures?", "ce": "CE-8", "ppq": "", "note": "Applicable also for practical examiners for air traffic controller and aircraft maintenance engineer licences.", "lead": "Verify examiner penalty loops:", "criteria": ["Review enforcement procedures.", "Review evidence to confirm effective implementation of a graduated response system (warnings, sanctions)."] },
-    { "no": "3.655", "question": "Has the State implemented a system for formally evaluating and re-evaluating language proficiency at the level specified in Appendix 1 to Annex 1?", "ce": "CE-6", "ppq": "Yes", "note": "Applies to pilots (aeroplane, airship, helicopter, powered-lift), flight navigators using radiotelephone, ATCOs, and aeronautical station operators.", "lead": "Verify LPR evaluation mechanics:", "criteria": ["Verify description and references of the system implemented to formally evaluate and/or re-evaluate language proficiency.", "Check the system for nominating/designating the person or organization performing the evaluation.", "Review the contents of the tests and ensure that intervals for re-evaluation conform with ICAO guidance.", "Check implementation of the system for endorsement of language proficiency ratings in licences (validity date, Level 4 or higher status, failure handling)."] },
-    { "no": "3.657", "question": "Does the State ensure that the process and quality of the language proficiency system conform with the provisions of Annex 1 and related guidance materials?", "ce": "CE-7", "ppq": "Yes", "note": "", "lead": "Verify LPR system quality coverage across categories:", "criteria": ["Verify regulations promulgated and related guidance implemented for pilots, navigators, ATCOs, station operators, flight engineers, glider pilots, and free balloon pilots."] },
-    { "no": "3.701", "question": "Does the State maintain a personal file for each applicant and licence holder containing progressive history and current status?", "ce": "CE-6", "ppq": "Yes", "note": "", "lead": "Verify active archive logs:", "criteria": ["Evaluate filing system to ensure each file contains all correspondence, applications, assessments, exam results, and licensing documentation.", "Review filing procedures to confirm effective implementation and progressive tracking of qualifications."] },
-    { "no": "3.703", "question": "Has the State implemented a system to ensure confidentiality and security of individual records and for closing and archiving personal files?", "ce": "CE-6", "ppq": "", "note": "", "lead": "Verify archival security parameters:", "criteria": ["Review filing procedures and evaluate system for maintaining confidentiality and control of access."] },
-    { "no": "3.751", "question": "Has the State implemented procedures for the approval of domestic and foreign aviation training organizations (TOs)?", "ce": "CE-6", "ppq": "Yes", "note": "", "lead": "Verify TO approval coverage pipelines:", "criteria": ["Check procedures for approval of domestic and foreign TOs covering pilot, ATCO, and maintenance TOs.", "Check training organization administered by authority, if applicable.", "Check if procedures cover approval of training programmes, review of the content of the training and procedures manual, quality assurance system, and qualification of synthetic training devices."] },
-    { "no": "3.753", "question": "Has the State implemented a system to ensure the qualification and competency of the instructors of approved training organizations (ATOs)?", "ce": "CE-6", "ppq": "Yes", "note": "", "lead": "Verify ATO instructor vetting lines:", "criteria": ["Review evidence to confirm implementation of State’s procedures to ensure qualifications and competence of instructional personnel of ATOs (for pilots, ATCOs, and maintenance engineers).", "Check ATOs administered by authority, if applicable."] },
-    { "no": "3.755", "question": "If aviation training organizations (TOs) conduct examinations and testing on behalf of the Licensing Authority, has the Licensing Authority implemented a system to ensure proper surveillance?", "ce": "CE-7", "ppq": "", "note": "", "lead": "Verify delegated check safeguards:", "criteria": ["Review legal basis of delegation and agreement between the Licensing Authority and TOs.", "Review methods used to prevent conflict of interest within domestic and foreign TOs.", "Review effective implementation of the system used for qualification and oversight of examiners as part of the TO approval package."] },
-    { "no": "3.761", "question": "Does the State issue a training organization’s (TO) approval document, which is comprehensive and contains at least name, location, date, validity, and terms?", "ce": "CE-6", "ppq": "", "note": "", "lead": "Verify TO certificate formatting:", "criteria": ["Verify approval certificate layout of TO for pilots, air traffic controllers, aircraft maintenance engineers, as applicable."] },
-    { "no": "3.763", "question": "Does the State ensure that the approved training organization (TO) develops and publishes a training and procedures manual for the use of personnel concerned?", "ce": "CE-6", "ppq": "Yes", "note": "", "lead": "Verify TPM compliance checks:", "criteria": ["Review implementation of procedure or guidelines with respect to the content of the training and procedures manual conforming to Annex 1, Appendix 2.", "Check if the manuals of TOs are reviewed and approved by the Licensing Authority."] },
-    { "no": "3.765", "question": "Does the process of issuing an approval to a training organization (TO) take into account pertinent aspects related to facilities, equipment, key personnel and organization?", "ce": "CE-6", "ppq": "Yes", "note": "", "lead": "Verify TO structural audits cover:", "criteria": ["Facilities, working environment and installations (information, equipment, training devices and material).", "Qualification of synthetic training devices in accordance with State’s regulations (Doc 9625).", "Vetting of key personnel (including instructors and examiners), training records, evaluation/checking, and quality management system."] },
-    { "no": "3.767", "question": "Does the State implement an effective surveillance programme of the approved training organizations (ATOs) to ensure continuing compliance?", "ce": "CE-7", "ppq": "", "note": "", "lead": "Verify ATO audit schedules:", "criteria": ["Evaluate procedures for conduct of surveillance programme of domestic and foreign approved ATOs.", "Review methods of oversight and surveillance programme records of the previous year.", "Confirm appropriate frequency of inspections (planned or random inspections)."] },
-    { "no": "3.769", "question": "What action does the Licensing Authority take in the event that sufficient evidence exists to demonstrate that a training organization has not performed its function according to its procedures manual?", "ce": "CE-8", "ppq": "", "note": "", "lead": "Verify TO enforcement loops:", "criteria": ["Review enforcement system and/or procedures for domestic and foreign TOs.", "Review evidence to confirm effective implementation."] },
-    { "no": "3.771", "question": "If the State authorizes/approves foreign training organizations (TOs) to provide approved training to its licence holders, does it implement a system for approval/validation?", "ce": "CE-6", "ppq": "Yes", "note": "", "lead": "Verify foreign TO recognition loops:", "criteria": ["Review list of foreign TOs which provide training to the State’s licence holders.", "Verify if the State applies the same system of approval as used for domestic TOs or implements a process of validation/acceptance of foreign approvals.", "Check the validation system and supplementary conditions established (oversight capability check of issuing State, copy of approvals for TO and simulators, check examiners used, etc.)."] },
-    { "no": "3.772", "question": "Does the State implement a process to approve training programmes related to the first issuance of licences and ratings?", "ce": "CE-6", "ppq": "Yes", "note": "If automatically validating, check common licensing system within an RSOO and Article 83 agreements.", "lead": "Verify syllabus approval lines:", "criteria": ["Check the implementation of process for approval of training programmes (domestic or foreign TOs).", "Review evidence to confirm all amendments to training programmes are approved by the authority."] },
-    { "no": "3.801", "question": "Has the State promulgated regulations for training or licensing, as applicable, of aircraft maintenance technicians, engineers and mechanics?", "ce": "CE-2", "ppq": "", "note": "", "lead": "Verify technician regulatory bases:", "criteria": ["Verify that regulations include all licences and rating requirements of aircraft maintenance technicians/engineers/mechanics.", "Verify that regulations specify the conditions to be observed in exercising privileges."] },
-    { "no": "3.805", "question": "Has the State implemented a process for the systematic review and validation of application forms from aircraft maintenance technicians/engineers/mechanics?", "ce": "CE-6", "ppq": "Yes", "note": "", "lead": "Verify technician data tracking:", "criteria": ["Review implementation of the process and procedures for the issuance, renewal, validation and extension of technician licences.", "Sample files to confirm implementation."] },
-    { "no": "3.807", "question": "Have procedures been established to ensure that aircraft maintenance technicians/engineers/mechanics meet the conditions/qualifications for the type of licence applied for?", "ce": "CE-5", "ppq": "", "note": "", "lead": "Verify technician skill validation pipelines:", "criteria": ["Review procedures to ensure they cover the validation of skills and requirements."] },
-    { "no": "3.809", "question": "Does the State prescribe on the licence or in a separate document the scope of the privileges of the aircraft maintenance technician/engineer/mechanic licence holder?", "ce": "CE-6", "ppq": "", "note": "", "lead": "Verify privilege boundary records:", "criteria": ["Review scope of privileges mapped in terms of complexity of tasks related to certification.", "Sample files to confirm implementation."] },
-    { "no": "3.811", "question": "Has the authority implemented a surveillance system of the aircraft maintenance technician/engineer/mechanic licences issued?", "ce": "CE-7", "ppq": "", "note": "", "lead": "Verify active technician monitoring loops:", "criteria": ["Review the establishment of the surveillance process and review evidence to confirm effective implementation."] },
-    { "no": "3.813", "question": "What action does the Licensing Authority take in the event that sufficient evidence exists to demonstrate that an aircraft maintenance technician/engineer/mechanic has not performed his/her duties in accordance with procedures?", "ce": "CE-8", "ppq": "", "note": "", "lead": "Verify technician penalty loops:", "criteria": ["Review enforcement system or procedures and sample evidence to confirm effective implementation."] },
-    { "no": "3.851", "question": "Has the State promulgated regulations for training or licensing, as applicable, of air traffic controllers?", "ce": "CE-2", "ppq": "", "note": "", "lead": "Verify ATCO base codes:", "criteria": ["Verify that the regulations include all licence and ratings requirements of air traffic controllers.", "Verify that regulations specify conditions to be observed in exercising privileges."] },
-    { "no": "3.853", "question": "Have procedures been established for the issuance of air traffic controller licence and ratings and/or to ensure that requirements are met?", "ce": "CE-5", "ppq": "", "note": "Unlicensed State employees may operate as ATCOs on condition that they meet same requirements (Annex 1, 4.4.1).", "lead": "Verify ATCO vetting rules:", "criteria": ["Review issuance procedures and verify if the licensing process is delegated to an entity or organization outside the Licensing Authority."] },
-    { "no": "3.855", "question": "Has the State implemented a process for the systematic review and validation of applications from air traffic controllers for the issuance, renewal, validation and extension of licences and ratings?", "ce": "CE-6", "ppq": "Yes", "note": "", "lead": "Verify ATCO application data validations:", "criteria": ["Review implementation of the process and procedures, and sample files to confirm implementation."] },
-    { "no": "3.857", "question": "Has the Licensing Authority implemented a surveillance system of air traffic controller licences issued?", "ce": "CE-7", "ppq": "Yes", "note": "", "lead": "Verify active ATCO oversight tracks:", "criteria": ["Review evidence to confirm effective implementation of the surveillance process for air traffic controllers."] },
-    { "no": "3.859", "question": "What action does the Licensing Authority take in the event that sufficient evidence exists to demonstrate that an air traffic controller has not performed his/her duties in accordance with prescribed procedures?", "ce": "CE-8", "ppq": "", "note": "", "lead": "Verify ATCO sanction paths:", "criteria": ["Review enforcement system or procedures and review evidence to confirm effective implementation."] },
-    { "no": "3.901", "question": "Has the State promulgated specific operating regulations to require approved training organizations (ATOs) to implement a safety management system (SMS)?", "ce": "CE-2", "ppq": "", "note": "Applicable only to approved training organizations (ATOs) exposed to safety risks related to aircraft operations.", "lead": "Verify regulatory framework requires:", "criteria": ["Require ATOs to implement an SMS that is acceptable to the State.", "Require the SMS to be established in accordance with the SMS framework elements contained in Appendix 2 to Annex 19.", "Comply with the latest amendments to Annex 19."] },
-    { "no": "3.905", "question": "Does the State ensure that the personnel responsible for the acceptance and continuous surveillance of ATOs SMS are qualified to perform their functions?", "ce": "CE-4", "ppq": "", "note": "Applicable to ATOs exposed to safety risks related to aircraft operations.", "lead": "Verify safety management qualifications and records:", "criteria": ["The State has identified competency requirements for personnel responsible for acceptance and surveillance.", "The content of the training programme addresses the SMS framework elements in Appendix 2 to Annex 19.", "A training plan has been implemented with initial, OJT, and recurrent training records systematically retained."] },
-    { "no": "3.909", "question": "Has the State provided guidance material to the industry on the establishment and management of an SMS?", "ce": "CE-5", "ppq": "", "note": "Applicable to ATOs exposed to safety risks related to aircraft operations.", "lead": "Verify SMS industry guidance parameters:", "criteria": ["Includes the processes for the establishment and management of an SMS.", "Addresses the SMS framework elements contained in Appendix 2 to Annex 19.", "Is updated, made accessible to ATOs, and corresponds with activities conducted by the ATOs."] },
-    { "no": "3.913", "question": "Has the State established procedures for the acceptance of ATOs SMS?", "ce": "CE-5", "ppq": "", "note": "Applicable to ATOs exposed to safety risks related to aircraft operations.", "lead": "Verify that the established procedures describe processes for acceptance and at least include:", "criteria": ["Safety policy, safety objectives, regulatory SMS requirements, and system description.", "Safety accountabilities, key safety personnel, and mandatory/voluntary safety reporting procedures.", "Hazard identification, risk assessment, safety investigations, and performance indicator monitoring.", "SMS training, safety communication, internal audits, management of change, documentation, and ERP coordination."] },
-    { "no": "3.917", "question": "Has the State established procedures for the continuous surveillance of ATOs SMS?", "ce": "CE-5", "ppq": "", "note": "Applicable to ATOs exposed to safety risks related to aircraft operations.", "lead": "Verify SMS continuous audit tracking lines:", "criteria": ["Verify that the established procedures describe the processes for continuous surveillance of an SMS.", "Are updated and made accessible to personnel responsible for surveillance."] },
-    { "no": "3.921", "question": "Has the State accepted the SMS of individual ATOs?", "ce": "CE-6", "ppq": "", "note": "Applicable to ATOs exposed to safety risks related to aircraft operations.", "lead": "Verify institutional SMS approvals:", "criteria": ["Review evidence of implemented procedures for accepting an SMS including the maintenance of SMS operational records."] },
-    { "no": "3.925", "question": "Does the State ensure that the ATOs identify hazards, assess identified safety risks, and mitigate them appropriately?", "ce": "CE-7", "ppq": "", "note": "This verification needs to be reviewed during the industry visit. Applicable to operational risk exposed ATOs.", "lead": "Verify that the State ensures that the ATOs maintain active processes to:", "criteria": ["Identify hazards associated with their aviation products or services.", "Assess safety risks and mitigate safety risks appropriately."] },
-    { "no": "3.929", "question": "Does the State ensure that safety performance indicators and targets established by ATOs are acceptable to the State?", "ce": "CE-6", "ppq": "", "note": "SPIs acceptance may also be done later. Reviewed during industry visit. Applicable to operational risk exposed ATOs.", "lead": "Verify performance alignment parameters:", "criteria": ["Review State’s mechanism for accepting individual ATO SPIs and targets to ensure they are specific, measurable, achievable, relevant, and timebound.", "Verify that the State ensures that the ATOs proposed SPIs are reviewed and accepted as part of SMS acceptance."] },
-    { "no": "3.933", "question": "Does the State ensure the ATOs monitor their safety performance?", "ce": "CE-7", "ppq": "", "note": "Applicable to ATOs exposed to safety risks related to aircraft operations.", "lead": "Verify that the State has established and implemented a mechanism to ensure ATOs periodically validate:", "criteria": ["The effectiveness of safety risks controls.", "The identification of changes that may affect the level of safety risks associated with products or services.", "The identification and management of safety risks that may arise from those changes."] },
-    { "no": "3.937", "question": "Does the State ensure that the ATOs personnel involved in SMS are qualified to perform their functions and responsibilities?", "ce": "CE-7", "ppq": "", "note": "Review training records during industry visit. Applicable to operational risk exposed ATOs.", "lead": "Verify training check routines for industry staff:", "criteria": ["Verify that the State has established and implemented a mechanism to validate that ATO personnel involved in SMS are qualified.", "Sample the surveillance activities records to confirm enforcement."] },
-    { "no": "3.941", "question": "Does the State ensure that the ATOs continually promote safety?", "ce": "CE-7", "ppq": "", "note": "Applicable to ATOs exposed to safety risks related to aircraft operations.", "lead": "Verify that the State ensures that the ATOs maintain formal means for:", "criteria": ["Safety communication ensuring personnel are aware of the SMS to a degree commensurate with positions.", "Conveying safety-critical information, explaining action rationales, and explaining procedure changes.", "Considering communicating to external organizations any of their safety related information."] }
+    {
+      "no": "3.001",
+      "ce": "CE-2",
+      "site_type": "Off-Site",
+      "ppq": "PPQ",
+      "question_en": "Has the State promulgated specific operating regulations to transpose the provisions of Annex 1?",
+      "question_tr": "Devlet, Ek 1 hükümlerini iç hukuka aktarmak üzere spesifik işletme düzenlemelerini yayımlamış mıdır?",
+      "criteria": [
+        {
+          "en": "1) Confirm the title, date of promulgation and the latest amendment of all regulations related to personnel licensing.",
+          "tr": "1) Personel lisanslandırmasına ilişkin tüm düzenlemelerin başlığını, yayımlanma tarihini ve son değişiklik tarihini teyit edin."
+        },
+        {
+          "en": "2) Verify that the contents of the regulations are consistent, sufficient and properly organized.",
+          "tr": "2) Düzenlemelerin içeriklerinin tutarlı, yeterli ve uygun biçimde düzenlenmiş olduğunu doğrulayın."
+        },
+        {
+          "en": "3) Confirm the transposition of the personnel licensing related provisions for: a) all licences and ratings, including remote pilot licences; b) medical assessment; c) approval of training organizations; d) qualification/approval of flight simulation training devices; and e) language used for radiotelephony communications (i.e. language proficiency requirements).",
+          "tr": "3) Personel lisanslandırmasına ilişkin hükümlerin aşağıdaki konular için iç hukuka aktarıldığını teyit edin: a) uzaktan pilot lisansları dâhil tüm lisanslar ve yetkiler; b) sağlık değerlendirmesi; c) eğitim kuruluşlarının onayı; d) sentetik uçuş eğitim cihazlarının yeterlilik/onayı; ve e) telsiz telefon haberleşmesinde kullanılan dil (yani dil yeterliliği gereklilikleri)."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.003",
+      "ce": "CE-2",
+      "site_type": "On-Site",
+      "ppq": "PPQ",
+      "question_en": "In addition to the promulgated regulations, has the Licensing Authority issued orders, directives and/or instructions in support of its personnel licensing activities?",
+      "question_tr": "Yayımlanan düzenlemelere ek olarak, Lisanslandırma Otoritesi personel lisanslandırma faaliyetlerini desteklemek üzere emirler, direktifler ve/veya talimatlar çıkarmış mıdır?",
+      "criteria": [
+        {
+          "en": "Confirm the title, content and date of issuance of the last amendment to orders, directives and instructions.",
+          "tr": "Emir, direktif ve talimatların başlığını, içeriğini ve son değişiklik yayın tarihini teyit edin."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.005",
+      "ce": "CE-2",
+      "site_type": "On-Site",
+      "ppq": "",
+      "question_en": "Has the State established a process for amending its specific operating regulations or, if necessary, its primary aviation legislation, in the area of personnel licensing, taking into consideration ICAO provisions and their amendments?",
+      "question_tr": "Devlet, personel lisanslandırma alanında ICAO hükümlerini ve bunlardaki değişiklikleri dikkate alarak spesifik işletme düzenlemelerini veya gerekirse temel havacılık mevzuatını değiştirmek üzere bir süreç oluşturmuş mudur?",
+      "criteria": [
+        {
+          "en": "1) Review documented evidence of effective implementation of procedures for amending PEL regulations.",
+          "tr": "1) PEL düzenlemelerini değiştirmeye yönelik prosedürlerin etkin şekilde uygulandığına dair dokümante edilmiş kanıtları inceleyin."
+        },
+        {
+          "en": "2) Verify that regulations are amended in a timely manner whenever amendments to the related Annex are received.",
+          "tr": "2) İlgili Ek'te yapılan değişiklikler alındığında düzenlemelerin zamanında değiştirildiğini doğrulayın."
+        },
+        {
+          "en": "3) Verify the action taken by the State after receipt of the last amendments to Annex 1.",
+          "tr": "3) Ek 1'e ilişkin son değişikliklerin alınmasından sonra Devlet tarafından gerçekleştirilen eylemleri doğrulayın."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.007",
+      "ce": "CE-2",
+      "site_type": "On-Site",
+      "ppq": "PPQ",
+      "question_en": "Has the State established procedures for identifying and notifying differences if any, to ICAO?",
+      "question_tr": "Devlet, mevcut olması halinde farklılıkların belirlenmesi ve ICAO’ya bildirilmesine yönelik prosedürler oluşturmuş mudur?",
+      "criteria": [
+        {
+          "en": "1) Review documented evidence of the effective implementation.",
+          "tr": "1) Etkin uygulamaya ilişkin dokümante edilmiş kanıtları inceleyin."
+        },
+        {
+          "en": "2) Confirm that the differences between the SARPs and the State legislation and practices are identified and notified to ICAO using the Compliance Checklist/Electronic Filing of Differences (CC/EFOD) system.",
+          "tr": "2) SARP'lar ile Devlet mevzuatı ve uygulamaları arasındaki farklılıkların Uyum Kontrol Listesi/Elektronik Farklılık Bildirimi (CC/EFOD) sistemi kullanılarak belirlendiğini ve ICAO'ya bildirildiğini teyit edin."
+        },
+        {
+          "en": "3) Confirm that significant differences between SARPs/PANS/SUPPS and the State regulations and practices are identified and published in the AIP.",
+          "tr": "3) SARP'lar/PANS/SUPPS ile Devlet düzenlemeleri ve uygulamaları arasındaki önemli farklılıkların belirlendiğini ve AIP'de yayımlandığını teyit edin."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.015",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "PPQ",
+      "question_en": "Has the State effectively implemented procedures to grant exemptions from the personnel licensing regulations?",
+      "question_tr": "Devlet, personel lisanslandırma düzenlemelerinden muafiyet tanınmasına yönelik prosedürleri etkin bir şekilde uygulamış mıdır?",
+      "criteria": [
+        {
+          "en": "1) Verify effective implementation of formal exemption procedures.",
+          "tr": "1) Resmi muafiyet prosedürlerinin etkin şekilde uygulandığını doğrulayın."
+        },
+        {
+          "en": "2) Verify that the impact on safety is thoroughly considered (e.g. through risk assessments, etc.).",
+          "tr": "2) Emniyet üzerindeki etkinin kapsamlı bir şekilde değerlendirildiğini (örneğin risk değerlendirmeleri vb. yoluyla) doğrulayın."
+        },
+        {
+          "en": "3) Verify that exemptions granted are recorded and published, as applicable.",
+          "tr": "3) Tanınan muafiyetlerin duruma göre kaydedildiğini ve yayımlandığını doğrulayın."
+        },
+        {
+          "en": "4) Sample exemptions granted.",
+          "tr": "4) Tanınan muafiyetleri örnekleyin."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.101",
+      "ce": "CE-3",
+      "site_type": "Off-Site",
+      "ppq": "",
+      "question_en": "Has the State established an organizational structure for personnel licensing, such as a directorate/department/division/section/office for the issuance and maintenance of personnel licences and ratings?",
+      "question_tr": "Devlet; personel lisanslarının ve yetkilerinin verilmesi ve sürdürülmesi için bir müdürlük/daire başkanlığı/bölüm/kısım/ofis gibi personel lisanslandırmaya yönelik bir kurumsal yapı oluşturmuş mudur?",
+      "criteria": [
+        {
+          "en": "1) Verify that an organizational structure has been: a) established with defined lines of responsibility; b) documented; and c) approved.",
+          "tr": "1) Kurumsal yapının aşağıdaki şekilde olduğunu doğrulayın: a) tanımlanmış sorumluluk hatlarıyla oluşturulmuş; b) dokümante edilmiş; ve c) onaylanmış."
+        },
+        {
+          "en": "2) Confirm existing approved organizational structure for the CAA and personnel licensing department/office, including lines of responsibility.",
+          "tr": "2) Sorumluluk hatları dâhil olmak üzere SHGM ve personel lisanslandırma dairesi/ofisi için mevcut onaylanmış kurumsal yapıyı teyit edin."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.103",
+      "ce": "CE-3",
+      "site_type": "Off-Site",
+      "ppq": "",
+      "question_en": "Are all the functions and responsibilities of the personnel licensing office clearly defined?",
+      "question_tr": "Personel lisanslandırma ofisinin tüm fonksiyonları ve sorumlulukları açıkça tanımlanmış mıdır?",
+      "criteria": [
+        {
+          "en": "Review the document detailing functions and responsibilities of the PEL Office for inclusion of: a) issue and maintenance of personnel licences and ratings; b) validation of foreign licences; c) system of approval and surveillance of training organizations; d) qualification and approval of flight simulation training devices; e) language proficiency system; and f) medical assessment system.",
+          "tr": "PEL Ofisinin fonksiyon ve sorumluluklarını detaylandıran belgeyi şu hususları içermesi bakımından inceleyin: a) personel lisanslarının ve yetkilerinin verilmesi ve sürdürülmesi; b) yabancı lisansların geçerli kılınması (validasyon); c) eğitim kuruluşlarının onay ve gözetim sistemi; d) sentetik uçuş eğitim cihazlarının yeterlilik ve onayı; e) dil yeterliliği sistemi; ve f) sağlık değerlendirme sistemi."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.105",
+      "ce": "CE-3",
+      "site_type": "Off-Site",
+      "ppq": "",
+      "question_en": "Have job descriptions been established for technical personnel and key management personnel of the personnel licensing office?",
+      "question_tr": "Personel lisanslandırma ofisinin teknik personeli ve kilit yönetici personeli için görev tanımları oluşturulmuş mudur?",
+      "criteria": [
+        {
+          "en": "Verify that job descriptions have been developed for: a) technical staff (including external/delegated personnel, if any); and b) management personnel.",
+          "tr": "Görev tanımlarının şu kişiler için geliştirildiğini doğrulayın: a) teknik personel (varsa harici/delege edilmiş personel dâhil); ve b) yönetici personel."
+        },
+        {
+          "en": "Verify that the job descriptions cover all tasks related to Annex 1 (e.g. licensing, medical, training organizations approval and surveillance).",
+          "tr": "Görev tanımlarının Ek 1 ile ilgili tüm görevleri (örneğin lisanslandırma, sağlık, eğitim kuruluşları onayı ve gözetimi) kapsadığını doğrulayın."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.109",
+      "ce": "CE-3",
+      "site_type": "On-Site",
+      "ppq": "PPQ",
+      "question_en": "Does the personnel licensing office have sufficient human resources to carry out its functions and mandate related to its safety oversight responsibilities?",
+      "question_tr": "Personel lisanslandırma ofisi, emniyet gözetimi sorumluluklarına ilişkin fonksiyonlarını ve görev yetkisini yerine getirmek için yeterli insan kaynağına sahip midir?",
+      "criteria": [
+        {
+          "en": "Review the capacity of the personnel licensing office for safety oversight-related tasks, including: a) review methodology established for determining staffing needs; b) review ability to attract new inspectors as well as existing vacancies and level of turnover in past years; c) capability to execute reviewing and revising regulations; d) training technical staff; e) developing guidance material; f) issuing approvals; g) conducting surveillance; and h) resolving identified safety concerns.",
+          "tr": "Emniyet gözetimiyle ilgili görevler için personel lisanslandırma ofisinin kapasitesini inceleyin; şunlar dâhil: a) personel ihtiyacını belirlemek için oluşturulan inceleme metodolojisi; b) yeni denetçileri çekme yeteneğinin yanı sıra mevcut boş kadrolar ve geçmiş yıllardaki personel sirkülasyon düzeyi; c) düzenlemeleri gözden geçirme ve revize etme yeteneği; d) teknik personelin eğitimi; e) rehber materyal geliştirme; f) onayların verilmesi; g) gözetim yürütme; ve h) tespit edilen emniyet endişelerini giderme."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.111",
+      "ce": "CE-4",
+      "site_type": "Off-Site",
+      "ppq": "",
+      "question_en": "Has the Licensing Authority established appropriate minimum qualification and experience requirements for its technical personnel?",
+      "question_tr": "Lisanslandırma Otoritesi, teknik personeli için uygun minimum nitelik ve deneyim gereklilikleri belirlemiş midir?",
+      "criteria": [
+        {
+          "en": "Verify that minimum qualifications and experience requirements include: a) specified academic background/technical training; b) operational experience compatible with the activities that they are authorized to certify or supervise; and c) to be at least as qualified as the personnel to be inspected or supervised.",
+          "tr": "Minimum nitelik ve deneyim gerekliliklerinin şunları içerdiğini doğrulayın: a) belirlenmiş akademik geçmiş/teknik eğitim; b) sertifikalandırmaya veya denetlemeye yetkili oldukları faaliyetlerle uyumlu operasyonel deneyim; ve c) denetlenecek veya gözetlenecek personel kadar en azından nitelikli olmak."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.112",
+      "ce": "CE-4",
+      "site_type": "On-Site",
+      "ppq": "",
+      "question_en": "Does the Licensing Authority ensure that all technical personnel meet the established minimum qualification and experience requirements?",
+      "question_tr": "Lisanslandırma Otoritesi, tüm teknik personelin belirlenen minimum nitelik ve deneyim gerekliliklerini karşılamasını sağlıyor mu?",
+      "criteria": [
+        {
+          "en": "1) Review qualification files of technical personnel.",
+          "tr": "1) Teknik personelin nitelik dosyalarını inceleyin."
+        },
+        {
+          "en": "2) Check credentials of recently recruited staff.",
+          "tr": "2) Yeni işe alınan personelin belgelerini kontrol edin."
+        },
+        {
+          "en": "3) Sample files to confirm that personnel meet the requirements.",
+          "tr": "3) Personelin gereklilikleri karşıladığını teyit etmek için dosyaları örnekleyin."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.113",
+      "ce": "CE-4",
+      "site_type": "Off-Site",
+      "ppq": "",
+      "question_en": "Has the Licensing Authority established a formal training programme for its technical personnel?",
+      "question_tr": "Lisanslandırma Otoritesi, teknik personeli için resmi bir eğitim programı oluşturmuş mudur?",
+      "criteria": [
+        {
+          "en": "Verify that each training programme details: a) initial training; b) on-the-job training (OJT); c) recurrent training; d) specialized training requirements; and e) minimum duration for each type of training.",
+          "tr": "Her bir eğitim programının şunları detaylandırdığını doğrulayın: a) temel eğitim; b) iş başı eğitimi (OJT); c) yenileme eğitimi; d) uzmanlık eğitimi gereklilikleri; ve e) her bir eğitim türü için minimum süre."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.114",
+      "ce": "CE-3",
+      "site_type": "On-Site",
+      "ppq": "",
+      "question_en": "Have personnel licensing staff been issued credentials to facilitate their access to aircraft, aviation facilities and documentation for the purpose of inspections and enforcement?",
+      "question_tr": "Personel lisanslandırma personeline, denetim ve yaptırım amacıyla hava araçlarına, havacılık tesislerine ve belgelere erişimlerini kolaylaştıracak kimlik belgeleri verilmiş midir?",
+      "criteria": [
+        {
+          "en": "Review credentials to ensure that they include the following: a) reference to empowering legislation; b) methods established to control currency of credentials; and c) inspector’s photo.",
+          "tr": "Kimlik belgelerinin şu hususları içerdiğinden emin olmak için inceleyin: a) yetkilendirme mevzuatına atıf; b) kimlik belgelerinin geçerliliğini kontrol etmek için oluşturulan yöntemler; ve c) denetçinin fotoğrafı."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.115",
+      "ce": "CE-4",
+      "site_type": "On-Site",
+      "ppq": "",
+      "question_en": "Does the Licensing Authority establish and implement a periodic training plan detailing and prioritizing the type of training that will be provided to its technical personnel during the established period?",
+      "question_tr": "Lisanslandırma Otoritesi, belirlenen dönem boyunca teknik personeline sağlanacak eğitim türlerini detaylandıran ve önceliklendiren periyodik bir eğitim planı oluşturuyor ve uyguluyor mu?",
+      "criteria": [
+        {
+          "en": "1) Review most recent training plan for details of training type, priorities, and specified timeframe.",
+          "tr": "1) Eğitim türü, öncelikler ve belirlenen zaman çerçevesinin ayrıntıları için en son eğitim planını inceleyin."
+        },
+        {
+          "en": "2) Verify that the training plan outlines the timetable for implementation for each staff member.",
+          "tr": "2) Eğitim planının her bir personel için uygulama takvimini ana hatlarıyla belirttiğini doğrulayın."
+        },
+        {
+          "en": "3) Check training files for course certificates.",
+          "tr": "3) Kurs sertifikaları için eğitim dosyalarını kontrol edin."
+        },
+        {
+          "en": "4) Verify completed training (initial, recurrent, specialized, OJT) is sufficient to maintain required competence.",
+          "tr": "4) Tamamlanan eğitimin (temel, yenileme, uzmanlık, OJT) gerekli yetkinliği sürdürmek için yeterli olduğunu doğrulayın."
+        },
+        {
+          "en": "5) Verify there is a requirement for OJT, and that it is provided by an experienced, senior inspector.",
+          "tr": "5) OJT için bir gereklilik olduğunu ve bunun deneyimli, kıdemli bir denetçi tarafından sağlandığını doğrulayın."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.119",
+      "ce": "CE-4",
+      "site_type": "On-Site",
+      "ppq": "",
+      "question_en": "Does the Licensing Authority have a system for maintaining the training records of its technical personnel?",
+      "question_tr": "Lisanslandırma Otoritesinin, teknik personeline ait eğitim kayıtlarının tutulması için bir sistemi var mıdır?",
+      "criteria": [
+        {
+          "en": "1) Review requirements/instructions for the establishment and maintenance of training records.",
+          "tr": "1) Eğitim kayıtlarının oluşturulması ve sürdürülmesine yönelik gereklilikleri/talimatları inceleyin."
+        },
+        {
+          "en": "2) Review the system in place.",
+          "tr": "2) Yürürlükteki sistemi inceleyin."
+        },
+        {
+          "en": "3) Sample training records.",
+          "tr": "3) Eğitim kayıtlarını örnekleyin."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.153",
+      "ce": "CE-5",
+      "site_type": "On-Site",
+      "ppq": "",
+      "question_en": "Are ICAO documents and other technical publications readily available to the personnel licensing office staff?",
+      "question_tr": "İlgili ICAO dokümanları ve diğer teknik yayınlar, personel lisanslandırma ofisi personelinin erişimine kolayca sunulmuş mudur?",
+      "criteria": [
+        {
+          "en": "Verify the availability of up-to-date copies of Annex 1 and ICAO guidance material (i.e. Doc 9379, Doc 9841, Doc 9625, etc.). Check for field offices as well as Headquarters.",
+          "tr": "Ek 1 (Annex 1) ve ICAO rehber materyallerinin (yani Doc 9379, Doc 9841, Doc 9625 vb.) güncel kopyalarının mevcut olduğunu doğrulayın. Merkez Teşkilatının yanı sıra taşra teşkilatlarını da kontrol edin."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.155",
+      "ce": "CE-5",
+      "site_type": "On-Site",
+      "ppq": "PPQ",
+      "question_en": "Are technical personnel provided with comprehensive procedures and checklists to assist them in carrying out their functions and responsibilities effectively?",
+      "question_tr": "Teknik personele, fonksiyonlarını ve sorumluluklarını etkili bir şekilde yerine getirmelerini sağlamak üzere kapsamlı prosedürler ve kontrol listeleri sağlanmış mıdır?",
+      "criteria": [
+        {
+          "en": "Verify that instructions and guidance cover: a) PEL office organization; b) PEL personnel’s duties, credentials and authority; c) processing application forms; d) validation of foreign licences; e) approval and surveillance of training organizations; f) qualification and approval of flight simulation training devices; g) language proficiency system; h) medical assessment system; i) quality assurance; and j) follow-up on discrepancy and enforcement action. Verify that there is a mechanism to approve the procedures and to ensure their currency.",
+          "tr": "Talimatların ve rehberliğin şu hususları kapsadığını doğrulayın: a) PEL ofis organizasyonu; b) PEL personelinin görevleri, kimlik belgeleri ve yetkileri; c) başvuru formlarının işleme alınması; d) yabancı lisansların geçerli kılınması; e) eğitim kuruluşlarının onayı ve gözetimi; f) sentetik uçuş eğitim cihazlarının yeterlilik ve onayı; g) dil yeterliliği sistemi; h) sağlık değerlendirme sistemi; i) kalite güvencesi; ve j) uygunsuzlukların takibi ve yaptırım eylemi. Prosedürleri onaylamak ve güncelliğini sağlamak için bir mekanizma olduğunu doğrulayın."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.201",
+      "ce": "CE-5",
+      "site_type": "On-Site",
+      "ppq": "",
+      "question_en": "Has the Licensing Authority established methods to inform applicants of the requirements to be met for the various licences and ratings and the documents to be submitted for the application process?",
+      "question_tr": "Lisanslandırma Otoritesi, başvuru sahiplerini çeşitli lisans ve yetkiler için karşılanması gereken gereklilikler ve başvuru sürecinde sunulacak belgeler hakkında bilgilendirecek yöntemler oluşturmuş mudur?",
+      "criteria": [
+        {
+          "en": "Verify that standard information (e.g. application forms, brochures, website) is accessible to the public and includes requirements for: a) issuing new licences/ratings; b) renewal/re-issue of licences/ratings; and c) validation of foreign licences.",
+          "tr": "Standart bilgilerin (örneğin başvuru formları, broşürler, web sitesi) halkın erişimine açık olduğunu ve şu hususlara yönelik gereklilikleri içerdiğini doğrulayın: a) yeni lisansların/yetkilerin verilmesi; b) lisansların/yetkilerin yenilenmesi/yeniden düzenlenmesi; ve c) yabancı lisansların geçerli kılınması."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.203",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "PPQ",
+      "question_en": "Is there a formal application form that an applicant must complete and submit in order to obtain or renew a license or rating or to take an examination?",
+      "question_tr": "Bir başvuru sahibinin lisans veya yetki almak/yenilemek ya da bir sınava girmek için doldurması ve sunması gereken resmi bir başvuru formu mevcut mudur?",
+      "criteria": [
+        {
+          "en": "Verify that application forms contain at least the following information: a) applicant's identity; b) type of license/rating requested; c) evidence of meeting prerequisite requirements (e.g. age, experience, training, medical fitness); and d) date and signature of the applicant.",
+          "tr": "Başvuru formlarının en azından şu bilgileri içerdiğini doğrulayın: a) başvuru sahibinin kimliği; b) talep edilen lisans/yetki türü; c) ön koşul gerekliliklerinin karşılandığına dair kanıtlar (örneğin yaş, deneyim, eğitim, sağlık durumu); ve d) başvuru sahibinin tarihi ve imzası."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.207",
+      "ce": "CE-5",
+      "site_type": "On-Site",
+      "ppq": "",
+      "question_en": "Has the State established a procedure for appealing the Licensing Authority’s decisions?",
+      "question_tr": "Devlet, Lisanslandırma Otoritesinin kararlarına karşı itirazda bulunulabilmesi için bir prosedür oluşturmuş mudur?",
+      "criteria": [
+        {
+          "en": "Review documented procedure used to inform the applicant of the appeal process for licences, ratings, examinations and medical decisions.",
+          "tr": "Lisanslar, yetkiler, sınavlar ve sağlık kararlarına ilişkin itiraz süreci hakkında başvuru sahibini bilgilendirmek için kullanılan dokümante edilmiş prosedürü inceleyin."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.211",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "",
+      "question_en": "Does the Licensing Authority implement a process for the systematic review and evaluation of submitted application forms for the issuance of licences and ratings and for examinations?",
+      "question_tr": "Lisanslandırma Otoritesi; lisans, yetki verilmesi ve sınavlar için sunulan başvuru formlarının sistematik olarak gözden geçirilmesi ve değerlendirilmesine yönelik bir süreç uyguluyor mu?",
+      "criteria": [
+        {
+          "en": "1) Verify that the certification process and procedures include a systematic check of all applicant files before any license or rating is issued.",
+          "tr": "1) Sertifikalandırma süreci ve prosedürlerinin, herhangi bir lisans veya yetki verilmeden önce tüm başvuru dosyalarının sistematik bir kontrolünü içerdiğini doğrulayın."
+        },
+        {
+          "en": "2) Verify that personnel licensing staff have guidance material, manuals, checklists, etc., to use in assessing application forms.",
+          "tr": "2) Personel lisanslandırma personelinin başvuru formlarını değerlendirmede kullanacağı rehber materyallere, kılavuzlara, kontrol listelerine vb. sahip olduğunu doğrulayın."
+        },
+        {
+          "en": "3) Sample files to confirm that personnel evaluate compliance with requirements before licensing actions.",
+          "tr": "3) Personelin lisanslandırma eylemlerinden önce gerekliliklere uyumu değerlendirdiğini teyit etmek için dosyaları örnekleyin."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.215",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "",
+      "question_en": "Does the Licensing Authority ensure that licences and ratings are only issued to applicants who meet all the established requirements?",
+      "question_tr": "Lisanslandırma Otoritesi, lisans ve yetkilerin yalnızca belirlenen tüm gereklilikleri karşılayan başvuru sahiplerine verilmesini sağlıyor mu?",
+      "criteria": [
+        {
+          "en": "1) Review recently issued licences/ratings to ensure compliance with Annex 1 criteria (e.g. pilot, maintenance engineer, air traffic controller).",
+          "tr": "1) Ek 1 kriterlerine uyumu sağlamak için yakın zamanda verilmiş lisansları/yetkileri (örneğin pilot, bakım teknisyeni, hava trafik kontrolörü) gözden geçirin."
+        },
+        {
+          "en": "2) Verify that the licensing process ensures that licences contain all the mandatory items as specified in Annex 1.",
+          "tr": "2) Lisanslandırma sürecinin, lisansların Ek 1'de belirtilen tüm zorunlu maddeleri içermesini sağladığını doğrulayın."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.221",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "PPQ",
+      "question_en": "Has the Licensing Authority established and implemented a system to ensure the integrity and security of its examinations?",
+      "question_tr": "Lisanslandırma Otoritesi, sınavlarının bütünlüğünü ve güvenliğini sağlayacak bir sistem oluşturmuş ve uygulamaya koymuş mudur?",
+      "criteria": [
+        {
+          "en": "1) Review the procedures and mechanisms established to ensure the confidentiality, security and integrity of examination questions, papers, and computer systems.",
+          "tr": "1) Sınav sorularının, evraklarının ve bilgisayar sistemlerinin gizliliğini, güvenliğini ve bütünlüğünü sağlamak için oluşturulan prosedürleri ve mekanizmaları inceleyin."
+        },
+        {
+          "en": "2) Verify that strict controls are applied to prevent cheating and unauthorized access to examination material.",
+          "tr": "2) Kopya çekilmesini ve sınav materyallerine yetkisiz erişimi önlemek için sıkı kontrollerin uygulandığını doğrulayın."
+        },
+        {
+          "en": "3) Review implementation by visiting the examination center or reviewing examination session reports.",
+          "tr": "3) Sınav merkezini ziyaret ederek veya sınav oturumu raporlarını inceleyerek uygulamayı gözden geçirin."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.225",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "",
+      "question_en": "Does the Licensing Authority implement a process for the development, validation, and maintenance of its examination questions database?",
+      "question_tr": "Lisanslandırma Otoritesi, sınav soruları veri tabanının geliştirilmesi, doğrulanması ve sürdürülmesine yönelik bir süreç uyguluyor mu?",
+      "criteria": [
+        {
+          "en": "1) Review the process for generating, validating and updating examination questions to reflect the latest technical standards and regulatory requirements.",
+          "tr": "1) En son teknik standartları ve düzenleyici gereklilikleri yansıtacak şekilde sınav sorularının üretilmesi, doğrulanması ve güncellenmesi sürecini inceleyin."
+        },
+        {
+          "en": "2) Verify that qualified subject matter experts are involved in the process.",
+          "tr": "2) Nitelikli konu uzmanlarının sürece dâhil edildiğini doğrulayın."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.231",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "PPQ",
+      "question_en": "Has the Licensing Authority established and implemented procedures for the validation of personnel licences issued by other Contracting States?",
+      "question_tr": "Lisanslandırma Otoritesi, diğer Taraf Devletler tarafından verilen personel lisanslarının geçerli kılınması (validasyon) için prosedürler oluşturmuş ve uygulamaya koymuş mudur?",
+      "criteria": [
+        {
+          "en": "1) Review the procedures established for the validation of foreign pilot, maintenance engineer, or air traffic controller licences.",
+          "tr": "1) Yabancı pilot, bakım teknisyeni veya hava trafik kontrolörü lisanslarının geçerli kılınması için oluşturulan prosedürleri inceleyin."
+        },
+        {
+          "en": "2) Verify that the procedures require confirmation of validity from the issuing State before a validation certificate is granted.",
+          "tr": "2) Prosedürlerin, bir validasyon belgesi verilmeden önce düzenleyen Devletten geçerlilik teyidi alınmasını gerektirdiğini doğrulayın."
+        },
+        {
+          "en": "3) Sample validation files.",
+          "tr": "3) Validasyon dosyalarını örnekleyin."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.235",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "",
+      "question_en": "Has the Licensing Authority established and implemented procedures for the conversion of pilot licences issued by other Contracting States?",
+      "question_tr": "Lisanslandırma Otoritesi, diğer Taraf Devletler tarafından verilen pilot lisanslarının dönüştürülmesi (çevrilmesi) için prosedürler oluşturmuş ve uygulamaya koymuş mudur?",
+      "criteria": [
+        {
+          "en": "1) Review the conversion requirements (e.g. air law examinations, medical assessment, flight checks) established by the State.",
+          "tr": "1) Devlet tarafından belirlenen dönüştürme gerekliliklerini (örneğin hava hukuku sınavları, sağlık değerlendirmesi, uçuş kontrolleri) inceleyin."
+        },
+        {
+          "en": "2) Verify that the conversion process complies with Annex 1 criteria.",
+          "tr": "2) Dönüştürme sürecinin Ek 1 kriterlerine uygun olduğunu doğrulayın."
+        },
+        {
+          "en": "3) Sample conversion files.",
+          "tr": "3) Dönüştürme dosyalarını örnekleyin."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.241",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "",
+      "question_en": "Does the Licensing Authority ensure that the language proficiency requirements are effectively implemented for aeroplane, helicopter, airship, and powered-lift pilots, as well as air traffic controllers?",
+      "question_tr": "Lisanslandırma Otoritesi; uçak, helikopter, zeplin ve powered-lift pilotlarının yanı sıra hava trafik kontrolörleri için de dil yeterliliği gerekliliklerinin etkin bir şekilde uygulanmasını sağlıyor mu?",
+      "criteria": [
+        {
+          "en": "1) Verify that the State has established a formal language proficiency assessment system.",
+          "tr": "1) Devletin resmi bir dil yeterliliği değerlendirme sistemi oluşturduğunu doğrulayın."
+        },
+        {
+          "en": "2) Review the operational procedures used to evaluate the language proficiency (Operational Level 4, Extended Level 5, or Expert Level 6).",
+          "tr": "2) Dil yeterliliğini (Operasyonel Seviye 4, İleri Seviye 5 veya Uzman Seviye 6) değerlendirmek için kullanılan operasyonel prosedürleri inceleyin."
+        },
+        {
+          "en": "3) Verify that language proficiency endorsements are correctly printed on the licences.",
+          "tr": "3) Dil yeterliliği onaylarının lisanslara doğru şekilde basıldığını doğrulayın."
+        },
+        {
+          "en": "4) Sample training/testing records.",
+          "tr": "4) Eğitim/test kayıtlarını örnekleyin."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.245",
+      "ce": "CE-7",
+      "site_type": "On-Site",
+      "ppq": "",
+      "question_en": "Does the Licensing Authority implement a surveillance system over approved language proficiency testing organizations?",
+      "question_tr": "Lisanslandırma Otoritesi, onaylanmış dil yeterliliği test kuruluşları üzerinde bir gözetim sistemi uyguluyor mu?",
+      "criteria": [
+        {
+          "en": "1) Review the surveillance policy and programme to ensure periodic monitoring of approved language testing organizations.",
+          "tr": "1) Onaylanmış dil testi kuruluşlarının periyodik olarak izlenmesini sağlamak için gözetim politikasını ve programını inceleyin."
+        },
+        {
+          "en": "2) Verify that checklists are used and that deficiencies are addressed in a timely manner.",
+          "tr": "2) Kontrol listelerinin kullanıldığını ve eksikliklerin zamanında giderildiğini doğrulayın."
+        },
+        {
+          "en": "3) Sample completed surveillance records.",
+          "tr": "3) Tamamlanmış gözetim kayıtlarını örnekleyin."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.301",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "PPQ",
+      "question_en": "Has the State implemented a process for the approval of training organizations (such as approved training organizations [ATOs]) involved in personnel licensing training?",
+      "question_tr": "Devlet, personel lisanslandırma eğitimiyle uğraşan eğitim kuruluşlarının (onaylı eğitim kuruluşları [ATO'lar] gibi) onaylanmasına yönelik bir süreç uygulamış mıdır?",
+      "criteria": [
+        {
+          "en": "1) Review the approval process and procedures established for training organizations.",
+          "tr": "1) Eğitim kuruluşları için oluşturulan onay sürecini ve prosedürlerini inceleyin."
+        },
+        {
+          "en": "2) Verify that the process requires a comprehensive assessment of the organization’s training manual, facilities, equipment, instructors, and safety management system before an approval is granted.",
+          "tr": "2) Bir onay verilmeden önce sürecin kuruluşun eğitim el kitabının, tesislerinin, ekipmanının, eğitmenlerinin ve emniyet yönetim sisteminin kapsamlı bir değerlendirmesini gerektirdiğini doğrulayın."
+        },
+        {
+          "en": "3) Sample approval case files.",
+          "tr": "3) Onay vaka dosyalarını örnekleyin."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.305",
+      "ce": "CE-7",
+      "site_type": "On-Site",
+      "ppq": "PPQ",
+      "question_en": "Has the Licensing Authority established and implemented a continuous surveillance programme for approved training organizations?",
+      "question_tr": "Lisanslandırma Otoritesi, onaylanmış eğitim kuruluşları için sürekli bir gözetim programı oluşturmuş ve uygulamaya koymuş mudur?",
+      "criteria": [
+        {
+          "en": "1) Review the surveillance schedule, plan and checklists used for auditing ATOs.",
+          "tr": "1) ATO'ları denetlemek için kullanılan gözetim takvimini, planını ve kontrol listelerini inceleyin."
+        },
+        {
+          "en": "2) Verify that surveillance activities cover all approved courses, facilities, instructor currency, and training records.",
+          "tr": "2) Gözetim faaliyetlerinin onaylanmış tüm kursları, tesisleri, eğitmen güncelliğini ve eğitim kayıtlarını kapsadığını doğrulayın."
+        },
+        {
+          "en": "3) Sample completed surveillance reports and track the resolution of identified deficiencies.",
+          "tr": "3) Tamamlanmış gözetim raporlarını örnekleyin ve tespit edilen eksikliklerin giderilmesini takip edin."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    }
+  ]
+},
+{
+      "no": "3.307",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "PPQ",
+      "question_en": "Does the Licensing Authority contact the foreign licence issuing State systematically to ensure the validity of the licence to be converted or validated?",
+      "question_tr": "Lisanslandırma Otoritesi, dönüştürülecek veya geçerli kılınacak lisansın geçerliliğini sağlamak üzere yabancı lisansı düzenleyen Devlet ile sistematik olarak temas kurmakta mıdır?",
+      "criteria": [
+        {
+          "en": "1) Review implementation of process and procedures for confirmation of the validity of the foreign licence.",
+          "tr": "1) Yabancı lisansın geçerliliğinin teyidine yönelik süreç ve prosedürlerin uygulamasını inceleyin."
+        },
+        {
+          "en": "2) Review evidence to confirm effective implementation for all types of licences.",
+          "tr": "2) Tüm lisans türleri için etkin uygulamayı teyit eden kanıtları inceleyin."
+        },
+        {
+          "en": "Note to the auditor: Contacting the issuing State is the best methodology, but other processes and procedures may be available.",
+          "tr": "Denetçiye not: Lisansı düzenleyen Devlet ile temas kurulması en iyi yöntemdir; ancak başka süreç ve prosedürler de mevcut olabilir."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.309",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "",
+      "question_en": "Does the State have a system to ensure that the original licence submitted for a licence validation or conversion is in full compliance with Annex 1?",
+      "question_tr": "Devlet, lisans geçerli kılma veya dönüştürme amacıyla sunulan orijinal lisansın Ek 1 ile tam uyumlu olmasını sağlayacak bir sisteme sahip midir?",
+      "criteria": [
+        {
+          "en": "1) Review implementation of process and procedures for confirmation of the licence’s conformity with requirements of Annex 1.",
+          "tr": "1) Lisansın Ek 1 gerekliliklerine uygunluğunun teyidine yönelik süreç ve prosedürlerin uygulamasını inceleyin."
+        },
+        {
+          "en": "2) Review evidence to confirm effective implementation for all types of licences.",
+          "tr": "2) Tüm lisans türleri için etkin uygulamayı teyit eden kanıtları inceleyin."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.310",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "",
+      "question_en": "Has the State implemented a systematic process to answer queries from other States in order to confirm the validity of the licences issued?",
+      "question_tr": "Devlet, düzenlenen lisansların geçerliliğini teyit etmek amacıyla diğer Devletlerden gelen sorguları yanıtlamak üzere sistematik bir süreç uygulamış mıdır?",
+      "criteria": [
+        {
+          "en": "1) Review process and procedures established and implemented for answering queries from other States.",
+          "tr": "1) Diğer Devletlerden gelen sorguların yanıtlanması için oluşturulan ve uygulanan süreç ve prosedürleri inceleyin."
+        },
+        {
+          "en": "2) Review evidence to confirm effective implementation for all types of licences.",
+          "tr": "2) Tüm lisans türleri için etkin uygulamayı teyit eden kanıtları inceleyin."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.313",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "",
+      "question_en": "Have procedures been implemented for the validation/conversion of foreign licences and ratings of aircraft maintenance technicians/engineers/mechanics?",
+      "question_tr": "Hava aracı bakım teknisyenleri/mühendisleri/mekaniklerinin yabancı lisans ve yetkilerinin geçerli kılınması/dönüştürülmesine ilişkin prosedürler uygulanmış mıdır?",
+      "criteria": [
+        {
+          "en": "1) Applicable only if such validation/conversion is performed in the State.",
+          "tr": "1) Yalnızca Devlette bu tür geçerli kılma/dönüştürme işlemi yapılıyorsa uygulanır."
+        },
+        {
+          "en": "2) Review conversion/validation requirements established by the State.",
+          "tr": "2) Devlet tarafından oluşturulan dönüştürme/validasyon gerekliliklerini inceleyin."
+        },
+        {
+          "en": "3) Sample validation/conversion files.",
+          "tr": "3) Validasyon/dönüştürme dosyalarını örnekleyin."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.315",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "",
+      "question_en": "Are procedures implemented to ensure that the licensing requirements for air traffic controllers comply with the relevant provisions of Annex 1?",
+      "question_tr": "Hava trafik kontrolörlerine yönelik lisanslandırma gerekliliklerinin Ek 1'in ilgili hükümleriyle uyumlu olmasını sağlayacak prosedürler uygulanmakta mıdır?",
+      "criteria": [
+        {
+          "en": "1) Review operations manual and licensing procedures for air traffic controllers.",
+          "tr": "1) Hava trafik kontrolörlerine yönelik işletme el kitabını ve lisanslandırma prosedürlerini inceleyin."
+        },
+        {
+          "en": "2) Verify that prerequisites, training requirements, examinations and ratings are addressed.",
+          "tr": "2) Ön koşulların, eğitim gerekliliklerinin, sınavların ve yetkilerin ele alındığını doğrulayın."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.317",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "",
+      "question_en": "Have procedures been implemented for the validation/conversion of foreign air traffic controller licences?",
+      "question_tr": "Yabancı hava trafik kontrolör lisanslarının geçerli kılınması/dönüştürülmesine ilişkin prosedürler uygulanmış mıdır?",
+      "criteria": [
+        {
+          "en": "1) Applicable only if such validation/conversion is performed in the State.",
+          "tr": "1) Yalnızca Devlette bu tür geçerli kılma/dönüştürme işlemi yapılıyorsa uygulanır."
+        },
+        {
+          "en": "2) Review conversion/validation requirements established by the State.",
+          "tr": "2) Devlet tarafından oluşturulan dönüştürme/validasyon gerekliliklerini inceleyin."
+        },
+        {
+          "en": "3) Sample validation/conversion files.",
+          "tr": "3) Validasyon/dönüştürme dosyalarını örnekleyin."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.319",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "PPQ",
+      "question_en": "Has the State established a process for the evaluation and acceptance of the safety performance indicators (SPIs) and targets of an approved training organization (ATO) Safety Management System (SMS)?",
+      "question_tr": "Devlet, onaylı bir eğitim kuruluşunun (ATO) Emniyet Yönetim Sistemi (SMS) emniyet performans göstergelerinin (SPI'lar) ve hedeflerinin değerlendirilmesi ve kabul edilmesine yönelik bir süreç oluşturmuş mudur?",
+      "criteria": [
+        {
+          "en": "1) Review the State’s mechanism for accepting individual ATOs’ SPIs and targets to ensure that they are specific, measurable, achievable, relevant and time-bound.",
+          "tr": "1) Münferit ATO'ların SPI'larının ve hedeflerinin, spesifik, ölçülebilir, ulaşılabilir, ilgili ve zamana bağlı olmasını güvence altına almak için Devletin kabul mekanizmasını inceleyin."
+        },
+        {
+          "en": "2) Verify that the State ensures that the ATOs' proposed SPIs are reviewed and accepted as part of the SMS acceptance.",
+          "tr": "2) Devletin, ATO'ların önerdiği SPI'ların SMS kabulünün bir parçası olarak gözden geçirilmesini ve kabul edilmesini sağladığını doğrulayın."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.321",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "",
+      "question_en": "Does the Licensing Authority ensure that the approved training organizations (ATOs) monitor their safety performance?",
+      "question_tr": "Lisanslandırma Otoritesi, onaylı eğitim kuruluşlarının (ATO'lar) emniyet performanslarını izlemelerini sağlıyor mu?",
+      "criteria": [
+        {
+          "en": "Verify that the State has established and implemented a mechanism to ensure ATOs periodically review their safety performance, validate the effectiveness of safety risks controls, and manage safety risks that may arise from changes.",
+          "tr": "Devletin, ATO'ların emniyet performanslarını periyodik olarak gözden geçirmelerini, emniyet risk kontrollerinin etkinliğini doğrulamasını ve değişikliklerden kaynaklanabilecek emniyet risklerini yönetmesini sağlayacak bir mekanizma oluşturduğunu ve uyguladığını doğrulayın."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.401",
+      "ce": "CE-2",
+      "site_type": "Off-Site",
+      "ppq": "",
+      "question_en": "Has the State promulgated regulations for the medical assessment of license applicants/holders in compliance with Annex 1?",
+      "question_tr": "Devlet, lisans başvuru sahiplerinin/sahiplerinin sağlık değerlendirmesine yönelik Ek 1 ile uyumlu düzenlemeler yayımlamış mıdır?",
+      "criteria": [
+        {
+          "en": "1) Review national medical regulations for compliance with Annex 1 Chapter 6 requirements.",
+          "tr": "1) Ulusal sağlık düzenlemelerini Ek 1 Bölüm 6 gerekliliklerine uygunluk bakımından inceleyin."
+        },
+        {
+          "en": "2) Verify that medical standards for Class 1, Class 2, and Class 3 medical assessments are addressed.",
+          "tr": "2) Sınıf 1, Sınıf 2 ve Sınıf 3 sağlık değerlendirmelerine yönelik sağlık standartlarının ele alındığını doğrulayın."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.403",
+      "ce": "CE-3",
+            "site_type": "Off-Site",
+      "ppq": "",
+      "question_en": "Has the State appointed an aviation medical assessor (or assessors) to evaluate medical reports and oversee the medical assessment system?",
+      "question_tr": "Devlet, sağlık raporlarını değerlendirmek ve sağlık değerlendirme sistemini denetlemek üzere bir havacılık sağlık değerlendiricisi (veya değerlendiricileri) görevlendirmiş midir?",
+      "criteria": [
+        {
+          "en": "1) Verify the formal appointment and terms of reference of the medical assessor(s).",
+          "tr": "1) Sağlık değerlendiricisinin/değerlendiricilerinin resmi görevlendirmesini ve görev tanımlarını doğrulayın."
+        },
+        {
+          "en": "2) Verify that the assessor is a qualified physician with advanced training in aviation medicine.",
+          "tr": "2) Değerlendiricinin havacılık tıbbı alanında ileri düzey eğitime sahip, yetkin bir hekim olduğunu doğrulayın."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.405",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "PPQ",
+      "question_en": "Has the Licensing Authority implemented a process for the authorization/designation of aviation medical examiners (AMEs)?",
+      "question_tr": "Lisanslandırma Otoritesi, havacılık sağlık muayenesi yapan tabiplerin (AME'ler) yetkilendirilmesi/görevlendirilmesine yönelik bir süreç uygulamış mıdır?",
+      "criteria": [
+        {
+          "en": "1) Review the implementation of process and procedures for the initial selection and training requirements of AMEs.",
+          "tr": "1) AME'lerin ilk seçimi ve eğitim gerekliliklerine yönelik süreç ve prosedürlerin uygulamasını inceleyin."
+        },
+        {
+          "en": "2) Verify that conditions for authorization are clearly documented.",
+          "tr": "2) Yetkilendirme koşullarının açıkça dokümante edildiğini doğrulayın."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.409",
+      "ce": "CE-8",
+      "site_type": "On-Site",
+      "ppq": "",
+      "question_en": "Does the Licensing Authority implement procedures for the re-authorization, suspension, or revocation of AME designations?",
+      "question_tr": "Lisanslandırma Otoritesi, AME görevlendirmelerinin yeniden yetkilendirilmesi, askıya alınması veya iptal edilmesine yönelik prosedürleri uygulamakta mıdır?",
+      "criteria": [
+        {
+          "en": "1) Review criteria for the renewal of AME privileges, including refresher training and minimum number of examinations completed.",
+          "tr": "1) Tazeleme eğitimi ve tamamlanan minimum muayene sayısı dâhil olmak üzere AME imtiyazlarının yenilenmesine yönelik kriterleri inceleyin."
+        },
+        {
+          "en": "2) Sample re-authorization files.",
+          "tr": "2) Yeniden yetkilendirme dosyalarını örnekleyin."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.411",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "",
+      "question_en": "Does the medical assessor evaluate medical reports submitted by AMEs and resolve complex medical border-line cases?",
+      "question_tr": "Sağlık değerlendiricisi, AME'ler tarafından sunulan sağlık raporlarını değerlendirmekte ve karmaşık, sınırda olan sağlık vakalarını çözüme kavuşturmakta mıdır?",
+      "criteria": [
+        {
+          "en": "1) Review the mechanism used by the medical assessor to evaluate sample medical examination files.",
+          "tr": "1) Örnek sağlık muayene dosyalarını değerlendirmek üzere sağlık değerlendiricisi tarafından kullanılan mekanizmayı inceleyin."
+        },
+        {
+          "en": "2) Verify that accredited medical conclusion procedures are used for border-line cases.",
+          "tr": "2) Sınırda olan vakalar için akredite edilmiş sağlık kararı prosedürlerinin kullanıldığını doğrulayın."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.415",
+      "ce": "CE-7",
+      "site_type": "On-Site",
+      "ppq": "PPQ",
+      "question_en": "Has the Licensing Authority established and implemented a continuous surveillance programme for authorized AMEs?",
+      "question_tr": "Lisanslandırma Otoritesi, yetkilendirilmiş AME'ler için sürekli bir gözetim programı oluşturmuş ve uygulamaya koymuş mudur?",
+      "criteria": [
+        {
+          "en": "1) Review the surveillance schedule, plan, and audit checklists used for monitoring AMEs.",
+          "tr": "1) AME'lerin izlenmesi için kullanılan gözetim takvimini, planını ve denetim kontrol listelerini inceleyin."
+        },
+        {
+          "en": "2) Sample completed surveillance files to confirm that documentation standards and facility requirements are verified.",
+          "tr": "2) Dokümantasyon standartlarının ve tesis gerekliliklerinin doğrulandığını teyit etmek için tamamlanmış gözetim dosyalarını örnekleyin."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.417",
+      "ce": "CE-7",
+      "site_type": "On-Site",
+      "ppq": "",
+      "question_en": "Has the State established and implemented a continuous surveillance programme for aero-medical centres (AeMCs)?",
+      "question_tr": "Devlet, havacılık tıp merkezleri (AeMC'ler) için sürekli bir gözetim programı oluşturmuş ve uygulamaya koymuş mudur?",
+      "criteria": [
+        {
+          "en": "1) Applicable if AeMCs are authorized in the State.",
+          "tr": "1) Devlette AeMC'ler yetkilendirilmişse uygulanır."
+        },
+        {
+          "en": "2) Review the inspection checklist and surveillance logs for approved AeMCs.",
+          "tr": "2) Onaylı AeMC'lere yönelik denetim kontrol listesini ve gözetim kayıtlarını inceleyin."
+        },
+        {
+          "en": "3) Sample completed reports.",
+          "tr": "3) Tamamlanmış raporları örnekleyin."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.419",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "PPQ",
+      "question_en": "Does the Licensing Authority ensure that the medical assessment system provides secure management and confidentiality of all medical records and data?",
+      "question_tr": "Lisanslandırma Otoritesi, sağlık değerlendirme sisteminin tüm sağlık kayıtlarının ve verilerinin güvenli yönetimini ve gizliliğini sağlamasını güvence altına alıyor mu?",
+      "criteria": [
+        {
+          "en": "1) Review procedures and data protection mechanisms for electronic and physical medical databases.",
+          "tr": "1) Elektronik ve fiziksel sağlık veri tabanlarına yönelik prosedürleri ve veri koruma mekanizmalarını inceleyin."
+        },
+        {
+          "en": "2) Verify that access controls are restricted to authorized medical personnel only.",
+          "tr": "2) Erişim kontrollerinin yalnızca yetkili sağlık personeli ile sınırlandırıldığını doğrulayın."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.421",
+      "ce": "CE-5",
+      "site_type": "On-Site",
+      "ppq": "",
+      "question_en": "Does the State provide clear guidance material to AMEs and AeMCs regarding the conduct of medical examinations and the reporting of findings?",
+      "question_tr": "Devlet, AME'lere ve AeMC'lere sağlık muayenelerinin yapılması ve bulguların raporlanmasına ilişkin açık rehber materyal sağlıyor mu?",
+      "criteria": [
+        {
+          "en": "Verify that comprehensive medical manuals or handbooks are distributed and contain up-to-date ICAO guidelines.",
+          "tr": "Kapsamlı sağlık el kitaplarının veya kılavuzlarının dağıtıldığını ve güncel ICAO kılavuz ilkelerini içerdiğini doğrulayın."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.422",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "",
+      "question_en": "Does the Licensing Authority ensure that license holders do not exercise the privileges of their licences if they decrease in medical fitness?",
+      "question_tr": "Lisanslandırma Otoritesi, lisans sahiplerinin sağlık durumlarında bir gerileme olması halinde lisans imtiyazlarını kullanmamalarını güvence altına alıyor mu?",
+      "criteria": [
+        {
+          "en": "1) Review regulations and operating procedures detailing requirements for flight crews or air traffic controllers to report medical deficiencies or changes.",
+          "tr": "1) Uçuş ekiplerinin veya hava trafik kontrolörlerinin sağlık eksikliklerini veya değişikliklerini bildirmelerine yönelik gereklilikleri detaylandıran düzenlemeleri ve işletme prosedürlerini inceleyin."
+        },
+        {
+          "en": "2) Verify implementation mechanisms.",
+          "tr": "2) Uygulama mekanizmalarını doğrulayın."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.423",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "",
+      "question_en": "Has the State established and implemented procedures to manage cases of drug or alcohol misuse among safety-sensitive personnel?",
+      "question_tr": "Devlet, emniyet açısından kritik personel arasında uyuşturucu veya alkolün kötüye kullanımı vakalarını yönetmek üzere prosedürler oluşturmuş ve uygulamaya koymuş mudur?",
+      "criteria": [
+        {
+          "en": "1) Review regulations and testing procedures regarding psychoactive substance screening.",
+          "tr": "1) Psikoaktif madde taramasına yönelik düzenlemeleri ve test prosedürlerini inceleyin."
+        },
+        {
+          "en": "2) Verify that processes for handling positive results are clearly defined.",
+          "tr": "2) Pozitif sonuçların ele alınmasına yönelik süreçlerin açıkça tanımlandığını doğrulayın."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.601",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "PPQ",
+      "question_en": "Has the State implemented a process for the approval of training organizations involved in the training of aircraft maintenance technicians/engineers/mechanics?",
+      "question_tr": "Devlet, hava aracı bakım teknisyenlerinin/mühendislerinin/mekaniklerinin eğitiminde yer alan eğitim kuruluşlarının onaylanmasına yönelik bir süreç uygulamış mıdır?",
+      "criteria": [
+        {
+          "en": "1) Review the approval process and procedures established for maintenance training organizations.",
+          "tr": "1) Bakım eğitim kuruluşları için oluşturulan onay sürecini ve prosedürlerini inceleyin."
+        },
+        {
+          "en": "2) Verify that the process requires an evaluation of the organization’s training manual, facilities, equipment, instructors, and safety management system before approval is granted.",
+          "tr": "2) Onay verilmeden önce sürecin kuruluşun eğitim el kitabının, tesislerinin, ekipmanının, eğitmenlerinin ve emniyet yönetim sisteminin değerlendirilmesini gerektirdiğini doğrulayın."
+        },
+        {
+          "en": "3) Sample approval case files.",
+          "tr": "3) Onay vaka dosyalarını örnekleyin."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.605",
+      "ce": "CE-7",
+      "site_type": "On-Site",
+      "ppq": "",
+      "question_en": "Has the Licensing Authority established and implemented a continuous surveillance programme for approved maintenance training organizations?",
+      "question_tr": "Lisanslandırma Otoritesi, onaylanmış bakım eğitim kuruluşları için sürekli bir gözetim programı oluşturmuş ve uygulamaya koymuş mudur?",
+      "criteria": [
+        {
+          "en": "1) Review the surveillance schedule, plan, and checklists used for auditing maintenance training organizations.",
+          "tr": "1) Bakım eğitim kuruluşlarını denetlemek için kullanılan gözetim takvimini, planını ve kontrol listelerini inceleyin."
+        },
+        {
+          "en": "2) Verify that surveillance activities cover instructor currency, facility standards, and training records.",
+          "tr": "2) Gözetim faaliyetlerinin eğitmen güncelliğini, tesis standartlarını ve eğitim kayıtlarını kapsadığını doğrulayın."
+        },
+        {
+          "en": "3) Sample completed surveillance reports and track the resolution of identified deficiencies.",
+          "tr": "3) Tamamlanan gözetim raporlarını örnekleyin ve tespit edilen eksikliklerin giderilmesini takip edin."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.607",
+      "ce": "CE-4",
+      "site_type": "On-Site",
+      "ppq": "",
+      "question_en": "Does the Licensing Authority ensure that the personnel conducting practical and theoretical examinations in approved maintenance training organizations are qualified?",
+      "question_tr": "Lisanslandırma Otoritesi, onaylanmış bakım eğitim kuruluşlarında pratik ve teorik sınavları yürüten personelin nitelikli olmasını sağlıyor mu?",
+      "criteria": [
+        {
+          "en": "1) Review the qualification and experience requirements established for examiners.",
+          "tr": "1) Sınav yapıcılar için belirlenen nitelik ve deneyim gerekliliklerini inceleyin."
+        },
+        {
+          "en": "2) Verify that records of examiner authorizations are maintained.",
+          "tr": "2) Sınav yapıcı yetkilendirme kayıtlarının tutulduğunu doğrulayın."
+        },
+        {
+          "en": "3) Sample examiner files.",
+          "tr": "3) Sınav yapıcı dosyalarını örnekleyin."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.609",
+      "ce": "CE-8",
+      "site_type": "On-Site",
+      "ppq": "",
+      "question_en": "Has the Licensing Authority implemented enforcement procedures to address non-compliance identified in approved maintenance training organizations?",
+      "question_tr": "Lisanslandırma Otoritesi, onaylanmış bakım eğitim kuruluşlarında tespit edilen uygunsuzlukları gidermek üzere yaptırım prosedürleri uygulamış mıdır?",
+      "criteria": [
+        {
+          "en": "1) Review the enforcement policy and documented actions taken in case of non-compliance.",
+          "tr": "1) Yaptırım politikasını ve uygunsuzluk durumunda gerçekleştirilen dokümante edilmiş eylemleri inceleyin."
+        },
+        {
+          "en": "2) Sample enforcement records to verify that appropriate actions (e.g. warnings, suspensions, or revocations) are executed.",
+          "tr": "2) Uygun eylemlerin (örneğin uyarılar, askıya almalar veya iptaller) yürütüldüğünü doğrulamak için yaptırım kayıtlarını örnekleyin."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.655",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "PPQ",
+      "question_en": "Has the State implemented a process for the approval of training organizations involved in the training of air traffic controllers?",
+      "question_tr": "Devlet, hava trafik kontrolörlerinin eğitiminde yer alan eğitim kuruluşlarının onaylanmasına yönelik bir süreç uygulamış mıdır?",
+      "criteria": [
+        {
+          "en": "1) Review the approval process and procedures established for air traffic controller training organizations.",
+          "tr": "1) Hava trafik kontrolörü eğitim kuruluşları için oluşturulan onay sürecini ve prosedürlerini inceleyin."
+        },
+        {
+          "en": "2) Verify that the process requires an evaluation of the organization’s training manual, facilities, equipment, simulators, and instructors before approval is granted.",
+          "tr": "2) Onay verilmeden önce sürecin kuruluşun eğitim el kitabının, tesislerinin, ekipmanının, simülatörlerinin ve eğitmenlerinin değerlendirilmesini gerektirdiğini doğrulayın."
+        },
+        {
+          "en": "3) Sample approval case files.",
+          "tr": "3) Onay vaka dosyalarını örnekleyin."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.657",
+      "ce": "CE-7",
+      "site_type": "On-Site",
+      "ppq": "PPQ",
+      "question_en": "Has the Licensing Authority established and implemented a continuous surveillance programme for approved air traffic controller training organizations?",
+      "question_tr": "Lisanslandırma Otoritesi, onaylanmış hava trafik kontrolörü eğitim kuruluşları için sürekli bir gözetim programı oluşturmuş ve uygulamaya koymuş mudur?",
+      "criteria": [
+        {
+          "en": "1) Review the surveillance schedule, plan, and checklists used for auditing ATCO training organizations.",
+          "tr": "1) ATCO eğitim kuruluşlarını denetlemek için kullanılan gözetim takvimini, planını ve kontrol listelerini inceleyin."
+        },
+        {
+          "en": "2) Verify that surveillance activities cover course delivery, simulator qualification, and instructor records.",
+          "tr": "2) Gözetim faaliyetlerinin kurs sunumunu, simülatör yeterliliğini ve eğitmen kayıtlarını kapsadığını doğrulayın."
+        },
+        {
+          "en": "3) Sample completed surveillance reports.",
+          "tr": "3) Tamamlanan gözetim raporlarını örnekleyin."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.701",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "PPQ",
+      "question_en": "Has the State implemented a process for the qualification and approval of flight simulation training devices (FSTDs)?",
+      "question_tr": "Devlet, sentetik uçuş eğitim cihazlarının (FSTD'ler) yeterlilik ve onayı için bir süreç uygulamış mıdır?",
+      "criteria": [
+        {
+          "en": "1) Review the evaluation procedures and criteria established for FSTD qualification.",
+          "tr": "1) FSTD yeterliliği için oluşturulan değerlendirme prosedürlerini ve kriterlerini inceleyin."
+        },
+        {
+          "en": "2) Verify that the qualification standards are based on international requirements.",
+          "tr": "2) Yeterlilik standartlarının uluslararası gerekliliklere dayandığını doğrulayın."
+        },
+        {
+          "en": "3) Sample FSTD qualification certificates and evaluation reports.",
+          "tr": "3) FSTD yeterlilik belgelerini ve değerlendirme raporlarını örnekleyin."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.703",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "",
+      "question_en": "Does the Licensing Authority ensure that periodic evaluations are conducted to maintain the qualification of approved FSTDs?",
+      "question_tr": "Lisanslandırma Otoritesi, onaylanmış FSTD'lerin yeterliliğini sürdürmek amacıyla periyodik değerlendirmelerin yapılmasını sağlıyor mu?",
+      "criteria": [
+        {
+          "en": "1) Review the periodic evaluation schedule and procedures.",
+          "tr": "1) Periyodik değerlendirme takvimini ve prosedürlerini inceleyin."
+        },
+        {
+          "en": "2) Sample recurrent evaluation records to confirm continuing compliance.",
+          "tr": "2) Sürekli uyumu teyit etmek için yenileme değerlendirme kayıtlarını örnekleyin."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.751",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "PPQ",
+      "question_en": "Does the Licensing Authority implement a process for the issuance of pilot licences and ratings that ensures full compliance with Annex 1 specifications?",
+      "question_tr": "Lisanslandırma Otoritesi, pilot lisans ve yetkilerinin verilmesinde Ek 1 spesifikasyonlarına tam uyumu sağlayan bir süreç uyguluyor mu?",
+      "criteria": [
+        {
+          "en": "1) Review the workflow for the production and distribution of licences.",
+          "tr": "1) Lisansların üretimi ve dağıtımına yönelik iş akışını inceleyin."
+        },
+        {
+          "en": "2) Verify that the physical format, layout, and mandatory items match Annex 1 parameters.",
+          "tr": "2) Fiziksel formatın, düzenin ve zorunlu maddelerin Ek 1 parametreleriyle eşleştiğini doğrulayın."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.753",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "PPQ",
+      "question_en": "Does the Licensing Authority implement a process for the issuance of aircraft maintenance technician/engineer licences that ensures full compliance with Annex 1?",
+      "question_tr": "Lisanslandırma Otoritesi, hava aracı bakım teknisyeni/mühendisi lisanslarının verilmesinde Ek 1 ile tam uyumu sağlayan bir süreç uyguluyor mu?",
+      "criteria": [
+        {
+          "en": "1) Review the verification controls for checking prerequisite experience and knowledge.",
+          "tr": "1) Ön koşul deneyim ve bilginin kontrol edilmesine yönelik doğrulama kontrollerini inceleyin."
+        },
+        {
+          "en": "2) Verify that issued licences correctly list the applicable ratings and limitations.",
+          "tr": "2) Düzenlenen lisansların geçerli yetkileri ve sınırlamaları doğru şekilde listelediğini doğrulayın."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.755",
+      "ce": "CE-7",
+      "site_type": "On-Site",
+      "ppq": "",
+      "question_en": "Does the Licensing Authority maintain a continuous record-keeping system for all issued licences, ratings, validations, and conversions?",
+      "question_tr": "Lisanslandırma Otoritesi; düzenlenen tüm lisanslar, yetkiler, validasyonlar ve dönüştürmeler için sürekli bir kayıt tutma sistemi sürdürüyor mu?",
+      "criteria": [
+        {
+          "en": "1) Review the storage conditions, backup system, and archiving procedures for personnel licensing files.",
+          "tr": "1) Personel lisanslandırma dosyalarına yönelik saklama koşullarını, yedekleme sistemini ve arşivleme prosedürlerini inceleyin."
+        },
+        {
+          "en": "2) Verify that individual records are updated systematically to reflect any changes in license status.",
+          "tr": "2) Münferit kayıtların, lisans durumundaki değişiklikleri yansıtacak şekilde sistematik olarak güncellendiğini doğrulayın."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.761",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "",
+      "question_en": "Does the Licensing Authority ensure that the competency of line check examiners and designated pilot examiners is maintained?",
+      "question_tr": "Lisanslandırma Otoritesi, hat kontrol kontrolörlerinin ve görevlendirilmiş pilot kontrolörlerinin yetkinliğinin sürdürülmesini sağlıyor mu?",
+      "criteria": [
+        {
+          "en": "1) Review the evaluation procedures and standardization meetings required for examiners.",
+          "tr": "1) Kontrolörler için gerekli olan değerlendirme prosedürlerini ve standardizasyon toplantılarını inceleyin."
+        },
+        {
+          "en": "2) Sample examiner files to verify recurrent competency checks.",
+          "tr": "2) Yenileme yetkinlik kontrollerini doğrulamak için kontrolör dosyalarını örnekleyin."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.763",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "PPQ",
+      "question_en": "Does the State implement a process to ensure that flight crew members maintain their recency of experience in compliance with Annex 1?",
+      "question_tr": "Devlet, uçuş ekibi üyelerinin güncel deneyimlerini (recency of experience) Ek 1 ile uyumlu şekilde sürdürmelerini sağlayacak bir süreç uyguluyor mu?",
+      "criteria": [
+        {
+          "en": "1) Review regulations and operator control procedures regarding recency tracks.",
+          "tr": "1) Güncel deneyim takibine yönelik düzenlemeleri ve operatör kontrol prosedürlerini inceleyin."
+        },
+        {
+          "en": "2) Verify implementation loops by sampling pilot logbooks or operator scheduling logs during inspections.",
+          "tr": "2) Denetimler sırasında pilot uçuş kayıt defterlerini veya operatör planlama kayıtlarını örnekleyerek uygulama döngülerini doğrulayın."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.765",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "PPQ",
+      "question_en": "Does the State ensure that air traffic controllers maintain their recency and unit endorsements in compliance with Annex 1?",
+      "question_tr": "Devlet, hava trafik kontrolörlerinin güncel deneyimlerini ve meydan/ünite yetkilerini Ek 1 ile uyumlu şekilde sürdürmelerini sağlıyor mu?",
+      "criteria": [
+        {
+          "en": "1) Review unit training plans and endorsement validation rules.",
+          "tr": "1) Ünite eğitim planlarını ve yetki geçerlilik kurallarını inceleyin."
+        },
+        {
+          "en": "2) Verify implementation logs at air traffic control towers or centres.",
+          "tr": "2) Hava trafik kontrol kulelerindeki veya merkezlerindeki uygulama kayıtlarını doğrulayın."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.767",
+      "ce": "CE-7",
+      "site_type": "On-Site",
+      "ppq": "",
+      "question_en": "Does the Licensing Authority conduct systematic inspections of flight crew logs and training records at air operators’ facilities?",
+      "question_tr": "Lisanslandırma Otoritesi, hava işletmelerinin tesislerinde uçuş ekibi kayıtlarının ve eğitim kayıtlarının sistematik denetimlerini yürütüyor mu?",
+      "criteria": [
+        {
+          "en": "1) Review the surveillance programme records and completed audit reports.",
+          "tr": "1) Gözetim programı kayıtlarını ve tamamlanmış denetim raporlarını inceleyin."
+        },
+        {
+          "en": "2) Verify that checklists cover flight log validations and training compliance.",
+          "tr": "2) Kontrol listelerinin uçuş kayıt doğrulamalarını ve eğitime uyumu kapsadığını doğrulayın."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.769",
+      "ce": "CE-8",
+      "site_type": "On-Site",
+      "ppq": "",
+      "question_en": "Does the Licensing Authority execute effective enforcement actions when license holders or examiners violate personnel licensing regulations?",
+      "question_tr": "Lisanslandırma Otoritesi, lisans sahipleri veya kontrolörler personel lisanslandırma düzenlemelerini ihlal ettiğinde etkili yaptırım eylemleri uyguluyor mu?",
+      "criteria": [
+        {
+          "en": "1) Review the legal framework and enforcement procedures for penalizing license violations.",
+          "tr": "1) Lisans ihlallerinin cezalandırılmasına yönelik yasal çerçeveyi ve yaptırım prosedürlerini inceleyin."
+        },
+        {
+          "en": "2) Sample closed enforcement cases to verify that appropriate actions are executed in a timely manner.",
+          "tr": "2) Uygun eylemlerin zamanında yürütüldüğünü doğrulamak için kapatılmış yaptırım vakalarını örnekleyin."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.771",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "PPQ",
+      "question_en": "Does the State implement a process to ensure that remote pilots hold valid remote pilot licences and ratings in compliance with Annex 1?",
+      "question_tr": "Devlet, uzaktan pilotların Ek 1 ile uyumlu geçerli uzaktan pilot lisanslarına ve yetkilerine sahip olmalarını sağlayacak bir süreç uyguluyor mu?",
+      "criteria": [
+        {
+          "en": "1) Review specific training and examination criteria established for remote pilot licensing.",
+          "tr": "1) Uzaktan pilot lisanslandırması için oluşturulan spesifik eğitim ve sınav kriterlerini inceleyin."
+        },
+        {
+          "en": "2) Verify that the licensing format matches relevant international specs.",
+          "tr": "2) Lisans formatının ilgili uluslararası spesifikasyonlarla eşleştiğini doğrulayın."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.772",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "PPQ",
+      "question_en": "Does the State ensure that personnel involved in safety-sensitive operations are medically fit and hold valid medical assessments during remote pilot operations?",
+      "question_tr": "Devlet, emniyet açısından kritik operasyonlarda yer alan personelin sağlık durumunun uygun olmasını ve uzaktan pilot operasyonları sırasında geçerli sağlık değerlendirmelerine sahip olmasını sağlıyor mu?",
+      "criteria": [
+        {
+          "en": "1) Review medical standards and screening rules for remote pilots.",
+          "tr": "1) Uzaktan pilotlara yönelik sağlık standartlarını ve tarama kurallarını inceleyin."
+        },
+        {
+          "en": "2) Verify validation controls applied to remote pilot files.",
+          "tr": "2) Uzaktan pilot dosyalarına uygulanan doğrulama kontrollerini inceleyin."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.801",
+      "ce": "CE-2",
+      "site_type": "Off-Site",
+      "ppq": "",
+      "question_en": "Has the State promulgated specific operating regulations to require approved training organizations (ATOs) to implement a safety management system (SMS)?",
+      "question_tr": "Devlet, onaylı eğitim kuruluşlarının (ATO'lar) bir emniyet yönetim sistemi (SMS) uygulamasını gerektiren spesifik işletme düzenlemeleri yayımlamış mıdır?",
+      "criteria": [
+        {
+          "en": "1) Verify that regulations require ATOs to implement an SMS acceptable to the State.",
+          "tr": "1) Düzenlemelerin, ATO'ların Devlet tarafından kabul edilebilir bir SMS uygulamasını gerektirdiğini doğrulayın."
+        },
+        {
+          "en": "2) Verify that the regulations require the SMS to be established in accordance with the framework elements contained in Appendix 2 to Annex 19.",
+          "tr": "2) Düzenlemelerin, SMS'in Ek 19 Ek 2'de yer alan çerçeve unsurlarına uygun olarak kurulmasını gerektirdiğini doğrulayın."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.805",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "PPQ",
+      "question_en": "Has the State implemented a process for the formal acceptance of an ATO’s safety management system (SMS)?",
+      "question_tr": "Devlet, bir ATO'nun emniyet yönetim sisteminin (SMS) resmi kabulüne yönelik bir süreç uygulamış mıdır?",
+      "criteria": [
+        {
+          "en": "1) Review the acceptance procedures and checklists used by technical personnel to evaluate ATO SMS manuals.",
+          "tr": "1) Teknik personel tarafından ATO SMS el kitaplarını değerlendirmek için kullanılan kabul prosedürlerini ve kontrol listelerini inceleyin."
+        },
+        {
+          "en": "2) Sample acceptance files to verify compliance with Appendix 2 to Annex 19 framework components.",
+          "tr": "2) Ek 19 Ek 2 çerçeve bileşenlerine uyumu doğrulamak için kabul dosyalarını örnekleyin."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.807",
+      "ce": "CE-5",
+      "site_type": "Off-Site",
+      "ppq": "",
+      "question_en": "Has the State provided comprehensive guidance material to ATOs regarding the development and implementation of an SMS?",
+      "question_tr": "Devlet, SMS'in geliştirilmesi ve uygulanmasına ilişkin ATO'lara kapsamlı rehber materyal sağlamış mıdır?",
+      "criteria": [
+        {
+          "en": "Verify that the guidance material covers hazard identification, risk assessment, and safety performance indicator management tailored for training environments.",
+          "tr": "Rehber materyalin, eğitim ortamlarına göre uyarlanmış tehlike tanımlama, risk değerlendirmesi ve emniyet performans göstergesi yönetimini kapsadığını doğrulayın."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.809",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "",
+      "question_en": "Does the Licensing Authority ensure that ATO personnel involved in safety management functions are qualified and trained?",
+      "question_tr": "Lisanslandırma Otoritesi, emniyet yönetimi fonksiyonlarında yer alan ATO personelinin nitelikli ve eğitimli olmasını sağlıyor mu?",
+      "criteria": [
+        {
+          "en": "1) Review safety training requirements established for ATO safety managers and key personnel.",
+          "tr": "1) ATO emniyet yöneticileri ve kilit personeli için oluşturulan emniyet eğitimi gerekliliklerini inceleyin."
+        },
+        {
+          "en": "2) Sample training records during onsite industry visits.",
+          "tr": "2) Sektöre yönelik yerindeki ziyaretler sırasında eğitim kayıtlarını örnekleyin."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.811",
+      "ce": "CE-7",
+      "site_type": "On-Site",
+      "ppq": "",
+      "question_en": "Does the Licensing Authority conduct continuous surveillance of an ATO’s safety management system (SMS)?",
+      "question_tr": "Lisanslandırma Otoritesi, bir ATO'nun emniyet yönetim sisteminin (SMS) sürekli gözetimini yürütüyor mu?",
+      "criteria": [
+        {
+          "en": "1) Review surveillance plans and audit reports to verify that SMS processes are evaluated periodically.",
+          "tr": "1) SMS süreçlerinin periyodik olarak değerlendirildiğini doğrulamak için gözetim planlarını ve denetim raporlarını inceleyin."
+        },
+        {
+          "en": "2) Verify that checklists are used to evaluate hazard logs and risk mitigation effectiveness.",
+          "tr": "2) Tehlike kayıtlarını ve risk azaltma etkinliğini değerlendirmek için kontrol listelerinin kullanıldığını doğrulayın."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.813",
+      "ce": "CE-8",
+      "site_type": "On-Site",
+      "ppq": "",
+      "question_en": "Has the Licensing Authority implemented a system to enforce resolution of safety deficiencies identified in an ATO’s SMS?",
+      "question_tr": "Lisanslandırma Otoritesi, bir ATO'nun SMS'inde tespit edilen emniyet eksikliklerinin çözülmesini zorunlu kılacak bir sistem uygulamış mıdır?",
+      "criteria": [
+        {
+          "en": "1) Review tracking databases and corrective action plan validation logs.",
+          "tr": "1) Takip veri tabanlarını ve düzeltici faaliyet planı doğrulama kayıtlarını inceleyin."
+        },
+        {
+          "en": "2) Verify that unresolved safety deficiencies trigger graduated enforcement penalties.",
+          "tr": "2) Çözülmemiş emniyet eksikliklerinin kademeli yaptırım cezalarını tetiklediğini doğrulayın."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.851",
+      "ce": "CE-2",
+      "site_type": "Off-Site",
+      "ppq": "",
+      "question_en": "Has the State promulgated specific operating regulations to require approved maintenance training organizations to implement a safety management system (SMS)?",
+      "question_tr": "Devlet, onaylanmış bakım eğitim kuruluşlarının bir emniyet yönetim sistemi (SMS) uygulamasını gerektiren spesifik işletme düzenlemeleri yayımlamış mıdır?",
+      "criteria": [
+        {
+          "en": "1) Verify that regulations require maintenance training organizations to implement an SMS acceptable to the State.",
+          "tr": "1) Düzenlemelerin, bakım eğitim kuruluşlarının Devlet tarafından kabul edilebilir bir SMS uygulamasını gerektirdiğini doğrulayın."
+        },
+        {
+          "en": "2) Verify that the regulations match Appendix 2 to Annex 19 structural components.",
+          "tr": "2) Düzenlemelerin Ek 19 Ek 2 yapısal bileşenleriyle eşleştiğini doğrulayın."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.853",
+      "ce": "CE-5",
+      "site_type": "Off-Site",
+      "ppq": "",
+      "question_en": "Has the State provided comprehensive guidance material to approved maintenance training organizations regarding the development and implementation of an SMS?",
+      "question_tr": "Devlet, onaylanmış bakım eğitim kuruluşlarına bir SMS'in geliştirilmesi ve uygulanmasına ilişkin kapsamlı rehber materyal sağlamış mıdır?",
+      "criteria": [
+        {
+          "en": "Verify that the guidance material contains instructions on hazard identification, safety metrics, and documentation controls for maintenance training tracks.",
+          "tr": "Rehber materyalin; bakım eğitim takipleri için tehlike tanımlama, emniyet metrikleri ve dokümantasyon kontrollerine ilişkin talimatlar içerdiğini doğrulayın."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.855",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "PPQ",
+      "question_en": "Has the State implemented a process for the formal acceptance of a maintenance training organization’s safety management system (SMS)?",
+      "question_tr": "Devlet, bir bakım eğitim kuruluşunun emniyet yönetim sisteminin (SMS) resmi kabulüne yönelik bir süreç uygulamış mıdır?",
+      "criteria": [
+        {
+          "en": "1) Review acceptance workflow, procedures, and internal check evaluation logs.",
+          "tr": "1) Kabul iş akışını, prosedürlerini ve iç kontrol değerlendirme kayıtlarını inceleyin."
+        },
+        {
+          "en": "2) Sample acceptance files to verify full alignment with current Annex 19 parameters.",
+          "tr": "2) Güncel Ek 19 parametreleriyle tam uyumu doğrulamak için kabul dosyalarını örnekleyin."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.857",
+      "ce": "CE-7",
+      "site_type": "On-Site",
+      "ppq": "PPQ",
+      "question_en": "Does the Licensing Authority conduct continuous surveillance of an approved maintenance training organization’s safety management system (SMS)?",
+      "question_tr": "Lisanslandırma Otoritesi, onaylanmış bir bakım eğitim kuruluşunun emniyet yönetim sisteminin (SMS) sürekli gözetimini yürütüyor mu?",
+      "criteria": [
+        {
+          "en": "1) Review surveillance schedules, audit files, and maintenance training checklist sets.",
+          "tr": "1) Gözetim takvimlerini, denetim dosyalarını ve bakım eğitimi kontrol listesi setlerini inceleyin."
+        },
+        {
+          "en": "2) Verify that checklists are used to monitor safety reporting pipelines and internal evaluation tracks.",
+          "tr": "2) Emniyet raporlama kanallarını ve iç değerlendirme takiplerini izlemek için kontrol listelerinin kullanıldığını doğrulayın."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.859",
+      "ce": "CE-8",
+      "site_type": "On-Site",
+      "ppq": "",
+      "question_en": "Has the Licensing Authority implemented a system to enforce resolution of safety deficiencies identified in a maintenance training organization’s SMS?",
+      "question_tr": "Lisanslandırma Otoritesi, bir bakım eğitim kuruluşunun SMS'inde tespit edilen emniyet eksikliklerinin çözülmesini zorunlu kılacak bir sistem uygulamış mıdır?",
+      "criteria": [
+        {
+          "en": "1) Review tracking logs and verification databases utilized by technical staff.",
+          "tr": "1) Teknik personel tarafından kullanılan takip kayıtlarını ve doğrulama veri tabanlarını inceleyin."
+        },
+        {
+          "en": "2) Verify that enforcement frameworks execute timely penalties for unresolved non-compliances.",
+          "tr": "2) Yaptırım çerçevelerinin, çözülmemiş uygunsuzluklar için zamanında cezalar uyguladığını doğrulayın."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    }
   ]
 }
