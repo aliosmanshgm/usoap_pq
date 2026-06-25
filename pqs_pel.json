@@ -20,8 +20,8 @@
           "tr": "2) Düzenlemelerin içeriklerinin tutarlı, yeterli ve uygun biçimde düzenlenmiş olduğunu doğrulayın."
         },
         {
-          "en": "3) Confirm the transposition of the personnel licensing related provisions for:\n   a) all licences and ratings, including remote pilot licences;\n   b) medical assessment;\n   c) approval of training organizations;\n   d) qualification/approval of flight simulation training devices; and\n   e) language used for radiotelephony communications (i.e. language proficiency requirements).",
-          "tr": "3) Personel lisanslandırmasına ilişkin hükümlerin aşağıdaki konular için iç hukuka aktarıldığını teyit edin:\na) uzaktan pilot lisansları dâhil tüm lisanslar ve yetkiler;\nb) sağlık değerlendirmesi;\nc) eğitim kuruluşlarının onayı;\nd) sentetik uçuş eğitim cihazlarının yeterlilik/onayı; ve\ne) telsiz telefon haberleşmesinde kullanılan dil (yani dil yeterliliği gereklilikleri)."
+          "en": "3) Confirm the transposition of the personnel licensing related provisions for: a) all licences and ratings, including remote pilot licences; b) medical assessment; c) approval of training organizations; d) qualification/approval of flight simulation training devices; and e) language used for radiotelephony communications (i.e. language proficiency requirements).",
+          "tr": "3) Personel lisanslandırmasına ilişkin hükümlerin aşağıdaki konular için iç hukuka aktarıldığını teyit edin: a) uzaktan pilot lisansları dâhil tüm lisanslar ve yetkiler; b) sağlık değerlendirmesi; c) eğitim kuruluşlarının onayı; d) sentetik uçuş eğitim cihazlarının yeterlilik/onayı; ve e) telsiz telefon haberleşmesinde kullanılan dil (yani dil yeterliliği gereklilikleri)."
         }
       ],
       "note_en": "",
@@ -85,7 +85,7 @@
         },
         {
           "en": "3) Confirm that significant differences between SARPs/PANS/SUPPS and the State regulations and practices are identified and published in the AIP.",
-          "tr": "3) SARP'lar/PANS/SUPPS ile Devlet düzenlemeleri ve uygulamaları arasındaki önemli farklılıklerin belirlendiğini ve AIP'de yayımlandığını teyit edin."
+          "tr": "3) SARP'lar/PANS/SUPPS ile Devlet düzenlemeleri ve uygulamaları arasındaki önemli farklılıkların belirlendiğini ve AIP'de yayımlandığını teyit edin."
         }
       ],
       "note_en": "",
@@ -128,8 +128,8 @@
       "question_tr": "Devlet; personel lisanslarının ve yetkilerinin verilmesi ve sürdürülmesi için bir müdürlük/daire başkanlığı/bölüm/kısım/ofis gibi personel lisanslandırmaya yönelik bir kurumsal yapı oluşturmuş mudur?",
       "criteria": [
         {
-          "en": "1) Verify that an organizational structure has been:\n  a) established with defined lines of responsibility;\n  b) documented; and\n  c) approved.",
-          "tr": "1) Kurumsal yapının aşağıdaki şekilde olduğunu doğrulayın:\na) tanımlanmış sorumluluk hatlarıyla oluşturulmuş;\nb) dokümante edilmiş; ve\nc) onaylanmış."
+          "en": "1) Verify that an organizational structure has been: a) established with defined lines of responsibility; b) documented; and c) approved.",
+          "tr": "1) Kurumsal yapının aşağıdaki şekilde olduğunu doğrulayın: a) tanımlanmış sorumluluk hatlarıyla oluşturulmuş; b) dokümante edilmiş; ve c) onaylanmış."
         },
         {
           "en": "2) Confirm existing approved organizational structure for the CAA and personnel licensing department/office, including lines of responsibility.",
@@ -148,8 +148,8 @@
       "question_tr": "Personel lisanslandırma ofisinin tüm fonksiyonları ve sorumlulukları açıkça tanımlanmış mıdır?",
       "criteria": [
         {
-          "en": "Review the document detailing functions and responsibilities of the PEL Office for inclusion of:\n  a) issue and maintenance of personnel licences and ratings;\n  b) validation of foreign licences;\n  c) system of approval and surveillance of training organizations;\n  d) qualification and approval of flight simulation training devices;\n  e) language proficiency system; and\n  f) medical assessment system.",
-          "tr": "PEL Ofisinin fonksiyon ve sorumluluklarını detaylandıran belgeyi şu hususları içermesi bakımından inceleyin:\na) personel lisanslarının ve yetkilerinin verilmesi ve sürdürülmesi;\nb) yabancı lisansların geçerli kılınması (validasyon);\nc) eğitim kuruluşlarının onay ve gözetim sistemi;\nd) sentetik uçuş eğitim cihazlarının yeterlilik ve onayı;\ne) dil yeterliliği sistemi; ve\nf) sağlık değerlendirme sistemi."
+          "en": "Review the document detailing functions and responsibilities of the PEL Office for inclusion of: a) issue and maintenance of personnel licences and ratings; b) validation of foreign licences; c) system of approval and surveillance of training organizations; d) qualification and approval of flight simulation training devices; e) language proficiency system; and f) medical assessment system.",
+          "tr": "PEL Ofisinin fonksiyon ve sorumluluklarını detaylandıran belgeyi şu hususları içermesi bakımından inceleyin: a) personel lisanslarının ve yetkilerinin verilmesi ve sürdürülmesi; b) yabancı lisansların geçerli kılınması (validasyon); c) eğitim kuruluşlarının onay ve gözetim sistemi; d) sentetik uçuş eğitim cihazlarının yeterlilik ve onayı; e) dil yeterliliği sistemi; ve f) sağlık değerlendirme sistemi."
         }
       ],
       "note_en": "",
@@ -164,12 +164,12 @@
       "question_tr": "Personel lisanslandırma ofisinin teknik personeli ve kilit yönetici personeli için görev tanımları oluşturulmuş mudur?",
       "criteria": [
         {
-          "en": "1) Verify that job descriptions have been developed for:\n  a) technical staff (including external/delegated personnel, if any); and\n  b) management personnel.",
-          "tr": "1) Görev tanımlarının şu kişiler için geliştirildiğini doğrulayın:\na) teknik personel (varsa harici/delege edilmiş personel dâhil); ve\nb) yönetici personel."
+          "en": "1) Review job descriptions for all personnel licensing staff.",
+          "tr": "1) Tüm personel lisanslandırma personeline ait görev tanımlarını inceleyin."
         },
         {
-          "en": "2) Verify that the job descriptions cover all tasks related to Annex 1 (e.g. licensing, medical, training organizations approval and surveillance).",
-          "tr": "2) Görev tanımlarının Ek 1 ile ilgili tüm görevleri (örneğin lisanslandırma, sağlık, eğitim kuruluşları onayı ve gözetimi) kapsadığını doğrulayın."
+          "en": "2) Check the job description including all tasks related to Annex 1 (e.g. licensing, medical, training organizations approval and surveillance).",
+          "tr": "2) Görev tanımının Ek 1 ile ilgili tüm görevleri (örneğin lisanslandırma, sağlık, eğitim kuruluşlarının onayı ve gözetimi) kapsadığını kontrol edin."
         }
       ],
       "note_en": "",
@@ -184,8 +184,8 @@
       "question_tr": "Personel lisanslandırma ofisi, emniyet gözetimi sorumluluklarına ilişkin fonksiyonlarını ve görev yetkisini yerine getirmek için yeterli insan kaynağına sahip midir?",
       "criteria": [
         {
-          "en": "Review the capacity of the personnel licensing office for safety oversight-related tasks, including:\n  a) review methodology established for determining staffing needs;\n  b) review ability to attract new inspectors as well as existing vacancies and level of turnover in past years;\n  c) capability to execute reviewing and revising regulations;\n  d) training technical staff;\n  e) developing guidance material;\n  f) issuing approvals;\n  g) conducting surveillance; and\n  h) resolving identified safety concerns.",
-          "tr": "Emniyet gözetimiyle ilgili görevler için personel lisanslandırma ofisinin kapasitesini inceleyin; şunlar dâhil:\na) personel ihtiyacını belirlemek için oluşturulan inceleme metodolojisi;\nb) yeni denetçileri çekme yeteneğinin yanı sıra mevcut boş kadrolar ve geçmiş yıllardaki personel sirkülasyon düzeyi;\nc) düzenlemeleri gözden geçirme ve revize etme yeteneği;\nd) teknik personelin eğitimi;\ne) rehber materyal geliştirme;\nf) onayların verilmesi;\ng) gözetim yürütme; ve\nh) tespit edilen emniyet endişelerini giderme."
+          "en": "Review the capacity of the personnel licensing office for safety oversight-related tasks, including: a) review methodology established for determining staffing needs; b) review ability to attract new inspectors as well as existing vacancies and level of turnover in past years; c) capability to execute reviewing and revising regulations; d) training technical staff; e) developing guidance material; f) issuing approvals; g) conducting surveillance; and h) resolving identified safety concerns.",
+          "tr": "Emniyet gözetimiyle ilgili görevler için personel lisanslandırma ofisinin kapasitelerini inceleyin; şunlar dâhil: a) personel ihtiyacını belirlemek için oluşturulan inceleme metodolojisi; b) yeni denetçileri çekme yeteneğinin yanı sıra mevcut boş kadrolar ve geçmiş yıllardaki personel sirkülasyon düzeyi; c) düzenlemeleri gözden geçirme ve revize etme yeteneği; d) teknik personelin eğitimi; e) rehber materyal geliştirme; f) onayların verilmesi; g) gözetim yürütme; ve h) tespit edilen emniyet endişelerini giderme."
         }
       ],
       "note_en": "",
@@ -197,11 +197,11 @@
       "site_type": "Off-Site",
       "ppq": "",
       "question_en": "Has the Licensing Authority established appropriate minimum qualification and experience requirements for its technical personnel?",
-      "question_tr": "Lisanslandırma Otoritesi, teknik personeli için uygun minimum nitelik ve deneyim gereklilikleri belirlemiş midir?",
+      "question_tr": "Lisanslandırma Otoritesi, teknik personeli için uygun asgari yeterlilik ve deneyim gereklilikleri oluşturmuş mudur?",
       "criteria": [
         {
-          "en": "Verify that minimum qualifications and experience requirements include:\n  a) specified academic background/technical training;\n  b) operational experience compatible with the activities that they are authorized to certify or supervise; and\n  c) to be at least as qualified as the personnel to be inspected or supervised.",
-          "tr": "Minimum nitelik ve deneyim gerekliliklerinin şunları içerdiğini doğrulayın:\na) belirlenmiş akademik geçmiş/teknik eğitim;\nb) sertifikalandırmaya veya denetlemeye yetkili oldukları faaliyetlerle uyumlu operasyonel deneyim; ve\nc) denetlenecek veya gözetlenecek personel kadar en azından nitelikli olmak."
+          "en": "Review qualification and experience requirements for recruitment and assignment of personnel licensing staff of the Licensing Authority depending on their responsibilities in the personnel licensing issuance process and oversight system.",
+          "tr": "Lisanslandırma Otoritesinin personel lisanslandırma personelinin işe alımı ve görevlendirilmesine ilişkin yeterlilik ve deneyim gerekliliklerini, personel lisansı düzenleme süreci ve gözetim sistemindeki sorumluluklarına bağlı olarak inceleyin."
         }
       ],
       "note_en": "",
@@ -240,8 +240,8 @@
       "question_tr": "Lisanslandırma Otoritesi, teknik personeli için resmi bir eğitim programı oluşturmuş mudur?",
       "criteria": [
         {
-          "en": "Verify that each training programme details:\n  a) initial training;\n  b) on-the-job training (OJT);\n  c) recurrent training;\n  d) specialized training requirements; and\n  e) minimum duration for each type of training.",
-          "tr": "Her bir eğitim programının şunları detaylandırdığını doğrulayın:\na) temel eğitim;\nb) iş başı eğitimi (OJT);\nc) yenileme eğitimi;\nd) uzmanlık eğitimi gereklilikleri; ve\ne) her bir eğitim türü için minimum süre."
+          "en": "Verify that each training programme details: a) initial training; b) on-the-job training (OJT); c) recurrent training; d) specialized training requirements; and e) minimum duration for each type of training.",
+          "tr": "Her bir eğitim programının şu hususları detaylandırdığını doğrulayın: a) temel eğitim; b) iş başı eğitimi (OJT); c) yenileme eğitimi; d) uzmanlık eğitimi gereklilikleri; ve e) her bir eğitim türü için asgari süre."
         }
       ],
       "note_en": "",
@@ -252,12 +252,28 @@
       "ce": "CE-3",
       "site_type": "On-Site",
       "ppq": "",
-      "question_en": "Have personnel licensing staff been issued credentials to facilitate their access to aircraft, aviation facilities and documentation for the purpose of inspections and enforcement?",
-      "question_tr": "Personel lisanslandırma personeline, denetim ve yaptırım amacıyla hava araçlarına, havacılık tesislerine ve belgelere erişimlerini kolaylaştıracak kimlik belgeleri verilmiş midir?",
+      "question_en": "Have personnel licensing staff been issued credentials to facilitate access to aircraft, aviation facilities and documents for the purpose of inspections and enforcement?",
+      "question_tr": "Personel lisanslandırma personeline, denetim ve yaptırım amacıyla hava araçlarına, havacılık tesislerine ve dokümanlara erişimi kolaylaştıracak kimlik/yetki belgeleri verilmiş midir?",
       "criteria": [
         {
-          "en": "Review credentials to ensure that they include the following:\n  a) reference to empowering legislation;\n  b) methods established to control currency of credentials; and\n  c) inspector’s photo.",
-          "tr": "Kimlik belgelerinin şu hususları içerdiğinden emin olmak için inceleyin:\na) yetkilendirme mevzuatına atıf;\nb) kimlik belgelerinin geçerliliğini kontrol etmek için oluşturulan yöntemler; ve\nc) denetçinin fotoğrafı."
+          "en": "Review credentials to ensure:",
+          "tr": "Kimlik/yetki belgelerini aşağıdakilerin sağlandığından emin olmak üzere inceleyin:"
+        },
+        {
+          "en": "1) reference to empowering legislation;",
+          "tr": "1) yetki veren mevzuata atıf;"
+        },
+        {
+          "en": "2) method established to control currency of credential; and",
+          "tr": "2) kimlik/yetki belgesinin geçerliliğinin kontrolüne yönelik oluşturulmuş yöntem; ve"
+        },
+        {
+          "en": "3) inspector's photo.",
+          "tr": "3) denetçinin fotoğrafı."
+        },
+        {
+          "en": "This PQ is not applicable to all personnel licensing staff; only applicable to those performing inspection and enforcement activities.",
+          "tr": "Bu PQ tüm personel lisanslandırma personeli için uygulanabilir değildir; yalnızca denetim ve yaptırım faaliyetlerini yürüten personele uygulanır."
         }
       ],
       "note_en": "",
@@ -336,6 +352,26 @@
       "note_tr": ""
     },
     {
+      "no": "3.154",
+      "ce": "CE-5",
+      "site_type": "On-Site",
+      "ppq": "",
+      "question_en": "Has the Licensing Authority established a system for the dissemination of amended ICAO documents and other technical publications to all staff?",
+      "question_tr": "Lisanslandırma Otoritesi, değiştirilen ICAO dokümanlarının ve diğer teknik yayınların tüm personele yayılması için bir sistem oluşturmuş mudur?",
+      "criteria": [
+        {
+          "en": "1) Review the procedures used for disseminating updated ICAO documents.",
+          "tr": "1) Güncellenmiş ICAO dokümanlarının yayılması için kullanılan prosedürleri inceleyin."
+        },
+        {
+          "en": "2) Confirm that staff are notified of recent changes.",
+          "tr": "2) Personelin son değişikliklerden haberdar edildiğini teyit edin."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
       "no": "3.155",
       "ce": "CE-5",
       "site_type": "On-Site",
@@ -344,8 +380,8 @@
       "question_tr": "Teknik personele, fonksiyonlarını ve sorumluluklarını etkili bir şekilde yerine getirmelerini sağlamak üzere kapsamlı prosedürler ve kontrol listeleri sağlanmış mıdır?",
       "criteria": [
         {
-          "en": "Verify that instructions and guidance cover:\n  a) PEL office organization;\n  b) PEL personnel’s duties, credentials and authority;\n  c) processing application forms;\n  d) validation of foreign licences;\n  e) approval and surveillance of training organizations;\n  f) qualification and approval of flight simulation training devices;\n  g) language proficiency system;\n  h) medical assessment system;\n  i) quality assurance; and\n  j) follow-up on discrepancy and enforcement action.\nVerify that there is a mechanism to approve the procedures and to ensure their currency.",
-          "tr": "Talimatların ve rehberliğin şu hususları kapsadığını doğrulayın:\na) PEL ofis organizasyonu;\nb) PEL personelinin görevleri, kimlik belgeleri ve yetkileri;\nc) başvuru formlarının işleme alınması;\nd) yabancı lisansların geçerli kılınması;\ne) eğitim kuruluşlarının onayı ve gözetimi;\nf) sentetik uçuş eğitim cihazlarının yeterlilik ve onayı;\ng) dil yeterliliği sistemi;\nh) sağlık değerlendirme sistemi;\ni) kalite güvencesi; ve\nj) uygunsuzlukların takibi ve yaptırım eylemi.\nProsedürleri onaylamak ve güncelliğini sağlamak için bir mekanizma olduğunu doğrulayın."
+          "en": "Verify that instructions and guidance cover: a) PEL office organization; b) PEL personnel’s duties, credentials and authority; c) processing application forms; d) validation of foreign licences; e) approval and surveillance of training organizations; f) qualification and approval of flight simulation training devices; g) language proficiency system; h) medical assessment system; i) quality assurance; and j) follow-up on discrepancy and enforcement action. Verify that there is a mechanism to approve the procedures and to ensure their currency.",
+          "tr": "Talimatların ve rehberliğin şu hususları kapsadığını doğrulayın: a) PEL ofis organizasyonu; b) PEL personelinin görevleri, kimlik belgeleri ve yetkileri; c) başvuru formlarının işleme alınması; d) yabancı lisansların geçerli kılınması; e) eğitim kuruluşlarının onayı ve gözetimi; f) sentetik uçuş eğitim cihazlarının yeterlilik ve onayı; g) dil yeterliliği sistemi; h) sağlık değerlendirme sistemi; i) kalite güvencesi; ve j) uygunsuzlukların takibi ve yaptırım eylemi. Prosedürleri onaylamak ve güncelliğini sağlamak için bir mekanizma olduğunu doğrulayın."
         }
       ],
       "note_en": "",
@@ -360,8 +396,8 @@
       "question_tr": "Lisanslandırma Otoritesi, başvuru sahiplerini çeşitli lisans ve yetkiler için karşılanması gereken gereklilikler ve başvuru sürecinde sunulacak belgeler hakkında bilgilendirecek yöntemler oluşturmuş mudur?",
       "criteria": [
         {
-          "en": "Verify that standard information (e.g. application forms, brochures, website) is accessible to the public and includes requirements for:\n  a) issuing new licences/ratings;\n  b) renewal/re-issue of licences/ratings; and\n  c) validation of foreign licences.",
-          "tr": "Standart bilgilerin (örneğin başvuru formları, broşürler, web sitesi) halkın erişimine açık olduğunu ve şu hususlara yönelik gereklilikleri içerdiğini doğrulayın:\na) yeni lisansların/yetkilerin verilmesi;\nb) lisansların/yetkilerin yenilenmesi/yeniden düzenlenmesi; ve\nc) yabancı lisansların geçerli kılınması."
+          "en": "Verify that standard information (e.g. application forms, brochures, website) is accessible to the public and includes requirements for: a) issuing new licences/ratings; b) renewal/re-issue of licences/ratings; and c) validation of foreign licences.",
+          "tr": "Standart bilgilerin (örneğin başvuru formları, broşürler, web sitesi) halkın erişimine açık olduğunu ve şu hususlara yönelik gereklilikleri içerdiğini doğrulayın: a) yeni lisansların/yetkilerin verilmesi; b) lisansların/yetkilerin yenilenmesi/yeniden düzenlenmesi; ve c) yabancı lisansların geçerli kılınması."
         }
       ],
       "note_en": "",
@@ -376,8 +412,8 @@
       "question_tr": "Bir başvuru sahibinin lisans veya yetki almak/yenilemek ya da bir sınava girmek için doldurması ve sunması gereken resmi bir başvuru formu mevcut mudur?",
       "criteria": [
         {
-          "en": "Verify that application forms contain at least the following information:\n  a) applicant's identity;\n  b) type of license/rating requested;\n  c) evidence of meeting prerequisite requirements (e.g. age, experience, training, medical fitness); and\n  d) date and signature of the applicant.",
-          "tr": "Başvuru formlarının en azından şu bilgileri içerdiğini doğrulayın:\na) başvuru sahibinin kimliği;\nb) talep edilen lisans/yetki türü;\nc) ön koşul gerekliliklerinin karşılandığına dair kanıtlar (örneğin yaş, deneyim, eğitim, sağlık durumu); ve\nd) başvuru sahibinin tarihi ve imzası."
+          "en": "Verify that application forms contain at least the following information: a) applicant's identity; b) type of license/rating requested; c) evidence of meeting prerequisite requirements (e.g. age, experience, training, medical fitness); and d) date and signature of the applicant.",
+          "tr": "Başvuru formlarının en azından şu bilgileri içerdiğini doğrulayın: a) başvuru sahibinin kimliği; b) talep edilen lisans/yetki türü; c) ön koşul gerekliliklerinin karşılandığına dair kanıtlar (örneğin yaş, deneyim, eğitim, sağlık durumu); ve d) başvuru sahibinin tarihi ve imzası."
         }
       ],
       "note_en": "",
@@ -652,8 +688,8 @@
           "tr": "2) Tüm lisans türleri için etkin uygulamayı teyit eden kanıtları inceleyin."
         },
         {
-          "en": "Note to the auditor:\nContacting the issuing State is the best methodology, but other processes and procedures may be available.",
-          "tr": "Denetçiye not:\nLisansı düzenleyen Devlet ile temas kurulması en iyi yöntemdir; ancak başka süreç ve prosedürler de mevcut olabilir."
+          "en": "Contacting the issuing State is the best methodology, but other processes and procedures may be available.",
+          "tr": "Lisansı düzenleyen Devlet ile temas kurulması en iyi yöntemdir; ancak başka süreç ve prosedürler de mevcut olabilir."
         }
       ],
       "note_en": "",
@@ -1024,12 +1060,128 @@
       "note_tr": ""
     },
     {
-      "no": "3.601",
+      "no": "3.451",
+      "ce": "CE-5",
+      "site_type": "Off-Site",
+      "ppq": "PPQ",
+      "question_en": "Has the State established a process for the evaluation and acceptance of the safety performance indicators (SPIs) and targets of an approved training organization (ATO) Safety Management System (SMS)?",
+      "question_tr": "Devlet, onaylı bir eğitim kuruluşunun (ATO) Emniyet Yönetim Sistemi (SMS) emniyet performans göstergelerinin (SPI'lar) ve hedeflerinin değerlendirilmesi ve kabul edilmesine yönelik bir süreç oluşturmuş mudur?",
+      "criteria": [
+        {
+          "en": "1) Review the State’s mechanism for accepting individual ATOs’ SPIs and targets to ensure that they are specific, measurable, achievable, relevant and time-bound.",
+          "tr": "1) Münferit ATO'ların SPI'larının ve hedeflerinin, spesifik, ölçülebilir, ulaşılabilir, ilgili ve zamana bağlı olmasını güvence altına almak için Devletin kabul mekanizmasını inceleyin."
+        },
+        {
+          "en": "2) Verify that the State ensures that the ATOs' proposed SPIs are reviewed and accepted as part of the SMS acceptance.",
+          "tr": "2) Devletin, ATO'ların önerdiği SPI'ların SMS kabulünün bir parçası olarak gözden geçirilmesini ve kabul edilmesini sağladığını doğrulayın."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.453",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "PPQ",
+      "question_en": "Does the Licensing Authority ensure that the approved training organizations (ATOs) monitor their safety performance?",
+      "question_tr": "Lisanslandırma Otoritesi, onaylı eğitim kuruluşlarının (ATO'lar) emniyet performanslarını izlemelerini sağlıyor mu?",
+      "criteria": [
+        {
+          "en": "Verify that the State has established and implemented a mechanism to ensure ATOs periodically review their safety performance, validate the effectiveness of safety risks controls, and manage safety risks that may arise from changes.",
+          "tr": "Devletin, ATO'ların emniyet performanslarını periyodik olarak gözden geçirmelerini, emniyet risk kontrollerinin etkinliğini doğrulamasını ve değişikliklerden kaynaklanabilecek emniyet risklerini yönetmesini sağlayacak bir mekanizma oluşturduğunu ve uyguladığını doğrulayın."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.457",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "",
+      "question_en": "Does the Licensing Authority ensure that ATO personnel involved in safety management functions are qualified and trained?",
+      "question_tr": "Lisanslandırma Otoritesi, emniyet yönetimi fonksiyonlarında yer alan ATO personelinin nitelikli ve eğitimli olmasını sağlıyor mu?",
+      "criteria": [
+        {
+          "en": "1) Review safety training requirements established for ATO safety managers and key personnel.",
+          "tr": "1) ATO emniyet yöneticileri ve kilit personeli için oluşturulan emniyet eğitimi gerekliliklerini inceleyin."
+        },
+        {
+          "en": "2) Sample training records during onsite industry visits.",
+          "tr": "2) Sektöre yönelik yerindeki ziyaretler sırasında eğitim kayıtlarını örnekleyin."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.459",
+      "ce": "CE-7",
+      "site_type": "On-Site",
+      "ppq": "",
+      "question_en": "Does the Licensing Authority conduct continuous surveillance of an ATO’s safety management system (SMS)?",
+      "question_tr": "Lisanslandırma Otoritesi, bir ATO'nun emniyet yönetim sisteminin (SMS) sürekli gözetimini yürütüyor mu?",
+      "criteria": [
+        {
+          "en": "1) Review surveillance plans and audit reports to verify that SMS processes are evaluated periodically.",
+          "tr": "1) SMS süreçlerinin periyodik olarak değerlendirildiğini doğrulamak için gözetim planlarını ve denetim raporlarını inceleyin."
+        },
+        {
+          "en": "2) Verify that checklists are used to evaluate hazard logs and risk mitigation effectiveness.",
+          "tr": "2) Tehlike kayıtlarını ve risk azaltma etkinliğini değerlendirmek için kontrol listelerinin kullanıldığını doğrulayın."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.461",
+      "ce": "CE-8",
+      "site_type": "On-Site",
+      "ppq": "",
+      "question_en": "Has the Licensing Authority implemented a system to enforce resolution of safety deficiencies identified in an ATO’s SMS?",
+      "question_tr": "Lisanslandırma Otoritesi, bir ATO'nun SMS'inde tespit edilen emniyet eksikliklerinin çözülmesini zorunlu kılacak bir sistem uygulamış mıdır?",
+      "criteria": [
+        {
+          "en": "1) Review tracking databases and corrective action plan validation logs.",
+          "tr": "1) Takip veri tabanlarını ve düzeltici faaliyet planı doğrulama kayıtlarını inceleyin."
+        },
+        {
+          "en": "2) Verify that unresolved safety deficiencies trigger graduated enforcement penalties.",
+          "tr": "2) Çözülmemiş emniyet eksikliklerinin kademeli yaptırım cezalarını tetiklediğini doğrulayın."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.463",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "",
+      "question_en": "Has the State implemented a process for the formal acceptance of an ATO’s safety management system (SMS)?",
+      "question_tr": "Devlet, bir ATO'nun emniyet yönetim sisteminin (SMS) resmi kabulüne yönelik bir süreç uygulamış mıdır?",
+      "criteria": [
+        {
+          "en": "1) Review the acceptance procedures and checklists used by technical personnel to evaluate ATO SMS manuals.",
+          "tr": "1) Teknik personel tarafından ATO SMS el kitaplarını değerlendirmek için kullanılan kabul prosedürlerini ve kontrol listelerini inceleyin."
+        },
+        {
+          "en": "2) Sample acceptance files to verify compliance with Appendix 2 to Annex 19 framework components.",
+          "tr": "2) Ek 19 Ek 2 çerçeve bileşenlerine uyumu doğrulamak için kabul dosyalarını örnekleyin."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.501",
       "ce": "CE-6",
       "site_type": "On-Site",
       "ppq": "PPQ",
       "question_en": "Has the State implemented a process for the approval of training organizations involved in the training of aircraft maintenance technicians/engineers/mechanics?",
-      "question_tr": "Devlet, hava aracılığı bakım teknisyenlerinin/mühendislerinin/mekaniklerinin eğitiminde yer alan eğitim kuruluşlarının onaylanmasına yönelik bir süreç uygulamış mıdır?",
+      "question_tr": "Devlet, hava aracı bakım teknisyenlerinin/mühendislerinin/mekaniklerinin eğitiminde yer alan eğitim kuruluşlarının onaylanmasına yönelik bir süreç uygulamış mıdır?",
       "criteria": [
         {
           "en": "1) Review the approval process and procedures established for maintenance training organizations.",
@@ -1048,10 +1200,10 @@
       "note_tr": ""
     },
     {
-      "no": "3.605",
-      "ce": "CE-7",
+      "no": "3.503",
+      "ce": "CE-6",
       "site_type": "On-Site",
-      "ppq": "",
+      "ppq": "PPQ",
       "question_en": "Has the Licensing Authority established and implemented a continuous surveillance programme for approved maintenance training organizations?",
       "question_tr": "Lisanslandırma Otoritesi, onaylanmış bakım eğitim kuruluşları için sürekli bir gözetim programı oluşturmuş ve uygulamaya koymuş mudur?",
       "criteria": [
@@ -1072,7 +1224,7 @@
       "note_tr": ""
     },
     {
-      "no": "3.607",
+      "no": "3.505",
       "ce": "CE-4",
       "site_type": "On-Site",
       "ppq": "",
@@ -1096,8 +1248,8 @@
       "note_tr": ""
     },
     {
-      "no": "3.609",
-      "ce": "CE-8",
+      "no": "3.507",
+      "ce": "CE-6",
       "site_type": "On-Site",
       "ppq": "",
       "question_en": "Has the Licensing Authority implemented enforcement procedures to address non-compliance identified in approved maintenance training organizations?",
@@ -1105,7 +1257,7 @@
       "criteria": [
         {
           "en": "1) Review the enforcement policy and documented actions taken in case of non-compliance.",
-          "tr": "1) Yaktırım politikasını ve uygunsuzluk durumunda gerçekleştirilen dokümante edilmiş eylemleri inceleyin."
+          "tr": "1) Yaptırım politikasını ve uygunsuzluk durumunda gerçekleştirilen dokümante edilmiş eylemleri inceleyin."
         },
         {
           "en": "2) Sample enforcement records to verify that appropriate actions (e.g. warnings, suspensions, or revocations) are executed.",
@@ -1116,7 +1268,7 @@
       "note_tr": ""
     },
     {
-      "no": "3.655",
+      "no": "3.601",
       "ce": "CE-6",
       "site_type": "On-Site",
       "ppq": "PPQ",
@@ -1140,10 +1292,10 @@
       "note_tr": ""
     },
     {
-      "no": "3.657",
+      "no": "3.605",
       "ce": "CE-7",
       "site_type": "On-Site",
-      "ppq": "PPQ",
+      "ppq": "",
       "question_en": "Has the Licensing Authority established and implemented a continuous surveillance programme for approved air traffic controller training organizations?",
       "question_tr": "Lisanslandırma Otoritesi, onaylanmış hava trafik kontrolörü eğitim kuruluşları için sürekli bir gözetim programı oluşturmuş ve uygulamaya koymuş mudur?",
       "criteria": [
@@ -1164,7 +1316,51 @@
       "note_tr": ""
     },
     {
-      "no": "3.701",
+      "no": "3.607",
+      "ce": "CE-4",
+      "site_type": "On-Site",
+      "ppq": "",
+      "question_en": "Does the Licensing Authority ensure that the personnel conducting practical and theoretical examinations in approved air traffic controller training organizations are qualified?",
+      "question_tr": "Lisanslandırma Otoritesi, onaylanmış hava trafik kontrolörü eğitim kuruluşlarında pratik ve teorik sınavları yürüten personelin nitelikli olmasını sağlıyor mu?",
+      "criteria": [
+        {
+          "en": "1) Review the qualification and experience requirements established for examiners.",
+          "tr": "1) Sınav yapıcılar için belirlenen nitelik ve deneyim gerekliliklerini inceleyin."
+        },
+        {
+          "en": "2) Verify that records of examiner authorizations are maintained.",
+          "tr": "2) Sınav yapıcı yetkilendirme kayıtlarının tutulduğunu doğrulayın."
+        },
+        {
+          "en": "3) Sample examiner files.",
+          "tr": "3) Sınav yapıcı dosyalarını örnekleyin."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.609",
+      "ce": "CE-8",
+      "site_type": "On-Site",
+      "ppq": "",
+      "question_en": "Has the Licensing Authority implemented enforcement procedures to address non-compliance identified in approved air traffic controller training organizations?",
+      "question_tr": "Lisanslandırma Otoritesi, onaylanmış hava trafik kontrolörü eğitim kuruluşlarında tespit edilen uygunsuzlukları gidermek üzere yaptırım prosedürleri uygulamış mıdır?",
+      "criteria": [
+        {
+          "en": "1) Review the enforcement policy and documented actions taken in case of non-compliance.",
+          "tr": "1) Yaptırım politikasını ve uygunsuzluk durumunda gerçekleştirilen dokümante edilmiş eylemleri inceleyin."
+        },
+        {
+          "en": "2) Sample enforcement records to verify that appropriate actions (e.g. warnings, suspensions, or revocations) are executed.",
+          "tr": "2) Uygun eylemlerin (örneğin uyarılar, askıya almalar oder iptaller) yürütüldüğünü doğrulamak için yaptırım kayıtlarını örnekleyin."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.655",
       "ce": "CE-6",
       "site_type": "On-Site",
       "ppq": "PPQ",
@@ -1188,10 +1384,10 @@
       "note_tr": ""
     },
     {
-      "no": "3.703",
-      "ce": "CE-6",
+      "no": "3.657",
+      "ce": "CE-7",
       "site_type": "On-Site",
-      "ppq": "",
+      "ppq": "PPQ",
       "question_en": "Does the Licensing Authority ensure that periodic evaluations are conducted to maintain the qualification of approved FSTDs?",
       "question_tr": "Lisanslandırma Otoritesi, onaylanmış FSTD'lerin yeterliliğini sürdürmek amacıyla periyodik değerlendirmelerin yapılmasını sağlıyor mu?",
       "criteria": [
@@ -1208,7 +1404,7 @@
       "note_tr": ""
     },
     {
-      "no": "3.751",
+      "no": "3.701",
       "ce": "CE-6",
       "site_type": "On-Site",
       "ppq": "PPQ",
@@ -1228,10 +1424,10 @@
       "note_tr": ""
     },
     {
-      "no": "3.753",
+      "no": "3.703",
       "ce": "CE-6",
       "site_type": "On-Site",
-      "ppq": "PPQ",
+      "ppq": "",
       "question_en": "Does the Licensing Authority implement a process for the issuance of aircraft maintenance technician/engineer licences that ensures full compliance with Annex 1?",
       "question_tr": "Lisanslandırma Otoritesi, hava aracı bakım teknisyeni/mühendisi lisanslarının verilmesinde Ek 1 ile tam uyumu sağlayan bir süreç uyguluyor mu?",
       "criteria": [
@@ -1248,10 +1444,10 @@
       "note_tr": ""
     },
     {
-      "no": "3.755",
-      "ce": "CE-7",
+      "no": "3.751",
+      "ce": "CE-6",
       "site_type": "On-Site",
-      "ppq": "",
+      "ppq": "PPQ",
       "question_en": "Does the Licensing Authority maintain a continuous record-keeping system for all issued licences, ratings, validations, and conversions?",
       "question_tr": "Lisanslandırma Otoritesi; düzenlenen tüm lisanslar, yetkiler, validasyonlar ve dönüştürmeler için sürekli bir kayıt tutma sistemi sürdürüyor mu?",
       "criteria": [
@@ -1261,17 +1457,17 @@
         },
         {
           "en": "2) Verify that individual records are updated systematically to reflect any changes in license status.",
-          "tr": "2) Münferit kayıtların, lisans durumundaki değişiklikleri yansıtacak şekilde sistemetik olarak güncellendiğini doğrulayın."
+          "tr": "2) Münferit kayıtların, lisans durumindeki değişiklikleri yansıtacak şekilde sistematik olarak güncellendiğini doğrulayın."
         }
       ],
       "note_en": "",
       "note_tr": ""
     },
     {
-      "no": "3.761",
+      "no": "3.753",
       "ce": "CE-6",
       "site_type": "On-Site",
-      "ppq": "",
+      "ppq": "PPQ",
       "question_en": "Does the Licensing Authority ensure that the competency of line check examiners and designated pilot examiners is maintained?",
       "question_tr": "Lisanslandırma Otoritesi, hat kontrol kontrolörlerinin ve görevlendirilmiş pilot kontrolörlerinin yetkinliğinin sürdürülmesini sağlıyor mu?",
       "criteria": [
@@ -1288,10 +1484,10 @@
       "note_tr": ""
     },
     {
-      "no": "3.763",
-      "ce": "CE-6",
+      "no": "3.755",
+      "ce": "CE-7",
       "site_type": "On-Site",
-      "ppq": "PPQ",
+      "ppq": "",
       "question_en": "Does the State implement a process to ensure that flight crew members maintain their recency of experience in compliance with Annex 1?",
       "question_tr": "Devlet, uçuş ekibi üyelerinin güncel deneyimlerini (recency of experience) Ek 1 ile uyumlu şekilde sürdürmelerini sağlayacak bir süreç uyguluyor mu?",
       "criteria": [
@@ -1308,10 +1504,10 @@
       "note_tr": ""
     },
     {
-      "no": "3.765",
+      "no": "3.761",
       "ce": "CE-6",
       "site_type": "On-Site",
-      "ppq": "PPQ",
+      "ppq": "",
       "question_en": "Does the State ensure that air traffic controllers maintain their recency and unit endorsements in compliance with Annex 1?",
       "question_tr": "Devlet, hava trafik kontrolörlerinin güncel deneyimlerini ve meydan/ünite yetkilerini Ek 1 ile uyumlu şekilde sürdürmelerini sağlıyor mu?",
       "criteria": [
@@ -1328,10 +1524,10 @@
       "note_tr": ""
     },
     {
-      "no": "3.767",
-      "ce": "CE-7",
+      "no": "3.763",
+      "ce": "CE-6",
       "site_type": "On-Site",
-      "ppq": "",
+      "ppq": "PPQ",
       "question_en": "Does the Licensing Authority conduct systematic inspections of flight crew logs and training records at air operators’ facilities?",
       "question_tr": "Lisanslandırma Otoritesi, hava işletmelerinin tesislerinde uçuş ekibi kayıtlarının ve eğitim kayıtlarının sistematik denetimlerini yürütüyor mu?",
       "criteria": [
@@ -1348,10 +1544,10 @@
       "note_tr": ""
     },
     {
-      "no": "3.769",
-      "ce": "CE-8",
+      "no": "3.765",
+      "ce": "CE-6",
       "site_type": "On-Site",
-      "ppq": "",
+      "ppq": "PPQ",
       "question_en": "Does the Licensing Authority execute effective enforcement actions when license holders or examiners violate personnel licensing regulations?",
       "question_tr": "Lisanslandırma Otoritesi, lisans sahipleri veya kontrolörler personel lisanslandırma düzenlemelerini ihlal ettiğinde etkili yaptırım eylemleri uyguluyor mu?",
       "criteria": [
@@ -1368,10 +1564,10 @@
       "note_tr": ""
     },
     {
-      "no": "3.771",
-      "ce": "CE-6",
+      "no": "3.767",
+      "ce": "CE-7",
       "site_type": "On-Site",
-      "ppq": "PPQ",
+      "ppq": "",
       "question_en": "Does the State implement a process to ensure that remote pilots hold valid remote pilot licences and ratings in compliance with Annex 1?",
       "question_tr": "Devlet, uzaktan pilotların Ek 1 ile uyumlu geçerli uzaktan pilot lisanslarına ve yetkilerine sahip olmalarını sağlayacak bir süreç uyguluyor mu?",
       "criteria": [
@@ -1388,10 +1584,10 @@
       "note_tr": ""
     },
     {
-      "no": "3.772",
-      "ce": "CE-6",
+      "no": "3.769",
+      "ce": "CE-8",
       "site_type": "On-Site",
-      "ppq": "PPQ",
+      "ppq": "",
       "question_en": "Does the State ensure that personnel involved in safety-sensitive operations are medically fit and hold valid medical assessments during remote pilot operations?",
       "question_tr": "Devlet, emniyet açısından kritik operasyonlarda yer alan personelin sağlık durumunun uygun olmasını ve uzaktan pilot operasyonları sırasında geçerli sağlık değerlendirmelerine sahip olmasını sağlıyor mu?",
       "criteria": [
@@ -1408,10 +1604,10 @@
       "note_tr": ""
     },
     {
-      "no": "3.801",
-      "ce": "CE-2",
-      "site_type": "Off-Site",
-      "ppq": "",
+      "no": "3.771",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "PPQ",
       "question_en": "Has the State promulgated specific operating regulations to require approved training organizations (ATOs) to implement a safety management system (SMS)?",
       "question_tr": "Devlet, onaylı eğitim kuruluşlarının (ATO'lar) bir emniyet yönetim sistemi (SMS) uygulamasını gerektiren spesifik işletme düzenlemeleri yayımlamış mıdır?",
       "criteria": [
@@ -1428,7 +1624,7 @@
       "note_tr": ""
     },
     {
-      "no": "3.805",
+      "no": "3.772",
       "ce": "CE-6",
       "site_type": "On-Site",
       "ppq": "PPQ",
@@ -1448,8 +1644,8 @@
       "note_tr": ""
     },
     {
-      "no": "3.807",
-      "ce": "CE-5",
+      "no": "3.801",
+      "ce": "CE-2",
       "site_type": "Off-Site",
       "ppq": "",
       "question_en": "Has the State provided comprehensive guidance material to ATOs regarding the development and implementation of an SMS?",
@@ -1464,10 +1660,10 @@
       "note_tr": ""
     },
     {
-      "no": "3.809",
+      "no": "3.805",
       "ce": "CE-6",
       "site_type": "On-Site",
-      "ppq": "",
+      "ppq": "PPQ",
       "question_en": "Does the Licensing Authority ensure that ATO personnel involved in safety management functions are qualified and trained?",
       "question_tr": "Lisanslandırma Otoritesi, emniyet yönetimi fonksiyonlarında yer alan ATO personelinin nitelikli ve eğitimli olmasını sağlıyor mu?",
       "criteria": [
@@ -1484,9 +1680,9 @@
       "note_tr": ""
     },
     {
-      "no": "3.811",
-      "ce": "CE-7",
-      "site_type": "On-Site",
+      "no": "3.807",
+      "ce": "CE-5",
+      "site_type": "Off-Site",
       "ppq": "",
       "question_en": "Does the Licensing Authority conduct continuous surveillance of an ATO’s safety management system (SMS)?",
       "question_tr": "Lisanslandırma Otoritesi, bir ATO'nun emniyet yönetim sisteminin (SMS) sürekli gözetimini yürütüyor mu?",
@@ -1504,8 +1700,8 @@
       "note_tr": ""
     },
     {
-      "no": "3.813",
-      "ce": "CE-8",
+      "no": "3.809",
+      "ce": "CE-6",
       "site_type": "On-Site",
       "ppq": "",
       "question_en": "Has the Licensing Authority implemented a system to enforce resolution of safety deficiencies identified in an ATO’s SMS?",
@@ -1524,9 +1720,9 @@
       "note_tr": ""
     },
     {
-      "no": "3.851",
-      "ce": "CE-2",
-      "site_type": "Off-Site",
+      "no": "3.811",
+      "ce": "CE-7",
+      "site_type": "On-Site",
       "ppq": "",
       "question_en": "Has the State promulgated specific operating regulations to require approved maintenance training organizations to implement a safety management system (SMS)?",
       "question_tr": "Devlet, onaylanmış bakım eğitim kuruluşlarının bir emniyet yönetim sistemi (SMS) uygulamasını gerektiren spesifik işletme düzenlemeleri yayımlamış mıdır?",
@@ -1544,9 +1740,9 @@
       "note_tr": ""
     },
     {
-      "no": "3.853",
-      "ce": "CE-5",
-      "site_type": "Off-Site",
+      "no": "3.813",
+      "ce": "CE-8",
+      "site_type": "On-Site",
       "ppq": "",
       "question_en": "Has the State provided comprehensive guidance material to approved maintenance training organizations regarding the development and implementation of an SMS?",
       "question_tr": "Devlet, onaylanmış bakım eğitim kuruluşlarına bir SMS'in geliştirilmesi ve uygulanmasına ilişkin kapsamlı rehber materyal sağlamış mıdır?",
@@ -1560,10 +1756,10 @@
       "note_tr": ""
     },
     {
-      "no": "3.855",
-      "ce": "CE-6",
-      "site_type": "On-Site",
-      "ppq": "PPQ",
+      "no": "3.851",
+      "ce": "CE-2",
+      "site_type": "Off-Site",
+      "ppq": "",
       "question_en": "Has the State implemented a process for the formal acceptance of a maintenance training organization’s safety management system (SMS)?",
       "question_tr": "Devlet, bir bakım eğitim kuruluşunun emniyet yönetim sisteminin (SMS) resmi kabulüne yönelik bir süreç uygulamış mıdır?",
       "criteria": [
@@ -1580,10 +1776,10 @@
       "note_tr": ""
     },
     {
-      "no": "3.857",
-      "ce": "CE-7",
-      "site_type": "On-Site",
-      "ppq": "PPQ",
+      "no": "3.853",
+      "ce": "CE-5",
+      "site_type": "Off-Site",
+      "ppq": "",
       "question_en": "Does the Licensing Authority conduct continuous surveillance of an approved maintenance training organization’s safety management system (SMS)?",
       "question_tr": "Lisanslandırma Otoritesi, onaylanmış bir bakım eğitim kuruluşunun emniyet yönetim sisteminin (SMS) sürekli gözetimini yürütüyor mu?",
       "criteria": [
@@ -1600,10 +1796,10 @@
       "note_tr": ""
     },
     {
-      "no": "3.859",
-      "ce": "CE-8",
+      "no": "3.855",
+      "ce": "CE-6",
       "site_type": "On-Site",
-      "ppq": "",
+      "ppq": "PPQ",
       "question_en": "Has the Licensing Authority implemented a system to enforce resolution of safety deficiencies identified in a maintenance training organization’s SMS?",
       "question_tr": "Lisanslandırma Otoritesi, bir bakım eğitim kuruluşunun SMS'inde tespit edilen emniyet eksikliklerinin çözülmesini zorunlu kılacak bir sistem uygulamış mıdır?",
       "criteria": [
@@ -1614,6 +1810,46 @@
         {
           "en": "2) Verify that enforcement frameworks execute timely penalties for unresolved non-compliances.",
           "tr": "2) Yaptırım çerçevelerinin, çözülmemiş uygunsuzluklar için zamanında cezalar uyguladığını doğrulayın."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.857",
+      "ce": "CE-7",
+      "site_type": "On-Site",
+      "ppq": "PPQ",
+      "question_en": "Does the State ensure that personnel conducting safety-sensitive operations in remote pilot environments maintain continuous qualification profiles?",
+      "question_tr": "Devlet, uzaktan pilot ortamlarında emniyet açısından kritik operasyonlar yürüten personelin sürekli yetkinlik profillerini korumasını sağlıyor mu?",
+      "criteria": [
+        {
+          "en": "1) Review checking log datasets during systematic inspector check audits.",
+          "tr": "1) Sistematik denetçi kontrol denetimleri sırasında kontrol kayıt veri setlerini inceleyin."
+        },
+        {
+          "en": "2) Verify recurrent training timelines comply with current standard workflows.",
+          "tr": "2) Yenileme eğitimi zaman çizelgelerinin mevcut standart iş akışlarına uygun olduğunu doğrulayın."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
+    },
+    {
+      "no": "3.859",
+      "ce": "CE-8",
+      "site_type": "On-Site",
+      "ppq": "",
+      "question_en": "Has the Licensing Authority implemented a systematic tracking workflow to record validation requests from foreign authorities?",
+      "question_tr": "Lisanslandırma Otoritesi, yabancı otoritelerden gelen doğrulama taleplerini kaydetmek için sistematik bir takip iş akışı uygulamış mıdır?",
+      "criteria": [
+        {
+          "en": "1) Review communication database entries and logs.",
+          "tr": "1) İletişim veri tabanı girişlerini ve kayıtlarını inceleyin."
+        },
+        {
+          "en": "2) Verify timelines for processing response packages fulfill expected guidelines.",
+          "tr": "2) Yanıt paketlerinin işlenme sürelerinin beklenen kılavuz ilkeleri karşıladığını doğrulayın."
         }
       ],
       "note_en": "",
