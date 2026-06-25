@@ -5,190 +5,371 @@
   "pqs": [
     {
       "no": "2.010",
-      "question": "Has an organizational structure been established at the State level depicting the authorities with functions related to safety oversight or aircraft accident and incident investigation in the State and their reporting lines?",
       "ce": "CE-3",
-      "ppq": "Yes",
-      "note": "This PQ addresses the organizational structure for civil aviation activities at the State level. Separate PQs, in each audit area, address the organizational structure at the CAA Department/investigation authority level.",
-      "lead": "Evaluate current approved organizational structures (charts) or other equivalent documents and confirm:",
+      "site_type": "Off-Site",
+      "ppq": "PPQ",
+      "question_en": "Has an organizational structure been established at the State level depicting the authorities with functions related to safety oversight or aircraft accident and incident investigation in the State and their reporting lines?",
+      "question_tr": "Devlet düzeyinde, Devletteki emniyet gözetimi veya hava aracı kaza ve olay incelemesi ile ilgili fonksiyonlara sahip otoriteleri ve bunların raporlama hatlarını gösteren bir kurumsal yapı oluşturulmuş mudur?",
       "criteria": [
-        "The inclusion of Personnel licensing and training (PEL).",
-        "The inclusion of Aircraft operations (OPS).",
-        "The inclusion of Airworthiness of aircraft (AIR).",
-        "The inclusion of Aircraft accident and incident investigation (AIG).",
-        "The inclusion of Air navigation services (ANS).",
-        "The inclusion of Aerodromes and ground aids (AGA).",
-        "Confirm that the authority responsible for aircraft accident and serious incident investigation may be permanent or established on an ad hoc basis."
-      ]
+        {
+          "en": "1) Evaluate the current approved organizational structures (charts) or other equivalent documents and confirm that the functions are established and documented for all audit areas:",
+          "tr": "1) Mevcut onaylı kurumsal yapıları (şemaları) veya diğer eşdeğer belgeleri değerlendirin ve tüm denetim alanları için fonksiyonların oluşturulduğunu ve belgelendiğini teyit edin:"
+        },
+        {
+          "en": "a) Personnel licensing and training (PEL);",
+          "tr": "a) Personel lisanslandırma ve eğitimi (PEL);"
+        },
+        {
+          "en": "b) Aircraft operations (OPS);",
+          "tr": "b) Hava aracı operasyonları (OPS);"
+        },
+        {
+          "en": "c) Airworthiness of aircraft (AIR);",
+          "tr": "c) Hava araçlarının uçuşa elverişliliği (AIR);"
+        },
+        {
+          "en": "d) Aircraft accident and incident investigation (AIG);",
+          "tr": "d) Hava aracı kaza ve olay incelemesi (AIG);"
+        },
+        {
+          "en": "e) Air navigation services (ANS); and",
+          "tr": "e) Hava seyrüsefer hizmetleri (ANS) ve"
+        },
+        {
+          "en": "f) Aerodromes and ground aids (AGA).",
+          "tr": "f) Havaalanları ve yer yardımcıları (AGA)."
+        },
+        {
+          "en": "2) Confirm that the authority responsible for aircraft accident and serious incident investigation may be permanent or established on an ad hoc basis.",
+          "tr": "2) Hava aracı kaza ve ciddi olay incelemesinden sorumlu otoritenin kalıcı olabileceğini veya geçici (ad hoc) bir temelde kurulabileceğini teyit edin."
+        },
+        {
+          "en": "3) Confirm with the following audit areas: PEL, OPS, AIR, AIG, ANS and AGA.",
+          "tr": "3) Aşağıdaki denetim alanlarıyla teyit edin: PEL, OPS, AIR, AIG, ANS ve AGA."
+        }
+      ],
+      "note_en": "This PQ addresses the organizational structure for civil aviation activities at the State level. Separate PQs, in each audit area, address the organizational structure at the CAA Department/investigation authority level.",
+      "tr": "Bu PQ, Devlet düzeyindeki sivil havacılık faaliyetlerine yönelik kurumsal yapıyı ele almaktadır. Her denetim alanındaki ayrı PQ'lar, SHGM Departmanı/inceleme otoritesi düzeyindeki kurumsal yapıyı ele alır."
     },
     {
       "no": "2.011",
-      "question": "Are the functions and responsibilities of each authority with functions related to safety oversight or aircraft accident and incident investigation clearly defined?",
       "ce": "CE-3",
-      "ppq": "Yes",
-      "note": "Separate PQs, in each audit area, address functions and responsibilities at the CAA Department/investigation authority level.",
-      "lead": "Review documents and verify:",
+      "site_type": "Off-Site",
+      "ppq": "PPQ",
+      "question_en": "Are the functions and responsibilities of each authority with functions related to safety oversight or aircraft accident and incident investigation clearly defined?",
+      "question_tr": "Emniyet gözetimi veya hava aracı kaza ve olay incelemesi ile ilgili fonksiyonlara sahip her bir otoritenin görev ve sorumlulukları açıkça tanımlanmış mıdır?",
       "criteria": [
-        "Review documents defining the functions and responsibilities of each authority at the State level with functions related to safety oversight or aircraft accident and incident investigation.",
-        "Verify inclusion of key functions and responsibilities in each area."
-      ]
+        {
+          "en": "1) Review the documents defining the functions and responsibilities of each authority at the State level with functions related to safety oversight or aircraft accident and incident investigation.",
+          "tr": "1) Devlet düzeyinde emniyet gözetimi veya hava aracı kaza ve olay incelemesi ile ilgili fonksiyonlara sahip her bir otoritenin görev ve sorumluluklarını tanımlayan belgeleri inceleyin."
+        },
+        {
+          "en": "2) Verify that key functions and responsibilities in each area are included.",
+          "tr": "2) Her alandaki temel fonksiyonların ve sorumlulukların dâhil edildiğini doğrulayın."
+        },
+        {
+          "en": "3) Confirm with the following audit areas: PEL, OPS, AIR, AIG, ANS and AGA.",
+          "tr": "3) Aşağıdaki denetim alanlarıyla teyit edin: PEL, OPS, AIR, AIG, ANS ve AGA."
+        }
+      ],
+      "note_en": "Separate PQs, in each audit area, address functions and responsibilities at the CAA Department/investigation authority level.",
+      "tr": "Her denetim alanındaki ayrı PQ'lar, SHGM Departmanı/inceleme otoritesi düzeyindeki görev ve sorumlulukları ele alır."
     },
     {
       "no": "2.013",
-      "question": "If Regional Offices (ROs) have been established for authorities which perform functions related to safety oversight or aircraft accident and incident investigation, are their roles and responsibilities clearly defined?",
       "ce": "CE-3",
+      "site_type": "Off-Site",
       "ppq": "",
-      "note": "",
-      "lead": "Review guidelines for:",
+      "question_en": "If Regional Offices (ROs) have been established for authorities which perform functions related to safety oversight or aircraft accident and incident investigation, are their roles and responsibilities clearly defined, including their relationship and level of authority vis-à-vis Headquarters?",
+      "question_tr": "Emniyet gözetimi veya hava aracı kaza ve olay incelemesi ile ilgili fonksiyonları yürüten otoriteler için Bölge Müdürlükleri kurulmuşsa, bunların Merkez Teşkilatı karşısındaki ilişkileri ve yetki düzeyleri de dâhil olmak üzere rol ve sorumlulukları açıkça tanımlanmış mıdır?",
       "criteria": [
-        "Document(s) defining the functions and responsibilities of ROs.",
-        "Organizational structure(s)/chart(s).",
-        "Document(s) defining the level of authority of the ROs."
-      ]
+        {
+          "en": "1) Check if the relevant authorities have established ROs.",
+          "tr": "1) İlgili otoritelerin Bölge Müdürlükleri kurup kurmadığını kontrol edin."
+        },
+        {
+          "en": "2) If yes, review the document(s) defining the functions and responsibilities of ROs, including organizational structure(s)/chart(s) and level of authority of the ROs.",
+          "tr": "2) Cevap evet ise, Bölge Müdürlüklerinin kurumsal yapısı/şemaları ve yetki düzeyi dâhil olmak üzere, fonksiyon ve sorumluluklarını tanımlayan belgeyi/belgeleri inceleyin."
+        },
+        {
+          "en": "3) Confirm with the following audit areas: PEL, OPS, AIR, AIG, ANS and AGA.",
+          "tr": "3) Aşağıdaki denetim alanlarıyla teyit edin: PEL, OPS, AIR, AIG, ANS ve AGA."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
     },
     {
       "no": "2.017",
-      "question": "If the State has delegated or transferred safety oversight-related tasks to other entities, have procedures or mechanisms been established to ensure that the State’s obligation for safety oversight of the delegated or transferred tasks is being met?",
       "ce": "CE-3",
+      "site_type": "Off-Site",
       "ppq": "",
-      "note": "",
-      "lead": "Review parameter structures:",
+      "question_en": "If the State has delegated or transferred safety oversight-related tasks to other entities (e.g. delegated organizations, other Contracting States, regional safety oversight organizations [RSOOs], private agencies or qualified individuals), have procedures or mechanisms been established to ensure that the State’s obligation for safety oversight of the delegated or transferred tasks is being met?",
+      "question_tr": "Devlet, emniyet gözetimi ile ilgili görevleri diğer kurumlara delege etmiş veya devretmişse, delege edilen veya devredilen görevlerin emniyet gözetimine yönelik Devlet yükümlülüğünün yerine getirilmesini sağlayacak prosedürler veya mekanizmalar oluşturulmuş mudur?",
       "criteria": [
-        "Review the specific tasks which have been delegated or transferred.",
-        "Review the procedures or mechanisms established (e.g. jointly with the other States having delegated or transferred tasks to the same entity) to review the performance of tasks by the other entities."
-      ]
+        {
+          "en": "1) Identify the specific tasks which have been delegated or transferred.",
+          "tr": "1) Delege edilen veya devredilen spesifik görevleri belirleyin."
+        },
+        {
+          "en": "2) Review the procedures or mechanisms established (e.g. jointly with the other States having delegated or transferred tasks to the same entity) to review the performance of tasks by the other entities.",
+          "tr": "2) Diğer kurumlar tarafından görevlerin yerine getirilme performansını gözden geçirmek için oluşturulan prosedürleri veya mekanizmaları (örneğin aynı kuruma görev delege etmiş veya devretmiş diğer Devletlerle ortaklaşa) inceleyin."
+        },
+        {
+          "en": "3) Verify implementation of these procedures/mechanisms in the specific technical areas (PEL, OPS, AIR, ANS and AGA).",
+          "tr": "3) Bu prosedürlerin/mekanizmaların spesifik teknik alanlarda (PEL, OPS, AIR, ANS ve AGA) uygulandığını doğrulayın."
+        }
+      ],
+      "note_en": "This PQ does not apply to AIG.",
+      "tr": "Bu PQ, AIG için geçerli değildir."
     },
     {
       "no": "2.019",
-      "question": "When there is more than one authority (organization) with functions related to safety oversight or aircraft accident and incident investigation, have procedures been established to ensure that all areas are covered and that there is no overlap of responsibilities?",
       "ce": "CE-3",
+      "site_type": "Off-Site",
       "ppq": "",
-      "note": "",
-      "lead": "Review the coordination matrix to:",
+      "question_en": "When there is more than one authority (organization) with functions related to safety oversight or aircraft accident and incident investigation, have procedures been established to ensure coordination between these organizations to ensure that all areas are covered and that there is no overlap of responsibilities?",
+      "question_tr": "Emniyet gözetimi veya hava aracı kaza ve olay incelemesi ile ilgili fonksiyonlara sahip birden fazla otorite (kuruluş) olduğunda, tüm alanların kapsanmasını ve sorumluluk çakışması olmamasını sağlamak amacıyla bu kuruluşlar arasında koordinasyonu temin edecek prosedürler oluşturulmuş mudur?",
       "criteria": [
-        "Verify if State has identified one specific authority responsible for coordination of all ICAO-related matters.",
-        "Review the system in place to identify any area for which there may be overlaps.",
-        "Identify if tasks related to safety oversight or accident/incident investigation have not been assigned to any entity."
-      ]
+        {
+          "en": "1) Verify if the State has identified one specific authority responsible for coordination of all ICAO-related matters.",
+          "tr": "1) Devletin, ICAO ile ilgili tüm hususların koordinasyonundan sorumlu spesifik bir otorite belirleyip belirlemediğini doğrulayın."
+        },
+        {
+          "en": "2) Review the system in place to identify any area for which there may be gaps or overlaps between the relevant authorities.",
+          "tr": "2) İlgili otoriteler arasında boşluklar veya çakışmalar olabilecek alanları belirlemek için yürürlükteki sistemi inceleyin."
+        },
+        {
+          "en": "3) Confirm that procedures have been established to ensure effective coordination and sharing of safety-related information.",
+          "tr": "3) Emniyetle ilgili bilgilerin etkin koordinasyonunu ve paylaşımını sağlamak için prosedürlerin oluşturulduğunu teyit edin."
+        },
+        {
+          "en": "4) Confirm with the following audit areas: PEL, OPS, AIR, AIG, ANS and AGA.",
+          "tr": "4) Aşağıdaki denetim alanlarıyla teyit edin: PEL, OPS, AIR, AIG, ANS ve AGA."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
     },
     {
       "no": "2.023",
-      "question": "Has the State established and implemented mechanisms to avoid perceived or potential conflict of interest of inspectorate staff?",
       "ce": "CE-3",
-      "ppq": "Yes",
-      "note": "This PQ is not linked to AIG.",
-      "lead": "Review mechanisms in place, and in cases where the CAA has inspectors seconded from a service provider in the State, review formal arrangements to either:",
+      "site_type": "Off-Site",
+      "ppq": "PPQ",
+      "question_en": "Has the State established and implemented mechanisms to avoid perceived or potential conflict of interest of inspectorate staff?",
+      "question_tr": "Devlet, denetim personelinin algılanan veya potansiyel çıkar çatışmalarını önlemek için mekanizmalar oluşturmuş ve uygulamaya koymuş mudur?",
       "criteria": [
-        "Exclude the seconded personnel from performing safety oversight functions on the service provider that employs them.",
-        "Effectively mitigate the risk of perceived or potential conflict of interest.",
-        "Verify deployment configurations in all specific technical areas: PEL, OPS, AIR, ANS and AGA."
-      ]
+        {
+          "en": "1) Review mechanisms in place to avoid perceived or potential conflict of interest of inspectorate staff.",
+          "tr": "1) Denetim personelinin algılanan veya potansiyel çıkar çatışmalarını önlemek için yürürlükteki mekanizmaları inceleyin."
+        },
+        {
+          "en": "2) In cases where the CAA has inspectors seconded from a service provider in the State, review the formal arrangements to either exclude the seconded personnel from performing safety oversight functions on the service provider that employs them, or to effectively mitigate the risk of perceived or potential conflict of interest.",
+          "tr": "2) SHGM'nin Devlet içindeki bir hizmet sağlayıcıdan geçici görevlendirilmiş denetçilerinin bulunduğu durumlarda; görevlendirilen personelin kendilerini istihdam eden hizmet sağlayıcı üzerinde emniyet gözetimi fonksiyonları yürütmesini engellemeye veya algılanan ya da potansiyel çıkar çatışması riskini etkili bir şekilde azaltmaya yönelik resmi düzenlemeleri inceleyin."
+        },
+        {
+          "en": "3) Verify implementation in all specific technical areas: PEL, OPS, AIR, ANS and AGA.",
+          "tr": "3) Tüm spesifik teknik alanlarda uygulamayı doğrulayın: PEL, OPS, AIR, ANS ve AGA."
+        }
+      ],
+      "note_en": "This PQ is not linked to AIG.",
+      "tr": "Bu PQ, AIG ile bağlantılı değildir."
     },
     {
       "no": "2.051",
-      "question": "Has the State established and implemented a mechanism to ensure that each safety oversight authority has sufficient financial resources to meet its national and international obligations?",
       "ce": "CE-3",
-      "ppq": "Yes",
-      "note": "A separate PQ is used for the investigation authority (AIG 6.105).",
-      "lead": "Review mechanisms and verify that sufficient financial resources are available for:",
+      "site_type": "Off-Site",
+      "ppq": "PPQ",
+      "question_en": "Has the State established and implemented a mechanism to ensure that each safety oversight authority has sufficient financial resources to meet its national and international obligations?",
+      "question_tr": "Devlet, her bir emniyet gözetimi otoritesinin ulusal ve uluslararası yükümlülüklerini yerine getirebilmesi için yeterli finansal kaynaklara sahip olmasını sağlayacak bir mekanizma oluşturmuş ve uygulamaya koymuş mudur?",
       "criteria": [
-        "Review mechanisms to fund the authorities (e.g. State budget, fees and charges).",
-        "Review mechanisms to determine budget needs.",
-        "Review actual budget allocated.",
-        "Development of regulations, procedures and other guidance material.",
-        "Training capabilities.",
-        "Surveillance activities.",
-        "Resolution of safety deficiencies.",
-        "Confirm implementations in the following technical scopes: PEL, OPS, AIR, ANS and AGA."
-      ]
+        {
+          "en": "1) Review the mechanisms implemented by the State to fund each safety oversight authority (e.g., State budget, fee-for-service system, passenger taxes, etc.).",
+          "tr": "1) Devlet tarafından her bir emniyet gözetimi otoritesini finanse etmek için uygulanan mekanizmaları (örneğin Devlet bütçesi, hizmet başına ücret sistemi, yolcu vergileri vb.) inceleyin."
+        },
+        {
+          "en": "2) Verify whether the funding mechanism ensures that sufficient financial resources are allocated to the authorities to enable them to perform their functions and responsibilities, such as:",
+          "tr": "2) Finansman mekanizmasının, otoritelerin aşağıdakiler gibi fonksiyon ve sorumluluklarını yerine getirmelerini sağlamak için yeterli mali kaynağın tahsis edilmesini güvence altına alıp almadığını doğrulayın:"
+        },
+        {
+          "en": "a) development/revision of regulations and guidance material;",
+          "tr": "a) düzenlemelerin ve rehber materyallerin geliştirilmesi/revizyonu;"
+        },
+        {
+          "en": "b) recruitment and retention of qualified technical personnel;",
+          "tr": "b) nitelikli teknik personelin istihdamı ve kalıcılığının sağlanması;"
+        },
+        {
+          "en": "c) training of technical personnel;",
+          "tr": "c) teknik personelin eğitimi;"
+        },
+        {
+          "en": "d) performance of certification and surveillance activities; and",
+          "tr": "d) sertifikalandırma ve gözetim faaliyetlerinin yürütülmesi ve"
+        },
+        {
+          "en": "e) resolution of safety deficiencies.",
+          "tr": "e) emniyet eksikliklerinin giderilmesi."
+        },
+        {
+          "en": "3) Confirm with the following audit areas: PEL, OPS, AIR, ANS and AGA.",
+          "tr": "3) Aşağıdaki denetim alanlarıyla teyit edin: PEL, OPS, AIR, ANS ve AGA."
+        }
+      ],
+      "note_en": "A separate PQ is used for the investigation authority (AIG 6.105).",
+      "tr": "İnceleme otoritesi (AIG 6.105) için ayrı bir PQ kullanılmaktadır."
     },
     {
       "no": "2.053",
-      "question": "Has the State established a mechanism to ensure that each safety oversight authority has sufficient personnel to meet its national and international obligations?",
       "ce": "CE-3",
+      "site_type": "Off-Site",
       "ppq": "",
-      "note": "A separate PQ is used for the investigation authority (AIG 6.113). The implementation of this mechanism is addressed by the following PQs: PEL 3.109; OPS 4.025; AIR 5.033; AIR 5.473; ANS 7.061; ANS 7.209; ANS 7.269; ANS 7.373; ANS 7.417; ANS 7.487 & AGA 8.039.",
-      "lead": "Verify structural manpower resources:",
+      "question_en": "Has the State established a mechanism to ensure that each safety oversight authority has sufficient personnel to meet its national and international obligations?",
+      "question_tr": "Devlet, her bir emniyet gözetimi otoritesinin ulusal ve uluslararası yükümlülüklerini yerine getirebilmesi için yeterli personele sahip olmasını sağlayacak bir mekanizma oluşturmuş mudur?",
       "criteria": [
-        "Methodology to identify staff needs for all specialties.",
-        "The process to establish and fill the required posts initially and on an ongoing basis.",
-        "State’s ability to accomplish all required activities including: development of regulations, procedures and guidance material.",
-        "State’s ability to accomplish training activities.",
-        "State’s ability to accomplish surveillance activities.",
-        "State’s ability to accomplish resolution of safety deficiencies."
-      ]
+        {
+          "en": "1) Review the mechanism established to ensure that each safety oversight authority has sufficient personnel.",
+          "tr": "1) Her bir emniyet gözetimi otoritesinin yeterli personele sahip olmasını sağlamak için oluşturulan mekanizmayı inceleyin."
+        },
+        {
+          "en": "2) Verify whether the mechanism takes into consideration:",
+          "tr": "2) Mekanizmanın aşağıdakileri dikkate alıp almadığını doğrulayın:"
+        },
+        {
+          "en": "a) the methodology used to determine staffing needs for each technical discipline based on size and complexity of civil aviation activities in the State; and",
+          "tr": "a) Devletteki sivil havacılık faaliyetlerinin büyüklüğü ve karmaşıklığına göre her bir teknik disiplin için personel ihtiyacını belirlemede kullanılan metodoloji ve"
+        },
+        {
+          "en": "b) the process to establish and fill the required technical posts initially and on an ongoing basis.",
+          "tr": "b) Gerekli teknik kadroların ilk başta ve sürekli olarak ihdas edilmesi ve doldurulması süreci."
+        },
+        {
+          "en": "3) Verify that the mechanism addresses the authority's ability to accomplish safety oversight activities (regulations development, certification, training, surveillance, and resolution of safety deficiencies).",
+          "tr": "3) Mekanizmanın, otoritenin emniyet gözetimi faaliyetlerini (düzenleme geliştirme, sertifikalandırma, eğitim, gözetim ve emniyet eksikliklerinin giderilmesi) gerçekleştirme yeteneğini kapsadığını doğrulayın."
+        }
+      ],
+      "note_en": "A separate PQ is used for the investigation authority (AIG 6.113). The implementation of this mechanism is addressed by the following PQs: PEL 3.109; OPS 4.025; AIR 5.033; AIR 5.473; ANS 7.061; ANS 7.209; ANS 7.269; ANS 7.373; ANS 7.417; ANS 7.487 & AGA 8.039.",
+      "tr": "İnceleme otoritesi (AIG 6.113) için ayrı bir PQ kullanılmaktadır. Bu mekanizmanın uygulanması şu PQ'lar tarafından ele alınmaktadır: PEL 3.109; OPS 4.025; AIR 5.033; AIR 5.473; ANS 7.061; ANS 7.209; ANS 7.269; ANS 7.373; ANS 7.417; ANS 7.487 ve AGA 8.039."
     },
     {
       "no": "2.101",
-      "question": "Does each safety oversight entity/investigation authority have an active role in the selection and recruitment of sufficiently qualified and experienced technical personnel?",
       "ce": "CE-4",
-      "ppq": "Yes",
-      "note": "",
-      "lead": "Verify active recruitment processes across technical layers:",
+      "site_type": "Off-Site",
+      "ppq": "PPQ",
+      "question_en": "Does each safety oversight entity/investigation authority have an active role in the selection and recruitment of sufficiently qualified and experienced technical personnel?",
+      "question_tr": "Her bir emniyet gözetimi kurumu/inceleme otoritesi, yeterince nitelikli ve deneyimli teknik personelin seçimi ve işe alımında aktif bir role sahip midir?",
       "criteria": [
-        "That competency requirements are established by the respective safety oversight entities/investigation authority, if applicable, responsible for each technical and managerial post.",
-        "Active participation of the respective safety oversight entity/investigation authority, if applicable, in the recruitment and the selection of prospective personnel.",
-        "Confirm active execution in each audit area as applicable: PEL, OPS, AIR, AIG (only when there is a permanent investigation authority), ANS and AGA."
-      ]
+        {
+          "en": "1) Verify that competency requirements (minimum qualifications and experience) are established by the respective safety oversight entities/the investigation authority for each technical and managerial post.",
+          "tr": "1) Her bir teknik ve idari kadro için yetkinlik gerekliliklerinin (minimum nitelikler ve deneyim) ilgili emniyet gözetimi kurumları/inceleme otoritesi tarafından belirlendiğini doğrulayın."
+        },
+        {
+          "en": "2) Review the recruitment process and confirm the active participation of the respective safety oversight entity/the investigation authority in the recruitment and selection of prospective technical personnel.",
+          "tr": "2) İşe alım sürecini inceleyin ve gelecekteki teknik personelin işe alımı ve seçiminde ilgili emniyet gözetimi kurumunun/inceleme otoritesinin aktif katılımını teyit edin."
+        },
+        {
+          "en": "3) Confirm with the following audit areas: PEL, OPS, AIR, AIG (only when there is a permanent investigation authority), ANS and AGA.",
+          "tr": "3) Aşağıdaki denetim alanlarıyla teyit edin: PEL, OPS, AIR, AIG (yalnızca kalıcı bir inceleme otoritesi olduğunda), ANS ve AGA."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
     },
     {
       "no": "2.103",
-      "question": "Is each safety oversight entity/investigation authority able to attract, recruit and retain sufficiently qualified/experienced technical personnel?",
       "ce": "CE-3",
+      "site_type": "Off-Site",
       "ppq": "",
-      "note": "",
-      "lead": "Verify retention performance:",
+      "question_en": "Is each safety oversight entity/investigation authority able to attract, recruit and retain sufficiently qualified/experienced technical personnel to meet its national and international obligations?",
+      "question_tr": "Her bir emniyet gözetimi kurumu/inceleme otoritesi, ulusal ve uluslararası yükümlülüklerini yerine getirmek için yeterince nitelikli/deneyimli teknik personeli çekebilmekte, işe alabilmekte ve elinde tutabilmekte midir?",
       "criteria": [
-        "Review rates of vacancy and of turnover for the personnel of all safety oversight entities/the investigation authority.",
-        "Verify ability to offer competitive terms of employment and compensation packages.",
-        "Verify active levels in each audit area as applicable: PEL, OPS, AIR, AIG (only when there is a permanent investigation authority), ANS and AGA."
-      ]
+        {
+          "en": "1) Review the rates of vacancy and of turnover for the personnel of all safety oversight entities/the investigation authority.",
+          "tr": "1) Tüm emniyet gözetimi kurumlarının/inceleme otoritesinin personeline yönelik boş kadro ve personel sirkülasyonu (turnover) oranlarını inceleyin."
+        },
+        {
+          "en": "2) Verify whether the entities are able to offer competitive terms of employment and compensation packages to attract and retain qualified technical personnel.",
+          "tr": "2) Kurumların nitelikli teknik personeli çekmek ve elinde tutmak için rekabetçi istihdam koşulları ve ücret paketleri sunup sunamadığını doğrulayın."
+        },
+        {
+          "en": "3) Confirm with the following audit areas: PEL, OPS, AIR, AIG (only when there is a permanent investigation authority), ANS and AGA.",
+          "tr": "3) Aşağıdaki denetim alanlarıyla teyit edin: PEL, OPS, AIR, AIG (yalnızca kalıcı bir inceleme otoritesi olduğunda), ANS ve AGA."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
     },
     {
       "no": "2.105",
-      "question": "Has each safety oversight entity/investigation authority established a training policy for technical personnel?",
       "ce": "CE-4",
+      "site_type": "Off-Site",
       "ppq": "",
-      "note": "",
-      "lead": "Review and verify that the training policy commits to providing and requiring structured member files for:",
+      "question_en": "Has each safety oversight entity/investigation authority established a training policy for its technical personnel?",
+      "question_tr": "Her bir emniyet gözetimi kurumu/inceleme otoritesi, teknik personeli için bir eğitim politikası oluşturmuş mudur?",
       "criteria": [
-        "Review that a documented training policy is established and signed at the management level of the authority.",
-        "Initial parameters (e.g. induction and basic training).",
-        "On-the-job training (OJT).",
-        "Recurrent training intervals.",
-        "Specialized/advanced training blocks.",
-        "The training policy requirements for the establishment of a training programme for each technical staff position and training plans for each technical staff member."
-      ]
+        {
+          "en": "1) Review the documented training policy established and signed at the management level of each authority.",
+          "tr": "1) Her bir otoritenin yönetim düzeyinde oluşturulmuş ve imzalanmış dokümante edilmiş eğitim politikasını inceleyin."
+        },
+        {
+          "en": "2) Verify that the training policy commits to providing and requiring structured training (initial, on-the-job, recurrent and specialized/advanced training) for technical personnel.",
+          "tr": "2) Eğitim politikasının, teknik personel için yapılandırılmış eğitimler (temel, iş başı, yenileme ve uzmanlık/ileri düzey eğitim) sağlamayı ve zorunlu kılmayı taahhüt ettiğini doğrulayın."
+        },
+        {
+          "en": "3) Verify that the training policy sets requirements for the establishment of a training programme for each technical staff position and training plans for each technical staff member.",
+          "tr": "3) Eğitim politikasının, her bir teknik personel kadrosu için bir eğitim programı ve her bir teknik personel için eğitim planları oluşturulmasına yönelik gereklilikleri belirlediğini doğrulayın."
+        },
+        {
+          "en": "4) Confirm with the following audit areas: PEL, OPS, AIR, AIG, ANS and AGA.",
+          "tr": "4) Aşağıdaki denetim alanlarıyla teyit edin: PEL, OPS, AIR, AIG, ANS ve AGA."
+        }
+      ],
+      "note_en": "",
+      "note_tr": ""
     },
     {
       "no": "2.205",
-      "question": "Are appropriate facilities available to the personnel of each safety oversight entity?",
       "ce": "CE-5",
+      "site_type": "On-Site",
       "ppq": "",
-      "note": "This PQ is not linked to AIG.",
-      "lead": "Assess adequacy of facilities for the performance of duties and responsibilities for each safety oversight entity across:",
+      "question_en": "Are appropriate facilities available to the personnel of each safety oversight entity for the performance of their duties and responsibilities?",
+      "question_tr": "Her bir emniyet gözetimi kuruluşu personeline görev ve sorumluluklarını yerine getirebilmeleri için uygun tesis/ofis imkânları sağlanmış mıdır?",
       "criteria": [
-        "Personnel licensing and training entity (PEL).",
-        "Aircraft operations oversight entity (OPS).",
-        "Airworthiness oversight entity (AIR).",
-        "Air navigation services oversight entity (ANS).",
-        "Aerodromes and ground aids oversight entity (AGA)."
-      ]
+        {
+          "en": "1) Assess the adequacy of facilities for the performance of duties and responsibilities for each safety oversight entity.",
+          "tr": "1) Her bir emniyet gözetimi kuruluşu için görev ve sorumlulukların yerine getirilmesine yönelik tesislerin/ofislerin yeterliliğini değerlendirin."
+        },
+        {
+          "en": "2) Confirm with the following audit areas: PEL, OPS, AIR, ANS and AGA.",
+          "tr": "2) Aşağıdaki denetim alanlarında doğrulayın: PEL, OPS, AIR, ANS ve AGA."
+        }
+      ],
+      "note_en": "This PQ is not linked to AIG.",
+      "tr": "Bu PQ, AIG ile bağlantılı değildir."
     },
     {
       "no": "2.207",
-      "question": "Are appropriate equipment and transportation available to the personnel of each safety oversight entity?",
       "ce": "CE-5",
+      "site_type": "On-Site",
       "ppq": "",
-      "note": "This PQ is not linked to AIG.",
-      "lead": "Assess equipment and mobility levels, confirming availability for PEL, OPS, AIR, ANS and AGA:",
+      "question_en": "Are appropriate equipment and transportation available to the personnel of each safety oversight entity for the performance of their duties and responsibilities?",
+      "question_tr": "Her bir emniyet gözetimi kuruluşu personeli için uygun ekipman ve ulaşım imkânları mevcut mudur?",
       "criteria": [
-        "Assess adequacy of equipment for the personnel for the performance of duties and responsibilities for each safety oversight entity, including photocopiers.",
-        "Assess adequacy of computers/laptops/notebooks.",
-        "Assess adequacy of printing facilities.",
-        "Assess adequacy of telephone/mobiles and Internet infrastructure.",
-        "Assess adequacy of microfiche/microfilm reader, if needed.",
-        "Assess whether relevant personnel have access to adequate transportation to perform their duties."
-      ]
+        {
+          "en": "1) Assess adequacy of equipment for the personnel for the performance of duties and responsibilities for each safety oversight entity, including photocopiers, computers/laptops/notebooks, printing facilities, telephone/mobiles, Internet, microfiche/microfilm reader, if needed.",
+          "tr": "1) Fotokopi makineleri, bilgisayarlar/dizüstü bilgisayarlar/notebooklar, yazdırma imkânları, telephone/cep telefonları, internet ve ihtiyaç halinde mikrofiş/mikrofilm okuyucu dâhil olmak üzere, her bir emniyet gözetimi kuruluşu için personelin görev ve sorumluluklarını yerine getirmesine yönelik ekipmanın yeterliliğini değerlendirin."
+        },
+        {
+          "en": "2) Assess whether relevant personnel have access to adequate transportation to perform their duties.",
+          "tr": "2) İlgili personelin görevlerini yerine getirmek için yeterli ulaşım imkânlarına erişimi olup olmadığını değerlendirin."
+        },
+        {
+          "en": "3) Confirm the information above with the following audit areas: PEL, OPS, AIR, ANS and AGA.",
+          "tr": "3) Yukarıdaki bilgileri aşağıdaki denetim alanlarıyla teyit edin: PEL, OPS, AIR, ANS ve AGA."
+        }
+      ],
+      "note_en": "This PQ is not linked to AIG.",
+      "tr": "Bu PQ, AIG ile bağlantılı değildir."
     }
   ]
 }
