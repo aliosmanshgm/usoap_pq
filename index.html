@@ -164,6 +164,11 @@
             background: #f8fafc; border-left: 3px solid var(--secondary-color); padding: 12px 15px;
             margin-bottom: 8px; border-radius: 0 6px 6px 0; display: flex; justify-content: space-between; align-items: center; gap: 20px;
         }
+        /* İki nokta ile biten çatı satırları için özel stil */
+        .criterion-item.header-line {
+            background: #f1f5f9; border-left-color: var(--primary-color); font-weight: bold;
+        }
+        
         .criterion-text { 
             font-size: 13px; line-height: 1.5; color: #334155; 
             white-space: pre-wrap; flex-grow: 1;
@@ -336,7 +341,6 @@
         }
     }
 
-    // "Note to the auditor" Metin Ayırma Yardımcısı
     function extractNotesAndCriteria(fullText) {
         if(!fullText) return { criteriaLines: [], noteText: "" };
         const lines = fullText.split('\n');
@@ -371,59 +375,77 @@
             let qText = currentLang === 'tr' ? pq.question_tr : pq.question_en;
             let ppqBadge = pq.ppq && pq.ppq !== "False" ? `<span class="badge-ppq">PPQ</span>` : '';
             
-            // OnSiteRequired Sütun Kuralı Güncellemesi: True="On-Site", False="Off-Site"
-            let siteStr = (pq.site_type === "On-Site" || pq.site_type === "True") ? "On-Site" : "Off-Site";
+            // OnSiteRequired: Excel tablosundaki katı kural eşleştirmesi
+            let isTargetOnSite = (pq.OnSiteRequired === true || pq.OnSiteRequired === "True" || pq.OnSiteRequired === "yes" || pq.site_type === "On-Site" || pq.site_type === "True");
+            let siteStr = isTargetOnSite ? "On-Site" : "Off-Site";
             let siteBadge = `<span class="badge-site">${siteStr}</span>`;
 
             let refText = pq.reference ? pq.reference : '';
             let referenceHtml = refText ? `<div class="pq-reference-box"><strong>${lblRefBox}</strong>\n${refText}</div>` : '';
 
-            // Metin Ayrıştırma Motoru (Alt Kriterleri Satır Satır Patlatma ve Not Ayırma)
-            let rawEvidenceEN = pq.review_evidence_en || "";
-            let rawEvidenceTR = pq.review_evidence_tr || "";
+            let rawEvidenceEN = pq.review_evidence_en || pq.Review_Evidence || "";
+            let rawEvidenceTR = pq.review_evidence_tr || pq.Incelenecek_Kanitlar || "";
 
             let parsedEN = extractNotesAndCriteria(rawEvidenceEN);
             let parsedTR = extractNotesAndCriteria(rawEvidenceTR);
 
-            // Başlıkta Kriter Sayısı Rozeti Gösterme
-            let totalCriteriaCount = parsedEN.criteriaLines.length || 1;
-            let countLabel = currentLang === 'tr' ? `${totalCriteriaCount} Kriter` : `${totalCriteriaCount} Criteria`;
+            // Başlık bandında kaç adet GERÇEK (puanlanabilir) kriter olduğunu hesaplama
+            let activeCriteriaCount = 0;
+            let maxIterations = Math.max(parsedEN.criteriaLines.length, parsedTR.criteriaLines.length);
+            if(maxIterations === 0) maxIterations = 1;
+
+            for(let cIdx = 0; cIdx < maxIterations; cIdx++) {
+                let lineEN = parsedEN.criteriaLines[cIdx] || "";
+                if(lineEN && !lineEN.trim().endsWith(":")) {
+                    activeCriteriaCount++;
+                }
+            }
+            if(activeCriteriaCount === 0) activeCriteriaCount = maxIterations;
+
+            let countLabel = currentLang === 'tr' ? `${activeCriteriaCount} Kriter` : `${activeCriteriaCount} Criteria`;
             let criteriaBadge = `<span class="badge-count">${countLabel}</span>`;
 
-            // İzole Edilmiş Denetçi Not Kutusu HTML
             let noteBoxHtml = "";
             let activeNoteText = currentLang === 'tr' ? parsedTR.noteText : parsedEN.noteText;
             if(activeNoteText) {
                 noteBoxHtml = `<div class="pq-auditor-note-box"><strong>${lblNoteBox}</strong>\n${activeNoteText}</div>`;
             }
 
-            // Alt Kriterleri Tek Tek Döngüyle Basma ve Her Birine Radyo Buton Atama
             let criteriaHtml = "";
-            let maxIterations = Math.max(parsedEN.criteriaLines.length, parsedTR.criteriaLines.length);
-            if(maxIterations === 0) maxIterations = 1; // Güvenlik çemberi
 
             for(let cIdx = 0; cIdx < maxIterations; cIdx++) {
-                const key = `${pqIdx}_${cIdx}`;
-                if (!currentUserData.status[key]) currentUserData.status[key] = "NA";
-                const currentStatus = currentUserData.status[key];
-
                 let lineEN = parsedEN.criteriaLines[cIdx] || rawEvidenceEN;
                 let lineTR = parsedTR.criteriaLines[cIdx] || rawEvidenceTR;
                 let activeLineText = currentLang === 'tr' ? lineTR : lineEN;
 
-                criteriaHtml += `
-                    <div class="criterion-item">
-                        <div class="criterion-text">${activeLineText}</div>
-                        <div class="status-options">
-                            <input type="radio" name="rad_${pqIdx}_${cIdx}" id="rad_S_${pqIdx}_${cIdx}" value="S" ${currentStatus === 'S' ? 'checked' : ''} data-pq="${pqIdx}" data-crit="${cIdx}">
-                            <label for="rad_S_${pqIdx}_${cIdx}">S</label>
-                            <input type="radio" name="rad_${pqIdx}_${cIdx}" id="rad_NS_${pqIdx}_${cIdx}" value="NS" ${currentStatus === 'NS' ? 'checked' : ''} data-pq="${pqIdx}" data-crit="${cIdx}">
-                            <label for="rad_NS_${pqIdx}_${cIdx}">NS</label>
-                            <input type="radio" name="rad_${pqIdx}_${cIdx}" id="rad_NA_${pqIdx}_${cIdx}" value="NA" ${currentStatus === 'NA' ? 'checked' : ''} data-pq="${pqIdx}" data-crit="${cIdx}">
-                            <label for="rad_NA_${pqIdx}_${cIdx}">NA</label>
+                let isHeaderLine = activeLineText.trim().endsWith(":");
+
+                if (isHeaderLine) {
+                    // İki nokta ile biten çatı satırlarında S/NS/NA butonları gizlenir
+                    criteriaHtml += `
+                        <div class="criterion-item header-line">
+                            <div class="criterion-text">${activeLineText}</div>
                         </div>
-                    </div>
-                `;
+                    `;
+                } else {
+                    const key = `${pqIdx}_${cIdx}`;
+                    if (!currentUserData.status[key]) currentUserData.status[key] = "NA";
+                    const currentStatus = currentUserData.status[key];
+
+                    criteriaHtml += `
+                        <div class="criterion-item">
+                            <div class="criterion-text">${activeLineText}</div>
+                            <div class="status-options">
+                                <input type="radio" name="rad_${pqIdx}_${cIdx}" id="rad_S_${pqIdx}_${cIdx}" value="S" ${currentStatus === 'S' ? 'checked' : ''} data-pq="${pqIdx}" data-crit="${cIdx}">
+                                <label for="rad_S_${pqIdx}_${cIdx}">S</label>
+                                <input type="radio" name="rad_${pqIdx}_${cIdx}" id="rad_NS_${pqIdx}_${cIdx}" value="NS" ${currentStatus === 'NS' ? 'checked' : ''} data-pq="${pqIdx}" data-crit="${cIdx}">
+                                <label for="rad_NS_${pqIdx}_${cIdx}">NS</label>
+                                <input type="radio" name="rad_${pqIdx}_${cIdx}" id="rad_NA_${pqIdx}_${cIdx}" value="NA" ${currentStatus === 'NA' ? 'checked' : ''} data-pq="${pqIdx}" data-crit="${cIdx}">
+                                <label for="rad_NA_${pqIdx}_${cIdx}">NA</label>
+                            </div>
+                        </div>
+                    `;
+                }
             }
 
             if (!currentUserData.notes[pqIdx]) currentUserData.notes[pqIdx] = "";
@@ -493,7 +515,7 @@
         let countS = 0; let countNS = 0; let countNA = 0;
 
         pqs.forEach((pq, pqIdx) => {
-            let rawEvidenceEN = pq.review_evidence_en || "";
+            let rawEvidenceEN = pq.review_evidence_en || pq.Review_Evidence || "";
             let parsedEN = extractNotesAndCriteria(rawEvidenceEN);
             let maxIterations = parsedEN.criteriaLines.length || 1;
 
@@ -502,7 +524,10 @@
             let allNA = true;
 
             for(let cIdx = 0; cIdx < maxIterations; cIdx++) {
-                const val = currentUserData.status[`${pqIdx}_cIdx`] || currentUserData.status[`${pqIdx}_${cIdx}`] || "NA";
+                let lineEN = parsedEN.criteriaLines[cIdx] || "";
+                if(lineEN.trim().endsWith(":")) continue; // Çatı satırları hesaba katılmaz
+
+                const val = currentUserData.status[`${pqIdx}_${cIdx}`] || "NA";
                 if (val === 'NS') hasNS = true;
                 if (val === 'S') hasS = true;
                 if (val !== 'NA') allNA = false;
