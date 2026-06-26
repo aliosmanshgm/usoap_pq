@@ -418,16 +418,16 @@
     try {
       await loadMasterModel();
       const userSnap = await getDoc(doc(db, "user_progress", currentArea));
-      const areaSnap = await getDoc(doc(db, "audit_structures", currentArea));
 
-      currentAreaData = areaSnap.exists() ? areaSnap.data() : normalizedAreas[currentArea];
+      // Always use the latest JSON model for PQ master data.
+      // Firebase is kept only for user progress (S/NS/NA and notes) to prevent stale
+      // audit_structures documents from overriding corrected Excel/JSON text.
+      currentAreaData = normalizedAreas[currentArea];
       currentUserData = userSnap.exists() ? userSnap.data() : { status: {}, notes: {} };
       if (!currentUserData.status) currentUserData.status = {};
       if (!currentUserData.notes) currentUserData.notes = {};
 
-      document.getElementById("dataSourceInfo").innerText = areaSnap.exists()
-        ? `Data source: Firebase audit_structures/${currentArea} (fallback: ${DATA_FILE})`
-        : `Data source: ${DATA_FILE} / ${currentArea}`;
+      document.getElementById("dataSourceInfo").innerText = `Data source: ${DATA_FILE} / ${currentArea} (Firebase: user progress only)`;
 
       document.getElementById("areaTitle").innerText = `${currentAreaData.area_name} (${currentArea})`;
       populateFilterOptions();
