@@ -285,7 +285,7 @@
   let currentUserData = {};
   let currentLang = "tr";
   let lblRefBox = "Mevzuat Referansı:";
-  let lblNoteBox = "Denetçi Notları:";
+  let lblNoteBox = "Denetçiye Notlar:";
   let filterListenersAttached = false;
   const filters = { search: "", ce: "all", ppq: "all", site: "all", status: "all", criteria: "all" };
 
@@ -369,7 +369,7 @@
       document.getElementById("lblNA").innerText = "Geçersiz";
       document.getElementById("lblCurrentEi").innerText = "Mevcut EI";
       lblRefBox = "Mevzuat Referansı:";
-      lblNoteBox = "Denetçi Notları:";
+      lblNoteBox = "Denetçiye Notlar:";
     } else {
       document.getElementById("txtEiLabel").innerText = "Effective Implementation (EI) Score";
       document.getElementById("lblS").innerText = "Satisfactory";
@@ -444,7 +444,7 @@
     let criteriaLines = [];
     let noteText = "";
     let foundNote = false;
-    const noteLabelRegex = /^\s*(notes? to the auditor:|denetçiye notlar?:)\s*/i;
+    const noteLabelRegex = /^\s*(notes? to the auditor:|note to the auditor:|denetçiye not(?:lar|u)?\s*:|denetciye not(?:lar|u)?\s*:)\s*/i;
 
     for (let line of lines) {
       const clean = line.trim();
