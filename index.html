@@ -148,22 +148,29 @@
             padding: 10px 15px; margin-bottom: 15px; border-radius: 0 6px 6px 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             font-size: 12.5px; line-height: 1.5; color: #334155;
-            white-space: pre-wrap; /* \n satır kırılımlarını korur */
+            white-space: pre-wrap;
         }
 
-        /* Review Evidence / İncelenecek Kanıtlar (Orijinal Satır Kırılımlı Kriter Alanı) */
+        /* Note to the Auditor / Denetçi Notu İzole Alanı */
+        .pq-auditor-note-box {
+            background-color: var(--note-bg); border-left: 4px solid var(--note-border);
+            padding: 10px 15px; margin-bottom: 15px; border-radius: 0 6px 6px 0;
+            font-size: 12.5px; line-height: 1.5; color: #7c2d12;
+            white-space: pre-wrap;
+        }
+
+        /* Alt Kriter Yapıları */
         .criterion-item {
-            background: #f8fafc; border-left: 3px solid var(--secondary-color); padding: 15px;
-            margin-bottom: 15px; border-radius: 0 6px 6px 0; display: flex; justify-content: space-between; align-items: flex-start; gap: 20px;
+            background: #f8fafc; border-left: 3px solid var(--secondary-color); padding: 12px 15px;
+            margin-bottom: 8px; border-radius: 0 6px 6px 0; display: flex; justify-content: space-between; align-items: center; gap: 20px;
         }
         .criterion-text { 
-            font-size: 13.5px; line-height: 1.6; color: #334155; 
-            white-space: pre-wrap; /* \n satır kırılımlarını korur */
-            flex-grow: 1;
+            font-size: 13px; line-height: 1.5; color: #334155; 
+            white-space: pre-wrap; flex-grow: 1;
         }
 
-        .status-options { display: flex; gap: 4px; background: #e2e8f0; padding: 3px; border-radius: 6px; flex-shrink: 0; margin-top: 2px; }
-        .status-options label { padding: 3px 9px; font-size: 11.5px; font-weight: bold; border-radius: 4px; cursor: pointer; color: #475569; }
+        .status-options { display: flex; gap: 4px; background: #e2e8f0; padding: 3px; border-radius: 6px; flex-shrink: 0; }
+        .status-options label { padding: 3px 9px; font-size: 11px; font-weight: bold; border-radius: 4px; cursor: pointer; color: #475569; }
         .status-options input[type="radio"] { display: none; }
         .status-options input[value="S"]:checked + label { background-color: var(--success-color); color: white; }
         .status-options input[value="NS"]:checked + label { background-color: var(--danger-color); color: white; }
@@ -232,7 +239,6 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
     import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
-    // BURAYI KENDİ FIREBASE PROJE VERİLERİNİZLE DEĞİŞTİRİN
     const firebaseConfig = {
         apiKey: "AIzaSyAyiUrIOI7zkxgj_gTpPTt7qczaW7WPPCc",
         authDomain: "firestore-669de.firebaseapp.com",
@@ -248,16 +254,15 @@
     let currentArea = 'LEG';
     let currentAreaData = null; 
     let currentUserData = {};   
-    let currentLang = 'tr'; // Varsayılan dil Türkçe olarak açılır
-    let lblRefBox = 'Mevzuat Referansı / Reference:';
+    let currentLang = 'tr';
+    let lblRefBox = 'Mevzuat Referansı:';
+    let lblNoteBox = 'Denetçi Notları / Auditor Notes:';
 
-    // DİL SEÇİM MOTORU
     window.setLanguage = function(lang) {
         currentLang = lang;
         document.getElementById('btnLangTR').classList.toggle('active', lang === 'tr');
         document.getElementById('btnLangEN').classList.toggle('active', lang === 'en');
         
-        // Statik Etiketlerin Çevirisi
         if(lang === 'tr') {
             document.getElementById('txtEiLabel').innerText = "Etkin Uygulama (EI) Oranı";
             document.getElementById('lblS').innerText = "Uyumlu";
@@ -265,6 +270,7 @@
             document.getElementById('lblNA').innerText = "Geçersiz";
             document.getElementById('lblCurrentEi').innerText = "Mevcut EI";
             lblRefBox = 'Mevzuat Referansı:';
+            lblNoteBox = 'Denetçi Notları:';
         } else {
             document.getElementById('txtEiLabel').innerText = "Effective Implementation (EI) Score";
             document.getElementById('lblS').innerText = "Satisfactory";
@@ -272,6 +278,7 @@
             document.getElementById('lblNA').innerText = "N/A";
             document.getElementById('lblCurrentEi').innerText = "Current EI";
             lblRefBox = 'ICAO Reference:';
+            lblNoteBox = 'Notes to the Auditor:';
         }
 
         if(currentAreaData) {
@@ -280,7 +287,6 @@
         }
     }
 
-    // DİNAMİK YEREL DOSYA SENKRONİZASYONU
     window.syncActiveAreaToFirebase = async function() {
         const msg = currentLang === 'tr' 
             ? `${currentArea} alanına ait yerel JSON veri seti Firebase üzerine yazılacaktır. Emin misiniz?`
@@ -323,11 +329,34 @@
                 document.getElementById('areaTitle').innerText = currentAreaData.area_name + ` (${currentArea})`;
                 renderPQs();
             } else {
-                container.innerHTML = `<div class="loading" style="color:red;">Şablon Firebase'de yok. Lütfen yerel 'pqs_${currentArea.toLowerCase()}.json' dosyasını GitHub reponuza ekleyip 'Sync Area to Firebase' butonuna basın.</div>`;
+                container.innerHTML = `<div class="loading" style="color:red;">Şablon Firebase'de yok. Lütfen yerel 'pqs_${currentArea.toLowerCase()}.json' dosyasını yükleyin.</div>`;
             }
         } catch (error) {
             container.innerHTML = `<div class="loading" style="color:red;">Hata: ${error.message}</div>`;
         }
+    }
+
+    // "Note to the auditor" Metin Ayırma Yardımcısı
+    function extractNotesAndCriteria(fullText) {
+        if(!fullText) return { criteriaLines: [], noteText: "" };
+        const lines = fullText.split('\n');
+        let criteriaLines = [];
+        let noteText = "";
+        let foundNote = false;
+
+        for(let line of lines) {
+            let clean = line.trim();
+            if(!clean) continue;
+            if(clean.toLowerCase().includes("note to the auditor:") || clean.toLowerCase().includes("notes to the auditor:") || clean.toLowerCase().includes("denetçiye not:") || clean.toLowerCase().includes("denetçiye notlar:")) {
+                foundNote = true;
+            }
+            if(foundNote) {
+                noteText += (noteText ? "\n" : "") + line;
+            } else {
+                criteriaLines.push(line);
+            }
+        }
+        return { criteriaLines, noteText };
     }
 
     function renderPQs() {
@@ -339,35 +368,63 @@
             const pqItem = document.createElement('div');
             pqItem.className = 'pq-item';
 
-            // Dil Durumuna Göre Soru Seçimi
             let qText = currentLang === 'tr' ? pq.question_tr : pq.question_en;
             let ppqBadge = pq.ppq && pq.ppq !== "False" ? `<span class="badge-ppq">PPQ</span>` : '';
-            let siteBadge = pq.site_type ? `<span class="badge-site">${pq.site_type}</span>` : '';
+            
+            // OnSiteRequired Sütun Kuralı Güncellemesi: True="On-Site", False="Off-Site"
+            let siteStr = (pq.site_type === "On-Site" || pq.site_type === "True") ? "On-Site" : "Off-Site";
+            let siteBadge = `<span class="badge-site">${siteStr}</span>`;
 
-            // Referans Hücre Metni
             let refText = pq.reference ? pq.reference : '';
             let referenceHtml = refText ? `<div class="pq-reference-box"><strong>${lblRefBox}</strong>\n${refText}</div>` : '';
 
-            // Tekil Kriter (Review Evidence / İncelenecek Kanıtlar Ham Metni)
-            const key = `${pqIdx}_0`;
-            if (!currentUserData.status[key]) currentUserData.status[key] = "NA";
-            const currentStatus = currentUserData.status[key];
-            
-            let cText = currentLang === 'tr' ? pq.review_evidence_tr : pq.review_evidence_en;
+            // Metin Ayrıştırma Motoru (Alt Kriterleri Satır Satır Patlatma ve Not Ayırma)
+            let rawEvidenceEN = pq.review_evidence_en || "";
+            let rawEvidenceTR = pq.review_evidence_tr || "";
 
-            let criteriaHtml = `
-                <div class="criterion-item">
-                    <div class="criterion-text">${cText}</div>
-                    <div class="status-options">
-                        <input type="radio" name="rad_${pqIdx}_0" id="rad_S_${pqIdx}_0" value="S" ${currentStatus === 'S' ? 'checked' : ''}>
-                        <label for="rad_S_${pqIdx}_0">S</label>
-                        <input type="radio" name="rad_${pqIdx}_0" id="rad_NS_${pqIdx}_0" value="NS" ${currentStatus === 'NS' ? 'checked' : ''}>
-                        <label for="rad_NS_${pqIdx}_0">NS</label>
-                        <input type="radio" name="rad_${pqIdx}_0" id="rad_NA_${pqIdx}_0" value="NA" ${currentStatus === 'NA' ? 'checked' : ''}>
-                        <label for="rad_NA_${pqIdx}_0">NA</label>
+            let parsedEN = extractNotesAndCriteria(rawEvidenceEN);
+            let parsedTR = extractNotesAndCriteria(rawEvidenceTR);
+
+            // Başlıkta Kriter Sayısı Rozeti Gösterme
+            let totalCriteriaCount = parsedEN.criteriaLines.length || 1;
+            let countLabel = currentLang === 'tr' ? `${totalCriteriaCount} Kriter` : `${totalCriteriaCount} Criteria`;
+            let criteriaBadge = `<span class="badge-count">${countLabel}</span>`;
+
+            // İzole Edilmiş Denetçi Not Kutusu HTML
+            let noteBoxHtml = "";
+            let activeNoteText = currentLang === 'tr' ? parsedTR.noteText : parsedEN.noteText;
+            if(activeNoteText) {
+                noteBoxHtml = `<div class="pq-auditor-note-box"><strong>${lblNoteBox}</strong>\n${activeNoteText}</div>`;
+            }
+
+            // Alt Kriterleri Tek Tek Döngüyle Basma ve Her Birine Radyo Buton Atama
+            let criteriaHtml = "";
+            let maxIterations = Math.max(parsedEN.criteriaLines.length, parsedTR.criteriaLines.length);
+            if(maxIterations === 0) maxIterations = 1; // Güvenlik çemberi
+
+            for(let cIdx = 0; cIdx < maxIterations; cIdx++) {
+                const key = `${pqIdx}_${cIdx}`;
+                if (!currentUserData.status[key]) currentUserData.status[key] = "NA";
+                const currentStatus = currentUserData.status[key];
+
+                let lineEN = parsedEN.criteriaLines[cIdx] || rawEvidenceEN;
+                let lineTR = parsedTR.criteriaLines[cIdx] || rawEvidenceTR;
+                let activeLineText = currentLang === 'tr' ? lineTR : lineEN;
+
+                criteriaHtml += `
+                    <div class="criterion-item">
+                        <div class="criterion-text">${activeLineText}</div>
+                        <div class="status-options">
+                            <input type="radio" name="rad_${pqIdx}_${cIdx}" id="rad_S_${pqIdx}_${cIdx}" value="S" ${currentStatus === 'S' ? 'checked' : ''} data-pq="${pqIdx}" data-crit="${cIdx}">
+                            <label for="rad_S_${pqIdx}_${cIdx}">S</label>
+                            <input type="radio" name="rad_${pqIdx}_${cIdx}" id="rad_NS_${pqIdx}_${cIdx}" value="NS" ${currentStatus === 'NS' ? 'checked' : ''} data-pq="${pqIdx}" data-crit="${cIdx}">
+                            <label for="rad_NS_${pqIdx}_${cIdx}">NS</label>
+                            <input type="radio" name="rad_${pqIdx}_${cIdx}" id="rad_NA_${pqIdx}_${cIdx}" value="NA" ${currentStatus === 'NA' ? 'checked' : ''} data-pq="${pqIdx}" data-crit="${cIdx}">
+                            <label for="rad_NA_${pqIdx}_${cIdx}">NA</label>
+                        </div>
                     </div>
-                </div>
-            `;
+                `;
+            }
 
             if (!currentUserData.notes[pqIdx]) currentUserData.notes[pqIdx] = "";
             const savedNote = currentUserData.notes[pqIdx];
@@ -380,6 +437,7 @@
                             <span class="badge-ce">${pq.ce || currentArea}</span>
                             ${ppqBadge}
                             ${siteBadge}
+                            ${criteriaBadge}
                         </div>
                         <div class="pq-title-wrapper">
                             <span class="pq-num-lead">PQ ${pq.no} -</span>
@@ -392,6 +450,7 @@
                 </div>
                 <div class="pq-content">
                     ${referenceHtml}
+                    ${noteBoxHtml}
                     ${criteriaHtml}
                     <div class="audit-notes-box">
                         <label style="font-size:12px; font-weight:bold; color:var(--primary-color); display:block; margin-bottom:5px;">${lblNotesBox}</label>
@@ -408,7 +467,8 @@
 
             pqItem.querySelectorAll('.status-options input').forEach(radio => {
                 radio.addEventListener('change', async (e) => {
-                    const [_, pIdx, cIdx] = e.target.name.split('_');
+                    const pIdx = e.target.getAttribute('data-pq');
+                    const cIdx = e.target.getAttribute('data-crit');
                     currentUserData.status[`${pIdx}_${cIdx}`] = e.target.value;
                     calculateMetrics();
                     await setDoc(doc(db, "user_progress", currentArea), currentUserData);
@@ -433,17 +493,29 @@
         let countS = 0; let countNS = 0; let countNA = 0;
 
         pqs.forEach((pq, pqIdx) => {
-            // Hücre birleştirmediğimiz için artık her sorunun 1 ham kanıt gövdesi var (index: 0)
-            const val = currentUserData.status[`${pqIdx}_0`];
+            let rawEvidenceEN = pq.review_evidence_en || "";
+            let parsedEN = extractNotesAndCriteria(rawEvidenceEN);
+            let maxIterations = parsedEN.criteriaLines.length || 1;
+
+            let hasNS = false;
+            let hasS = false;
+            let allNA = true;
+
+            for(let cIdx = 0; cIdx < maxIterations; cIdx++) {
+                const val = currentUserData.status[`${pqIdx}_cIdx`] || currentUserData.status[`${pqIdx}_${cIdx}`] || "NA";
+                if (val === 'NS') hasNS = true;
+                if (val === 'S') hasS = true;
+                if (val !== 'NA') allNA = false;
+            }
 
             const badge = document.getElementById(`pq_badge_${pqIdx}`);
             if (!badge) return;
             badge.className = "pq-status-badge";
 
-            if (val === 'NS') {
+            if (hasNS) {
                 badge.innerText = currentLang === 'tr' ? "UYUMSUZ (NS)" : "NOT SATISFACTORY"; 
                 badge.classList.add("status-ns"); countNS++;
-            } else if (val === 'S') {
+            } else if (hasS && !hasNS) {
                 badge.innerText = currentLang === 'tr' ? "UYUMLU (S)" : "SATISFACTORY"; 
                 badge.classList.add("status-s"); countS++;
             } else {
@@ -464,7 +536,6 @@
         document.getElementById('scorePercentage').innerText = `%${eiPercentage}`;
     }
 
-    // İlk açılışta dili kur ve yükle
     setLanguage('tr');
     switchArea('LEG');
 </script>
