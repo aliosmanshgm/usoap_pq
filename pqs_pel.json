@@ -12,7 +12,7 @@
       "question_tr": "Devlet, Ek 1 hükümlerini iç hukuka aktarmak üzere spesifik işletme düzenlemelerini yayımlamış mıdır?",
       "reference": "CC\nArt. 37\nSTD\nA19\n3.2.1.1 & 3.2.2\nGM\nDoc 9734\nPart A, C3",
       "review_evidence_en": "1) Confirm the title, date of promulgation and the latest amendment of all regulations related to personnel licensing.\n2) Verify that the contents of the regulations are consistent, sufficient and properly organized.\n3) Confirm the transposition of the personnel licensing related provisions for:\n     a) all licences and ratings, including remote pilot licences;\n     b) medical assessment;\n     c) approval of training organizations;\n     d) qualification/approval of flight simulation training devices; and\n     e) language used for radiotelephony communications (i.e. language proficiency requirements).",
-      "review_evidence_tr": "1) Personel lisanslandırmasına ilişkin tüm düzenlemelerin başlığını, yayımlanma tarihini ve son değişiklik tarihini teyit edin.\n2) Düzenlemelerin içeriklerinin tutarlı, yeterli ve uygun biçimde düzenlenmiş olduğunu doğrulayın.\n3) Personel lisanslandırmasına ilişkin hükümlerin aşağıdaki konular için iç hukuka aktarıldığını teyit edin:\na) uzaktan pilot lisansları dâhil tüm lisanslar ve yetkiler;\nb) sağlık değerlendirmesi;\nc) eğitim kuruluşlarının onayı;\nd) sentetik uçuş eğitim cihazlarının yeterlilik/onayı; ve\ne) telsiz telefon haberleşmesinde kullanılan dil (yani dil yeterliliğ gereklilikleri)."
+      "review_evidence_tr": "1) Personel lisanslandırmasına ilişkin tüm düzenlemelerin başlığını, yayımlanma tarihini ve son değişiklik tarihini teyit edin.\n2) Düzenlemelerin içeriklerinin tutarlı, yeterli ve uygun biçimde düzenlenmiş olduğunu doğrulayın.\n3) Personel lisanslandırmasına ilişkin hükümlerin aşağıdaki konular için iç hukuka aktarıldığını teyit edin:\na) uzaktan pilot lisansları dâhil tüm lisanslar ve yetkiler;\nb) sağlık değerlendirmesi;\nc) eğitim kuruluşlarının onayı;\nd) sentetik uçuş eğitim cihazlarının yeterlilik/onayı; ve\ne) telsiz telefon haberleşmesinde kullanılan dil (yani dil yeterliliği gereklilikleri)."
     },
     {
       "no": "3.003",
@@ -141,7 +141,7 @@
       "site_type": "On-Site",
       "ppq": "False",
       "question_en": "Has the personnel licensing office (Licensing Authority) implemented the training programme for its technical personnel?",
-      "question_tr": "Personel lisanslandırma ofisi (Licanslandırma Otoritesi), teknik personeli için eğitim programını uygulamış mıdır?",
+      "question_tr": "Personel lisanslandırma ofisi (Lisanslandırma Otoritesi), teknik personeli için eğitim programını uygulamış mıdır?",
       "reference": "STD\nA19\n3.2.4\nGM\nDoc 9379\nPart I, C2\nDoc 9734\nPart A, C3",
       "review_evidence_en": "1) Review individual training plans.\n2) Review training records of technical personnel.\n3) Verify that the training was provided as scheduled.\n4) Interview personnel.",
       "review_evidence_tr": "1) Bireysel eğitim planlarını inceleyin.\n2) Teknik personelin eğitim kayıtlarını inceleyin.\n3) Eğitimin planlandığı gibi sağlandığını doğrulayın.\n4) Personelle görüşün."
@@ -152,7 +152,7 @@
       "site_type": "On-Site",
       "ppq": "False",
       "question_en": "Has the personnel licensing office (Licensing Authority) implemented a system to assess the effectiveness of the training provided?",
-      "question_tr": "Personel lisanslandırma ofisi (Licanslandırma Otoritesi), sağlanan eğitimin etkinliğini değerlendirmek için bir sistem uygulamış mıdır?",
+      "question_tr": "Personel lisanslandırma ofisi (Lisanslandırma Otoritesi), sağlanan eğitimin etkinliğini değerlendirmek için bir sistem uygulamış mıdır?",
       "reference": "STD\nA19\n3.2.4\nGM\nDoc 9379\nPart I, C2\nDoc 9734\nPart A, C3",
       "review_evidence_en": "1) Review the policy/procedures to assess the effectiveness of training.\n2) Review records of assessments of training effectiveness.",
       "review_evidence_tr": "1) Eğitimin etkinliğini değerlendirmeye yönelik politika/prosedürleri inceleyin.\n2) Eğitim etkinliği değerlendirme kayıtlarını inceleyin."
@@ -163,10 +163,10 @@
       "site_type": "On-Site",
       "ppq": "False",
       "question_en": "Has the personnel licensing office (Licensing Authority) been provided with adequate facilities and equipment?",
-      "question_tr": "Personel lisanslandırma ofisine (Licanslandırma Otoritesi) uygun tesisler ve ekipman sağlanmış mıdır?",
+      "question_tr": "Personel lisanslandırma ofisine (Lisanslandırma Otoritesi) uygun tesisler ve ekipman sağlanmış mıdır?",
       "reference": "STD\nA19\n3.2.5\nGM\nDoc 9379\nPart I, C2\nDoc 9734\nPart A, C3",
       "review_evidence_en": "Review adequacy of office space, secure records storage, printing facilities, computer equipment, etc.\nNote to the auditor:\nThis PQ is linked to ORG PQs 2.205 and 2.207.",
-      "review_evidence_tr": "Ofis alanının, güvenli kayıt depolamanın, yazdırma imkânlarınnın, bilgisayar ekipmanının vb. yeterliliğini inceleyin.\nDenetçiye not:\nBu PQ, ORG PQ 2.205 ve 2.207 ile bağlantılıdır."
+      "review_evidence_tr": "Ofis alanının, güvenli kayıt depolamanın, yazdırma imkânlarının, bilgisayar ekipmanının vb. yeterliliğini inceleyin.\nDenetçiye not:\nBu PQ, ORG PQ 2.205 ve 2.207 ile bağlantılıdır."
     },
     {
       "no": "3.153",
@@ -573,18 +573,7 @@
       "question_tr": "Bilgi sınavlarında kullanılan çoktan seçmeli veya dijital sorular, ezberlemeyi önlemek ve son mevzuat değişikliklerini kapsamak amacıyla düzenli olarak güncelleniyor mu?",
       "reference": "STD\nA1\n1.2.1\nGM\nDoc 9379",
       "review_evidence_en": "Review the question database revision history and verify the input of newly developed technical items over the past cycles.",
-      "review_evidence_tr": "Soru veri tabanı revizyon geçmişini inceleyin ve geçmiş dönemler boyunca yeni geliştirilen teknik maddelerin girişini doğrulayın."
-    },
-    {
-      "no": "3.455",
-      "ce": "CE-6",
-      "site_type": "On-Site",
-      "ppq": "False",
-      "question_en": "Does the Licensing Authority restrict exam question access to designated personnel to maintain system confidentiality?",
-      "question_tr": "Lisanslandırma Otoritesi, sistem gizliliğini korumak amacıyla sınav sorularına erişimi belirlenmiş personelle sınırlandırıyor mu?",
-      "reference": "STD\nA1\n1.2.1",
-      "review_evidence_en": "Verify user access rights, password encryption policies, and IT security roles for the official examination platform.",
-      "review_evidence_tr": "Resmi sınav platformuna ait kullanıcı erişim yetkilerini, şifreleme politikalarını ve BT güvenliği rollerini doğrulayın."
+      "review_evidence_tr": "Soru veri tabanı revizyon geçmişini inceleyin ve geçmiş dönemler boyunca yeni geliştirilen technical maddelerin girişini doğrulayın."
     },
     {
       "no": "3.457",
@@ -631,114 +620,169 @@
       "review_evidence_tr": "Giriş güvenlik iş akışlarını gözlemleyin ve kayıt gerekliliklerini devlet tarafından verilen resmi biyometrik veya fotoğraflı kimliklerle çapraz kontrol edin."
     },
     {
-      "no": "3.465",
-      "ce": "CE-6",
-      "site_type": "On-Site",
-      "ppq": "False",
-      "question_en": "Does the Licensing Authority perform environmental and connectivity testing before commissioning a decentralized or regional knowledge testing workstation?",
-      "question_tr": "Lisanslandırma Otoritesi, merkezi olmayan veya bölgesel bir bilgi testi iş istasyonunu devreye almadan önce ortam ve bağlantı testleri yürütüyor mu?",
-      "reference": "STD\nA1\n1.2.1",
-      "review_evidence_en": "Review IT auditing parameters, browser lockdown software status, and physical room design layouts to ensure standardized testing environments.",
-      "review_evidence_tr": "Standartlaştırılmış sınav ortamları sağlamak amacıyla BT denetim parametrelerini, tarayıcı kilitleme yazılımı durumunu ve fiziksel oda tasarım düzenlerini inceleyin."
-    },
-    {
-      "no": "3.471",
+      "no": "3.501",
       "ce": "CE-6",
       "site_type": "On-Site",
       "ppq": "True",
-      "question_en": "Has the State implemented a structured framework for the qualification, maintenance, and regular evaluation of flight examiners?",
-      "question_tr": "Devlet, uçuş kontrol görevlilerinin nitelendirilmesi, yeteneklerinin sürdürülmesi ve düzenli değerlendirilmesi için yapılandırılmış bir çerçeve uygulamış mıdır?",
-      "reference": "STD\nA1\n1.2.1\nGM\nDoc 9379",
-      "review_evidence_en": "1) Check examiner selection criteria records.\n2) Confirm that examiners undergo standardization refreshers and formal re-authorization cycles.",
-      "review_evidence_tr": "1) Kontrol görevlisi seçim kriterleri kayıtlarını kontrol edin.\n2) Kontrol görevlilerinin standardizasyon yenileme eğitimlerinden ve resmi yeniden yetkilendirme döngülerinden geçtiğini teyit edin."
+      "question_en": "Has the Licensing Authority implemented a standard procedure for the initial designation and continuous monitoring of Aeromedical Centers (AeMCs)?",
+      "question_tr": "Lisanslandırma Otoritesi, Havacılık Tıp Merkezlerinin (AeMC) ilk yetkilendirilmesi ve sürekli izlenmesi için standart bir prosedür uygulamış mıdır?",
+      "reference": "STD\nA1\n1.2.4\nGM\nDoc 8984",
+      "review_evidence_en": "1) Review the certification manual for AeMCs.\n2) Confirm through inspection schedules and logs that designated medical centers undergo regular oversight checks regarding infrastructure and equipment calibration.",
+      "review_evidence_tr": "1) AeMC'ler için sertifikalandırma el kitabını inceleyin.\n2) Yetkilendirilmiş tıp merkezlerinin altyapı ve ekipman kalibrasyonu açısından düzenli gözetim kontrollerinden geçtiğini teftiş programları ve logları vasıtasıyla teyit edin."
     },
     {
-      "no": "3.473",
+      "no": "3.503",
       "ce": "CE-6",
       "site_type": "On-Site",
       "ppq": "False",
-      "question_en": "Are flight test reports submitted by examiners systematically audited by the Licensing Authority to identify formatting anomalies or grading leniency trends?",
-      "question_tr": "Kontrol görevlileri tarafından sunulan uçuş test raporları, biçimsel anomalileri veya notlandırmadaki liyakat/müsamaha eğilimlerini belirlemek amacıyla Lisanslandırma Otoritesi tarafından sistematik olarak denetleniyor mu?",
-      "reference": "STD\nA1\n1.2.1",
-      "review_evidence_en": "Sample processed flight check sheets to check for senior inspector signature blocks, grading verification tags, and date completeness.",
-      "review_evidence_tr": "Kıdemli denetçi imza bloklarını, not doğrulama etiketlerini ve tarih eksiksizliğini kontrol etmek amacıyla işleme alınmış uçuş kontrol formlarından örnekler inceleyin."
+      "question_en": "Are medical records and applicant physical assessment files archived securely at AeMCs to ensure strict medical confidentiality?",
+      "question_tr": "Sağlık raporları ve başvuru sahibi fiziksel değerlendirme dosyaları, katı bir tıbbi gizlilik sağlamak amacıyla AeMC'lerde güvenli bir şekilde arşivleniyor mu?",
+      "reference": "STD\nA1\n1.2.4.X",
+      "review_evidence_en": "Inspect physical and digital data storage parameters at the medical centers to verify user access logs and encryption protection setups.",
+      "review_evidence_tr": "Kullanıcı erişim loglarını ve şifreleme koruma düzeneklerini doğrulamak amacıyla tıp merkezlerindeki fiziksel ve dijital veri depolama parametrelerini inceleyin."
     },
     {
-      "no": "3.475",
+      "no": "3.505",
       "ce": "CE-7",
       "site_type": "On-Site",
       "ppq": "True",
-      "question_en": "Does the Licensing Authority perform flight check observation rides (inspections on examiners) to evaluate their practical testing field performance?",
-      "question_tr": "Lisanslandırma Otoritesi, kontrol görevlilerinin pratik test saha performanslarını değerlendirmek amacıyla uçuş kontrolü gözlem uçuşları (kontrol görevlerine yönelik teftişler) yürütüyor mu?",
-      "reference": "STD\nA19\n3.2.5\nGM\nDoc 9379\nPart II",
-      "review_evidence_en": "Check inspector flight records and log entries confirming that active examiners were observed during a real check-ride setup over the past cycle.",
-      "review_evidence_tr": "Aktif kontrol görevlilerinin geçmiş dönemde gerçek bir kontrol uçuşu düzeni sırasında gözlemlendiğini teyit eden denetçi uçuş kayıtlarını ve log girişlerini kontrol edin."
+      "question_en": "Does the Licensing Authority's Medical Assessor systematically audit Class 1 medical decisions issued by AeMCs to detect grading leniency or non-compliant waivers?",
+      "question_tr": "Lisanslandırma Otoritesinin Sağlık Hakemi (Medical Assessor), notlandırma müsamahalarını veya mevzuata aykırı muafiyetleri tespit etmek amacıyla AeMC'ler tarafından verilen Sınıf 1 sağlık kararlarını sistematik olarak denetliyor mu?",
+      "reference": "STD\nA1\n1.2.4.4\nGM\nDoc 8984",
+      "review_evidence_en": "Review the Quality Control ledger of the Medical Assessor and confirm that borderline fitness cases were subject to secondary administrative reviews.",
+      "review_evidence_tr": "Sağlık Hakeminin Kalite Kontrol sicilini inceleyin ve sınırda olan sağlık vakalarının ikincil idari incelemelere tabi tutulduğunu teyit edin."
     },
     {
-      "no": "3.477",
+      "no": "3.507",
       "ce": "CE-6",
       "site_type": "On-Site",
       "ppq": "False",
-      "question_en": "Are examiner authorizations limited to specific aircraft variants or simulator models based on verified type ratings and recent flight recency?",
-      "question_tr": "Kontrol görevlisi yetkileri, doğrulanmış tip yetkilerine ve yakın zamandaki uçuş güncelliğine bağlı olarak belirli hava aracı varyantları veya simülatör modelleriyle sınırlandırılıyor mu?",
-      "reference": "STD\nA1\n2.1.X",
-      "review_evidence_en": "Cross-check examiner master lists against active logbook summaries and technical qualification endorsements.",
-      "review_evidence_tr": "Kontrol görevlisi ana listelerini aktif uçuş kayıt defteri özetleri ve teknik yeterlilik onaylarıyla çapraz kontrol edin."
+      "question_en": "Are Aviation Medical Examiners (AMEs) operating within AeMCs provided with regular refresher training cycles focused on global civil aviation medicine updates?",
+      "question_tr": "AeMC'ler bünyesinde görev yapan Havacılık Tabipleri (AME), küresel sivil havacılık tıbbı güncellemelerine odaklanan düzenli tazeleyici eğitim döngülerinden geçiyor mu?",
+      "reference": "STD\nA1\n1.2.4.5",
+      "review_evidence_en": "Check individual training portfolios of designated AMEs to verify recent attendance certifications at approved aeromedical workshops.",
+      "review_evidence_tr": "Onaylı havacılık tıbbı çalıştaylarına yakın zamandaki katılım sertifikalarını doğrulamak amacıyla yetkilendirilmiş AME'lerin bireysel eğitim portföylerini kontrol edin."
     },
     {
-      "no": "3.479",
+      "no": "3.601",
       "ce": "CE-6",
-      "site_type": "On-Site",
-      "ppq": "False",
-      "question_en": "Does the Licensing Authority maintain an active conflict-of-interest check to prevent examiners from testing student pilots they have extensively trained?",
-      "question_tr": "Lisanslandırma Otoritesi, kontrol görevlilerinin kapsamlı şekilde eğitim verdikleri öğrenci pilotları test etmelerini önlemek amacıyla aktif bir çıkar çatışması kontrolü uyguluyor mu?",
-      "reference": "STD\nA19\n3.2.3.1\nGM\nDoc 9734\nPart A",
-      "review_evidence_en": "Review the administrative assignment rules for flight checks and confirm that the instructor of record is distinct from the testing examiner.",
-      "review_evidence_tr": "Uçuş kontrollerine yönelik idari atama kurallarını inceleyin ve kayıttaki eğitmen ile testi gerçekleştiren kontrol görevlisinin farklı kişiler olduğunu teyit edin."
-    },
-    {
-      "no": "3.481",
-      "ce": "CE-6",
-      "site_type": "On-Site",
-      "ppq": "False",
-      "question_en": "Are examiner code of conduct agreements formally signed and stored within the Licensing Authority's central registry?",
-      "question_tr": "Kontrol görevlisi mesleki etik ve uygulama sözleşmeleri resmi olarak imzalanıyor ve Lisanslandırma Otoritesinin merkezi sicilinde saklanıyor mu?",
-      "reference": "STD\nA19\n3.2.4\nGM\nDoc 9379",
-      "review_evidence_en": "Sample individual examiner dossiers to confirm the presence of signed standardization terms, ethics parameters, and protocol briefs.",
-      "review_evidence_tr": "İmzalanmış standardizasyon şartlarının, etik parametrelerinin ve protokol bilgilendirmelerinin mevcudiyetini teyit etmek amacıyla bireysel kontrol görevlisi dosyalarından örnekler inceleyin."
-    },
-    {
-      "no": "3.483",
-      "ce": "CE-8",
       "site_type": "Off-Site",
-      "ppq": "False",
-      "question_en": "What legal process or enforcement pathway is utilized to revoke or suspend an examiner's authority in the case of verified testing non-compliances?",
-      "question_tr": "Doğrulanmış test uyumsuzlukları durumunda bir kontrol görevlisinin yetkisini iptal etmek veya askıya almak için hangi yasal süreç veya yaptırım yolu kullanılmaktadır?",
-      "reference": "STD\nA19\n3.2.5\nGM\nDoc 9734\nPart A",
-      "review_evidence_en": "Verify the formal enforcement handbook clauses and check past case histories involving examiner privilege limitations due to standardized test protocol violations.",
-      "review_evidence_tr": "Resmi yaptırım el kitabı maddelerini doğrulayın ve standart test protokolü ihlalleri nedeniyle kontrol görevlisi imtiyaz kısıtlamalarını içeren geçmiş vaka geçmişlerini kontrol edin."
+      "ppq": "True",
+      "question_en": "Has the State implemented formal operating regulations defining the certification and oversight baseline for Language Proficiency Testing Organizations (LPTOs)?",
+      "question_tr": "Devlet, Dil Yeterliliği Test Kuruluşları (LPTO) için sertifikalandırma ve gözetim tabanını tanımlayan resmi uygulama kuralları uygulamış mıdır?",
+      "reference": "STD\nA1\n1.2.9\nGM\nDoc 9835",
+      "review_evidence_en": "1) Check regulatory parameters specifying LPTO approval terms.\n2) Confirm that testing methods are designed to realistically evaluate operational radiotelephony communications.",
+      "review_evidence_tr": "1) LPTO onay şartlarını belirten mevzuat parametrelerini kontrol edin.\n2) Test yöntemlerinin operasyonel telsiz telefon haberleşmesini gerçekçi şekilde değerlendirecek biçimde tasarlandığını teyit edin."
     },
     {
-      "no": "3.485",
+      "no": "3.605",
       "ce": "CE-6",
       "site_type": "On-Site",
       "ppq": "False",
-      "question_en": "Are designated flight examiners trained on the specific administrative tracking software used to upload check results to the state platform?",
-      "question_tr": "Görevlendirilen uçuş kontrol görevlileri, kontrol sonuçlarını devlet platformuna yüklemek için kullanılan spesifik idari takip yazılımı konusunda eğitiliyor mu?",
-      "reference": "STD\nA1\n1.2.1",
-      "review_evidence_en": "Check syllabus contents for examiner standardization workshops to confirm IT tracking module briefings are provided.",
-      "review_evidence_tr": "BT takip modülü bilgilendirmelerinin sağlandığını teyit etmek amacıyla kontrol görevlisi standardizasyon çalıştaylarına ait müfredat içeriklerini kontrol edin."
+      "question_en": "Are language proficiency interlocutors and raters formally trained and standardized to ensure objectiveness across testing intervals?",
+      "question_tr": "Dil yeterliliği mülakatçıları (interlocutor) ve değerlendiricileri (rater), test dönemleri boyunca tarafsızlığı sağlamak amacıyla resmi olarak eğitiliyor ve standardize ediliyor mu?",
+      "reference": "STD\nA1\n1.2.9\nGM\nDoc 9835",
+      "review_evidence_en": "Sample qualification files for active language raters to verify background flight/ATC operational experience or advanced linguistic credentials.",
+      "review_evidence_tr": "Aktif dil değerlendiricilerinin uçuş/ATC operasyonel deneyim geçmişlerini veya ileri düzey dilbilimsel belgelerini doğrulamak amacıyla nitelik dosyalarından örnekler inceleyin."
     },
     {
-      "no": "3.487",
+      "no": "3.607",
       "ce": "CE-7",
       "site_type": "On-Site",
       "ppq": "True",
-      "question_en": "Does the Licensing Authority review pass/fail statistics across different flight examiners to discover statistical anomalies or out-of-tolerance grading leniency?",
-      "question_tr": "Lisanslandırma Otoritesi, istatistiksel anomalileri veya tolerans dışı notlandırma müsamahalarını ortaya çıkarmak amacıyla farklı uçuş kontrol görevlilerinin başarı/başarısızlık istatistiklerini inceliyor mu?",
-      "reference": "STD\nA19\n3.2.5\nGM\nDoc 9379",
-      "review_evidence_en": "Review data analytics charts, tracking metrics, or management reports focusing on checking trends and examiner variance loops.",
-      "review_evidence_tr": "Kontrol eğilimlerine ve kontrol görevlisi varyans döngülerine odaklanan veri analitiği grafiklerini, takip metriklerini veya yönetim raporlarını inceleyin."
+      "question_en": "Does the Licensing Authority perform on-site surveillance or sample raw audio records of language tests to evaluate grading consistency?",
+      "question_tr": "Lisanslandırma Otoritesi, notlandırma tutarlılığını değerlendirmek amacıyla dil sınavlarının ham ses kayıtlarını örneklendirmekte veya yerinde gözetim yürütüyor mu?",
+      "reference": "STD\nA19\n3.2.5\nGM\nDoc 9835",
+      "review_evidence_en": "Review LPTO audit files and verify that oversight inspectors checked multi-rater agreement trends or re-evaluated random Level 4/5 audio files.",
+      "review_evidence_tr": "LPTO denetim dosyalarını inceleyin ve gözetim denetçilerinin çoklu değerlendirici uyum eğilimlerini kontrol ettiğini veya rastgele seçilen Seviye 4/5 ses dosyalarını yeniden değerlendirdiğini teyit edin."
+    },
+    {
+      "no": "3.609",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "False",
+      "question_en": "Are language test blueprints, scenarios, and audio-visual prompts protected against system leakage and candidate memorization patterns?",
+      "question_tr": "Dil sınavı taslakları, senaryoları ve görsel-işitsel materyalleri, sistem sızıntılarına ve adayların ezberleme kalıplarına karşı korunuyor mu?",
+      "reference": "STD\nA1\n1.2.9",
+      "review_evidence_en": "Verify software encryption methods, network lockdown variables, and prompt rotation schedules implemented by approved test centers.",
+      "review_evidence_tr": "Onaylı sınav merkezleri tarafından uygulanan yazılım şifreleme yöntemlerini, ağ kilitleme değişkenlerini ve soru/materyal rotasyon programlarını doğrulayın."
+    },
+    {
+      "no": "3.655",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "False",
+      "question_en": "Does the central registry platform automatically block pilot license printing if a candidate fails to reach the minimum Level 4 language proficiency benchmark?",
+      "question_tr": "Merkezi sicil platformu, bir adayın asgari Seviye 4 dil yeterliliği kriterine ulaşamaması durumunda pilot lisansı basımını otomatik olarak engelliyor mu?",
+      "reference": "STD\nA1\n1.2.9",
+      "review_evidence_en": "Test electronic parameter loops within the master software application to confirm validation gates reject incomplete files.",
+      "review_evidence_tr": "Doğrulama kapılarının eksik dosyaları reddettiğini teyit etmek amacıyla ana yazılım uygulaması içindeki elektronik parametre döngülerini test edin."
+    },
+    {
+      "no": "3.657",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "False",
+      "question_en": "Are language proficiency certificate expiration dates correctly mapped into the central database based on the specific level achieved?",
+      "question_tr": "Dil yeterliliği sertifikası son geçerlilik tarihleri, elde edilen spesifik seviyeye bağlı olarak merkezi veri tabanına doğru bir şekilde işleniyor mu?",
+      "reference": "STD\nA1\n1.2.9",
+      "review_evidence_en": "Cross-check current active records to verify that Level 4 (3 years or 5 years based on rules) and Level 5 updates prompt mandatory re-assessment schedules.",
+      "review_evidence_tr": "Seviye 4 ve Seviye 5 güncellemelerinin zorunlu yeniden değerlendirme programlarını tetiklediğini doğrulamak amacıyla mevcut aktif kayıtları çapraz kontrol edin."
+    },
+    {
+      "no": "3.701",
+      "ce": "CE-6",
+      "site_type": "Off-Site",
+      "ppq": "True",
+      "question_en": "Has the Licensing Authority implemented standardized mechanisms for the initial assessment and ongoing monitoring of theoretical knowledge test developers?",
+      "question_tr": "Lisanslandırma Otoritesi, teorik bilgi sınavı geliştiricilerinin ilk değerlendirmesi ve sürekli izlenmesi için standartlaştırılmış mekanizmalar uygulamış mıdır?",
+      "reference": "STD\nA1\n1.2.1\nGM\nDoc 9379",
+      "review_evidence_en": "Review technical validation procedures applied to question authors, confirming that rigorous credential checks are performed prior to curriculum onboarding.",
+      "review_evidence_tr": "Müfredata dahil edilmeden önce titiz kimlik ve nitelik kontrollerinin yapıldığını doğrulamak amacıyla soru yazarlarına uygulanan teknik doğrulama prosedürlerini inceleyin."
+    },
+    {
+      "no": "3.703",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "False",
+      "question_en": "Are digital database question tracking items backed up through secure multi-region archiving tools to prevent data loss?",
+      "question_tr": "Dijital veri tabanı soru takip maddeleri, veri kaybını önlemek amacıyla güvenli, çok bölgeli arşivleme araçları vasıtasıyla yedekleniyor mu?",
+      "reference": "STD\nA19\n3.2.5",
+      "review_evidence_en": "Verify server infrastructure schematics and backup tracking confirmation receipts within the information management division.",
+      "review_evidence_tr": "Bilgi yönetimi birimi bünyesindeki sunucu altyapı şemalarını ve yedekleme takibi onay makbuzlarını doğrulayın."
+    },
+    {
+      "no": "3.751",
+      "ce": "CE-2",
+      "site_type": "Off-Site",
+      "ppq": "True",
+      "question_en": "Has the State promulgated operating regulations establishing the regulatory framework for remote pilot licensing (RPL)?",
+      "question_tr": "Devlet, uzaktan pilot lisanslandırması (RPL) için yasal çerçeveyi oluşturan uygulama kurallarını yayımlamış mıdır?",
+      "reference": "STD\nA1\nChapter 2\nGM\nDoc 10111",
+      "review_evidence_en": "Verify the formal transposition of Annex 1 provisions into the national legislation regarding small/large unmanned aircraft system personnel certifications.",
+      "review_evidence_tr": "Küçük/büyük insansız hava aracı sistemi personel sertifikasyonlarına ilişkin Ek 1 hükümlerinin ulusal mevzuata resmi olarak aktarıldığını doğrulayın."
+    },
+    {
+      "no": "3.753",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "False",
+      "question_en": "Are theoretical training course profiles for remote pilots systematically evaluated against the established performance parameters?",
+      "question_tr": "Uzaktan pilotlara yönelik teorik eğitim kurs profilleri, belirlenen performans parametrelerine göre sistematik olarak değerlendiriliyor mu?",
+      "reference": "STD\nA1\nApp. 2\nGM\nDoc 10111",
+      "review_evidence_en": "Review approved curriculum plans at training organizations holding valid remote pilot certification endorsements.",
+      "review_evidence_tr": "Geçerli uzaktan pilot sertifikasyon onaylarına sahip eğitim kuruluşlarındaki onaylı müfredat planlarını inceleyin."
+    },
+    {
+      "no": "3.755",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "False",
+      "question_en": "Does the Licensing Authority track practical competency testing metrics for remote operators to verify standardization?",
+      "question_tr": "Lisanslandırma Otoritesi, standardizasyonu doğrulamak amacıyla uzaktan kumanda pilotlarına ait pratik yetkinlik testi metriklerini takip ediyor mu?",
+      "reference": "STD\nA1\n1.2.1\nGM\nDoc 10111",
+      "review_evidence_en": "Sample individual drone or remote pilot practical check sheets logged inside the central tracking application.",
+      "review_evidence_tr": "Merkezi takip uygulaması içinde kayıtlı olan bireysel drone veya uzaktan pilot pratik kontrol formlarından örnekler inceleyin."
     },
     {
       "no": "3.761",
@@ -760,7 +804,62 @@
       "question_tr": "Ulusal kurallar uyarınca uzaktan pilot sertifikası başvuru sahipleri için yetkinlik tabanlı spesifik sağlık gereklilikleri zorunlu tutuluyor mu?",
       "reference": "STD\nA1\n6.1.X\nGM\nDoc 8984\nDoc 10111",
       "review_evidence_en": "Verify that AME instructions define clear fitness baselines or medical classes applicable to remote operators based on maximum takeoff weights or airspace categories.",
-      "review_evidence_tr": "AME talimatlarının, azami kalkış ağırlıklarına veya hava sahası kategorilerine bağlı olarak uzaktan kumanda pilotlarına uygulanacak net sağlık tabanlarını veya sağlık sınıflarını tanımladığını doğrulayın."
+      "review_evidence_tr": "AME talimatlarının, azami kalkış ağırlıklarına veya hava sahası kategorilerine bağlı olarak uzaktan kumanda pilotlarına uygulanacak net sağlık tabanlarını veya sağlık sınıflarını tanımlatığını doğrulayın."
+    },
+    {
+      "no": "3.765",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "False",
+      "question_en": "Are continuous currency rules for remote pilots monitored systematically by the Licensing Authority?",
+      "question_tr": "Uzaktan pilotlar için sürekli güncellik kuralları Lisanslandırma Otoritesi tarafından sistematik olarak izleniyor mu?",
+      "reference": "STD\nA1\n1.2.1\nGM\nDoc 10111",
+      "review_evidence_en": "Check operator surveillance files to confirm that logbook hours or periodic refreshers are checked during corporate safety inspections.",
+      "review_evidence_tr": "Kurumsal emniyet teftişleri sırasında uçuş kayıt defteri saatlerinin veya periyodik yenileme eğitimlerinin kontrol edildiğini teyit etmek amacıyla işletici gözetim dosyalarını kontrol edin."
+    },
+    {
+      "no": "3.767",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "False",
+      "question_en": "Does the centralized licensing database support specific endorsement tags for complex remote operational setups such as Beyond Visual Line of Sight (BVLOS)?",
+      "question_tr": "Merkezi lisanslandırma veri tabanı, Görüş Hattının Ötesi (BVLOS) gibi karmaşık uzaktan operasyonel düzenekler için spesifik yetki etiketlerini destekliyor mu?",
+      "reference": "STD\nA1\nChapter 2\nGM\nDoc 10111",
+      "review_evidence_en": "Verify software data fields layout parameters to ensure advanced ratings can be appended to active personal RPL files.",
+      "review_evidence_tr": "Gelişmiş yetkilerin aktif kişisel RPL dosyalarına eklenebilmesini sağlamak amacıyla yazılım veri alanları düzen parametrelerini doğrulayın."
+    },
+    {
+      "no": "3.769",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "False",
+      "question_en": "Are remote pilot training organization checklist parameters updated regularly to mirror safe multi-rotor and fixed-wing operational evolutions?",
+      "question_tr": "Uzaktan pilot eğitim kuruluşu kontrol listesi parametreleri, emniyetli çok rotorlu ve sabit kanatlı operasyonel gelişmeleri yansıtacak şekilde düzenli olarak güncelleniyor mu?",
+      "reference": "STD\nA1\nApp. 2",
+      "review_evidence_en": "Review inspectors' audit checklists used across corporate drone training reviews over the trailing cycle.",
+      "review_evidence_tr": "Geçmiş dönemdeki kurumsal drone eğitimi incelemelerinde kullanılan denetçi denetim kontrol listelerini gözden geçirin."
+    },
+    {
+      "no": "3.771",
+      "ce": "CE-7",
+      "site_type": "On-Site",
+      "ppq": "True",
+      "question_en": "Has the Licensing Authority established a systematic enforcement matrix focusing on remote pilot certificate suspension due to serious airspace violations?",
+      "question_tr": "Lisanslandırma Otoritesi, ciddi hava sahası ihlalleri nedeniyle uzaktan pilot sertifikasının askıya alınmasına odaklanan sistematik bir yaptırım matrisi oluşturmuş mudur?",
+      "reference": "STD\nA19\n3.2.5\nGM\nDoc 10111",
+      "review_evidence_en": "Check administrative ledger logs within the enforcement branch confirming tracking actions executed against non-compliant drone personnel.",
+      "review_evidence_tr": "Mevzuata aykırı drone personeline karşı yürütülen takip işlemlerini doğrulamak amacıyla yaptırım birimi bünyesindeki idari sicil loglarını kontrol edin."
+    },
+    {
+      "no": "3.772",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "False",
+      "question_en": "Are remote pilot practical skills examiners systematically observed by senior Licensing Authority inspectors to guarantee field standardization?",
+      "question_tr": "Uzaktan pilot pratik yetenek sınav yapıcıları, saha standardizasyonunu garanti altına almak amacıyla kıdemli Lisanslandırma Otoritesi denetçileri tarafından sistematik olarak gözlemleniyor mu?",
+      "reference": "STD\nA19\n3.2.5",
+      "review_evidence_en": "Sample check-ride tracking forms and observation logs completed by regulatory flight standard authorities over the active timeframe.",
+      "review_evidence_tr": "Aktif zaman dilimi boyunca düzenleyici uçuş standartları otoriteleri tarafından tamamlanan kontrol uçuşu takip formlarından ve gözlem loglarından örnekler inceleyin."
     },
     {
       "no": "3.801",
@@ -772,17 +871,6 @@
       "reference": "STD\nA1\n4.4 & 4.5\nGM\nDoc 9379",
       "review_evidence_en": "1) Review regulatory requirements for ATCO ratings including aerodrome control, approach control, and area control.\n2) Confirm that competency maintenance requirements are explicitly documented.",
       "review_evidence_tr": "1) Meydan kontrol, yaklaşma kontrol ve saha kontrol dâhil olmak üzere ATCO yetkilerine yönelik mevzuat gerekliliklerini inceleyin.\n2) Yetkinlik sürdürme gerekliliklerinin açıkça belgelendiğini teyit edin."
-    },
-    {
-      "no": "3.803",
-      "ce": "CE-6",
-      "site_type": "On-Site",
-      "ppq": "False",
-      "question_en": "Are practical unit training plans and operational competency checks for air traffic controllers systematically evaluated during regular Licensing Authority surveillance?",
-      "question_tr": "Hava trafik kontrolörlerine yönelik pratik ünite eğitim planları ve operasyonel yetkinlik kontrolleri, düzenli Lisanslandırma Otoritesi gözetimi sırasında sistematik olarak değerlendiriliyor mu?",
-      "reference": "STD\nA1\n4.4\nGM\nDoc 9379",
-      "review_evidence_en": "Verify that inspectors sample air traffic control unit logs, simulator test reports, and on-the-job training instructor (OJTI) endorsements during site inspections.",
-      "review_evidence_tr": "Denetçilerin saha teftişleri sırasında hava trafik kontrol ünite loglarını, simülatör test raporlarını ve işbaşı eğitim eğitmeni (OJTI) onaylarını örneklediğini doğrulayın."
     },
     {
       "no": "3.805",
@@ -811,11 +899,33 @@
       "ce": "CE-6",
       "site_type": "On-Site",
       "ppq": "False",
-      "question_en": "Does the Licensing Authority_audit ATCO training organizations to confirm simulator configurations match real-world airspace tracking architectures?",
+      "question_en": "Does the Licensing Authority audit ATCO training organizations to confirm simulator configurations match real-world airspace tracking architectures?",
       "question_tr": "Lisanslandırma Otoritesi, simülatör konfigürasyonlarının gerçek dünyadaki hava sahası takip mimarileriyle eşleştiğini doğrulamak amacıyla ATCO eğitim kuruluşlarını denetliyor mu?",
       "reference": "STD\nA1\nApp. 2\nGM\nDoc 9841",
       "review_evidence_en": "Review technical inspection files for ANSP training branches to confirm that system loops provide realistic operational environments.",
       "review_evidence_tr": "Sistem döngülerinin gerçekçi operasyonel ortamlar sağladığını teyit etmek amacıyla ANSP eğitim şubelerine ait teknik teftiş dosyalarını inceleyin."
+    },
+    {
+      "no": "3.811",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "False",
+      "question_en": "Are ATCO rating endorsements systematically recorded in the central licensing database upon completion of unit training?",
+      "question_tr": "ATCO yetki onayları, ünite eğitiminin tamamlanmasının ardından merkezi lisanslandırma veri tabanına sistematik olarak kaydediliyor mu?",
+      "reference": "STD\nA1\n4.4",
+      "review_evidence_en": "Audit the data entry timestamps against completed practical training records for controllers assigned to new operational sectors.",
+      "review_evidence_tr": "Yeni operasyonel sektörlere atanan kontrolörler için tamamlanmış pratik eğitim kayıtlarına karşı veri girişi zaman damgalarını denetleyin."
+    },
+    {
+      "no": "3.813",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "False",
+      "question_en": "Does the Licensing Authority verify that ATCOs maintain proficiency by conducting a minimum number of hours in the operational environment?",
+      "question_tr": "Lisanslandırma Otoritesi, ATCO'ların operasyonel ortamda asgari sayıda saat görev yaparak yetkinliklerini sürdürdüklerini doğruluyor mu?",
+      "reference": "STD\nA1\n4.4",
+      "review_evidence_en": "Review operational logs and shift duty records to ensure compliance with minimum duty hour requirements as per national regulations.",
+      "review_evidence_tr": "Ulusal düzenlemelere göre asgari görev saati gerekliliklerine uyumu sağlamak amacıyla operasyonel logları ve vardiya görev kayıtlarını inceleyin."
     },
     {
       "no": "3.851",
@@ -884,17 +994,6 @@
       "review_evidence_tr": "1) Uçuş dispeçer sertifikaları için giriş gerekliliklerini, asgari yaşı ve bilgi modüllerini kontrol edin.\n2) Pratik yetkinlik doğrulama adımlarının resmi olarak oluşturulduğunu teyit edin."
     },
     {
-      "no": "3.903",
-      "ce": "CE-6",
-      "site_type": "On-Site",
-      "ppq": "False",
-      "question_en": "Are dispatcher training records and initial qualification files checked systematically by the Licensing Authority during regular operational audits?",
-      "question_tr": "Dispeçer eğitim kayıtları ve ilk yeterlilik dosyaları, düzenli operasyonel denetimler sırasında Lisanslandırma Otoritesi tarafından sistematik olarak kontrol ediliyor mu?",
-      "reference": "STD\nA1\n4.6.2",
-      "review_evidence_en": "Sample dispatcher training logs and pass lists at approved facilities to verify full implementation of required knowledge blocks.",
-      "review_evidence_tr": "Gerekli bilgi bloklarının tam olarak uygulandığını doğrulamak amacıyla onaylı tesislerdeki dispeçer eğitim loglarını ve başarı listelerini örnekleyin."
-    },
-    {
       "no": "3.905",
       "ce": "CE-6",
       "site_type": "On-Site",
@@ -904,6 +1003,39 @@
       "reference": "STD\nA6\nPart I, 10.2",
       "review_evidence_en": "Verify that air operator surveillance includes sampling dispatcher recurrent check logs and route qualification sheets.",
       "review_evidence_tr": "Hava işletici gözetiminin, dispeçer tazeleme kontrol loglarını ve rota yeterlilik formlarını örneklemeyi içerdiğini doğrulayın."
+    },
+    {
+      "no": "3.909",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "False",
+      "question_en": "Are dispatcher initial competency assessments and periodic proficiency checks documented in accordance with national licensing requirements?",
+      "question_tr": "Dispeçer ilk yetkinlik değerlendirmeleri ve periyodik yeterlilik kontrolleri, ulusal lisanslandırma gerekliliklerine uygun şekilde belgeleniyor mu?",
+      "reference": "STD\nA1\n4.6.2",
+      "review_evidence_en": "Check individual flight dispatcher files for formal sign-offs on initial check-outs and yearly competency renewal tags.",
+      "review_evidence_tr": "Bireysel uçuş dispeçeri dosyalarını, ilk kontrol ve yıllık yetkinlik yenileme etiketleri üzerindeki resmi onaylar açısından kontrol edin."
+    },
+    {
+      "no": "3.913",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "False",
+      "question_en": "Does the Licensing Authority audit dispatch training centers for adequacy of flight planning software, weather briefing systems, and communication tools?",
+      "question_tr": "Lisanslandırma Otoritesi, uçuş planlama yazılımı, hava durumu bilgilendirme sistemleri ve haberleşme araçlarının yeterliliği konusunda dispeçer eğitim merkezlerini denetliyor mu?",
+      "reference": "STD\nA1\n4.6.2",
+      "review_evidence_en": "Review technical site audit reports focusing on the presence of realistic, real-time data inputs in training classrooms.",
+      "review_evidence_tr": "Eğitim sınıflarında gerçekçi, gerçek zamanlı veri girdilerinin varlığına odaklanan teknik saha denetim raporlarını gözden geçirin."
+    },
+    {
+      "no": "3.917",
+      "ce": "CE-6",
+      "site_type": "On-Site",
+      "ppq": "False",
+      "question_en": "Are the practical evaluation rubrics used for flight dispatcher certifications standardized across all designated examiner panels?",
+      "question_tr": "Uçuş dispeçeri sertifikasyonları için kullanılan pratik değerlendirme kriterleri tüm yetkilendirilmiş sınav yapıcı panellerinde standartlaştırılmış mıdır?",
+      "reference": "STD\nA1\n4.6.2",
+      "review_evidence_en": "Audit the grading keys and performance rubrics against the Licensing Authority’s published flight dispatcher competency standards.",
+      "review_evidence_tr": "Notlandırma anahtarlarını ve performans kriterlerini, Lisanslandırma Otoritesi'nin yayımlanmış uçuş dispeçeri yetkinlik standartlarına göre denetleyin."
     },
     {
       "no": "3.921",
@@ -917,17 +1049,6 @@
       "review_evidence_tr": "1) Fiziksel erişim sınırlarını, yangın söndürme düzeneklerini ve ortam nem kontrollerini doğrulamak amacıyla lisans arşiv tesisini inceleyin.\n2) Yetkisiz giriş loglarının güvenlik personeli tarafından sistematik olarak gözden geçirildiğini teyit edin."
     },
     {
-      "no": "3.923",
-      "ce": "CE-6",
-      "site_type": "On-Site",
-      "ppq": "False",
-      "question_en": "Are digital backup cycles for the centralized licensing registry database executed daily and mirrored onto an off-site secure data setup?",
-      "question_tr": "Merkezi lisans sicil veri tabanına yönelik dijital yedekleme döngüleri günlük olarak yürütülüyor ve merkez dışı güvenli bir veri düzeneğine yansıtılıyor mu?",
-      "reference": "STD\nA19\n3.2.5\nGM\nDoc 9734\nPart A",
-      "review_evidence_en": "Review system server logs, automated scripting verification schedules, and disaster recovery protocol manuals within the CAA's IT division.",
-      "review_evidence_tr": "CAA'nın BT birimindeki sistem sunucu loglarını, otomatik betik doğrulama programlarını ve afet kurtarma protokolü el kitaplarını inceleyin."
-    },
-    {
       "no": "3.925",
       "ce": "CE-6",
       "site_type": "On-Site",
@@ -937,17 +1058,6 @@
       "reference": "STD\nA1\n1.2.1",
       "review_evidence_en": "Audit user privilege matrix layouts within the official software platform to confirm that only authorized senior registrar staff hold grade-override capabilities.",
       "review_evidence_tr": "Yalnızca yetkilendirilmiş kıdemli kayıt personelinin not değiştirme kabiliyetlerine sahip olduğunu teyit etmek amacıyla resmi yazılım platformundaki kullanıcı yetki matrisi düzenlerini denetleyin."
-    },
-    {
-      "no": "3.927",
-      "ce": "CE-6",
-      "site_type": "On-Site",
-      "ppq": "False",
-      "question_en": "Are historical logbooks and verification files for foreign license conversions kept accessible for the entire duration required by administrative preservation standards?",
-      "question_tr": "Yabancı lisans dönüşümlerine ait geçmiş uçuş kayıt defterleri (logbook) ve doğrulama dosyaları, idari saklama standartlarının gerektirdiği tüm süre boyunca erişilebilir tutuluyor mu?",
-      "reference": "STD\nA19\n3.2.5",
-      "review_evidence_en": "Sample inactive conversion folders to verify that historical paper or digitized tracks comply with the structural file lifespan policy.",
-      "review_evidence_tr": "Geçemşie dönük basılı veya dijitalleştirilmiş izlerin yapısal dosya ömrü politikasıyla uyumlu olduğunu doğrulamak amacıyla aktif olmayan dönüşüm klasörlerinden örnekler inceleyin."
     },
     {
       "no": "3.929",
@@ -961,17 +1071,6 @@
       "review_evidence_tr": "Yazılım kilitleme parametrelerini doğrulayın ve operasyonel imtiyaz işaretlerinin gerçek zamanlı olarak devre dışı bırakıldığını teyit etmek amacıyla geçmiş yaptırım işlemlerindeki takip iş akışlarını kontrol edin."
     },
     {
-      "no": "3.931",
-      "ce": "CE-8",
-      "site_type": "Off-Site",
-      "ppq": "True",
-      "question_en": "Has the State established structured enforcement guidelines specifying the automatic suspension or revocation of personnel licenses in the event of verified safety violations?",
-      "question_tr": "Devlet, doğrulanmış emniyet ihlalleri durumunda personel lisanslarının otomatik olarak askıya alınmasını veya iptalini belirten yapılandırılmış yaptırım kılavuzları oluşturmuş mudur?",
-      "reference": "STD\nA19\n3.2.5\nGM\nDoc 9734\nPart A, C3",
-      "review_evidence_en": "1) Review the regulatory framework for licensing sanctions.\n2) Confirm that legal enforcement actions are documented, transparent, and trackable within a formal legal ledger.",
-      "review_evidence_tr": "1) Lisans yaptırımlarına yönelik mevzuat çerçevesini inceleyin.\n2) Yasal yaptırım işlemlerinin resmi bir yasal sicil içinde belgelendiğini, şeffaf ve takip edilebilir olduğunu teyit edin."
-    },
-    {
       "no": "3.933",
       "ce": "CE-8",
       "site_type": "On-Site",
@@ -983,7 +1082,7 @@
       "review_evidence_tr": "Düzeltici yanıtlara veya ceza ödemelerine yönelik son sürelerin katı bir şekilde uygulandığını sağlamak amacıyla yaptırım dosya loglarını inceleyin ve takip iş akışlarını kontrol edin."
     },
     {
-      "no": "3.935",
+      "no": "3.937",
       "ce": "CE-8",
       "site_type": "On-Site",
       "ppq": "False",
@@ -992,28 +1091,6 @@
       "reference": "STD\nA1\n1.2.6 & 6.1.2\nGM\nDoc 8984",
       "review_evidence_en": "Cross-match specialized medical restriction flags inside the software platform against active pilot roster outputs.",
       "review_evidence_tr": "Yazılım platformu içindeki ihtisaslaşmış tıbbi kısıtlama işaretlerini aktif pilot listesi çıktılarıyla çapraz kontrol edin."
-    },
-    {
-      "no": "3.937",
-      "ce": "CE-8",
-      "site_type": "On-Site",
-      "ppq": "False",
-      "question_en": "Does the Licensing Authority coordinate with the legal division to ensure that license enforcement actions withstand institutional appeals or judicial challenges?",
-      "question_tr": "Lisanslandırma Otoritesi, lisans yaptırım işlemlerinin kurumsal itirazlara veya yargısal meydan okumalara karşı dayanıklı olmasını sağlamak amacıyla hukuk birimiyle koordinasyon sağlıyor mu?",
-      "reference": "STD\nA19\n3.2.5\nGM\nDoc 9734\nPart A",
-      "review_evidence_en": "Verify that joint meeting logs, enforcement draft check procedures, and legal case briefs demonstrate close institutional coordination.",
-      "review_evidence_tr": "Müşterek toplantı loglarının, yaptırım taslak kontrol prosedürlerinin ve yasal dava özetlerinin yakın kurumsal koordinasyonu gösterdiğini doğrulayın."
-    },
-    {
-      "no": "3.939",
-      "ce": "CE-8",
-      "site_type": "Off-Site",
-      "ppq": "False",
-      "question_en": "Does the State publish a formal registry or notification list regarding revoked personnel credentials to inform international civil aviation entities?",
-      "question_tr": "Devlet, uluslararası sivil havacılık kuruluşlarını bilgilendirmek amacıyla iptal edilen personel kimlik belgelerine ilişkin resmi bir sicil veya bildirim listesi yayımlıyor mu?",
-      "reference": "STD\nA19\n3.2.5\nGM\nDoc 9734\nPart A",
-      "review_evidence_en": "Verify the reporting paths used to log serious license invalidations into shared safety platforms or regional data networks, if applicable.",
-      "review_evidence_tr": "Varsa, ciddi lisans iptallerini paylaşılan emniyet platformlarına veya bölgesel veri ağlarına kaydetmek için kullanılan raporlama yollarını doğrulayın."
     },
     {
       "no": "3.941",
@@ -1025,6 +1102,6 @@
       "reference": "STD\nA19\n3.2.5\nGM\nDoc 9734\nPart A",
       "review_evidence_en": "Review software script alerts, notifications layout logs, and verify that closure actions require the input of a validated field inspection report number.",
       "review_evidence_tr": "Yazılım senaryo uyarılarını, bildirim düzeni loglarını inceleyin ve kapatma işlemlerinin doğrulanmış bir saha teftiş rapor numarası girilmesini zorunlu kıldığını doğrulayın."
-    }  
+    }
   ]
 }
