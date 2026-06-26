@@ -151,6 +151,26 @@
     .filter-reset-btn:hover { background: #e2e8f0; }
     .filter-result-info { grid-column: 1 / -1; font-size: 12px; color: #64748b; }
 
+
+    .sidebar-section-label { padding: 14px 20px 6px 20px; margin-top: 8px; color: #64748b; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; }
+    .report-screen { display: none; background: white; border: 1px solid var(--border-color); border-radius: 12px; padding: 18px; }
+    .report-screen.active { display: block; }
+    .report-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 14px; }
+    .report-header h2 { margin: 0; color: #0f172a; font-size: 20px; }
+    .report-header p { margin: 5px 0 0 0; color: #64748b; font-size: 13px; }
+    .report-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    .report-btn { border: 1px solid var(--border-color); background: #f8fafc; color: #334155; border-radius: 8px; padding: 9px 12px; font-size: 12px; font-weight: 800; cursor: pointer; }
+    .report-btn:hover { background: #e2e8f0; }
+    .report-table-wrap { overflow-x: auto; border: 1px solid var(--border-color); border-radius: 10px; }
+    .report-table { width: 100%; border-collapse: collapse; min-width: 980px; }
+    .report-table th, .report-table td { border-bottom: 1px solid var(--border-color); border-right: 1px solid var(--border-color); padding: 10px 12px; text-align: center; font-size: 13px; }
+    .report-table th { background: #f1f5f9; color: #0f172a; font-weight: 900; }
+    .report-table th:last-child, .report-table td:last-child { border-right: 0; }
+    .report-table tbody tr:hover { background: #f8fafc; }
+    .report-table .area-cell { font-weight: 900; color: var(--primary-color); cursor: pointer; }
+    .report-table .total-row td { background: #fffbeb; font-weight: 900; border-top: 2px solid #92400e; }
+    .report-note { margin-top: 10px; color: #64748b; font-size: 12px; line-height: 1.5; }
+
     .loading { padding: 20px; text-align: center; font-weight: bold; color: var(--secondary-color); }
     .data-source { font-size: 12px; opacity: 0.9; margin-top: 6px; }
     @media (max-width: 900px) {
@@ -160,6 +180,7 @@
       .dashboard-summary { flex-direction: column; align-items: stretch; }
       .pq-header, .criterion-item { flex-direction: column; align-items: stretch; }
       .filter-panel { grid-template-columns: 1fr; }
+      .report-header { flex-direction: column; }
     }
   </style>
 </head>
@@ -167,6 +188,10 @@
   <div class="sidebar">
     <h2>USOAP CMA Areas (Live)</h2>
     <button class="setup-btn" onclick="syncActiveAreaToFirebase()">Sync Area to Firebase</button>
+    <ul class="menu-list">
+      <li class="menu-item" onclick="showReport()" id="menu_REPORT"><span>Raporlama</span><span class="area-count">851</span></li>
+    </ul>
+    <div class="sidebar-section-label">Audit Areas</div>
     <ul class="menu-list" id="areaMenu"></ul>
   </div>
 
@@ -181,6 +206,7 @@
       </div>
     </header>
 
+    <div id="pqWorkArea">
     <div class="dashboard-summary">
       <div class="progress-container">
         <span id="txtEiLabel" style="font-size: 13px; font-weight: 600; display:block; margin-bottom: 5px;">Etkin Uygulama (EI) Oranı</span>
@@ -246,6 +272,26 @@
     <div class="pq-list" id="pqContainer">
       <div class="loading">Connecting to Firebase...</div>
     </div>
+    </div>
+
+    <div class="report-screen" id="reportScreen">
+      <div class="report-header">
+        <div>
+          <h2 id="reportTitle">Raporlama Özeti</h2>
+          <p id="reportSubtitle">Audit Area bazında PQ, kriter ve durum dağılımı.</p>
+        </div>
+        <div class="report-actions">
+          <button class="report-btn" id="btnRefreshReport" type="button" onclick="renderReport()">Yenile</button>
+        </div>
+      </div>
+      <div class="report-table-wrap">
+        <table class="report-table">
+          <thead id="reportTableHead"></thead>
+          <tbody id="reportTableBody"></tbody>
+        </table>
+      </div>
+      <div class="report-note" id="reportNote"></div>
+    </div>
   </div>
 
 <script type="module">
@@ -284,6 +330,7 @@
   let currentAreaData = null;
   let currentUserData = {};
   let currentLang = "tr";
+  let currentView = "area";
   let lblRefBox = "Mevzuat Referansı:";
   let lblNoteBox = "Denetçiye Notlar:";
   let filterListenersAttached = false;
@@ -406,8 +453,131 @@
     }
   };
 
+  function getCriteriaCountForPQLang(pq, lang) {
+    const parsedEN = extractNotesAndCriteria(pq.review_evidence_en || pq.Review_Evidence || "");
+    const parsedTR = extractNotesAndCriteria(pq.review_evidence_tr || pq.Incelenecek_Kanitlar || "");
+    const criteriaRows = getActiveCriteria(parsedEN, parsedTR);
+    const count = criteriaRows.filter(row => {
+      const activeLine = lang === "tr" ? row.tr : row.en;
+      const fallbackLine = row.en || row.tr;
+      return !(activeLine || fallbackLine).trim().endsWith(":");
+    }).length;
+    return count || criteriaRows.length;
+  }
+
+  function getAreaStaticStats(areaKey) {
+    const areaData = normalizedAreas[areaKey] || { pqs: [] };
+    const pqs = areaData.pqs || [];
+    return pqs.reduce((acc, pq) => {
+      acc.pqCount += 1;
+      acc.criteriaCount += getCriteriaCountForPQLang(pq, currentLang);
+      if (asBool(pq.ppq)) acc.ppqCount += 1;
+      if (asBool(pq.OnSiteRequired || pq.site_type)) acc.onSiteCount += 1;
+      else acc.offSiteCount += 1;
+      return acc;
+    }, { pqCount: 0, criteriaCount: 0, ppqCount: 0, onSiteCount: 0, offSiteCount: 0 });
+  }
+
+  async function getAreaProgressStats(areaKey) {
+    const areaData = normalizedAreas[areaKey] || { pqs: [] };
+    const pqs = areaData.pqs || [];
+    let userData = { status: {}, notes: {} };
+    try {
+      const snap = await getDoc(doc(db, "user_progress", areaKey));
+      if (snap.exists()) userData = snap.data();
+    } catch (err) {
+      userData = { status: {}, notes: {} };
+    }
+    if (!userData.status) userData.status = {};
+
+    let countS = 0, countNS = 0, countNA = 0;
+    pqs.forEach((pq, pqIdx) => {
+      const parsedEN = extractNotesAndCriteria(pq.review_evidence_en || pq.Review_Evidence || "");
+      const parsedTR = extractNotesAndCriteria(pq.review_evidence_tr || pq.Incelenecek_Kanitlar || "");
+      const criteriaRows = getActiveCriteria(parsedEN, parsedTR);
+      let hasNS = false, hasS = false, hasScoreable = false;
+      criteriaRows.forEach(row => {
+        const line = row.en || row.tr || "";
+        if (line.trim().endsWith(":")) return;
+        hasScoreable = true;
+        const val = userData.status[`${pqIdx}_${row.index}`] || "NA";
+        if (val === "NS") hasNS = true;
+        if (val === "S") hasS = true;
+      });
+      if (!hasScoreable) countNA++;
+      else if (hasNS) countNS++;
+      else if (hasS) countS++;
+      else countNA++;
+    });
+    const activePQs = pqs.length - countNA;
+    const ei = activePQs > 0 ? Math.round((countS / activePQs) * 100) : 0;
+    return { countS, countNS, countNA, ei };
+  }
+
+  window.showReport = async function() {
+    currentView = "report";
+    document.querySelectorAll(".menu-item").forEach(el => el.classList.remove("active"));
+    const reportMenu = document.getElementById("menu_REPORT");
+    if (reportMenu) reportMenu.classList.add("active");
+    document.getElementById("pqWorkArea").style.display = "none";
+    document.getElementById("reportScreen").classList.add("active");
+    document.getElementById("areaTitle").innerText = currentLang === "tr" ? "Raporlama Ekranı" : "Reporting Screen";
+    document.getElementById("dataSourceInfo").innerText = `Data source: ${DATA_FILE} / Reporting summary`;
+    await renderReport();
+  };
+
+  window.renderReport = async function() {
+    const tbody = document.getElementById("reportTableBody");
+    const thead = document.getElementById("reportTableHead");
+    const tr = currentLang === "tr";
+    document.getElementById("reportTitle").innerText = tr ? "Audit Area Bazında Raporlama" : "Audit Area Reporting";
+    document.getElementById("reportSubtitle").innerText = tr ? "PQ, kriter, PPQ, saha ve durum dağılımı." : "PQ, criteria, PPQ, site and status distribution.";
+    document.getElementById("btnRefreshReport").innerText = tr ? "Yenile" : "Refresh";
+    document.getElementById("reportNote").innerText = tr
+      ? "Area adına tıklayarak ilgili PQ listesine geçebilirsiniz. S/NS/NA ve EI değerleri Firebase kullanıcı ilerlemesinden, PQ/kriter sayıları JSON ana modelinden hesaplanır."
+      : "Click an area name to open its PQ list. S/NS/NA and EI values come from Firebase user progress; PQ/criteria counts are calculated from the JSON master model.";
+
+    thead.innerHTML = `<tr>
+      <th>#</th><th>Area</th><th>${tr ? "2024 PQ Sayısı" : "Number of 2024 PQs"}</th><th>${tr ? "Kriter Sayısı" : "Criteria Count"}</th><th>PPQ</th><th>On-Site</th><th>Off-Site</th><th>S</th><th>NS</th><th>NA</th><th>EI</th>
+    </tr>`;
+    tbody.innerHTML = `<tr><td colspan="11" class="loading">${tr ? "Rapor hazırlanıyor..." : "Preparing report..."}</td></tr>`;
+
+    await loadMasterModel();
+    const totals = { pqCount: 0, criteriaCount: 0, ppqCount: 0, onSiteCount: 0, offSiteCount: 0, countS: 0, countNS: 0, countNA: 0 };
+    let rowsHtml = "";
+    for (const [idx, areaKey] of AREA_ORDER.entries()) {
+      const stat = getAreaStaticStats(areaKey);
+      const progress = await getAreaProgressStats(areaKey);
+      totals.pqCount += stat.pqCount;
+      totals.criteriaCount += stat.criteriaCount;
+      totals.ppqCount += stat.ppqCount;
+      totals.onSiteCount += stat.onSiteCount;
+      totals.offSiteCount += stat.offSiteCount;
+      totals.countS += progress.countS;
+      totals.countNS += progress.countNS;
+      totals.countNA += progress.countNA;
+      rowsHtml += `<tr>
+        <td>${idx + 1}</td>
+        <td class="area-cell" onclick="switchArea('${areaKey}')">${areaKey}</td>
+        <td>${stat.pqCount}</td><td>${stat.criteriaCount}</td><td>${stat.ppqCount}</td><td>${stat.onSiteCount}</td><td>${stat.offSiteCount}</td>
+        <td>${progress.countS}</td><td>${progress.countNS}</td><td>${progress.countNA}</td><td>%${progress.ei}</td>
+      </tr>`;
+    }
+    const activeTotal = totals.pqCount - totals.countNA;
+    const totalEi = activeTotal > 0 ? Math.round((totals.countS / activeTotal) * 100) : 0;
+    rowsHtml += `<tr class="total-row">
+      <td colspan="2">${tr ? "TOPLAM" : "TOTAL"}</td>
+      <td>${totals.pqCount}</td><td>${totals.criteriaCount}</td><td>${totals.ppqCount}</td><td>${totals.onSiteCount}</td><td>${totals.offSiteCount}</td>
+      <td>${totals.countS}</td><td>${totals.countNS}</td><td>${totals.countNA}</td><td>%${totalEi}</td>
+    </tr>`;
+    tbody.innerHTML = rowsHtml;
+  };
+
   window.switchArea = async function(areaKey) {
+    currentView = "area";
     currentArea = areaKey;
+    document.getElementById("pqWorkArea").style.display = "block";
+    document.getElementById("reportScreen").classList.remove("active");
     document.querySelectorAll(".menu-item").forEach(el => el.classList.remove("active"));
     const activeMenu = document.getElementById(`menu_${areaKey}`);
     if (activeMenu) activeMenu.classList.add("active");
