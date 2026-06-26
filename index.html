@@ -112,13 +112,13 @@
     .pq-item { border: 1px solid var(--border-color); border-radius: 8px; margin-bottom: 15px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.02); }
     .pq-header { background-color: #f1f5f9; padding: 15px 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 30px; user-select: none; transition: background-color 0.15s ease; }
     .pq-header:hover { background-color: #e2e8f0; }
-    .pq-left-block { display: flex; align-items: flex-start; gap: 12px; flex-grow: 1; }
-    .pq-meta-left { display: flex; align-items: center; gap: 5px; flex-shrink: 0; margin-top: 2px; flex-wrap: wrap; }
+    .pq-left-block { display: flex; flex-direction: column; align-items: stretch; gap: 8px; flex-grow: 1; min-width: 0; }
+    .pq-meta-left { display: flex; align-items: center; gap: 6px; flex-shrink: 0; flex-wrap: wrap; padding-left: 0; }
     .pq-title-wrapper { display: flex; gap: 4px; align-items: flex-start; }
     .pq-num-lead { font-weight: 800; color: #0f172a; white-space: nowrap; }
     .pq-title { font-size: 14px; line-height: 1.5; color: #1f2937; white-space: pre-wrap; }
     .pq-meta-right { flex-shrink: 0; }
-    .badge-ce, .badge-ppq, .badge-site, .badge-count { display: inline-block; padding: 3px 7px; border-radius: 999px; font-size: 10px; font-weight: 800; }
+    .badge-ce, .badge-ppq, .badge-site, .badge-count { display: inline-block; padding: 4px 8px; border-radius: 999px; font-size: 10px; font-weight: 800; letter-spacing: .01em; }
     .badge-ce { background: #dbeafe; color: #1d4ed8; }
     .badge-ppq { background: var(--ppq-bg); color: var(--ppq-color); }
     .badge-site { background: var(--site-bg); color: var(--site-color); }
@@ -142,6 +142,15 @@
     .status-options input[value="NA"]:checked + label { background-color: var(--na-color); color: white; }
     .audit-notes-box { margin-top: 15px; border-top: 1px solid var(--border-color); padding-top: 12px; }
     .audit-notes-box textarea { width: 100%; height: 65px; padding: 10px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 12px; box-sizing: border-box; resize: vertical; }
+
+    .filter-panel { background: white; border: 1px solid var(--border-color); border-radius: 12px; padding: 14px 15px; margin-bottom: 14px; display: grid; grid-template-columns: 1.4fr repeat(5, minmax(120px, 1fr)) auto; gap: 10px; align-items: end; }
+    .filter-field { display: flex; flex-direction: column; gap: 5px; }
+    .filter-field label { font-size: 11px; font-weight: 800; color: #475569; text-transform: uppercase; letter-spacing: .03em; }
+    .filter-field input, .filter-field select { width: 100%; border: 1px solid var(--border-color); border-radius: 8px; padding: 8px 9px; font-size: 12px; background: #fff; color: var(--text-color); }
+    .filter-reset-btn { border: 1px solid var(--border-color); background: #f8fafc; color: #334155; border-radius: 8px; padding: 9px 12px; font-size: 12px; font-weight: 800; cursor: pointer; }
+    .filter-reset-btn:hover { background: #e2e8f0; }
+    .filter-result-info { grid-column: 1 / -1; font-size: 12px; color: #64748b; }
+
     .loading { padding: 20px; text-align: center; font-weight: bold; color: var(--secondary-color); }
     .data-source { font-size: 12px; opacity: 0.9; margin-top: 6px; }
     @media (max-width: 900px) {
@@ -150,6 +159,7 @@
       .main-content { overflow: visible; }
       .dashboard-summary { flex-direction: column; align-items: stretch; }
       .pq-header, .criterion-item { flex-direction: column; align-items: stretch; }
+      .filter-panel { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -185,6 +195,52 @@
         <div class="score-box na-box"><h4 id="countNA">0</h4><span id="lblNA">Geçersiz</span></div>
         <div class="score-box ei-box"><h3 id="scorePercentage">%0</h3><span id="lblCurrentEi">Mevcut EI</span></div>
       </div>
+    </div>
+
+    <div class="filter-panel" id="filterPanel">
+      <div class="filter-field">
+        <label id="lblFilterSearch" for="filterSearch">Arama</label>
+        <input id="filterSearch" type="search" placeholder="PQ no, soru, referans veya kanıt ara...">
+      </div>
+      <div class="filter-field">
+        <label id="lblFilterCE" for="filterCE">CE</label>
+        <select id="filterCE"><option value="all">Tümü</option></select>
+      </div>
+      <div class="filter-field">
+        <label id="lblFilterPPQ" for="filterPPQ">PPQ</label>
+        <select id="filterPPQ">
+          <option value="all">Tümü</option>
+          <option value="yes">PPQ</option>
+          <option value="no">PPQ değil</option>
+        </select>
+      </div>
+      <div class="filter-field">
+        <label id="lblFilterSite" for="filterSite">Saha</label>
+        <select id="filterSite">
+          <option value="all">Tümü</option>
+          <option value="on">On-Site</option>
+          <option value="off">Off-Site</option>
+        </select>
+      </div>
+      <div class="filter-field">
+        <label id="lblFilterStatus" for="filterStatus">Durum</label>
+        <select id="filterStatus">
+          <option value="all">Tümü</option>
+          <option value="S">S</option>
+          <option value="NS">NS</option>
+          <option value="NA">NA</option>
+        </select>
+      </div>
+      <div class="filter-field">
+        <label id="lblFilterCriteria" for="filterCriteria">Kriter</label>
+        <select id="filterCriteria">
+          <option value="all">Tümü</option>
+          <option value="with">Kriter var</option>
+          <option value="without">Kriter yok</option>
+        </select>
+      </div>
+      <button class="filter-reset-btn" id="btnResetFilters" type="button">Temizle</button>
+      <div class="filter-result-info" id="filterResultInfo"></div>
     </div>
 
     <div class="pq-list" id="pqContainer">
@@ -230,6 +286,8 @@
   let currentLang = "tr";
   let lblRefBox = "Mevzuat Referansı:";
   let lblNoteBox = "Denetçi Notları:";
+  let filterListenersAttached = false;
+  const filters = { search: "", ce: "all", ppq: "all", site: "all", status: "all", criteria: "all" };
 
   function escapeHtml(value) {
     return String(value ?? "")
@@ -324,6 +382,8 @@
 
     if (currentAreaData) {
       document.getElementById("areaTitle").innerText = `${currentAreaData.area_name} (${currentArea})`;
+      populateFilterOptions();
+      updateFilterLabels();
       renderPQs();
     }
   };
@@ -370,6 +430,8 @@
         : `Data source: ${DATA_FILE} / ${currentArea}`;
 
       document.getElementById("areaTitle").innerText = `${currentAreaData.area_name} (${currentArea})`;
+      populateFilterOptions();
+      updateFilterLabels();
       renderPQs();
     } catch (error) {
       container.innerHTML = `<div class="loading" style="color:red;">Hata: ${escapeHtml(error.message)}</div>`;
@@ -382,12 +444,17 @@
     let criteriaLines = [];
     let noteText = "";
     let foundNote = false;
+    const noteLabelRegex = /^\s*(notes? to the auditor:|denetçiye notlar?:)\s*/i;
 
     for (let line of lines) {
       const clean = line.trim();
       if (!clean) continue;
-      const lower = clean.toLowerCase();
-      if (lower.includes("note to the auditor:") || lower.includes("notes to the auditor:") || lower.includes("denetçiye not:") || lower.includes("denetçiye notlar:")) foundNote = true;
+      if (noteLabelRegex.test(clean)) {
+        foundNote = true;
+        const withoutLabel = line.replace(noteLabelRegex, "").trim();
+        if (withoutLabel) noteText += (noteText ? "\n" : "") + withoutLabel;
+        continue;
+      }
       if (foundNote) noteText += (noteText ? "\n" : "") + line;
       else criteriaLines.push(line);
     }
@@ -407,10 +474,120 @@
     return rows;
   }
 
+  function getCriteriaCountForPQ(pq) {
+    const parsedEN = extractNotesAndCriteria(pq.review_evidence_en || pq.Review_Evidence || "");
+    const parsedTR = extractNotesAndCriteria(pq.review_evidence_tr || pq.Incelenecek_Kanitlar || "");
+    const criteriaRows = getActiveCriteria(parsedEN, parsedTR);
+    let count = criteriaRows.filter(row => {
+      const activeLine = currentLang === "tr" ? row.tr : row.en;
+      const fallbackLine = row.en || row.tr;
+      return !(activeLine || fallbackLine).trim().endsWith(":");
+    }).length;
+    return count || criteriaRows.length;
+  }
+
+  function getPQComputedStatus(pq, pqIdx) {
+    const parsedEN = extractNotesAndCriteria(pq.review_evidence_en || pq.Review_Evidence || "");
+    const parsedTR = extractNotesAndCriteria(pq.review_evidence_tr || pq.Incelenecek_Kanitlar || "");
+    const criteriaRows = getActiveCriteria(parsedEN, parsedTR);
+    let hasNS = false, hasS = false, hasScoreable = false;
+
+    criteriaRows.forEach(row => {
+      const line = row.en || row.tr || "";
+      if (line.trim().endsWith(":")) return;
+      hasScoreable = true;
+      const val = currentUserData.status[`${pqIdx}_${row.index}`] || "NA";
+      if (val === "NS") hasNS = true;
+      if (val === "S") hasS = true;
+    });
+
+    if (!hasScoreable) return "NA";
+    if (hasNS) return "NS";
+    if (hasS) return "S";
+    return "NA";
+  }
+
+  function attachFilterListeners() {
+    if (filterListenersAttached) return;
+    filterListenersAttached = true;
+    ["filterSearch", "filterCE", "filterPPQ", "filterSite", "filterStatus", "filterCriteria"].forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.addEventListener(id === "filterSearch" ? "input" : "change", () => {
+        filters.search = document.getElementById("filterSearch").value.trim().toLowerCase();
+        filters.ce = document.getElementById("filterCE").value;
+        filters.ppq = document.getElementById("filterPPQ").value;
+        filters.site = document.getElementById("filterSite").value;
+        filters.status = document.getElementById("filterStatus").value;
+        filters.criteria = document.getElementById("filterCriteria").value;
+        renderPQs();
+      });
+    });
+    document.getElementById("btnResetFilters").addEventListener("click", () => {
+      filters.search = ""; filters.ce = "all"; filters.ppq = "all"; filters.site = "all"; filters.status = "all"; filters.criteria = "all";
+      document.getElementById("filterSearch").value = "";
+      document.getElementById("filterCE").value = "all";
+      document.getElementById("filterPPQ").value = "all";
+      document.getElementById("filterSite").value = "all";
+      document.getElementById("filterStatus").value = "all";
+      document.getElementById("filterCriteria").value = "all";
+      renderPQs();
+    });
+  }
+
+  function populateFilterOptions() {
+    attachFilterListeners();
+    const ceSelect = document.getElementById("filterCE");
+    const currentCE = filters.ce;
+    const ceValues = [...new Set((currentAreaData?.pqs || []).map(pq => pq.ce || currentArea).filter(Boolean))].sort();
+    const allText = currentLang === "tr" ? "Tümü" : "All";
+    ceSelect.innerHTML = `<option value="all">${allText}</option>` + ceValues.map(ce => `<option value="${escapeHtml(ce)}">${escapeHtml(ce)}</option>`).join("");
+    ceSelect.value = ceValues.includes(currentCE) ? currentCE : "all";
+    filters.ce = ceSelect.value;
+  }
+
+  function updateFilterLabels() {
+    const tr = currentLang === "tr";
+    document.getElementById("lblFilterSearch").innerText = tr ? "Arama" : "Search";
+    document.getElementById("lblFilterCE").innerText = "CE";
+    document.getElementById("lblFilterPPQ").innerText = "PPQ";
+    document.getElementById("lblFilterSite").innerText = tr ? "Saha" : "Site";
+    document.getElementById("lblFilterStatus").innerText = tr ? "Durum" : "Status";
+    document.getElementById("lblFilterCriteria").innerText = tr ? "Kriter" : "Criteria";
+    document.getElementById("filterSearch").placeholder = tr ? "PQ no, soru, referans veya kanıt ara..." : "Search PQ no, question, reference or evidence...";
+    document.getElementById("btnResetFilters").innerText = tr ? "Temizle" : "Reset";
+    const setOptions = (id, labels) => [...document.getElementById(id).options].forEach((opt, idx) => { opt.text = labels[idx]; });
+    setOptions("filterPPQ", tr ? ["Tümü", "PPQ", "PPQ değil"] : ["All", "PPQ", "Not PPQ"]);
+    setOptions("filterSite", tr ? ["Tümü", "On-Site", "Off-Site"] : ["All", "On-Site", "Off-Site"]);
+    setOptions("filterStatus", tr ? ["Tümü", "S", "NS", "NA"] : ["All", "S", "NS", "NA"]);
+    setOptions("filterCriteria", tr ? ["Tümü", "Kriter var", "Kriter yok"] : ["All", "Has criteria", "No criteria"]);
+  }
+
+  function pqMatchesFilters(pq, pqIdx) {
+    if (filters.ce !== "all" && (pq.ce || currentArea) !== filters.ce) return false;
+    if (filters.ppq === "yes" && !asBool(pq.ppq)) return false;
+    if (filters.ppq === "no" && asBool(pq.ppq)) return false;
+    const isOnSite = asBool(pq.OnSiteRequired || pq.site_type);
+    if (filters.site === "on" && !isOnSite) return false;
+    if (filters.site === "off" && isOnSite) return false;
+    if (filters.status !== "all" && getPQComputedStatus(pq, pqIdx) !== filters.status) return false;
+    const criteriaCount = getCriteriaCountForPQ(pq);
+    if (filters.criteria === "with" && criteriaCount <= 0) return false;
+    if (filters.criteria === "without" && criteriaCount > 0) return false;
+    if (filters.search) {
+      const haystack = [pq.no, pq.ce, pq.question_en, pq.question_tr, pq.reference, pq.review_evidence_en, pq.review_evidence_tr].join(" ").toLowerCase();
+      if (!haystack.includes(filters.search)) return false;
+    }
+    return true;
+  }
+
   function renderPQs() {
     const container = document.getElementById("pqContainer");
     container.innerHTML = "";
     const pqs = currentAreaData.pqs || [];
+    populateFilterOptions();
+    updateFilterLabels();
+    let visibleCount = 0;
 
     if (!pqs.length) {
       container.innerHTML = `<div class="loading" style="color:red;">${escapeHtml(currentArea)} için PQ kaydı bulunamadı.</div>`;
@@ -419,6 +596,8 @@
     }
 
     pqs.forEach((pq, pqIdx) => {
+      if (!pqMatchesFilters(pq, pqIdx)) return;
+      visibleCount++;
       const pqItem = document.createElement("div");
       pqItem.className = "pq-item";
 
@@ -477,8 +656,8 @@
       pqItem.innerHTML = `
         <div class="pq-header" id="pq_hdr_${pqIdx}">
           <div class="pq-left-block">
-            <div class="pq-meta-left"><span class="badge-ce">${escapeHtml(pq.ce || currentArea)}</span>${ppqBadge}${siteBadge}${criteriaBadge}</div>
             <div class="pq-title-wrapper"><span class="pq-num-lead">PQ ${escapeHtml(pq.no)} -</span><div class="pq-title">${escapeHtml(qText)}</div></div>
+            <div class="pq-meta-left"><span class="badge-ce">${escapeHtml(pq.ce || currentArea)}</span>${ppqBadge}${siteBadge}${criteriaBadge}</div>
           </div>
           <div class="pq-meta-right"><div class="pq-status-badge" id="pq_badge_${pqIdx}">NA</div></div>
         </div>
@@ -515,6 +694,13 @@
       container.appendChild(pqItem);
     });
 
+    const infoText = currentLang === "tr"
+      ? `${visibleCount} / ${pqs.length} PQ gösteriliyor.`
+      : `Showing ${visibleCount} / ${pqs.length} PQs.`;
+    document.getElementById("filterResultInfo").innerText = infoText;
+    if (visibleCount === 0) {
+      container.innerHTML = `<div class="loading">${currentLang === "tr" ? "Filtrelere uygun PQ bulunamadı." : "No PQ matches the selected filters."}</div>`;
+    }
     calculateMetrics();
   }
 
