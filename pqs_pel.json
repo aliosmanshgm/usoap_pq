@@ -255,10 +255,8 @@
       "reference": "STD\nA1\n1.2.1\nA19\n3.2.5\nGM\nDoc 9379\nPart I, C2\nDoc 9734\nPart A, C3",
       "review_evidence_en": "1) Review procedures established for maintenance of licensing records and files.\n2) Confirm that procedures address security, confidentiality, archiving, retention periods, and backup systems, as applicable.",
       "review_evidence_tr": "1) Lisansland\u0131rma kay\u0131tlar\u0131n\u0131n ve dosyalar\u0131n\u0131n muhafazası i\u00e7in olu\u015fturulan prosed\u00fcrleri inceleyin.\n2) Prosed\u00fcrlerin; g\u00fcvenlik, gizlilik, ar\u015fivleme, saklama s\u00fcreleri ve uygulanabildi\u011fi \u00f6l\u00e7\u00fcde yedekleme sistemlerini ele ald\u0131\u011f\u0131n\u0131 teyit edin."
-    }
-  ]
-},
-{
+    },
+    {
       "no": "3.211",
       "ce": "CE-6",
       "site_type": "On-Site",
