@@ -181,6 +181,22 @@
     .audit-list-actions { display: flex; gap: 8px; flex-wrap: wrap; }
     .audit-manual-open { margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--border-color); }
     .audit-refresh-info { margin-top: 8px; font-size: 12px; color: #64748b; }
+
+    .quality-grid { display: grid; grid-template-columns: repeat(4, minmax(150px, 1fr)); gap: 12px; margin: 14px 0; }
+    .quality-card { border: 1px solid var(--border-color); border-radius: 12px; padding: 14px; background: #f8fafc; }
+    .quality-card.ok { background: #f0fdf4; border-color: #bbf7d0; }
+    .quality-card.warn { background: #fffbeb; border-color: #fde68a; }
+    .quality-card.fail { background: #fef2f2; border-color: #fecaca; }
+    .quality-card h4 { margin: 0; font-size: 24px; color: #0f172a; }
+    .quality-card span { display: block; margin-top: 4px; font-size: 12px; color: #475569; font-weight: 800; }
+    .quality-status-banner { border-radius: 12px; padding: 13px 14px; margin: 12px 0; font-size: 13px; font-weight: 800; }
+    .quality-status-banner.ok { background: #dcfce7; color: #166534; border: 1px solid #86efac; }
+    .quality-status-banner.fail { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
+    .quality-table-wrap { overflow-x: auto; border: 1px solid var(--border-color); border-radius: 10px; margin-top: 12px; }
+    .quality-table { width: 100%; border-collapse: collapse; min-width: 900px; }
+    .quality-table th, .quality-table td { border-bottom: 1px solid var(--border-color); border-right: 1px solid var(--border-color); padding: 9px 10px; text-align: left; vertical-align: top; font-size: 12px; }
+    .quality-table th { background: #f1f5f9; color: #0f172a; font-weight: 900; }
+    .quality-table td:last-child, .quality-table th:last-child { border-right: 0; }
     .findings-section { margin-top: 18px; }
     .findings-section h3 { margin: 0 0 6px 0; font-size: 16px; color: #0f172a; }
     .findings-section p { margin: 0 0 10px 0; font-size: 12px; color: #64748b; }
@@ -277,6 +293,7 @@
       <li class="menu-item" onclick="startNewAudit()" id="menu_AUDIT"><span>Yeni Denetim Oluştur</span><span class="area-count">Yeni</span></li>
       <li class="menu-item" onclick="showAuditRecords('open')" id="menu_OPEN_AUDITS"><span>Devam Eden Denetimler</span><span class="area-count">Açık</span></li>
       <li class="menu-item" onclick="showAuditRecords('closed')" id="menu_CLOSED_AUDITS"><span>Kapatılan Denetimler</span><span class="area-count">Kapalı</span></li>
+      <li class="menu-item" onclick="showQualityControl()" id="menu_QUALITY"><span>Kapatma Öncesi Kontrol</span><span class="area-count">QC</span></li>
     </ul>
 
     <div class="sidebar-section-label sidebar-toggle" id="defaultFormsMenuLabel" onclick="toggleSidebarForms()">Kontrol Formları (9) ▸</div>
@@ -513,6 +530,31 @@
       <div class="report-note" id="reportNote"></div>
     </div>
 
+
+
+    <div class="report-screen" id="qualityControlScreen">
+      <div class="report-header">
+        <div>
+          <h2 id="qualityTitle">Kapatma Öncesi Kontrol</h2>
+          <p id="qualitySubtitle">Denetim kapatılmadan önce zorunlu alanlar, değerlendirme durumu ve bulgu kayıtları kontrol edilir.</p>
+        </div>
+        <div class="report-actions">
+          <button class="report-btn" id="btnRefreshQuality" type="button" onclick="renderQualityControl()">Yenile</button>
+          <button class="report-btn" id="btnQualityBack" type="button" onclick="showCurrentArea()">PQ Ekranına Dön</button>
+          <button class="report-btn" id="btnQualityCloseAudit" type="button" onclick="closeAuditAfterQualityCheck()">Uygunsa Denetimi Kapat</button>
+        </div>
+      </div>
+      <div id="qualityStatusBanner" class="quality-status-banner fail"></div>
+      <div class="quality-grid" id="qualityGrid"></div>
+      <div class="quality-table-wrap">
+        <table class="quality-table">
+          <thead id="qualityTableHead"></thead>
+          <tbody id="qualityTableBody"></tbody>
+        </table>
+      </div>
+      <div class="report-note" id="qualityNote"></div>
+    </div>
+
     <div class="report-screen" id="findingsPoolScreen">
       <div class="report-header">
         <div>
@@ -628,6 +670,7 @@
         notes: "",
         selectedForms: [...AREA_ORDER],
         status: "open",
+        workflowStatus: "draft",
         closedAt: "",
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString()
@@ -645,6 +688,7 @@
     merged.auditInfo.selectedForms = merged.auditInfo.selectedForms.filter(areaKey => AREA_ORDER.includes(areaKey));
     if (!merged.auditInfo.selectedForms.length) merged.auditInfo.selectedForms = [...AREA_ORDER];
     if (!merged.auditInfo.status) merged.auditInfo.status = "open";
+    if (!merged.auditInfo.workflowStatus) merged.auditInfo.workflowStatus = merged.auditInfo.status === "closed" ? "closed" : "draft";
     if (!merged.answers) merged.answers = {};
     AREA_ORDER.forEach(areaKey => {
       if (!merged.answers[areaKey]) merged.answers[areaKey] = { status: {}, notes: {} };
@@ -700,11 +744,13 @@
     const setup = document.getElementById("auditSetupScreen");
     const records = document.getElementById("auditRecordsScreen");
     const findings = document.getElementById("findingsPoolScreen");
+    const quality = document.getElementById("qualityControlScreen");
     if (pq) pq.style.display = "none";
     if (report) report.classList.remove("active");
     if (setup) setup.classList.remove("active");
     if (records) records.classList.remove("active");
     if (findings) findings.classList.remove("active");
+    if (quality) quality.classList.remove("active");
   }
 
   function updateToolbarForView() {
@@ -740,10 +786,18 @@
       return;
     }
     const statusText = info.status === "closed" ? (tr ? "Kapalı" : "Closed") : (tr ? "Açık" : "Open");
+    const workflowLabels = {
+      draft: tr ? "Taslak" : "Draft",
+      planned: tr ? "Planlandı" : "Planned",
+      in_progress: tr ? "Devam Ediyor" : "In Progress",
+      reporting: tr ? "Rapor Hazırlanıyor" : "Reporting",
+      closed: tr ? "Kapatıldı" : "Closed"
+    };
+    const workflowText = workflowLabels[info.workflowStatus] || statusText;
     const formText = `${getSelectedForms().length}/9 ${tr ? "form seçili" : "forms selected"}`;
     title.innerHTML = `${escapeHtml(info.organizationName || (tr ? "İsimsiz Denetim" : "Unnamed Audit"))} — ${escapeHtml(currentAuditId)} <span class="audit-closed-label">${escapeHtml(statusText)}</span>`;
     const savedText = info.updatedAt ? `${tr ? "Son kayıt" : "Last saved"}: ${new Date(info.updatedAt).toLocaleString("tr-TR")}` : "";
-    meta.innerText = `${tr ? "Tarih" : "Date"}: ${info.auditDate || "-"} | ${tr ? "Tür" : "Type"}: ${info.auditType || "-"} | ${formText} | ${savedText} | ${tr ? "Kayıt yolu" : "Path"}: audits/${currentAuditId}`;
+    meta.innerText = `${tr ? "Aşama" : "Stage"}: ${workflowText} | ${tr ? "Tarih" : "Date"}: ${info.auditDate || "-"} | ${tr ? "Tür" : "Type"}: ${info.auditType || "-"} | ${formText} | ${savedText} | ${tr ? "Kayıt yolu" : "Path"}: audits/${currentAuditId}`;
     const closeBtn = document.getElementById("btnCloseAudit");
     if (closeBtn) closeBtn.innerText = info.status === "closed" ? (tr ? "Denetimi Yeniden Aç" : "Reopen Audit") : (tr ? "Denetimi Kapat" : "Close Audit");
   }
@@ -911,6 +965,7 @@
       notes: document.getElementById("auditNotesInput").value.trim(),
       selectedForms: AREA_ORDER.filter(areaKey => document.getElementById(`formSelect_${areaKey}`)?.checked),
       status: currentAuditData.auditInfo.status || "open",
+      workflowStatus: currentAuditData.auditInfo.status === "closed" ? "closed" : (currentAuditData.auditInfo.workflowStatus === "draft" ? "planned" : (currentAuditData.auditInfo.workflowStatus || "planned")),
       closedAt: currentAuditData.auditInfo.closedAt || "",
       updatedAt: new Date().toISOString()
     };
@@ -938,6 +993,7 @@
   window.saveCurrentAudit = async function() {
     try {
       await ensureActiveAudit();
+      if (currentAuditData.auditInfo.status !== "closed" && currentAuditData.auditInfo.workflowStatus !== "planned") currentAuditData.auditInfo.workflowStatus = "in_progress";
       markRequiredNotesInCurrentView();
       await setDoc(doc(db, "audits", currentAuditId), currentAuditData);
       updateActiveAuditBanner();
@@ -953,6 +1009,7 @@
   window.saveAuditSetup = async function() {
     try {
       readAuditFormToData();
+      if (currentAuditData.auditInfo.status !== "closed" && currentAuditData.auditInfo.workflowStatus === "draft") currentAuditData.auditInfo.workflowStatus = "planned";
       await setDoc(doc(db, "audits", currentAuditId), currentAuditData);
       currentUserData = getAreaAnswerData(currentArea);
       updateActiveAuditBanner();
@@ -996,6 +1053,186 @@
   };
 
 
+
+
+  function getAuditInfoCompletenessIssues() {
+    const tr = currentLang === "tr";
+    const info = currentAuditData?.auditInfo || {};
+    const issues = [];
+    const push = (field, label) => issues.push({ type: "audit_info", severity: "Eksik", areaKey: "-", pqNo: "-", message: label, action: "audit_info" });
+    if (!String(info.organizationName || "").trim()) push("organizationName", tr ? "İşletme / Kuruluş alanı boş." : "Organization field is empty.");
+    if (!String(info.auditDate || "").trim()) push("auditDate", tr ? "Denetim tarihi boş." : "Audit date is empty.");
+    if (!Array.isArray(info.auditTeam) || !info.auditTeam.length) push("auditTeam", tr ? "Denetim ekibi girilmemiş." : "Audit team is not entered.");
+    if (!Array.isArray(info.interviewedPersons) || !info.interviewedPersons.length) push("interviewedPersons", tr ? "Görüşülen kişiler girilmemiş." : "Interviewed persons are not entered.");
+    if (!Array.isArray(info.selectedForms) || !info.selectedForms.length) push("selectedForms", tr ? "Seçili kontrol formu yok." : "No control form selected.");
+    return issues;
+  }
+
+  function getPQQualityStatus(pq, pqIdx, areaKey, auditData) {
+    const userData = auditData?.answers?.[areaKey] || { status: {}, notes: {} };
+    const parsedEN = extractNotesAndCriteria(pq.review_evidence_en || pq.Review_Evidence || "");
+    const parsedTR = extractNotesAndCriteria(pq.review_evidence_tr || pq.Incelenecek_Kanitlar || "");
+    const criteriaRows = getActiveCriteria(parsedEN, parsedTR);
+    let hasNS = false, hasS = false, hasScoreable = false, hasAnswered = false;
+    criteriaRows.forEach(row => {
+      const line = row.en || row.tr || "";
+      if (line.trim().endsWith(":")) return;
+      hasScoreable = true;
+      const key = `${pqIdx}_${row.index}`;
+      const val = userData.status?.[key] || "NA";
+      if (val !== "NA") hasAnswered = true;
+      if (val === "NS") hasNS = true;
+      if (val === "S") hasS = true;
+    });
+    let status = "NA";
+    if (!hasScoreable) status = "NA";
+    else if (hasNS) status = "NS";
+    else if (hasS) status = "S";
+    return { status, hasAnswered, hasScoreable };
+  }
+
+  async function collectQualityControlData() {
+    await loadMasterModel();
+    currentAuditData = ensureAuditShape(currentAuditData, currentAuditId);
+    const tr = currentLang === "tr";
+    const selectedAreas = currentAuditId ? getSelectedForms() : AREA_ORDER;
+    const issues = [...getAuditInfoCompletenessIssues()];
+    const summary = { totalPq: 0, missingNotes: 0, nsWithoutFinding: 0, naWithoutJustification: 0, notEvaluated: 0, auditInfoMissing: issues.length };
+
+    selectedAreas.forEach(areaKey => {
+      const areaData = normalizedAreas[areaKey] || { pqs: [] };
+      const userData = currentAuditData?.answers?.[areaKey] || { notes: {}, status: {} };
+      (areaData.pqs || []).forEach((pq, pqIdx) => {
+        summary.totalPq += 1;
+        const pqNo = pq.no || String(pqIdx + 1);
+        const finding = String(userData.notes?.[pqIdx] || "").trim();
+        const q = getPQQualityStatus(pq, pqIdx, areaKey, currentAuditData);
+        if (!finding) {
+          summary.missingNotes += 1;
+          issues.push({ type: "missing_note", severity: "Zorunlu", areaKey, pqNo, pqIdx, message: tr ? "Mevzuat Dayanağı / Bulgu Notları boş." : "Compliance basis / finding notes is empty.", action: "pq" });
+        }
+        if (q.status === "NS" && !finding) {
+          summary.nsWithoutFinding += 1;
+          issues.push({ type: "ns_without_finding", severity: "Kritik", areaKey, pqNo, pqIdx, message: tr ? "NS seçilmiş ancak bulgu notu yazılmamış." : "Marked NS but no finding note is entered.", action: "pq" });
+        }
+        if (q.status === "NA" && !finding) {
+          summary.naWithoutJustification += 1;
+        }
+        if (q.hasScoreable && !q.hasAnswered) {
+          summary.notEvaluated += 1;
+          issues.push({ type: "not_evaluated", severity: "Uyarı", areaKey, pqNo, pqIdx, message: tr ? "PQ henüz S/NS olarak değerlendirilmemiş; tüm kriterler NA görünüyor." : "PQ has not been evaluated as S/NS; all criteria appear NA.", action: "pq" });
+        }
+      });
+    });
+    const blockingIssues = issues.filter(i => ["audit_info", "missing_note", "ns_without_finding"].includes(i.type));
+    return { summary, issues, blockingIssues };
+  }
+
+  window.showQualityControl = async function() {
+    const tr = currentLang === "tr";
+    if (!currentAuditId) {
+      alert(tr ? "Kapatma öncesi kontrol için önce bir denetim oluşturun veya açın." : "Create or open an audit before running the quality check.");
+      return;
+    }
+    currentView = "quality";
+    setActiveMenu("menu_QUALITY");
+    hideAllMainScreens();
+    updateToolbarForView();
+    document.getElementById("qualityControlScreen").classList.add("active");
+    document.getElementById("areaTitle").innerText = tr ? "Kapatma Öncesi Kontrol" : "Pre-close Quality Check";
+    document.getElementById("dataSourceInfo").innerText = `Firebase: audits/${currentAuditId} / quality check`;
+    await renderQualityControl();
+  };
+
+  window.renderQualityControl = async function() {
+    const tr = currentLang === "tr";
+    const title = document.getElementById("qualityTitle");
+    const subtitle = document.getElementById("qualitySubtitle");
+    const banner = document.getElementById("qualityStatusBanner");
+    const grid = document.getElementById("qualityGrid");
+    const head = document.getElementById("qualityTableHead");
+    const body = document.getElementById("qualityTableBody");
+    const note = document.getElementById("qualityNote");
+    document.getElementById("btnRefreshQuality").innerText = tr ? "Yenile" : "Refresh";
+    document.getElementById("btnQualityBack").innerText = tr ? "PQ Ekranına Dön" : "Back to PQ Screen";
+    document.getElementById("btnQualityCloseAudit").innerText = tr ? "Uygunsa Denetimi Kapat" : "Close Audit if OK";
+    title.innerText = tr ? "Kapatma Öncesi Kontrol" : "Pre-close Quality Check";
+    subtitle.innerText = tr ? "Denetim kapatılmadan önce zorunlu alanlar, değerlendirme durumu ve bulgu kayıtları kontrol edilir." : "Required fields, evaluation status and findings are checked before closing the audit.";
+    head.innerHTML = `<tr><th>${tr ? "Tür" : "Type"}</th><th>${tr ? "Önem" : "Severity"}</th><th>Area</th><th>PQ</th><th>${tr ? "Açıklama" : "Description"}</th><th>${tr ? "İşlem" : "Action"}</th></tr>`;
+    body.innerHTML = `<tr><td colspan="6" style="text-align:center;color:#64748b;">${tr ? "Kontrol yapılıyor..." : "Checking..."}</td></tr>`;
+    const data = await collectQualityControlData();
+    const s = data.summary;
+    const ok = data.blockingIssues.length === 0;
+    banner.className = `quality-status-banner ${ok ? "ok" : "fail"}`;
+    banner.innerText = ok
+      ? (tr ? "Denetim kapatmaya uygun görünüyor. Yine de raporu son kez kontrol etmeniz önerilir." : "The audit appears ready to close. A final report review is still recommended.")
+      : (tr ? `Denetim kapatılamaz. Bloke eden eksik/hata sayısı: ${data.blockingIssues.length}` : `The audit cannot be closed. Blocking issues: ${data.blockingIssues.length}`);
+    const card = (value, label, cls) => `<div class="quality-card ${cls}"><h4>${value}</h4><span>${label}</span></div>`;
+    grid.innerHTML = [
+      card(s.totalPq, tr ? "Seçili PQ" : "Selected PQs", "ok"),
+      card(s.auditInfoMissing, tr ? "Eksik denetim bilgisi" : "Missing audit info", s.auditInfoMissing ? "fail" : "ok"),
+      card(s.missingNotes, tr ? "Boş zorunlu not" : "Empty required notes", s.missingNotes ? "fail" : "ok"),
+      card(s.notEvaluated, tr ? "Değerlendirilmemiş PQ" : "Unevaluated PQs", s.notEvaluated ? "warn" : "ok")
+    ].join("");
+    if (!data.issues.length) {
+      body.innerHTML = `<tr><td colspan="6" style="text-align:center;color:#166534;font-weight:800;">${tr ? "Eksik veya uyarı bulunmadı." : "No issues or warnings found."}</td></tr>`;
+    } else {
+      body.innerHTML = data.issues.map((issue, idx) => `<tr>
+        <td>${escapeHtml(issue.type)}</td><td>${escapeHtml(issue.severity)}</td><td>${escapeHtml(issue.areaKey)}</td><td>${escapeHtml(issue.pqNo)}</td><td>${escapeHtml(issue.message)}</td>
+        <td>${issue.action === "pq" ? `<button class="audit-btn" type="button" onclick="goToQualityIssue(${idx})">${tr ? "Kayda Git" : "Go to Record"}</button>` : `<button class="audit-btn" type="button" onclick="showAuditSetup()">${tr ? "Denetim Bilgileri" : "Audit Info"}</button>`}</td>
+      </tr>`).join("");
+    }
+    window.__qualityIssues = data.issues;
+    note.innerText = tr
+      ? "Bloke eden eksikler giderilmeden denetim kapatılamaz. Uyarılar ise kalite amaçlıdır; özellikle tüm kriterleri NA kalan PQ'lar gözden geçirilmelidir."
+      : "The audit cannot be closed until blocking issues are resolved. Warnings are for quality review; especially PQs with all criteria left as NA should be reviewed.";
+    return data;
+  };
+
+  window.goToQualityIssue = async function(idx) {
+    const issue = (window.__qualityIssues || [])[idx];
+    if (!issue) return;
+    if (issue.action !== "pq") { showAuditSetup(); return; }
+    await switchArea(issue.areaKey);
+    setTimeout(() => {
+      const el = document.getElementById(`note_${issue.pqIdx}`) || document.getElementById(`pq_hdr_${issue.pqIdx}`);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "center" });
+        const item = el.closest(".pq-item");
+        if (item) item.classList.add("active");
+        if (el.focus) el.focus();
+        markRequiredNotesInCurrentView();
+      }
+    }, 250);
+  };
+
+  window.closeAuditAfterQualityCheck = async function() {
+    const tr = currentLang === "tr";
+    const data = await renderQualityControl();
+    if (data.blockingIssues.length) {
+      alert(tr ? "Bloke eden eksikler giderilmeden denetim kapatılamaz." : "The audit cannot be closed until blocking issues are resolved.");
+      return;
+    }
+    await finalizeAuditClose();
+  };
+
+  async function finalizeAuditClose() {
+    const tr = currentLang === "tr";
+    if (!confirm(tr ? "Denetim kapatılacak. Kapatıldıktan sonra cevaplar kilitlenir. Devam edilsin mi?" : "The audit will be closed. Answers will be locked after closing. Continue?")) return;
+    currentAuditData.auditInfo.status = "closed";
+    currentAuditData.auditInfo.workflowStatus = "closed";
+    currentAuditData.auditInfo.closedAt = new Date().toISOString();
+    currentAuditData.auditInfo.updatedAt = new Date().toISOString();
+    await setDoc(doc(db, "audits", currentAuditId), currentAuditData);
+    updateActiveAuditBanner();
+    await refreshAuditLists();
+    renderAreaMenu();
+    renderDefaultFormsPanel();
+    if (currentView === "area") renderPQs();
+    if (currentView === "report") renderReport();
+    alert(tr ? "Denetim kapatıldı." : "Audit closed.");
+  }
+
   window.toggleAuditClosed = async function() {
     const tr = currentLang === "tr";
     if (!currentAuditId) {
@@ -1006,22 +1243,20 @@
     if (isAuditClosed()) {
       if (!confirm(tr ? "Bu denetim yeniden açılacak. Değişiklik yapılabilir hale gelsin mi?" : "This audit will be reopened. Allow changes again?")) return;
       currentAuditData.auditInfo.status = "open";
+      currentAuditData.auditInfo.workflowStatus = "in_progress";
       currentAuditData.auditInfo.reopenedAt = new Date().toISOString();
+      currentAuditData.auditInfo.updatedAt = new Date().toISOString();
+      await setDoc(doc(db, "audits", currentAuditId), currentAuditData);
+      updateActiveAuditBanner();
+      await refreshAuditLists();
+      renderAreaMenu();
+      renderDefaultFormsPanel();
+      if (currentView === "area") renderPQs();
+      if (currentView === "report") renderReport();
+      alert(tr ? "Denetim yeniden açıldı." : "Audit reopened.");
     } else {
-      if (!(await validateRequiredNotesBeforeFinalAction(tr ? "denetimi kapatma" : "closing the audit"))) return;
-      if (!confirm(tr ? "Denetim kapatılacak. Kapatıldıktan sonra cevaplar kilitlenir. Devam edilsin mi?" : "The audit will be closed. Answers will be locked after closing. Continue?")) return;
-      currentAuditData.auditInfo.status = "closed";
-      currentAuditData.auditInfo.closedAt = new Date().toISOString();
+      await showQualityControl();
     }
-    currentAuditData.auditInfo.updatedAt = new Date().toISOString();
-    await setDoc(doc(db, "audits", currentAuditId), currentAuditData);
-    updateActiveAuditBanner();
-    await refreshAuditLists();
-    renderAreaMenu();
-    renderDefaultFormsPanel();
-    if (currentView === "area") renderPQs();
-    if (currentView === "report") renderReport();
-    alert(isAuditClosed() ? (tr ? "Denetim kapatıldı." : "Audit closed.") : (tr ? "Denetim yeniden açıldı." : "Audit reopened."));
   };
 
   function getStatusSummaryForPQ(pq, pqIdx, areaKey) {
