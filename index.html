@@ -268,6 +268,18 @@
 
     .loading { padding: 20px; text-align: center; font-weight: bold; color: var(--secondary-color); }
     .data-source { font-size: 12px; opacity: 0.9; margin-top: 6px; }
+    .process-map { display:grid; grid-template-columns: repeat(5, minmax(120px, 1fr)); gap:8px; margin:12px 0 14px 0; }
+    .process-step { border:1px solid var(--border-color); background:#f8fafc; border-radius:10px; padding:10px; font-size:11px; font-weight:900; color:#475569; text-align:center; }
+    .process-step.active { background:#eff6ff; border-color:var(--secondary-color); color:var(--primary-color); }
+    .role-pill { display:inline-block; padding:3px 8px; border-radius:999px; background:#e0f2fe; color:#075985; font-size:11px; font-weight:900; margin-left:6px; }
+    .archive-label { display:inline-block; padding:3px 8px; border-radius:999px; background:#f1f5f9; color:#475569; font-size:11px; font-weight:900; margin-left:6px; }
+    .pq-extra-grid { display:grid; grid-template-columns: repeat(2, minmax(180px, 1fr)); gap:10px; margin-top:12px; }
+    .pq-extra-field { display:flex; flex-direction:column; gap:5px; }
+    .pq-extra-field.full { grid-column: 1 / -1; }
+    .pq-extra-field label { font-size:11px; font-weight:900; color:#475569; text-transform:uppercase; letter-spacing:.03em; }
+    .pq-extra-field input, .pq-extra-field select, .pq-extra-field textarea { width:100%; border:1px solid var(--border-color); border-radius:8px; padding:8px 9px; font-size:12px; background:#fff; color:var(--text-color); }
+    .pq-extra-field textarea { min-height:58px; resize:vertical; }
+    .pq-extra-field.required-missing input, .pq-extra-field.required-missing select, .pq-extra-field.required-missing textarea { border-color:var(--danger-color); background:#fff1f2; }
     .audit-list-card.hidden { display: none; }
     .screen-help-box { background:#eff6ff; border:1px solid #bfdbfe; color:#1e3a8a; border-radius:10px; padding:12px; font-size:12px; line-height:1.5; margin-bottom:12px; }
 
@@ -293,6 +305,7 @@
       <li class="menu-item" onclick="startNewAudit()" id="menu_AUDIT"><span>Yeni Denetim Oluştur</span><span class="area-count">Yeni</span></li>
       <li class="menu-item" onclick="showAuditRecords('open')" id="menu_OPEN_AUDITS"><span>Devam Eden Denetimler</span><span class="area-count">Açık</span></li>
       <li class="menu-item" onclick="showAuditRecords('closed')" id="menu_CLOSED_AUDITS"><span>Kapatılan Denetimler</span><span class="area-count">Kapalı</span></li>
+      <li class="menu-item" onclick="showAuditRecords('archived')" id="menu_ARCHIVED_AUDITS"><span>Arşivlenen Denetimler</span><span class="area-count">Arşiv</span></li>
       <li class="menu-item" onclick="showQualityControl()" id="menu_QUALITY"><span>Kapatma Öncesi Kontrol</span><span class="area-count">QC</span></li>
     </ul>
 
@@ -329,6 +342,7 @@
         <button class="audit-btn warning" type="button" onclick="toggleAuditClosed()" id="btnCloseAudit">Denetimi Kapat</button>
         <button class="audit-btn" type="button" onclick="exportAuditToPdf()" id="btnExportPdf">PDF Rapor</button>
         <button class="audit-btn" type="button" onclick="exportAuditToExcel()" id="btnExportExcel">Excel Rapor</button>
+        <button class="audit-btn" type="button" onclick="archiveCurrentAudit()" id="btnArchiveCurrentAudit">Arşivle</button>
         <button class="audit-btn danger" type="button" onclick="deleteCurrentAudit()" id="btnDeleteCurrentAudit">Aktif Denetimi Sil</button>
       </div>
     </div>
@@ -344,6 +358,9 @@
           <button class="audit-btn success" type="button" onclick="saveAuditSetup()" id="btnSaveAuditSetup">Denetimi Oluştur / Kaydet</button>
         </div>
       </div>
+
+      <div class="screen-help-box" id="auditLifecycleHelp">Denetim yaşam döngüsü: Planlama → Hazırlık → Saha/Masa Başı Denetim → Bulgu ve Değerlendirme → Raporlama/Kapatma.</div>
+      <div class="process-map" id="auditProcessMap"></div>
 
       <div class="default-forms-panel collapsed" id="defaultFormsPanel">
         <div class="default-forms-header">
@@ -370,6 +387,26 @@
         <div class="audit-field">
           <label for="auditTypeInput">Denetim Türü</label>
           <input id="auditTypeInput" type="text" placeholder="İlk denetim, takip, iç denetim vb.">
+        </div>
+        <div class="audit-field">
+          <label for="workflowStatusInput">Denetim Aşaması</label>
+          <select id="workflowStatusInput">
+            <option value="draft">Taslak</option>
+            <option value="planned">Planlandı</option>
+            <option value="in_progress">Devam Ediyor</option>
+            <option value="reporting">Rapor Hazırlanıyor</option>
+            <option value="closed">Kapatıldı</option>
+            <option value="cancelled">İptal Edildi</option>
+          </select>
+        </div>
+        <div class="audit-field">
+          <label for="userRoleInput">Kullanıcı Rolü</label>
+          <select id="userRoleInput" onchange="setCurrentUserRole(this.value)">
+            <option value="auditor">Denetçi</option>
+            <option value="lead_auditor">Baş Denetçi</option>
+            <option value="manager">Yönetici</option>
+            <option value="viewer">Sadece Görüntüleyen</option>
+          </select>
         </div>
         <div class="audit-field full">
           <label for="addressInput">Adres / Lokasyon</label>
@@ -421,6 +458,13 @@
             <select id="closedAuditSelect"><option value="">Liste yükleniyor...</option></select>
             <div class="audit-list-actions">
               <button class="audit-btn" type="button" onclick="loadSelectedAudit('closedAuditSelect')" id="btnOpenSelectedClosedAudit">Seçili Denetimi Görüntüle</button>
+            </div>
+          </div>
+          <div class="audit-list-card hidden" id="archivedAuditListCard">
+            <h4 id="archivedAuditsTitle">Arşivlenen Denetimler</h4>
+            <select id="archivedAuditSelect"><option value="">Liste yükleniyor...</option></select>
+            <div class="audit-list-actions">
+              <button class="audit-btn" type="button" onclick="loadSelectedAudit('archivedAuditSelect')" id="btnOpenSelectedArchivedAudit">Seçili Denetimi Görüntüle</button>
             </div>
           </div>
         </div>
@@ -625,6 +669,8 @@
   let sidebarFormsVisible = false;
   const filters = { search: "", ce: "all", ppq: "all", site: "all", status: "all", criteria: "all" };
   let auditDirectory = [];
+  let currentUserRole = "lead_auditor";
+  const DELETE_PASSWORD = "170312";
 
   function escapeHtml(value) {
     return String(value ?? "")
@@ -671,6 +717,10 @@
         selectedForms: [...AREA_ORDER],
         status: "open",
         workflowStatus: "draft",
+        userRole: "lead_auditor",
+        archived: false,
+        archivedAt: "",
+        cancelledAt: "",
         closedAt: "",
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString()
@@ -691,18 +741,20 @@
     if (!merged.auditInfo.workflowStatus) merged.auditInfo.workflowStatus = merged.auditInfo.status === "closed" ? "closed" : "draft";
     if (!merged.answers) merged.answers = {};
     AREA_ORDER.forEach(areaKey => {
-      if (!merged.answers[areaKey]) merged.answers[areaKey] = { status: {}, notes: {} };
+      if (!merged.answers[areaKey]) merged.answers[areaKey] = { status: {}, notes: {}, fields: {} };
       if (!merged.answers[areaKey].status) merged.answers[areaKey].status = {};
       if (!merged.answers[areaKey].notes) merged.answers[areaKey].notes = {};
+      if (!merged.answers[areaKey].fields) merged.answers[areaKey].fields = {};
     });
     return merged;
   }
 
   function getAreaAnswerData(areaKey = currentArea) {
     currentAuditData = ensureAuditShape(currentAuditData, currentAuditId);
-    if (!currentAuditData.answers[areaKey]) currentAuditData.answers[areaKey] = { status: {}, notes: {} };
+    if (!currentAuditData.answers[areaKey]) currentAuditData.answers[areaKey] = { status: {}, notes: {}, fields: {} };
     if (!currentAuditData.answers[areaKey].status) currentAuditData.answers[areaKey].status = {};
     if (!currentAuditData.answers[areaKey].notes) currentAuditData.answers[areaKey].notes = {};
+    if (!currentAuditData.answers[areaKey].fields) currentAuditData.answers[areaKey].fields = {};
     return currentAuditData.answers[areaKey];
   }
 
@@ -736,6 +788,24 @@
 
   function isAuditClosed() {
     return currentAuditData?.auditInfo?.status === "closed";
+  }
+
+  function isAuditArchived() { return !!currentAuditData?.auditInfo?.archived; }
+  function canEditAudit() { return !isAuditClosed() && !isAuditArchived() && currentUserRole !== "viewer"; }
+  function canCloseOrDeleteAudit() { return ["lead_auditor", "manager"].includes(currentUserRole); }
+  window.setCurrentUserRole = function(role) { currentUserRole = role || "auditor"; if (currentAuditData?.auditInfo) currentAuditData.auditInfo.userRole = currentUserRole; updateActiveAuditBanner(); if (currentView === "area") renderPQs(); };
+  function getPQExtraFields(areaKey, pqIdx, auditData = currentAuditData) {
+    const area = auditData?.answers?.[areaKey] || {};
+    if (!area.fields) area.fields = {};
+    if (!area.fields[pqIdx]) area.fields[pqIdx] = { evidenceReviewed: "", correctiveAction: "", responsibleUnit: "", dueDate: "", severity: "minor", findingStatus: "open", closureNote: "" };
+    return area.fields[pqIdx];
+  }
+  function getFindingId(auditId, areaKey, pqNo) { return `${auditId || "AUDIT"}-${areaKey}-PQ${String(pqNo || "").replace(/[^0-9A-Za-z.]/g, "")}`; }
+  function renderAuditProcessMap() {
+    const el = document.getElementById("auditProcessMap"); if (!el) return;
+    const tr = currentLang === "tr"; const status = currentAuditData?.auditInfo?.workflowStatus || "draft";
+    const steps = [["draft", tr ? "1. Planlama" : "1. Planning"],["planned", tr ? "2. Hazırlık" : "2. Preparation"],["in_progress", tr ? "3. Denetim" : "3. Audit"],["reporting", tr ? "4. Bulgu & Değerlendirme" : "4. Findings & Evaluation"],["closed", tr ? "5. Raporlama/Kapatma" : "5. Reporting/Closure"]];
+    el.innerHTML = steps.map(([key,label]) => `<div class="process-step ${key === status ? "active" : ""}">${escapeHtml(label)}</div>`).join("");
   }
 
   function hideAllMainScreens() {
@@ -791,15 +861,19 @@
       planned: tr ? "Planlandı" : "Planned",
       in_progress: tr ? "Devam Ediyor" : "In Progress",
       reporting: tr ? "Rapor Hazırlanıyor" : "Reporting",
-      closed: tr ? "Kapatıldı" : "Closed"
+      closed: tr ? "Kapatıldı" : "Closed",
+      cancelled: tr ? "İptal Edildi" : "Cancelled"
     };
     const workflowText = workflowLabels[info.workflowStatus] || statusText;
     const formText = `${getSelectedForms().length}/9 ${tr ? "form seçili" : "forms selected"}`;
-    title.innerHTML = `${escapeHtml(info.organizationName || (tr ? "İsimsiz Denetim" : "Unnamed Audit"))} — ${escapeHtml(currentAuditId)} <span class="audit-closed-label">${escapeHtml(statusText)}</span>`;
+    const roleLabels = { auditor: tr ? "Denetçi" : "Auditor", lead_auditor: tr ? "Baş Denetçi" : "Lead Auditor", manager: tr ? "Yönetici" : "Manager", viewer: tr ? "Sadece Görüntüleyen" : "Viewer" };
+    const archivedLabel = info.archived ? `<span class="archive-label">${tr ? "Arşiv" : "Archived"}</span>` : "";
+    title.innerHTML = `${escapeHtml(info.organizationName || (tr ? "İsimsiz Denetim" : "Unnamed Audit"))} — ${escapeHtml(currentAuditId)} <span class="audit-closed-label">${escapeHtml(statusText)}</span>${archivedLabel}<span class="role-pill">${escapeHtml(roleLabels[currentUserRole] || currentUserRole)}</span>`;
     const savedText = info.updatedAt ? `${tr ? "Son kayıt" : "Last saved"}: ${new Date(info.updatedAt).toLocaleString("tr-TR")}` : "";
     meta.innerText = `${tr ? "Aşama" : "Stage"}: ${workflowText} | ${tr ? "Tarih" : "Date"}: ${info.auditDate || "-"} | ${tr ? "Tür" : "Type"}: ${info.auditType || "-"} | ${formText} | ${savedText} | ${tr ? "Kayıt yolu" : "Path"}: audits/${currentAuditId}`;
     const closeBtn = document.getElementById("btnCloseAudit");
     if (closeBtn) closeBtn.innerText = info.status === "closed" ? (tr ? "Denetimi Yeniden Aç" : "Reopen Audit") : (tr ? "Denetimi Kapat" : "Close Audit");
+    renderAuditProcessMap();
   }
 
 
@@ -828,29 +902,36 @@
     const infoEl = document.getElementById("auditListInfo");
     const openSelect = document.getElementById("openAuditSelect");
     const closedSelect = document.getElementById("closedAuditSelect");
+    const archivedSelect = document.getElementById("archivedAuditSelect");
     if (openSelect) openSelect.innerHTML = `<option value="">${tr ? "Yükleniyor..." : "Loading..."}</option>`;
     if (closedSelect) closedSelect.innerHTML = `<option value="">${tr ? "Yükleniyor..." : "Loading..."}</option>`;
+    if (archivedSelect) archivedSelect.innerHTML = `<option value="">${tr ? "Yükleniyor..." : "Loading..."}</option>`;
     if (infoEl) infoEl.innerText = tr ? "Denetim kayıtları Firebase'den okunuyor..." : "Reading audit records from Firebase...";
     try {
       const snap = await getDocs(collection(db, "audits"));
       auditDirectory = snap.docs.map(auditDoc => ({ id: auditDoc.id, data: ensureAuditShape(auditDoc.data(), auditDoc.id) }));
       auditDirectory.sort((a, b) => String(b.data?.auditInfo?.updatedAt || b.data?.auditInfo?.createdAt || "").localeCompare(String(a.data?.auditInfo?.updatedAt || a.data?.auditInfo?.createdAt || "")));
-      const openAudits = auditDirectory.filter(item => item.data?.auditInfo?.status !== "closed");
-      const closedAudits = auditDirectory.filter(item => item.data?.auditInfo?.status === "closed");
+      const openAudits = auditDirectory.filter(item => !item.data?.auditInfo?.archived && item.data?.auditInfo?.status !== "closed");
+      const closedAudits = auditDirectory.filter(item => !item.data?.auditInfo?.archived && item.data?.auditInfo?.status === "closed");
+      const archivedAudits = auditDirectory.filter(item => !!item.data?.auditInfo?.archived);
       setAuditSelectOptions("openAuditSelect", openAudits, tr ? "Devam eden denetim bulunamadı." : "No open audits found.");
       setAuditSelectOptions("closedAuditSelect", closedAudits, tr ? "Kapatılan denetim bulunamadı." : "No closed audits found.");
+      setAuditSelectOptions("archivedAuditSelect", archivedAudits, tr ? "Arşivlenen denetim bulunamadı." : "No archived audits found.");
       const openCountEl = document.querySelector("#menu_OPEN_AUDITS .area-count");
       const closedCountEl = document.querySelector("#menu_CLOSED_AUDITS .area-count");
+      const archivedCountEl = document.querySelector("#menu_ARCHIVED_AUDITS .area-count");
       if (openCountEl) openCountEl.innerText = `${openAudits.length}`;
       if (closedCountEl) closedCountEl.innerText = `${closedAudits.length}`;
+      if (archivedCountEl) archivedCountEl.innerText = `${archivedAudits.length}`;
       updateAuditRecordsModeLabels();
       if (infoEl) infoEl.innerText = tr
-        ? `${openAudits.length} devam eden, ${closedAudits.length} kapatılan denetim listelendi.`
-        : `${openAudits.length} open and ${closedAudits.length} closed audits listed.`;
+        ? `${openAudits.length} devam eden, ${closedAudits.length} kapatılan, ${archivedAudits.length} arşivlenen denetim listelendi.`
+        : `${openAudits.length} open, ${closedAudits.length} closed and ${archivedAudits.length} archived audits listed.`;
     } catch (error) {
       if (infoEl) infoEl.innerText = "Hata: " + error.message;
       if (openSelect) openSelect.innerHTML = `<option value="">${tr ? "Liste okunamadı" : "Could not load list"}</option>`;
       if (closedSelect) closedSelect.innerHTML = `<option value="">${tr ? "Liste okunamadı" : "Could not load list"}</option>`;
+      if (archivedSelect) archivedSelect.innerHTML = `<option value="">${tr ? "Liste okunamadı" : "Could not load list"}</option>`;
     }
   };
 
@@ -940,6 +1021,11 @@
     document.getElementById("auditDateInput").value = info.auditDate || todayIsoDate();
     document.getElementById("organizationInput").value = info.organizationName || "";
     document.getElementById("auditTypeInput").value = info.auditType || "";
+    const workflowInput = document.getElementById("workflowStatusInput");
+    if (workflowInput) workflowInput.value = info.workflowStatus || (info.status === "closed" ? "closed" : "draft");
+    const roleInput = document.getElementById("userRoleInput");
+    if (roleInput) roleInput.value = info.userRole || currentUserRole || "lead_auditor";
+    currentUserRole = roleInput ? roleInput.value : (info.userRole || currentUserRole || "lead_auditor");
     document.getElementById("addressInput").value = info.address || "";
     document.getElementById("scopeInput").value = info.scope || "";
     document.getElementById("auditTeamInput").value = arrayToLines(info.auditTeam);
@@ -965,7 +1051,8 @@
       notes: document.getElementById("auditNotesInput").value.trim(),
       selectedForms: AREA_ORDER.filter(areaKey => document.getElementById(`formSelect_${areaKey}`)?.checked),
       status: currentAuditData.auditInfo.status || "open",
-      workflowStatus: currentAuditData.auditInfo.status === "closed" ? "closed" : (currentAuditData.auditInfo.workflowStatus === "draft" ? "planned" : (currentAuditData.auditInfo.workflowStatus || "planned")),
+      workflowStatus: document.getElementById("workflowStatusInput")?.value || (currentAuditData.auditInfo.status === "closed" ? "closed" : (currentAuditData.auditInfo.workflowStatus === "draft" ? "planned" : (currentAuditData.auditInfo.workflowStatus || "planned"))),
+      userRole: document.getElementById("userRoleInput")?.value || currentUserRole || "lead_auditor",
       closedAt: currentAuditData.auditInfo.closedAt || "",
       updatedAt: new Date().toISOString()
     };
@@ -992,6 +1079,7 @@
 
   window.saveCurrentAudit = async function() {
     try {
+      if (currentUserRole === "viewer") { alert(currentLang === "tr" ? "Sadece görüntüleyen rolü kayıt yapamaz." : "Viewer role cannot save changes."); return; }
       await ensureActiveAudit();
       if (currentAuditData.auditInfo.status !== "closed" && currentAuditData.auditInfo.workflowStatus !== "planned") currentAuditData.auditInfo.workflowStatus = "in_progress";
       markRequiredNotesInCurrentView();
@@ -1097,7 +1185,7 @@
     const tr = currentLang === "tr";
     const selectedAreas = currentAuditId ? getSelectedForms() : AREA_ORDER;
     const issues = [...getAuditInfoCompletenessIssues()];
-    const summary = { totalPq: 0, missingNotes: 0, nsWithoutFinding: 0, naWithoutJustification: 0, notEvaluated: 0, auditInfoMissing: issues.length };
+    const summary = { totalPq: 0, missingNotes: 0, nsWithoutFinding: 0, naWithoutJustification: 0, notEvaluated: 0, missingEvidence: 0, missingCorrective: 0, missingResponsible: 0, missingDueDate: 0, auditInfoMissing: issues.length };
 
     selectedAreas.forEach(areaKey => {
       const areaData = normalizedAreas[areaKey] || { pqs: [] };
@@ -1106,15 +1194,27 @@
         summary.totalPq += 1;
         const pqNo = pq.no || String(pqIdx + 1);
         const finding = String(userData.notes?.[pqIdx] || "").trim();
+        const extra = getPQExtraFields(areaKey, pqIdx, currentAuditData);
+        const evidenceReviewed = String(extra.evidenceReviewed || "").trim();
+        const correctiveAction = String(extra.correctiveAction || "").trim();
+        const responsibleUnit = String(extra.responsibleUnit || "").trim();
+        const dueDate = String(extra.dueDate || "").trim();
         const q = getPQQualityStatus(pq, pqIdx, areaKey, currentAuditData);
         if (!finding) {
           summary.missingNotes += 1;
           issues.push({ type: "missing_note", severity: "Zorunlu", areaKey, pqNo, pqIdx, message: tr ? "Mevzuat Dayanağı / Bulgu Notları boş." : "Compliance basis / finding notes is empty.", action: "pq" });
         }
+        if (!evidenceReviewed) {
+          summary.missingEvidence += 1;
+          issues.push({ type: "missing_evidence", severity: "Zorunlu", areaKey, pqNo, pqIdx, message: tr ? "İncelenen kanıt alanı boş." : "Evidence reviewed field is empty.", action: "pq" });
+        }
         if (q.status === "NS" && !finding) {
           summary.nsWithoutFinding += 1;
           issues.push({ type: "ns_without_finding", severity: "Kritik", areaKey, pqNo, pqIdx, message: tr ? "NS seçilmiş ancak bulgu notu yazılmamış." : "Marked NS but no finding note is entered.", action: "pq" });
         }
+        if (q.status === "NS" && !correctiveAction) { summary.missingCorrective += 1; issues.push({ type: "missing_corrective", severity: "Kritik", areaKey, pqNo, pqIdx, message: tr ? "NS için düzeltici faaliyet / öneri alanı boş." : "Corrective action is required for NS.", action: "pq" }); }
+        if (q.status === "NS" && !responsibleUnit) { summary.missingResponsible += 1; issues.push({ type: "missing_responsible", severity: "Kritik", areaKey, pqNo, pqIdx, message: tr ? "NS için sorumlu birim alanı boş." : "Responsible unit is required for NS.", action: "pq" }); }
+        if (q.status === "NS" && !dueDate) { summary.missingDueDate += 1; issues.push({ type: "missing_due_date", severity: "Kritik", areaKey, pqNo, pqIdx, message: tr ? "NS için termin tarihi boş." : "Due date is required for NS.", action: "pq" }); }
         if (q.status === "NA" && !finding) {
           summary.naWithoutJustification += 1;
         }
@@ -1124,7 +1224,7 @@
         }
       });
     });
-    const blockingIssues = issues.filter(i => ["audit_info", "missing_note", "ns_without_finding"].includes(i.type));
+    const blockingIssues = issues.filter(i => ["audit_info", "missing_note", "missing_evidence", "ns_without_finding", "missing_corrective", "missing_responsible", "missing_due_date"].includes(i.type));
     return { summary, issues, blockingIssues };
   }
 
@@ -1172,6 +1272,8 @@
       card(s.totalPq, tr ? "Seçili PQ" : "Selected PQs", "ok"),
       card(s.auditInfoMissing, tr ? "Eksik denetim bilgisi" : "Missing audit info", s.auditInfoMissing ? "fail" : "ok"),
       card(s.missingNotes, tr ? "Boş zorunlu not" : "Empty required notes", s.missingNotes ? "fail" : "ok"),
+      card(s.missingEvidence, tr ? "Boş kanıt" : "Missing evidence", s.missingEvidence ? "fail" : "ok"),
+      card(s.missingCorrective, tr ? "NS aksiyon eksiği" : "Missing NS action", s.missingCorrective ? "fail" : "ok"),
       card(s.notEvaluated, tr ? "Değerlendirilmemiş PQ" : "Unevaluated PQs", s.notEvaluated ? "warn" : "ok")
     ].join("");
     if (!data.issues.length) {
@@ -1240,6 +1342,7 @@
       return;
     }
     currentAuditData = ensureAuditShape(currentAuditData, currentAuditId);
+    if (!canCloseOrDeleteAudit()) { alert(tr ? "Denetimi kapatma/yeniden açma yetkisi için Baş Denetçi veya Yönetici rolü gerekir." : "Lead Auditor or Manager role is required to close/reopen audits."); return; }
     if (isAuditClosed()) {
       if (!confirm(tr ? "Bu denetim yeniden açılacak. Değişiklik yapılabilir hale gelsin mi?" : "This audit will be reopened. Allow changes again?")) return;
       currentAuditData.auditInfo.status = "open";
@@ -1290,6 +1393,7 @@
         const evidence = currentLang === "tr" ? (pq.review_evidence_tr || pq.review_evidence_en) : (pq.review_evidence_en || pq.review_evidence_tr);
         const status = getStatusSummaryForPQ(pq, pqIdx, areaKey);
         const finding = userData.notes?.[pqIdx] || "";
+        const extra = getPQExtraFields(areaKey, pqIdx, currentAuditData);
         rows.push({
           area: areaKey,
           pqNo: pq.no || "",
@@ -1299,7 +1403,14 @@
           status,
           question,
           evidence,
-          finding
+          finding,
+          evidenceReviewed: extra.evidenceReviewed || "",
+          correctiveAction: extra.correctiveAction || "",
+          responsibleUnit: extra.responsibleUnit || "",
+          dueDate: extra.dueDate || "",
+          severity: extra.severity || "minor",
+          findingStatus: extra.findingStatus || "open",
+          closureNote: extra.closureNote || ""
         });
       });
     });
@@ -1350,8 +1461,8 @@
     if (!(await validateRequiredNotesBeforeFinalAction(tr ? "Excel rapor alma" : "Excel export"))) return;
     const info = currentAuditData?.auditInfo || {};
     const headers = tr
-      ? ["Alan", "PQ No", "CE", "PPQ", "Saha", "Durum", "Soru", "İncelenecek Kanıtlar", "Bulgu / Not"]
-      : ["Area", "PQ No", "CE", "PPQ", "Site", "Status", "Question", "Review Evidence", "Finding / Note"];
+      ? ["Alan", "PQ No", "CE", "PPQ", "Saha", "Durum", "Soru", "İncelenecek Kanıtlar", "Bulgu / Not", "İncelenen Kanıt", "Düzeltici Faaliyet", "Sorumlu Birim", "Termin", "Kritiklik", "Bulgu Durumu", "Kapanış Notu"]
+      : ["Area", "PQ No", "CE", "PPQ", "Site", "Status", "Question", "Review Evidence", "Finding / Note", "Evidence Reviewed", "Corrective Action", "Responsible Unit", "Due Date", "Severity", "Finding Status", "Closure Note"];
     const metaRows = [
       [tr ? "Denetim ID" : "Audit ID", currentAuditId],
       [tr ? "İşletme / Kuruluş" : "Organization", info.organizationName || ""],
@@ -1364,7 +1475,7 @@
       [tr ? "Kapsam" : "Scope", info.scope || ""],
       [tr ? "Genel Denetim Notları" : "General Audit Notes", info.notes || ""]
     ];
-    const bodyRows = buildAuditReportRows().map(row => [row.area, row.pqNo, row.ce, row.ppq, row.site, row.status, row.question, row.evidence, row.finding]);
+    const bodyRows = buildAuditReportRows().map(row => [row.area, row.pqNo, row.ce, row.ppq, row.site, row.status, row.question, row.evidence, row.finding, row.evidenceReviewed, row.correctiveAction, row.responsibleUnit, row.dueDate, row.severity, row.findingStatus, row.closureNote]);
     const csv = "\ufeff" + metaRows.map(r => r.map(csvCell).join(";")).join("\n") + "\n\n" + headers.map(csvCell).join(";") + "\n" + bodyRows.map(r => r.map(csvCell).join(";")).join("\n");
     const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);
@@ -1375,6 +1486,21 @@
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
+  };
+
+  window.archiveCurrentAudit = async function() {
+    const tr = currentLang === "tr";
+    if (!currentAuditId) { alert(tr ? "Arşivlenecek aktif denetim yok." : "There is no active audit to archive."); return; }
+    if (!canCloseOrDeleteAudit()) { alert(tr ? "Arşivleme için Baş Denetçi veya Yönetici rolü gerekir." : "Lead Auditor or Manager role is required to archive."); return; }
+    if (!confirm(tr ? "Aktif denetim arşivlenecek. Kayıt silinmez, Arşivlenen Denetimler altında görünür. Devam edilsin mi?" : "The active audit will be archived. It will not be deleted and will appear under Archived Audits. Continue?")) return;
+    currentAuditData = ensureAuditShape(currentAuditData, currentAuditId);
+    currentAuditData.auditInfo.archived = true;
+    currentAuditData.auditInfo.archivedAt = new Date().toISOString();
+    currentAuditData.auditInfo.updatedAt = new Date().toISOString();
+    await setDoc(doc(db, "audits", currentAuditId), currentAuditData);
+    await refreshAuditLists();
+    updateActiveAuditBanner();
+    alert(tr ? "Denetim arşivlendi." : "Audit archived.");
   };
 
   window.deleteCurrentAudit = async function() {
@@ -1394,7 +1520,7 @@ ${currentAuditId}
 This only deletes audits/${currentAuditId}; the JSON checklist is not deleted. Continue?`;
     if (!confirm(firstConfirm)) return;
     const typed = prompt(tr ? "Silmek için şifreyi girin:" : "Enter the password to delete:");
-    if (typed !== "170312") {
+    if (typed !== DELETE_PASSWORD) {
       alert(tr ? "Şifre hatalı. Silme işlemi iptal edildi." : "Incorrect password. Delete cancelled.");
       return;
     }
@@ -1420,7 +1546,7 @@ This only deletes audits/${currentAuditId}; the JSON checklist is not deleted. C
       : "ALL audit records under the Firebase audits collection will be deleted. The JSON master checklist will not be deleted. This cannot be undone.";
     if (!confirm(warning)) return;
     const typed = prompt(tr ? "Tüm denetimleri silmek için şifreyi girin:" : "Enter the password to delete all audits:");
-    if (typed !== "170312") {
+    if (typed !== DELETE_PASSWORD) {
       alert(tr ? "Şifre hatalı. Toplu silme iptal edildi." : "Incorrect password. Bulk delete cancelled.");
       return;
     }
@@ -1480,14 +1606,16 @@ This only deletes audits/${currentAuditId}; the JSON checklist is not deleted. C
 
   window.showAuditRecords = async function(mode = "open") {
     currentView = "records";
-    currentRecordsMode = mode === "closed" ? "closed" : "open";
-    setActiveMenu(currentRecordsMode === "closed" ? "menu_CLOSED_AUDITS" : "menu_OPEN_AUDITS");
+    currentRecordsMode = ["open", "closed", "archived"].includes(mode) ? mode : "open";
+    const menuMap = { open: "menu_OPEN_AUDITS", closed: "menu_CLOSED_AUDITS", archived: "menu_ARCHIVED_AUDITS" };
+    setActiveMenu(menuMap[currentRecordsMode]);
     hideAllMainScreens();
     updateToolbarForView();
     document.getElementById("auditRecordsScreen").classList.add("active");
     const tr = currentLang === "tr";
-    document.getElementById("areaTitle").innerText = currentRecordsMode === "closed" ? (tr ? "Kapatılan Denetimler" : "Closed Audits") : (tr ? "Devam Eden Denetimler" : "Open Audits");
-    document.getElementById("dataSourceInfo").innerText = currentRecordsMode === "closed" ? "Firebase: audits / closed" : "Firebase: audits / open";
+    const titleMap = { open: tr ? "Devam Eden Denetimler" : "Open Audits", closed: tr ? "Kapatılan Denetimler" : "Closed Audits", archived: tr ? "Arşivlenen Denetimler" : "Archived Audits" };
+    document.getElementById("areaTitle").innerText = titleMap[currentRecordsMode];
+    document.getElementById("dataSourceInfo").innerText = `Firebase: audits / ${currentRecordsMode}`;
     updateAuditRecordsModeLabels();
     updateActiveAuditBanner();
     await refreshAuditLists();
@@ -1495,23 +1623,27 @@ This only deletes audits/${currentAuditId}; the JSON checklist is not deleted. C
 
   function updateAuditRecordsModeLabels() {
     const tr = currentLang === "tr";
-    const isClosed = currentRecordsMode === "closed";
+    const mode = currentRecordsMode || "open";
     const title = document.getElementById("auditRecordsTitle");
     const subtitle = document.getElementById("auditRecordsSubtitle");
     const openCard = document.getElementById("openAuditListCard");
     const closedCard = document.getElementById("closedAuditListCard");
-    if (openCard) openCard.classList.toggle("hidden", isClosed);
-    if (closedCard) closedCard.classList.toggle("hidden", !isClosed);
-    if (title) title.innerText = isClosed ? (tr ? "Kapatılan Denetimler" : "Closed Audits") : (tr ? "Devam Eden Denetimler" : "Open Audits");
-    if (subtitle) subtitle.innerText = isClosed
-      ? (tr ? "Kapatılmış denetimleri görüntüleyebilir, rapor alabilir veya yeniden açabilirsiniz." : "View closed audits, export reports, or reopen them.")
-      : (tr ? "Devam eden denetimleri seçip çalışmaya devam edebilir, kapatabilir veya silebilirsiniz." : "Select an open audit to continue work, close it, or delete it.");
+    const archivedCard = document.getElementById("archivedAuditListCard");
+    if (openCard) openCard.classList.toggle("hidden", mode !== "open");
+    if (closedCard) closedCard.classList.toggle("hidden", mode !== "closed");
+    if (archivedCard) archivedCard.classList.toggle("hidden", mode !== "archived");
+    const titleMap = { open: tr ? "Devam Eden Denetimler" : "Open Audits", closed: tr ? "Kapatılan Denetimler" : "Closed Audits", archived: tr ? "Arşivlenen Denetimler" : "Archived Audits" };
+    const subMap = {
+      open: tr ? "Devam eden denetimleri seçip çalışmaya devam edebilir, kapatabilir veya silebilirsiniz." : "Select an open audit to continue work, close it, or delete it.",
+      closed: tr ? "Kapatılmış denetimleri görüntüleyebilir, rapor alabilir veya yeniden açabilirsiniz." : "View closed audits, export reports, or reopen them.",
+      archived: tr ? "Arşivlenmiş denetimler silinmemiş kayıtlardır; gerektiğinde görüntülenebilir." : "Archived audits are retained records and can be viewed when needed."
+    };
+    if (title) title.innerText = titleMap[mode];
+    if (subtitle) subtitle.innerText = subMap[mode];
     const mgmtTitle = document.getElementById("auditManagementTitle");
     const mgmtSubtitle = document.getElementById("auditManagementSubtitle");
-    if (mgmtTitle) mgmtTitle.innerText = isClosed ? (tr ? "Kapatılan Denetimler" : "Closed Audits") : (tr ? "Devam Eden Denetimler" : "Open Audits");
-    if (mgmtSubtitle) mgmtSubtitle.innerText = isClosed
-      ? (tr ? "Kapalı kayıtları ID yazmadan listeden seçebilirsiniz." : "Select closed records from the list without typing an ID.")
-      : (tr ? "Açık kayıtları ID yazmadan listeden seçebilirsiniz." : "Select open records from the list without typing an ID.");
+    if (mgmtTitle) mgmtTitle.innerText = titleMap[mode];
+    if (mgmtSubtitle) mgmtSubtitle.innerText = mode === "archived" ? (tr ? "Arşiv kayıtlarını ID yazmadan listeden seçebilirsiniz." : "Select archived records without typing an ID.") : (mode === "closed" ? (tr ? "Kapalı kayıtları ID yazmadan listeden seçebilirsiniz." : "Select closed records from the list without typing an ID.") : (tr ? "Açık kayıtları ID yazmadan listeden seçebilirsiniz." : "Select open records from the list without typing an ID."));
   }
 
   window.showCurrentArea = function() {
@@ -1651,6 +1783,7 @@ This only deletes audits/${currentAuditId}; the JSON checklist is not deleted. C
     document.getElementById("btnOpenAuditSetup").innerText = lang === "tr" ? "Denetim Bilgileri" : "Audit Info";
     document.getElementById("btnSaveAudit").innerText = lang === "tr" ? "Denetim Durumunu Kaydet" : "Save Audit Progress";
     document.getElementById("btnDeleteCurrentAudit").innerText = lang === "tr" ? "Aktif Denetimi Sil" : "Delete Active Audit";
+    const archiveBtnLang = document.getElementById("btnArchiveCurrentAudit"); if (archiveBtnLang) archiveBtnLang.innerText = lang === "tr" ? "Arşivle" : "Archive";
     document.getElementById("btnExportPdf").innerText = lang === "tr" ? "PDF Rapor" : "PDF Report";
     document.getElementById("btnExportExcel").innerText = lang === "tr" ? "Excel Rapor" : "Excel Report";
     const closeBtnLang = document.getElementById("btnCloseAudit");
@@ -1836,7 +1969,8 @@ This only deletes audits/${currentAuditId}; the JSON checklist is not deleted. C
         (areaData.pqs || []).forEach((pq, pqIdx) => {
           const status = getStatusSummaryForAuditData(pq, pqIdx, areaKey, auditData);
           const finding = userData.notes?.[pqIdx] || "";
-          if (status !== "NS" && !String(finding || "").trim()) return;
+          const extra = getPQExtraFields(areaKey, pqIdx, auditData);
+          if (status !== "NS" && !String(finding || "").trim() && !String(extra.correctiveAction || "").trim()) return;
           rows.push({
             auditId,
             organization: info.organizationName || "",
@@ -1848,7 +1982,14 @@ This only deletes audits/${currentAuditId}; the JSON checklist is not deleted. C
             pqIndex: pqIdx,
             status,
             question: currentLang === "tr" ? (pq.question_tr || pq.question_en) : (pq.question_en || pq.question_tr),
-            finding: finding || (status === "NS" ? (currentLang === "tr" ? "NS olarak işaretlendi; ayrıca bulgu notu yazılmamış." : "Marked NS; no additional finding note entered.") : "")
+            findingId: getFindingId(auditId, areaKey, pq.no || pqIdx + 1),
+            finding: finding || (status === "NS" ? (currentLang === "tr" ? "NS olarak işaretlendi; ayrıca bulgu notu yazılmamış." : "Marked NS; no additional finding note entered.") : ""),
+            severity: extra.severity || "minor",
+            findingStatus: extra.findingStatus || "open",
+            responsibleUnit: extra.responsibleUnit || "",
+            dueDate: extra.dueDate || "",
+            correctiveAction: extra.correctiveAction || "",
+            closureNote: extra.closureNote || ""
           });
         });
       });
@@ -1882,16 +2023,17 @@ This only deletes audits/${currentAuditId}; the JSON checklist is not deleted. C
     if (refreshBtn) refreshBtn.innerText = tr ? "Yenile" : "Refresh";
     if (exportBtn) exportBtn.innerText = tr ? "Excel'e Aktar" : "Export to Excel";
     head.innerHTML = `<tr>
-      <th>${tr ? "Denetim" : "Audit"}</th><th>${tr ? "İşletme" : "Organization"}</th><th>${tr ? "Tarih" : "Date"}</th><th>${tr ? "Denetim Durumu" : "Audit Status"}</th><th>Area</th><th>PQ</th><th>CE</th><th>${tr ? "PQ Durumu" : "PQ Status"}</th><th>${tr ? "Soru" : "Question"}</th><th>${tr ? "Bulgu / Not" : "Finding / Note"}</th><th>${tr ? "İşlem" : "Action"}</th>
+      <th>${tr ? "Bulgu ID" : "Finding ID"}</th><th>${tr ? "Denetim" : "Audit"}</th><th>${tr ? "İşletme" : "Organization"}</th><th>${tr ? "Tarih" : "Date"}</th><th>${tr ? "Denetim Durumu" : "Audit Status"}</th><th>Area</th><th>PQ</th><th>CE</th><th>${tr ? "PQ Durumu" : "PQ Status"}</th><th>${tr ? "Kritiklik" : "Severity"}</th><th>${tr ? "Bulgu Durumu" : "Finding Status"}</th><th>${tr ? "Sorumlu" : "Responsible"}</th><th>${tr ? "Termin" : "Due"}</th><th>${tr ? "Bulgu / Not" : "Finding / Note"}</th><th>${tr ? "Düzeltici Faaliyet" : "Corrective Action"}</th><th>${tr ? "İşlem" : "Action"}</th>
     </tr>`;
-    body.innerHTML = `<tr><td colspan="11" style="text-align:center;color:#64748b;">${tr ? "Bulgu havuzu yükleniyor..." : "Loading findings pool..."}</td></tr>`;
+    body.innerHTML = `<tr><td colspan="16" style="text-align:center;color:#64748b;">${tr ? "Bulgu havuzu yükleniyor..." : "Loading findings pool..."}</td></tr>`;
     try {
       findingsPoolRows = await collectFindingsPoolRows();
       if (!findingsPoolRows.length) {
-        body.innerHTML = `<tr><td colspan="11" style="text-align:center;color:#64748b;">${tr ? "Bulgu veya NS kayıt bulunmuyor." : "No findings or NS records found."}</td></tr>`;
+        body.innerHTML = `<tr><td colspan="16" style="text-align:center;color:#64748b;">${tr ? "Bulgu veya NS kayıt bulunmuyor." : "No findings or NS records found."}</td></tr>`;
         return;
       }
       body.innerHTML = findingsPoolRows.map(row => `<tr>
+        <td>${escapeHtml(row.findingId)}</td>
         <td>${escapeHtml(row.auditId)}</td>
         <td>${escapeHtml(row.organization || "-")}</td>
         <td>${escapeHtml(row.auditDate || "-")}</td>
@@ -1900,12 +2042,16 @@ This only deletes audits/${currentAuditId}; the JSON checklist is not deleted. C
         <td>${escapeHtml(row.pqNo)}</td>
         <td>${escapeHtml(row.ce)}</td>
         <td>${escapeHtml(row.status)}</td>
-        <td>${escapeHtml(row.question)}</td>
+        <td>${escapeHtml(row.severity)}</td>
+        <td>${escapeHtml(row.findingStatus)}</td>
+        <td>${escapeHtml(row.responsibleUnit || "-")}</td>
+        <td>${escapeHtml(row.dueDate || "-")}</td>
         <td>${escapeHtml(row.finding)}</td>
+        <td>${escapeHtml(row.correctiveAction || "-")}</td>
         <td><button class="audit-btn" type="button" onclick="loadAuditAndGoToArea('${escapeHtml(row.auditId)}','${escapeHtml(row.area)}')">${tr ? "Aç" : "Open"}</button></td>
       </tr>`).join("");
     } catch (error) {
-      body.innerHTML = `<tr><td colspan="11" style="text-align:center;color:#991b1b;">Hata: ${escapeHtml(error.message)}</td></tr>`;
+      body.innerHTML = `<tr><td colspan="16" style="text-align:center;color:#991b1b;">Hata: ${escapeHtml(error.message)}</td></tr>`;
     }
   };
 
@@ -1930,8 +2076,8 @@ This only deletes audits/${currentAuditId}; the JSON checklist is not deleted. C
       alert(tr ? "Dışa aktarılacak bulgu kaydı yok." : "There are no finding records to export.");
       return;
     }
-    const headers = tr ? ["Denetim ID", "İşletme", "Tarih", "Denetim Durumu", "Area", "PQ", "CE", "PQ Durumu", "Soru", "Bulgu / Not"] : ["Audit ID", "Organization", "Date", "Audit Status", "Area", "PQ", "CE", "PQ Status", "Question", "Finding / Note"];
-    const bodyRows = rows.map(r => [r.auditId, r.organization, r.auditDate, r.auditStatus, r.area, r.pqNo, r.ce, r.status, r.question, r.finding]);
+    const headers = tr ? ["Bulgu ID", "Denetim ID", "İşletme", "Tarih", "Denetim Durumu", "Area", "PQ", "CE", "PQ Durumu", "Kritiklik", "Bulgu Durumu", "Sorumlu Birim", "Termin", "Soru", "Bulgu / Not", "Düzeltici Faaliyet", "Kapanış Notu"] : ["Finding ID", "Audit ID", "Organization", "Date", "Audit Status", "Area", "PQ", "CE", "PQ Status", "Severity", "Finding Status", "Responsible Unit", "Due Date", "Question", "Finding / Note", "Corrective Action", "Closure Note"];
+    const bodyRows = rows.map(r => [r.findingId, r.auditId, r.organization, r.auditDate, r.auditStatus, r.area, r.pqNo, r.ce, r.status, r.severity, r.findingStatus, r.responsibleUnit, r.dueDate, r.question, r.finding, r.correctiveAction, r.closureNote]);
     const csv = "\ufeff" + headers.map(csvCell).join(";") + "\n" + bodyRows.map(r => r.map(csvCell).join(";")).join("\n");
     const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);
@@ -2243,7 +2389,7 @@ This only deletes audits/${currentAuditId}; the JSON checklist is not deleted. C
         const key = `${pqIdx}_${row.index}`;
         if (!currentUserData.status[key]) currentUserData.status[key] = "NA";
         const currentStatus = currentUserData.status[key];
-        const disabledAttr = isAuditClosed() ? "disabled" : "";
+        const disabledAttr = canEditAudit() ? "" : "disabled";
         criteriaHtml += `
           <div class="criterion-item">
             <div class="criterion-text">${escapeHtml(activeLineText)}</div>
@@ -2256,11 +2402,19 @@ This only deletes audits/${currentAuditId}; the JSON checklist is not deleted. C
       });
 
       if (!currentUserData.notes[pqIdx]) currentUserData.notes[pqIdx] = "";
+      if (!currentUserData.fields) currentUserData.fields = {};
       const savedNote = currentUserData.notes[pqIdx];
+      const extra = getPQExtraFields(currentArea, pqIdx);
+      const pqStatusForRequirements = getPQComputedStatus(pq, pqIdx);
       const noteMissingClass = String(savedNote || "").trim() ? "" : " required-missing";
+      const evidenceMissingClass = String(extra.evidenceReviewed || "").trim() ? "" : " required-missing";
+      const correctiveMissingClass = pqStatusForRequirements === "NS" && !String(extra.correctiveAction || "").trim() ? " required-missing" : "";
+      const responsibleMissingClass = pqStatusForRequirements === "NS" && !String(extra.responsibleUnit || "").trim() ? " required-missing" : "";
+      const dueMissingClass = pqStatusForRequirements === "NS" && !String(extra.dueDate || "").trim() ? " required-missing" : "";
       const lblNotesBox = currentLang === "tr" ? "Mevzuat Dayanağı / Bulgu Notları:" : "Compliance Basis / Audit Finding Notes:";
       const lblRequired = currentLang === "tr" ? "Zorunlu" : "Required";
       const requiredHint = currentLang === "tr" ? "Bu alan zorunludur. Mevzuat dayanağı veya bulgu notu giriniz." : "This field is required. Enter compliance basis or audit finding notes.";
+      const disabledAttrForm = canEditAudit() ? "" : "disabled";
 
       pqItem.innerHTML = `
         <div class="pq-header" id="pq_hdr_${pqIdx}">
@@ -2276,8 +2430,48 @@ This only deletes audits/${currentAuditId}; the JSON checklist is not deleted. C
           ${criteriaHtml}
           <div class="audit-notes-box${noteMissingClass}">
             <label style="font-size:12px; font-weight:bold; color:var(--primary-color); display:block; margin-bottom:5px;">${escapeHtml(lblNotesBox)}<span class="audit-required-label">${escapeHtml(lblRequired)}</span></label>
-            <textarea id="note_${pqIdx}" data-required-note="true" required ${isAuditClosed() ? "disabled" : ""}>${escapeHtml(savedNote)}</textarea>
+            <textarea id="note_${pqIdx}" data-required-note="true" required ${disabledAttrForm}>${escapeHtml(savedNote)}</textarea>
             <div class="audit-required-hint">${escapeHtml(requiredHint)}</div>
+          </div>
+          <div class="pq-extra-grid" data-pq-extra="${pqIdx}">
+            <div class="pq-extra-field full${evidenceMissingClass}">
+              <label>${currentLang === "tr" ? "İncelenen Kanıt" : "Evidence Reviewed"} <span class="audit-required-label">${escapeHtml(lblRequired)}</span></label>
+              <textarea data-field="evidenceReviewed" data-pq="${pqIdx}" ${disabledAttrForm}>${escapeHtml(extra.evidenceReviewed || "")}</textarea>
+            </div>
+            <div class="pq-extra-field full${correctiveMissingClass}">
+              <label>${currentLang === "tr" ? "Düzeltici Faaliyet / Öneri" : "Corrective Action / Recommendation"}</label>
+              <textarea data-field="correctiveAction" data-pq="${pqIdx}" ${disabledAttrForm}>${escapeHtml(extra.correctiveAction || "")}</textarea>
+            </div>
+            <div class="pq-extra-field${responsibleMissingClass}">
+              <label>${currentLang === "tr" ? "Sorumlu Birim" : "Responsible Unit"}</label>
+              <input data-field="responsibleUnit" data-pq="${pqIdx}" value="${escapeHtml(extra.responsibleUnit || "")}" ${disabledAttrForm}>
+            </div>
+            <div class="pq-extra-field${dueMissingClass}">
+              <label>${currentLang === "tr" ? "Termin Tarihi" : "Due Date"}</label>
+              <input type="date" data-field="dueDate" data-pq="${pqIdx}" value="${escapeHtml(extra.dueDate || "")}" ${disabledAttrForm}>
+            </div>
+            <div class="pq-extra-field">
+              <label>${currentLang === "tr" ? "Kritiklik" : "Severity"}</label>
+              <select data-field="severity" data-pq="${pqIdx}" ${disabledAttrForm}>
+                <option value="minor" ${extra.severity === "minor" ? "selected" : ""}>${currentLang === "tr" ? "Düşük" : "Minor"}</option>
+                <option value="major" ${extra.severity === "major" ? "selected" : ""}>${currentLang === "tr" ? "Orta" : "Major"}</option>
+                <option value="critical" ${extra.severity === "critical" ? "selected" : ""}>${currentLang === "tr" ? "Kritik" : "Critical"}</option>
+              </select>
+            </div>
+            <div class="pq-extra-field">
+              <label>${currentLang === "tr" ? "Bulgu Durumu" : "Finding Status"}</label>
+              <select data-field="findingStatus" data-pq="${pqIdx}" ${disabledAttrForm}>
+                <option value="open" ${extra.findingStatus === "open" ? "selected" : ""}>${currentLang === "tr" ? "Açık" : "Open"}</option>
+                <option value="cap_pending" ${extra.findingStatus === "cap_pending" ? "selected" : ""}>${currentLang === "tr" ? "Düzeltici Faaliyet Bekleniyor" : "CAP Pending"}</option>
+                <option value="in_review" ${extra.findingStatus === "in_review" ? "selected" : ""}>${currentLang === "tr" ? "İncelemede" : "In Review"}</option>
+                <option value="closed" ${extra.findingStatus === "closed" ? "selected" : ""}>${currentLang === "tr" ? "Kapatıldı" : "Closed"}</option>
+                <option value="overdue" ${extra.findingStatus === "overdue" ? "selected" : ""}>${currentLang === "tr" ? "Gecikti" : "Overdue"}</option>
+              </select>
+            </div>
+            <div class="pq-extra-field full">
+              <label>${currentLang === "tr" ? "Kapanış Notu" : "Closure Note"}</label>
+              <textarea data-field="closureNote" data-pq="${pqIdx}" ${disabledAttrForm}>${escapeHtml(extra.closureNote || "")}</textarea>
+            </div>
           </div>
         </div>`;
 
@@ -2287,8 +2481,8 @@ This only deletes audits/${currentAuditId}; the JSON checklist is not deleted. C
 
       pqItem.querySelectorAll(".status-options input").forEach(radio => {
         radio.addEventListener("change", async e => {
-          if (isAuditClosed()) {
-            alert(currentLang === "tr" ? "Bu denetim kapalı. Değişiklik yapmak için yeniden açın." : "This audit is closed. Reopen it to make changes.");
+          if (!canEditAudit()) {
+            alert(currentLang === "tr" ? "Bu denetim kapalı/arşivli veya rolünüz salt okunur. Değişiklik yapmak için yetkili rol ve açık denetim gerekir." : "This audit is closed/archived or your role is read-only.");
             renderPQs();
             return;
           }
@@ -2308,8 +2502,8 @@ This only deletes audits/${currentAuditId}; the JSON checklist is not deleted. C
         if (box) box.classList.toggle("required-missing", !e.target.value.trim());
       });
       textarea.addEventListener("blur", async e => {
-        if (isAuditClosed()) {
-          alert(currentLang === "tr" ? "Bu denetim kapalı. Değişiklik yapmak için yeniden açın." : "This audit is closed. Reopen it to make changes.");
+        if (!canEditAudit()) {
+          alert(currentLang === "tr" ? "Bu denetim kapalı/arşivli veya rolünüz salt okunur. Değişiklik yapmak için yetkili rol ve açık denetim gerekir." : "This audit is closed/archived or your role is read-only.");
           return;
         }
         const box = e.target.closest(".audit-notes-box");
@@ -2318,6 +2512,26 @@ This only deletes audits/${currentAuditId}; the JSON checklist is not deleted. C
         currentUserData = getAreaAnswerData(currentArea);
         currentUserData.notes[pqIdx] = e.target.value;
         await setDoc(doc(db, "audits", currentAuditId), currentAuditData);
+      });
+
+      pqItem.querySelectorAll("[data-field]").forEach(fieldEl => {
+        const saveExtra = async e => {
+          if (!canEditAudit()) return;
+          await ensureActiveAudit();
+          currentUserData = getAreaAnswerData(currentArea);
+          const pIdx = e.target.getAttribute("data-pq");
+          const field = e.target.getAttribute("data-field");
+          if (!currentUserData.fields) currentUserData.fields = {};
+          if (!currentUserData.fields[pIdx]) currentUserData.fields[pIdx] = {};
+          currentUserData.fields[pIdx][field] = e.target.value;
+          await setDoc(doc(db, "audits", currentAuditId), currentAuditData);
+        };
+        fieldEl.addEventListener("input", e => {
+          const wrap = e.target.closest(".pq-extra-field");
+          if (wrap && ["evidenceReviewed", "correctiveAction", "responsibleUnit", "dueDate"].includes(e.target.getAttribute("data-field"))) wrap.classList.toggle("required-missing", !String(e.target.value || "").trim());
+        });
+        fieldEl.addEventListener("blur", saveExtra);
+        fieldEl.addEventListener("change", saveExtra);
       });
 
       container.appendChild(pqItem);
