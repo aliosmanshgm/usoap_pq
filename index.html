@@ -204,7 +204,6 @@
 <body>
   <div class="sidebar">
     <h2>USOAP CMA Areas (Live)</h2>
-    <button class="setup-btn" onclick="syncActiveAreaToFirebase()">Sync Area to Firebase</button>
     <div class="audit-manager">
       <div class="audit-manager-title" id="auditManagerTitle">Denetim Yönetimi</div>
       <button class="audit-action-btn success" style="width:100%;" onclick="createAuditRecord()" id="btnCreateAudit">Yeni Denetim</button>
@@ -533,14 +532,21 @@
     const tr = currentLang === "tr";
     const openSelect = document.getElementById("openAuditSelect");
     const closedSelect = document.getElementById("closedAuditSelect");
+    if (!openSelect || !closedSelect) return;
+
     const openRecords = auditRecordsCache.filter(a => (a.status || "open") !== "closed" && !a.closedAtText);
     const closedRecords = auditRecordsCache.filter(a => (a.status || "open") === "closed" || a.closedAtText);
-    const optionHtml = (records, emptyText) => records.length
-      ? records.map(a => `<option value="${escapeHtml(a.id)}">${escapeHtml(makeAuditDisplayName(a))}</option>`).join("")
-      : `<option value="">${emptyText}</option>`;
-    openSelect.innerHTML = optionHtml(openRecords, tr ? "Devam eden denetim yok" : "No ongoing audit");
-    closedSelect.innerHTML = optionHtml(closedRecords, tr ? "Kapatılan denetim yok" : "No closed audit");
-    if (activeAuditId && activeAuditId !== "default") {
+    const recordOptions = records => records.map(a => `<option value="${escapeHtml(a.id)}">${escapeHtml(makeAuditDisplayName(a))}</option>`).join("");
+
+    // Eski kullanımda kayıtlar user_progress/{AREA} altında tutulduğu için
+    // bunu da açık denetim listesinde görünür tutuyoruz.
+    const defaultText = tr ? "Mevcut kayıt / Varsayılan denetim" : "Existing record / Default audit";
+    openSelect.innerHTML = `<option value="default">${defaultText}</option>` + recordOptions(openRecords);
+    closedSelect.innerHTML = closedRecords.length
+      ? recordOptions(closedRecords)
+      : `<option value="">${tr ? "Kapatılan denetim yok" : "No closed audit"}</option>`;
+
+    if (activeAuditId) {
       if ([...openSelect.options].some(o => o.value === activeAuditId)) openSelect.value = activeAuditId;
       if ([...closedSelect.options].some(o => o.value === activeAuditId)) closedSelect.value = activeAuditId;
     }
@@ -569,10 +575,15 @@
     const select = document.getElementById(type === "closed" ? "closedAuditSelect" : "openAuditSelect");
     const id = select?.value;
     if (!id) return;
-    const record = auditRecordsCache.find(a => a.id === id);
-    activeAuditId = id;
-    activeAuditRecord = record || { id, name: id, status: type === "closed" ? "closed" : "open" };
-    updateAuditLanguageLabels();
+    if (id === "default") {
+      activeAuditId = "default";
+      activeAuditRecord = { id: "default", name: currentLang === "tr" ? "Mevcut kayıt / Varsayılan denetim" : "Existing record / Default audit", status: "open" };
+    } else {
+      const record = auditRecordsCache.find(a => a.id === id);
+      activeAuditId = id;
+      activeAuditRecord = record || { id, name: id, status: type === "closed" ? "closed" : "open" };
+    }
+    renderAuditDropdowns();
     if (currentView === "report") await renderReport();
     else await switchArea(currentArea);
   };
@@ -580,7 +591,10 @@
   window.closeSelectedAudit = async function() {
     const select = document.getElementById("openAuditSelect");
     const id = select?.value || (activeAuditId !== "default" ? activeAuditId : "");
-    if (!id) return;
+    if (!id || id === "default") {
+      alert(currentLang === "tr" ? "Varsayılan/mevcut kayıt kapatılamaz. Önce yeni bir denetim kaydı oluşturun." : "Default/existing record cannot be closed. Create a new audit record first.");
+      return;
+    }
     const msg = currentLang === "tr" ? "Bu denetim kapatılsın mı?" : "Close this audit?";
     if (!confirm(msg)) return;
     await updateDoc(doc(db, "audits", id), { status: "closed", closedAt: serverTimestamp(), closedAtText: new Date().toLocaleString("tr-TR") });
@@ -594,8 +608,11 @@
   window.deleteSelectedAuditWithPassword = async function() {
     const closedId = document.getElementById("closedAuditSelect")?.value;
     const openId = document.getElementById("openAuditSelect")?.value;
-    const id = closedId || openId || (activeAuditId !== "default" ? activeAuditId : "");
-    if (!id) return;
+    const id = closedId || (openId !== "default" ? openId : "") || (activeAuditId !== "default" ? activeAuditId : "");
+    if (!id) {
+      alert(currentLang === "tr" ? "Silinecek denetim kaydı seçilmedi." : "No audit record selected for deletion.");
+      return;
+    }
     const pass = prompt(currentLang === "tr" ? "Denetimi silmek için şifre giriniz:" : "Enter password to delete the audit:");
     if (pass !== DELETE_AUDIT_PASSWORD) {
       alert(currentLang === "tr" ? "Şifre hatalı. Denetim silinmedi." : "Wrong password. Audit was not deleted.");
@@ -614,24 +631,6 @@
     await loadAuditRecords();
     if (currentView === "report") await renderReport();
     else await switchArea(currentArea);
-  };
-
-  window.syncActiveAreaToFirebase = async function() {
-    const msg = currentLang === "tr"
-      ? `${currentArea} alanı ${DATA_FILE} içinden filtrelenerek Firebase üzerine yazılacaktır. Emin misiniz?`
-      : `Area ${currentArea} will be filtered from ${DATA_FILE} and written to Firebase. Are you sure?`;
-    if (!confirm(msg)) return;
-
-    try {
-      await loadMasterModel();
-      const localData = normalizedAreas[currentArea];
-      if (!localData || !localData.pqs.length) throw new Error(`${currentArea} için veri bulunamadı.`);
-      await setDoc(doc(db, "audit_structures", currentArea), localData);
-      alert(`${currentArea} veri paketi başarıyla senkronize edildi!`);
-      switchArea(currentArea);
-    } catch (error) {
-      alert("Hata: " + error.message);
-    }
   };
 
   function getCriteriaCountForPQLang(pq, lang) {
