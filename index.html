@@ -964,6 +964,13 @@
     }
   };
 
+  function getFirstVisibleAreaForActiveAudit() {
+    currentAuditData = ensureAuditShape(currentAuditData, currentAuditId);
+    const selectedForms = getSelectedForms();
+    if (selectedForms.includes(currentArea)) return currentArea;
+    return selectedForms[0] || AREA_ORDER[0];
+  }
+
   window.loadAuditById = async function() {
     const auditId = document.getElementById("loadAuditId").value.trim();
     if (!auditId) {
@@ -975,11 +982,14 @@
       if (!snap.exists()) throw new Error(currentLang === "tr" ? "Bu ID ile denetim bulunamadı." : "No audit found with this ID.");
       currentAuditId = auditId;
       currentAuditData = ensureAuditShape(snap.data(), auditId);
-      currentUserData = getAreaAnswerData(currentArea);
+      const targetArea = getFirstVisibleAreaForActiveAudit();
+      currentUserData = getAreaAnswerData(targetArea);
       fillAuditFormFromData();
       updateActiveAuditBanner();
-      renderPQs();
-      alert(currentLang === "tr" ? "Denetim açıldı." : "Audit loaded.");
+      await switchArea(targetArea);
+      alert(currentAuditData.auditInfo.status === "closed"
+        ? (currentLang === "tr" ? "Kapatılan denetim görüntüleme modunda açıldı." : "Closed audit opened in view-only mode.")
+        : (currentLang === "tr" ? "Denetim açıldı. Çalışmaya devam edebilirsiniz." : "Audit loaded. You can continue working."));
     } catch (error) {
       alert("Hata: " + error.message);
     }
@@ -1765,10 +1775,9 @@ This only deletes audits/${currentAuditId}; the JSON checklist is not deleted. C
     }
     currentView = "area";
     currentArea = areaKey;
+    hideAllMainScreens();
+    updateToolbarForView();
     document.getElementById("pqWorkArea").style.display = "block";
-    document.getElementById("reportScreen").classList.remove("active");
-    const recordsScreen = document.getElementById("auditRecordsScreen");
-    if (recordsScreen) recordsScreen.classList.remove("active");
     document.querySelectorAll(".menu-item").forEach(el => el.classList.remove("active"));
     const activeMenu = document.getElementById(`menu_${areaKey}`);
     if (activeMenu) activeMenu.classList.add("active");
