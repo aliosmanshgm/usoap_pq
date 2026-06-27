@@ -652,6 +652,14 @@
     const selected = new Set(getSelectedForms());
     if (checked) selected.add(areaKey);
     else selected.delete(areaKey);
+
+    if (!selected.size) {
+      const cb = document.getElementById(`formSelect_${areaKey}`);
+      if (cb) cb.checked = true;
+      alert(currentLang === "tr" ? "En az bir kontrol formu seçili kalmalıdır." : "At least one control form must remain selected.");
+      return;
+    }
+
     currentAuditData.auditInfo.selectedForms = AREA_ORDER.filter(key => selected.has(key));
     renderAreaMenu();
     renderDefaultFormsPanel();
@@ -851,7 +859,10 @@
       closedAt: currentAuditData.auditInfo.closedAt || "",
       updatedAt: new Date().toISOString()
     };
-    if (!currentAuditData.auditInfo.selectedForms.length) currentAuditData.auditInfo.selectedForms = [...AREA_ORDER];
+    if (!currentAuditData.auditInfo.selectedForms.length) {
+      alert(currentLang === "tr" ? "En az bir kontrol formu seçmelisiniz." : "Please select at least one control form.");
+      currentAuditData.auditInfo.selectedForms = getSelectedForms().length ? getSelectedForms() : [currentArea];
+    }
     currentUserData = getAreaAnswerData(currentArea);
     updateActiveAuditBanner();
   }
@@ -1237,7 +1248,7 @@ This only deletes audits/${currentAuditId}; the JSON checklist is not deleted. C
   function renderAreaMenu() {
     const menu = document.getElementById("areaMenu");
     const isTR = currentLang === "tr";
-    const selected = new Set(currentAuditId ? getSelectedForms() : AREA_ORDER);
+    const selected = new Set(getSelectedForms());
     menu.innerHTML = AREA_ORDER.map(areaKey => {
       const count = normalizedAreas[areaKey]?.pqs?.length || 0;
       const active = areaKey === currentArea && currentView === "area" ? " active" : "";
@@ -1253,7 +1264,7 @@ This only deletes audits/${currentAuditId}; the JSON checklist is not deleted. C
     const grid = document.getElementById("defaultFormsGrid");
     if (!grid) return;
     const isTR = currentLang === "tr";
-    const selected = new Set(currentAuditId ? getSelectedForms() : AREA_ORDER);
+    const selected = new Set(getSelectedForms());
     grid.innerHTML = AREA_ORDER.map(areaKey => {
       const stats = getAreaStaticStats(areaKey);
       const active = areaKey === currentArea && currentView === "area" ? " active" : "";
