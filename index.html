@@ -74,6 +74,7 @@
       align-items: center;
       font-size: 13px;
     }
+    .menu-item.unselected { opacity: .55; }
     .menu-item:hover, .menu-item.active {
       background-color: #1e293b;
       color: white;
@@ -143,6 +144,50 @@
     .audit-notes-box { margin-top: 15px; border-top: 1px solid var(--border-color); padding-top: 12px; }
     .audit-notes-box textarea { width: 100%; height: 65px; padding: 10px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 12px; box-sizing: border-box; resize: vertical; }
 
+
+    .audit-toolbar { background: white; border: 1px solid var(--border-color); border-radius: 12px; padding: 14px 16px; margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .audit-toolbar-title { font-weight: 900; color: #0f172a; font-size: 14px; }
+    .audit-toolbar-meta { color: #64748b; font-size: 12px; margin-top: 3px; }
+    .audit-toolbar-actions { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+    .audit-btn { border: 1px solid var(--border-color); background: #f8fafc; color: #334155; border-radius: 8px; padding: 9px 12px; font-size: 12px; font-weight: 800; cursor: pointer; }
+    .audit-btn.primary { background: var(--primary-color); border-color: var(--primary-color); color: white; }
+    .audit-btn.success { background: var(--success-color); border-color: var(--success-color); color: white; }
+    .audit-btn.danger { background: var(--danger-color); border-color: var(--danger-color); color: white; }
+    .audit-btn.warning { background: #f97316; border-color: #f97316; color: white; }
+    .audit-btn:hover { opacity: .9; }
+    .audit-form-screen { display: none; background: white; border: 1px solid var(--border-color); border-radius: 12px; padding: 18px; margin-bottom: 16px; }
+    .audit-form-screen.active { display: block; }
+    .audit-form-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 16px; }
+    .audit-form-header h2 { margin: 0; color: #0f172a; font-size: 20px; }
+    .audit-form-header p { margin: 5px 0 0 0; color: #64748b; font-size: 13px; }
+    .audit-form-grid { display: grid; grid-template-columns: repeat(2, minmax(220px, 1fr)); gap: 12px; }
+    .audit-field { display: flex; flex-direction: column; gap: 5px; }
+    .audit-field.full { grid-column: 1 / -1; }
+    .audit-field label { font-size: 11px; font-weight: 900; color: #475569; text-transform: uppercase; letter-spacing: .03em; }
+    .audit-field input, .audit-field select, .audit-field textarea { width: 100%; border: 1px solid var(--border-color); border-radius: 8px; padding: 9px 10px; font-size: 13px; background: #fff; color: var(--text-color); }
+    .audit-field textarea { min-height: 70px; resize: vertical; }
+    .audit-load-row { display: grid; grid-template-columns: 1fr auto; gap: 8px; margin-bottom: 14px; }
+    .audit-management-panel { background: #f8fafc; border: 1px solid var(--border-color); border-radius: 12px; padding: 14px; margin-bottom: 14px; }
+    .audit-management-panel h3 { margin: 0 0 6px 0; font-size: 16px; color: #0f172a; }
+    .audit-management-panel p { margin: 0 0 12px 0; font-size: 12px; color: #64748b; line-height: 1.5; }
+    .audit-list-grid { display: grid; grid-template-columns: repeat(2, minmax(240px, 1fr)); gap: 12px; }
+    .audit-list-card { background: white; border: 1px solid var(--border-color); border-radius: 10px; padding: 12px; }
+    .audit-list-card h4 { margin: 0 0 8px 0; color: #0f172a; font-size: 13px; }
+    .audit-list-card select { width: 100%; border: 1px solid var(--border-color); border-radius: 8px; padding: 9px 10px; font-size: 12px; background: #fff; color: var(--text-color); margin-bottom: 8px; }
+    .audit-list-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    .audit-manual-open { margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--border-color); }
+    .audit-refresh-info { margin-top: 8px; font-size: 12px; color: #64748b; }
+    .findings-section { margin-top: 18px; }
+    .findings-section h3 { margin: 0 0 6px 0; font-size: 16px; color: #0f172a; }
+    .findings-section p { margin: 0 0 10px 0; font-size: 12px; color: #64748b; }
+    .findings-table-wrap { overflow-x: auto; border: 1px solid var(--border-color); border-radius: 10px; }
+    .findings-table { width: 100%; border-collapse: collapse; min-width: 1050px; }
+    .findings-table th, .findings-table td { border-bottom: 1px solid var(--border-color); border-right: 1px solid var(--border-color); padding: 9px 10px; text-align: left; vertical-align: top; font-size: 12px; }
+    .findings-table th { background: #fff7ed; color: #7c2d12; font-weight: 900; }
+    .findings-table td:nth-child(1), .findings-table td:nth-child(2), .findings-table td:nth-child(4) { text-align: center; white-space: nowrap; }
+    .findings-table th:last-child, .findings-table td:last-child { border-right: 0; }
+
+
     .filter-panel { background: white; border: 1px solid var(--border-color); border-radius: 12px; padding: 14px 15px; margin-bottom: 14px; display: grid; grid-template-columns: 1.4fr repeat(5, minmax(120px, 1fr)) auto; gap: 10px; align-items: end; }
     .filter-field { display: flex; flex-direction: column; gap: 5px; }
     .filter-field label { font-size: 11px; font-weight: 800; color: #475569; text-transform: uppercase; letter-spacing: .03em; }
@@ -171,22 +216,30 @@
     .report-table .total-row td { background: #fffbeb; font-weight: 900; border-top: 2px solid #92400e; }
     .report-note { margin-top: 10px; color: #64748b; font-size: 12px; line-height: 1.5; }
 
-    .audit-manager { padding: 0 20px 16px 20px; border-top: 1px solid #334155; margin-top: 12px; }
-    .audit-manager-title { color: #94a3b8; font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: .06em; margin: 14px 0 8px 0; }
-    .audit-manager label { display: block; color: #cbd5e1; font-size: 11px; font-weight: 800; margin: 8px 0 4px 0; }
-    .audit-manager select, .audit-manager input { width: 100%; border: 1px solid #334155; border-radius: 7px; padding: 8px; background: #1e293b; color: white; font-size: 12px; }
-    .audit-manager-row { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin-top: 8px; }
-    .audit-action-btn { border: none; border-radius: 7px; padding: 8px 7px; font-size: 11px; font-weight: 900; cursor: pointer; color: white; background: #334155; }
-    .audit-action-btn:hover { opacity: .9; }
-    .audit-action-btn.primary { background: var(--secondary-color); }
-    .audit-action-btn.success { background: var(--success-color); }
-    .audit-action-btn.warn { background: #f59e0b; }
-    .audit-action-btn.danger { background: var(--danger-color); }
-    .audit-status-pill { display: inline-block; margin-top: 8px; padding: 5px 8px; border-radius: 999px; background: #1e293b; color: #cbd5e1; font-size: 11px; font-weight: 800; }
-    .findings-section { margin-top: 18px; border-top: 1px solid var(--border-color); padding-top: 16px; }
-    .findings-section h3 { margin: 0 0 8px 0; font-size: 16px; color: #0f172a; }
-    .findings-table { min-width: 1150px; }
-    .finding-note-cell { text-align: left !important; white-space: pre-wrap; max-width: 380px; }
+
+    .default-forms-panel { margin: 16px 0 18px 0; border: 1px solid var(--border-color); border-radius: 12px; padding: 14px; background: #f8fafc; }
+    .default-forms-panel h3 { margin: 0 0 6px 0; font-size: 16px; color: #0f172a; }
+    .default-forms-panel p { margin: 0 0 12px 0; font-size: 12px; color: #64748b; line-height: 1.5; }
+    .default-forms-grid { display: grid; grid-template-columns: repeat(3, minmax(160px, 1fr)); gap: 10px; }
+    .default-form-card { border: 1px solid var(--border-color); background: white; border-radius: 10px; padding: 12px; text-align: left; cursor: pointer; transition: all .15s ease; }
+    .default-form-card:hover { border-color: var(--secondary-color); box-shadow: 0 3px 8px rgba(30,58,138,.10); transform: translateY(-1px); }
+    .default-form-card.active { border-color: var(--secondary-color); background: #eff6ff; }
+    .default-form-card.unselected { opacity: .62; background: #f8fafc; }
+    .default-form-select { display: flex; align-items: center; gap: 8px; margin-top: 10px; font-size: 11px; font-weight: 900; color: #334155; }
+    .audit-closed-label { display: inline-block; padding: 3px 8px; border-radius: 999px; background: #fee2e2; color: #991b1b; font-size: 11px; font-weight: 900; margin-left: 6px; }
+    .report-cover { display: none; }
+    @media print {
+      body { display: block; height: auto; overflow: visible; background: white; }
+      .sidebar, header, .audit-toolbar, .audit-form-screen, .filter-panel, .report-actions, .pq-header { display: none !important; }
+      .main-content { padding: 0; overflow: visible; }
+      .report-screen, .report-screen.active { display: block !important; border: none; padding: 0; }
+      .report-cover { display: block; margin-bottom: 18px; }
+      .report-table { min-width: 0; }
+    }
+    .default-form-code { font-size: 16px; font-weight: 900; color: var(--primary-color); }
+    .default-form-name { margin-top: 3px; font-size: 12px; color: #334155; font-weight: 700; min-height: 30px; }
+    .default-form-meta { margin-top: 8px; display: flex; gap: 6px; flex-wrap: wrap; font-size: 10px; color: #64748b; }
+    .default-form-meta span { background: #f1f5f9; border-radius: 999px; padding: 3px 7px; font-weight: 800; }
 
     .loading { padding: 20px; text-align: center; font-weight: bold; color: var(--secondary-color); }
     .data-source { font-size: 12px; opacity: 0.9; margin-top: 6px; }
@@ -196,35 +249,21 @@
       .main-content { overflow: visible; }
       .dashboard-summary { flex-direction: column; align-items: stretch; }
       .pq-header, .criterion-item { flex-direction: column; align-items: stretch; }
-      .filter-panel { grid-template-columns: 1fr; }
+      .filter-panel, .audit-form-grid, .audit-load-row, .audit-list-grid, .default-forms-grid { grid-template-columns: 1fr; }
+      .audit-toolbar, .audit-form-header { flex-direction: column; align-items: stretch; }
       .report-header { flex-direction: column; }
     }
   </style>
 </head>
 <body>
   <div class="sidebar">
-    <h2>USOAP CMA Areas (Live)</h2>
-    <div class="audit-manager">
-      <div class="audit-manager-title" id="auditManagerTitle">Denetim Yönetimi</div>
-      <button class="audit-action-btn success" style="width:100%;" onclick="createAuditRecord()" id="btnCreateAudit">Yeni Denetim</button>
-      <label id="lblOpenAudits" for="openAuditSelect">Devam Eden Denetimler</label>
-      <select id="openAuditSelect"><option value="">Yükleniyor...</option></select>
-      <div class="audit-manager-row">
-        <button class="audit-action-btn primary" onclick="selectAuditFromDropdown('open')" id="btnOpenSelectedAudit">Seç/Aç</button>
-        <button class="audit-action-btn warn" onclick="closeSelectedAudit()" id="btnCloseAudit">Kapat</button>
-      </div>
-      <label id="lblClosedAudits" for="closedAuditSelect">Kapatılan Denetimler</label>
-      <select id="closedAuditSelect"><option value="">Yükleniyor...</option></select>
-      <div class="audit-manager-row">
-        <button class="audit-action-btn primary" onclick="selectAuditFromDropdown('closed')" id="btnOpenClosedAudit">Görüntüle</button>
-        <button class="audit-action-btn danger" onclick="deleteSelectedAuditWithPassword()" id="btnDeleteAudit">Sil</button>
-      </div>
-      <div class="audit-status-pill" id="activeAuditInfo">Aktif: Varsayılan</div>
-    </div>
+    <h2>Denetim Modülü</h2>
+    <button class="setup-btn" onclick="showAuditSetup()">Yeni Denetim Oluştur</button>
     <ul class="menu-list">
+      <li class="menu-item" onclick="showAuditSetup()" id="menu_AUDIT"><span>Denetim Oluştur</span><span class="area-count">Yeni</span></li>
       <li class="menu-item" onclick="showReport()" id="menu_REPORT"><span>Raporlama</span><span class="area-count">851</span></li>
     </ul>
-    <div class="sidebar-section-label">Audit Areas</div>
+    <div class="sidebar-section-label" id="defaultFormsMenuLabel">Default Kontrol Formları (9)</div>
     <ul class="menu-list" id="areaMenu"></ul>
   </div>
 
@@ -238,6 +277,112 @@
         <button class="lang-btn" id="btnLangEN" onclick="setLanguage('en')">EN</button>
       </div>
     </header>
+
+
+    <div class="audit-toolbar" id="auditToolbar">
+      <div>
+        <div class="audit-toolbar-title" id="activeAuditTitle">Aktif denetim yok</div>
+        <div class="audit-toolbar-meta" id="activeAuditMeta">Cevaplar ayrı bir denetim kaydı altında saklanacak. İlk kayıt sırasında otomatik denetim oluşturulabilir.</div>
+      </div>
+      <div class="audit-toolbar-actions">
+        <button class="audit-btn primary" type="button" onclick="showAuditSetup()" id="btnOpenAuditSetup">Denetim Bilgileri</button>
+        <button class="audit-btn" type="button" onclick="saveCurrentAudit()" id="btnSaveAudit">Denetimi Kaydet</button>
+        <button class="audit-btn warning" type="button" onclick="toggleAuditClosed()" id="btnCloseAudit">Denetimi Kapat</button>
+        <button class="audit-btn" type="button" onclick="exportAuditToPdf()" id="btnExportPdf">PDF Rapor</button>
+        <button class="audit-btn" type="button" onclick="exportAuditToExcel()" id="btnExportExcel">Excel Rapor</button>
+        <button class="audit-btn danger" type="button" onclick="deleteCurrentAudit()" id="btnDeleteCurrentAudit">Aktif Denetimi Sil</button>
+      </div>
+    </div>
+
+    <div class="audit-form-screen" id="auditSetupScreen">
+      <div class="audit-form-header">
+        <div>
+          <h2 id="auditSetupTitle">Denetim Oluştur / Aç</h2>
+          <p id="auditSetupSubtitle">İşletme, tarih, denetim ekibi ve görüşülen kişiler bilgileri bu denetim kaydına bağlanır.</p>
+        </div>
+        <div class="report-actions">
+          <button class="audit-btn warning" type="button" onclick="deleteAllAuditRecords()" id="btnDeleteAllAudits">Tüm Test Denetimlerini Sil</button>
+          <button class="audit-btn" type="button" onclick="showCurrentArea()" id="btnBackToQuestions">Sorulara Dön</button>
+          <button class="audit-btn success" type="button" onclick="saveAuditSetup()" id="btnSaveAuditSetup">Denetimi Kaydet</button>
+        </div>
+      </div>
+
+      <div class="audit-management-panel" id="auditManagementPanel">
+        <h3 id="auditManagementTitle">Denetim Kayıtları</h3>
+        <p id="auditManagementSubtitle">Mevcut denetimleri ID yazmadan aşağıdaki listelerden seçip açabilirsiniz.</p>
+        <div class="audit-list-grid">
+          <div class="audit-list-card">
+            <h4 id="openAuditsTitle">Devam Eden Denetimler</h4>
+            <select id="openAuditSelect"><option value="">Liste yükleniyor...</option></select>
+            <div class="audit-list-actions">
+              <button class="audit-btn primary" type="button" onclick="loadSelectedAudit('openAuditSelect')" id="btnOpenSelectedAudit">Seçili Denetimi Aç</button>
+            </div>
+          </div>
+          <div class="audit-list-card">
+            <h4 id="closedAuditsTitle">Kapatılan Denetimler</h4>
+            <select id="closedAuditSelect"><option value="">Liste yükleniyor...</option></select>
+            <div class="audit-list-actions">
+              <button class="audit-btn" type="button" onclick="loadSelectedAudit('closedAuditSelect')" id="btnOpenSelectedClosedAudit">Seçili Denetimi Görüntüle</button>
+            </div>
+          </div>
+        </div>
+        <div class="audit-refresh-info" id="auditListInfo"></div>
+        <div class="audit-list-actions" style="margin-top:10px;">
+          <button class="audit-btn" type="button" onclick="refreshAuditLists()" id="btnRefreshAuditLists">Denetim Listelerini Yenile</button>
+        </div>
+        <div class="audit-manual-open">
+          <div class="audit-load-row">
+            <input id="loadAuditId" type="text" placeholder="Gerekirse denetim ID yazın, örn: AUDIT-20260627-1234">
+            <button class="audit-btn" type="button" onclick="loadAuditById()" id="btnLoadAudit">ID ile Aç</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="default-forms-panel" id="defaultFormsPanel">
+        <h3 id="defaultFormsTitle">Default Kontrol Formları</h3>
+        <p id="defaultFormsSubtitle">Bu denetimde kullanılacak kontrol formlarını seçebilirsiniz. Sonradan işaretleyip ekleyebilirsiniz; her formun cevapları aktif denetim altında ayrı saklanır.</p>
+        <div class="default-forms-grid" id="defaultFormsGrid"></div>
+      </div>
+
+      <div class="audit-form-grid">
+        <div class="audit-field">
+          <label for="auditIdInput">Denetim ID</label>
+          <input id="auditIdInput" type="text" placeholder="Otomatik oluşturulur">
+        </div>
+        <div class="audit-field">
+          <label for="auditDateInput">Denetim Tarihi</label>
+          <input id="auditDateInput" type="date">
+        </div>
+        <div class="audit-field">
+          <label for="organizationInput">İşletme / Kuruluş</label>
+          <input id="organizationInput" type="text" placeholder="Denetlenen işletme adı">
+        </div>
+        <div class="audit-field">
+          <label for="auditTypeInput">Denetim Türü</label>
+          <input id="auditTypeInput" type="text" placeholder="İlk denetim, takip, iç denetim vb.">
+        </div>
+        <div class="audit-field full">
+          <label for="addressInput">Adres / Lokasyon</label>
+          <input id="addressInput" type="text" placeholder="Denetim lokasyonu">
+        </div>
+        <div class="audit-field full">
+          <label for="scopeInput">Denetim Kapsamı</label>
+          <textarea id="scopeInput" placeholder="Kapsam, dahil edilen alanlar, özel notlar..."></textarea>
+        </div>
+        <div class="audit-field">
+          <label for="auditTeamInput">Denetim Ekibi</label>
+          <textarea id="auditTeamInput" placeholder="Her satıra bir kişi yazabilirsiniz"></textarea>
+        </div>
+        <div class="audit-field">
+          <label for="interviewedInput">Görüşülen Kişiler</label>
+          <textarea id="interviewedInput" placeholder="Ad Soyad - Görev şeklinde yazabilirsiniz"></textarea>
+        </div>
+        <div class="audit-field full">
+          <label for="auditNotesInput">Genel Denetim Notları</label>
+          <textarea id="auditNotesInput" placeholder="Genel gözlem, açılış toplantısı notları, kapanış notları..."></textarea>
+        </div>
+      </div>
+    </div>
 
     <div id="pqWorkArea">
     <div class="dashboard-summary">
@@ -315,8 +460,11 @@
         </div>
         <div class="report-actions">
           <button class="report-btn" id="btnRefreshReport" type="button" onclick="renderReport()">Yenile</button>
+          <button class="report-btn" id="btnReportPdf" type="button" onclick="exportAuditToPdf()">PDF Rapor</button>
+          <button class="report-btn" id="btnReportExcel" type="button" onclick="exportAuditToExcel()">Excel Rapor</button>
         </div>
       </div>
+      <div class="report-cover" id="reportCover"></div>
       <div class="report-table-wrap">
         <table class="report-table">
           <thead id="reportTableHead"></thead>
@@ -326,8 +474,9 @@
       <div class="report-note" id="reportNote"></div>
       <div class="findings-section" id="findingsSection">
         <h3 id="findingsTitle">Bulgu Kayıtları</h3>
-        <div class="report-table-wrap">
-          <table class="report-table findings-table">
+        <p id="findingsSubtitle">NS verilen veya bulgu/not yazılan PQ kayıtları burada listelenir.</p>
+        <div class="findings-table-wrap">
+          <table class="findings-table">
             <thead id="findingsTableHead"></thead>
             <tbody id="findingsTableBody"></tbody>
           </table>
@@ -338,7 +487,7 @@
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-  import { getFirestore, doc, getDoc, setDoc, collection, getDocs, deleteDoc, updateDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+  import { getFirestore, doc, getDoc, setDoc, deleteDoc, collection, getDocs, writeBatch } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
   const DATA_FILE = "PQ_Teftis_JSON_Model.json";
   const AREA_ORDER = ["LEG", "ORG", "PEL", "OPS", "AIR", "AIG", "ANS", "AGA", "SSP"];
@@ -371,16 +520,15 @@
   let currentArea = "LEG";
   let currentAreaData = null;
   let currentUserData = {};
+  let currentAuditId = null;
+  let currentAuditData = createEmptyAuditData(null);
   let currentLang = "tr";
   let currentView = "area";
   let lblRefBox = "Mevzuat Referansı:";
   let lblNoteBox = "Denetçiye Notlar:";
   let filterListenersAttached = false;
   const filters = { search: "", ce: "all", ppq: "all", site: "all", status: "all", criteria: "all" };
-  let activeAuditId = "default";
-  let activeAuditRecord = { id: "default", name: "Varsayılan Denetim", status: "open" };
-  let auditRecordsCache = [];
-  const DELETE_AUDIT_PASSWORD = "170312";
+  let auditDirectory = [];
 
   function escapeHtml(value) {
     return String(value ?? "")
@@ -390,6 +538,527 @@
       .replace(/"/g, "&quot;")
       .replace(/'/g, "&#039;");
   }
+
+
+  function todayIsoDate() {
+    return new Date().toISOString().slice(0, 10);
+  }
+
+  function makeAuditId() {
+    const d = new Date();
+    const stamp = d.toISOString().slice(0, 10).replaceAll("-", "");
+    const rand = Math.floor(1000 + Math.random() * 9000);
+    return `AUDIT-${stamp}-${rand}`;
+  }
+
+  function linesToArray(value) {
+    return String(value || "").split("\n").map(v => v.trim()).filter(Boolean);
+  }
+
+  function arrayToLines(value) {
+    return Array.isArray(value) ? value.join("\n") : String(value || "");
+  }
+
+  function createEmptyAuditData(auditId) {
+    const id = auditId || makeAuditId();
+    return {
+      auditInfo: {
+        auditId: id,
+        organizationName: "",
+        auditDate: todayIsoDate(),
+        auditType: "",
+        auditTeam: [],
+        interviewedPersons: [],
+        address: "",
+        scope: "",
+        notes: "",
+        selectedForms: [...AREA_ORDER],
+        status: "open",
+        closedAt: "",
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+      },
+      answers: {}
+    };
+  }
+
+  function ensureAuditShape(data, auditId) {
+    const fallback = createEmptyAuditData(auditId);
+    const merged = data && typeof data === "object" ? data : fallback;
+    if (!merged.auditInfo) merged.auditInfo = fallback.auditInfo;
+    if (!merged.auditInfo.auditId) merged.auditInfo.auditId = auditId || makeAuditId();
+    if (!Array.isArray(merged.auditInfo.selectedForms)) merged.auditInfo.selectedForms = [...AREA_ORDER];
+    merged.auditInfo.selectedForms = merged.auditInfo.selectedForms.filter(areaKey => AREA_ORDER.includes(areaKey));
+    if (!merged.auditInfo.selectedForms.length) merged.auditInfo.selectedForms = [...AREA_ORDER];
+    if (!merged.auditInfo.status) merged.auditInfo.status = "open";
+    if (!merged.answers) merged.answers = {};
+    AREA_ORDER.forEach(areaKey => {
+      if (!merged.answers[areaKey]) merged.answers[areaKey] = { status: {}, notes: {} };
+      if (!merged.answers[areaKey].status) merged.answers[areaKey].status = {};
+      if (!merged.answers[areaKey].notes) merged.answers[areaKey].notes = {};
+    });
+    return merged;
+  }
+
+  function getAreaAnswerData(areaKey = currentArea) {
+    currentAuditData = ensureAuditShape(currentAuditData, currentAuditId);
+    if (!currentAuditData.answers[areaKey]) currentAuditData.answers[areaKey] = { status: {}, notes: {} };
+    if (!currentAuditData.answers[areaKey].status) currentAuditData.answers[areaKey].status = {};
+    if (!currentAuditData.answers[areaKey].notes) currentAuditData.answers[areaKey].notes = {};
+    return currentAuditData.answers[areaKey];
+  }
+
+  function getSelectedForms() {
+    currentAuditData = ensureAuditShape(currentAuditData, currentAuditId);
+    return currentAuditData.auditInfo.selectedForms || [...AREA_ORDER];
+  }
+
+  function isFormSelected(areaKey) {
+    return getSelectedForms().includes(areaKey);
+  }
+
+  function setFormSelection(areaKey, checked) {
+    currentAuditData = ensureAuditShape(currentAuditData, currentAuditId);
+    const selected = new Set(getSelectedForms());
+    if (checked) selected.add(areaKey);
+    else selected.delete(areaKey);
+    currentAuditData.auditInfo.selectedForms = AREA_ORDER.filter(key => selected.has(key));
+    renderAreaMenu();
+    renderDefaultFormsPanel();
+    updateActiveAuditBanner();
+  }
+
+  function isAuditClosed() {
+    return currentAuditData?.auditInfo?.status === "closed";
+  }
+
+  function syncFormCheckboxesFromAudit() {
+    AREA_ORDER.forEach(areaKey => {
+      const cb = document.getElementById(`formSelect_${areaKey}`);
+      if (cb) cb.checked = isFormSelected(areaKey);
+    });
+  }
+
+  function updateActiveAuditBanner() {
+    const info = currentAuditData?.auditInfo || {};
+    const tr = currentLang === "tr";
+    const title = document.getElementById("activeAuditTitle");
+    const meta = document.getElementById("activeAuditMeta");
+    if (!title || !meta) return;
+    if (!currentAuditId) {
+      title.innerText = tr ? "Aktif denetim yok" : "No active audit";
+      meta.innerText = tr
+        ? "Cevaplar ayrı bir denetim kaydı altında saklanacak. İlk kayıt sırasında otomatik denetim oluşturulabilir."
+        : "Answers will be stored under a separate audit record. An audit can be created automatically on first save.";
+      return;
+    }
+    const statusText = info.status === "closed" ? (tr ? "Kapalı" : "Closed") : (tr ? "Açık" : "Open");
+    const formText = `${getSelectedForms().length}/9 ${tr ? "form seçili" : "forms selected"}`;
+    title.innerHTML = `${escapeHtml(info.organizationName || (tr ? "İsimsiz Denetim" : "Unnamed Audit"))} — ${escapeHtml(currentAuditId)} <span class="audit-closed-label">${escapeHtml(statusText)}</span>`;
+    meta.innerText = `${tr ? "Tarih" : "Date"}: ${info.auditDate || "-"} | ${tr ? "Tür" : "Type"}: ${info.auditType || "-"} | ${formText} | ${tr ? "Kayıt yolu" : "Path"}: audits/${currentAuditId}`;
+    const closeBtn = document.getElementById("btnCloseAudit");
+    if (closeBtn) closeBtn.innerText = info.status === "closed" ? (tr ? "Denetimi Yeniden Aç" : "Reopen Audit") : (tr ? "Denetimi Kapat" : "Close Audit");
+  }
+
+
+  function formatAuditOption(auditId, data) {
+    const info = data?.auditInfo || {};
+    const organization = info.organizationName || (currentLang === "tr" ? "İsimsiz denetim" : "Unnamed audit");
+    const date = info.auditDate || "-";
+    const forms = Array.isArray(info.selectedForms) ? info.selectedForms.join(",") : "-";
+    return `${organization} | ${date} | ${auditId} | ${forms}`;
+  }
+
+  function setAuditSelectOptions(selectId, audits, emptyText) {
+    const select = document.getElementById(selectId);
+    if (!select) return;
+    if (!audits.length) {
+      select.innerHTML = `<option value="">${escapeHtml(emptyText)}</option>`;
+      return;
+    }
+    select.innerHTML = `<option value="">${escapeHtml(currentLang === "tr" ? "Denetim seçin..." : "Select audit...")}</option>` + audits.map(item =>
+      `<option value="${escapeHtml(item.id)}">${escapeHtml(formatAuditOption(item.id, item.data))}</option>`
+    ).join("");
+  }
+
+  window.refreshAuditLists = async function() {
+    const tr = currentLang === "tr";
+    const infoEl = document.getElementById("auditListInfo");
+    const openSelect = document.getElementById("openAuditSelect");
+    const closedSelect = document.getElementById("closedAuditSelect");
+    if (openSelect) openSelect.innerHTML = `<option value="">${tr ? "Yükleniyor..." : "Loading..."}</option>`;
+    if (closedSelect) closedSelect.innerHTML = `<option value="">${tr ? "Yükleniyor..." : "Loading..."}</option>`;
+    if (infoEl) infoEl.innerText = tr ? "Denetim kayıtları Firebase'den okunuyor..." : "Reading audit records from Firebase...";
+    try {
+      const snap = await getDocs(collection(db, "audits"));
+      auditDirectory = snap.docs.map(auditDoc => ({ id: auditDoc.id, data: ensureAuditShape(auditDoc.data(), auditDoc.id) }));
+      auditDirectory.sort((a, b) => String(b.data?.auditInfo?.updatedAt || b.data?.auditInfo?.createdAt || "").localeCompare(String(a.data?.auditInfo?.updatedAt || a.data?.auditInfo?.createdAt || "")));
+      const openAudits = auditDirectory.filter(item => item.data?.auditInfo?.status !== "closed");
+      const closedAudits = auditDirectory.filter(item => item.data?.auditInfo?.status === "closed");
+      setAuditSelectOptions("openAuditSelect", openAudits, tr ? "Devam eden denetim bulunamadı." : "No open audits found.");
+      setAuditSelectOptions("closedAuditSelect", closedAudits, tr ? "Kapatılan denetim bulunamadı." : "No closed audits found.");
+      if (infoEl) infoEl.innerText = tr
+        ? `${openAudits.length} devam eden, ${closedAudits.length} kapatılan denetim listelendi.`
+        : `${openAudits.length} open and ${closedAudits.length} closed audits listed.`;
+    } catch (error) {
+      if (infoEl) infoEl.innerText = "Hata: " + error.message;
+      if (openSelect) openSelect.innerHTML = `<option value="">${tr ? "Liste okunamadı" : "Could not load list"}</option>`;
+      if (closedSelect) closedSelect.innerHTML = `<option value="">${tr ? "Liste okunamadı" : "Could not load list"}</option>`;
+    }
+  };
+
+  window.loadSelectedAudit = async function(selectId) {
+    const tr = currentLang === "tr";
+    const auditId = document.getElementById(selectId)?.value || "";
+    if (!auditId) {
+      alert(tr ? "Lütfen listeden bir denetim seçin." : "Please select an audit from the list.");
+      return;
+    }
+    document.getElementById("loadAuditId").value = auditId;
+    await loadAuditById();
+  };
+
+  function fillAuditFormFromData() {
+    const info = currentAuditData?.auditInfo || {};
+    document.getElementById("auditIdInput").value = info.auditId || currentAuditId || "";
+    document.getElementById("auditDateInput").value = info.auditDate || todayIsoDate();
+    document.getElementById("organizationInput").value = info.organizationName || "";
+    document.getElementById("auditTypeInput").value = info.auditType || "";
+    document.getElementById("addressInput").value = info.address || "";
+    document.getElementById("scopeInput").value = info.scope || "";
+    document.getElementById("auditTeamInput").value = arrayToLines(info.auditTeam);
+    document.getElementById("interviewedInput").value = arrayToLines(info.interviewedPersons);
+    document.getElementById("auditNotesInput").value = info.notes || "";
+    syncFormCheckboxesFromAudit();
+  }
+
+  function readAuditFormToData() {
+    const requestedId = document.getElementById("auditIdInput").value.trim() || currentAuditId || makeAuditId();
+    currentAuditId = requestedId;
+    currentAuditData = ensureAuditShape(currentAuditData, currentAuditId);
+    currentAuditData.auditInfo = {
+      ...currentAuditData.auditInfo,
+      auditId: currentAuditId,
+      organizationName: document.getElementById("organizationInput").value.trim(),
+      auditDate: document.getElementById("auditDateInput").value || todayIsoDate(),
+      auditType: document.getElementById("auditTypeInput").value.trim(),
+      auditTeam: linesToArray(document.getElementById("auditTeamInput").value),
+      interviewedPersons: linesToArray(document.getElementById("interviewedInput").value),
+      address: document.getElementById("addressInput").value.trim(),
+      scope: document.getElementById("scopeInput").value.trim(),
+      notes: document.getElementById("auditNotesInput").value.trim(),
+      selectedForms: AREA_ORDER.filter(areaKey => document.getElementById(`formSelect_${areaKey}`)?.checked),
+      status: currentAuditData.auditInfo.status || "open",
+      closedAt: currentAuditData.auditInfo.closedAt || "",
+      updatedAt: new Date().toISOString()
+    };
+    if (!currentAuditData.auditInfo.selectedForms.length) currentAuditData.auditInfo.selectedForms = [...AREA_ORDER];
+    currentUserData = getAreaAnswerData(currentArea);
+    updateActiveAuditBanner();
+  }
+
+  async function ensureActiveAudit() {
+    if (!currentAuditId) {
+      currentAuditData = createEmptyAuditData(null);
+      currentAuditId = currentAuditData.auditInfo.auditId;
+      currentUserData = getAreaAnswerData(currentArea);
+      updateActiveAuditBanner();
+      fillAuditFormFromData();
+    }
+    currentAuditData = ensureAuditShape(currentAuditData, currentAuditId);
+    currentAuditData.auditInfo.updatedAt = new Date().toISOString();
+    return currentAuditData;
+  }
+
+  window.saveCurrentAudit = async function() {
+    try {
+      await ensureActiveAudit();
+      await setDoc(doc(db, "audits", currentAuditId), currentAuditData);
+      updateActiveAuditBanner();
+      alert(currentLang === "tr" ? "Denetim kaydedildi." : "Audit saved.");
+    } catch (error) {
+      alert("Hata: " + error.message);
+    }
+  };
+
+  window.saveAuditSetup = async function() {
+    try {
+      readAuditFormToData();
+      await setDoc(doc(db, "audits", currentAuditId), currentAuditData);
+      currentUserData = getAreaAnswerData(currentArea);
+      updateActiveAuditBanner();
+      await refreshAuditLists();
+      alert(currentLang === "tr" ? "Denetim bilgileri kaydedildi." : "Audit information saved.");
+      showCurrentArea();
+    } catch (error) {
+      alert("Hata: " + error.message);
+    }
+  };
+
+  window.loadAuditById = async function() {
+    const auditId = document.getElementById("loadAuditId").value.trim();
+    if (!auditId) {
+      alert(currentLang === "tr" ? "Lütfen denetim ID girin." : "Please enter an audit ID.");
+      return;
+    }
+    try {
+      const snap = await getDoc(doc(db, "audits", auditId));
+      if (!snap.exists()) throw new Error(currentLang === "tr" ? "Bu ID ile denetim bulunamadı." : "No audit found with this ID.");
+      currentAuditId = auditId;
+      currentAuditData = ensureAuditShape(snap.data(), auditId);
+      currentUserData = getAreaAnswerData(currentArea);
+      fillAuditFormFromData();
+      updateActiveAuditBanner();
+      renderPQs();
+      alert(currentLang === "tr" ? "Denetim açıldı." : "Audit loaded.");
+    } catch (error) {
+      alert("Hata: " + error.message);
+    }
+  };
+
+
+  window.toggleAuditClosed = async function() {
+    const tr = currentLang === "tr";
+    if (!currentAuditId) {
+      alert(tr ? "Önce bir denetim oluşturun veya açın." : "Create or open an audit first.");
+      return;
+    }
+    currentAuditData = ensureAuditShape(currentAuditData, currentAuditId);
+    if (isAuditClosed()) {
+      if (!confirm(tr ? "Bu denetim yeniden açılacak. Değişiklik yapılabilir hale gelsin mi?" : "This audit will be reopened. Allow changes again?")) return;
+      currentAuditData.auditInfo.status = "open";
+      currentAuditData.auditInfo.reopenedAt = new Date().toISOString();
+    } else {
+      if (!confirm(tr ? "Denetim kapatılacak. Kapatıldıktan sonra cevaplar kilitlenir. Devam edilsin mi?" : "The audit will be closed. Answers will be locked after closing. Continue?")) return;
+      currentAuditData.auditInfo.status = "closed";
+      currentAuditData.auditInfo.closedAt = new Date().toISOString();
+    }
+    currentAuditData.auditInfo.updatedAt = new Date().toISOString();
+    await setDoc(doc(db, "audits", currentAuditId), currentAuditData);
+    updateActiveAuditBanner();
+    await refreshAuditLists();
+    renderAreaMenu();
+    renderDefaultFormsPanel();
+    if (currentView === "area") renderPQs();
+    if (currentView === "report") renderReport();
+    alert(isAuditClosed() ? (tr ? "Denetim kapatıldı." : "Audit closed.") : (tr ? "Denetim yeniden açıldı." : "Audit reopened."));
+  };
+
+  function getStatusSummaryForPQ(pq, pqIdx, areaKey) {
+    const userData = currentAuditData?.answers?.[areaKey] || { status: {}, notes: {} };
+    const parsedEN = extractNotesAndCriteria(pq.review_evidence_en || pq.Review_Evidence || "");
+    const parsedTR = extractNotesAndCriteria(pq.review_evidence_tr || pq.Incelenecek_Kanitlar || "");
+    const criteriaRows = getActiveCriteria(parsedEN, parsedTR);
+    let hasNS = false, hasS = false, hasScoreable = false;
+    criteriaRows.forEach(row => {
+      const line = row.en || row.tr || "";
+      if (line.trim().endsWith(":")) return;
+      hasScoreable = true;
+      const val = userData.status?.[`${pqIdx}_${row.index}`] || "NA";
+      if (val === "NS") hasNS = true;
+      if (val === "S") hasS = true;
+    });
+    if (!hasScoreable) return "NA";
+    if (hasNS) return "NS";
+    if (hasS) return "S";
+    return "NA";
+  }
+
+  function buildAuditReportRows() {
+    const selectedAreas = currentAuditId ? getSelectedForms() : AREA_ORDER;
+    const rows = [];
+    selectedAreas.forEach(areaKey => {
+      const areaData = normalizedAreas[areaKey] || { pqs: [] };
+      const userData = currentAuditData?.answers?.[areaKey] || { notes: {} };
+      (areaData.pqs || []).forEach((pq, pqIdx) => {
+        const question = currentLang === "tr" ? (pq.question_tr || pq.question_en) : (pq.question_en || pq.question_tr);
+        const evidence = currentLang === "tr" ? (pq.review_evidence_tr || pq.review_evidence_en) : (pq.review_evidence_en || pq.review_evidence_tr);
+        const status = getStatusSummaryForPQ(pq, pqIdx, areaKey);
+        const finding = userData.notes?.[pqIdx] || "";
+        rows.push({
+          area: areaKey,
+          pqNo: pq.no || "",
+          ce: pq.ce || "",
+          ppq: asBool(pq.ppq) ? "PPQ" : "",
+          site: asBool(pq.OnSiteRequired || pq.site_type) ? "On-Site" : "Off-Site",
+          status,
+          question,
+          evidence,
+          finding
+        });
+      });
+    });
+    return rows;
+  }
+
+  function renderReportCover() {
+    const cover = document.getElementById("reportCover");
+    if (!cover) return;
+    const tr = currentLang === "tr";
+    const info = currentAuditData?.auditInfo || {};
+    cover.innerHTML = `<h1>${tr ? "Denetim Raporu" : "Audit Report"}</h1>
+      <p><strong>${tr ? "Denetim ID" : "Audit ID"}:</strong> ${escapeHtml(currentAuditId || "-")}</p>
+      <p><strong>${tr ? "İşletme / Kuruluş" : "Organization"}:</strong> ${escapeHtml(info.organizationName || "-")}</p>
+      <p><strong>${tr ? "Denetim Tarihi" : "Audit Date"}:</strong> ${escapeHtml(info.auditDate || "-")}</p>
+      <p><strong>${tr ? "Denetim Türü" : "Audit Type"}:</strong> ${escapeHtml(info.auditType || "-")}</p>
+      <p><strong>${tr ? "Durum" : "Status"}:</strong> ${escapeHtml(info.status === "closed" ? (tr ? "Kapalı" : "Closed") : (tr ? "Açık" : "Open"))}</p>
+      <p><strong>${tr ? "Seçili Kontrol Formları" : "Selected Control Forms"}:</strong> ${escapeHtml((info.selectedForms || AREA_ORDER).join(", "))}</p>
+      <p><strong>${tr ? "Denetim Heyeti" : "Audit Team"}:</strong><br>${escapeHtml(arrayToLines(info.auditTeam) || "-").replaceAll("\n", "<br>")}</p>
+      <p><strong>${tr ? "Görüşülen Kişiler" : "Interviewed Persons"}:</strong><br>${escapeHtml(arrayToLines(info.interviewedPersons) || "-").replaceAll("\n", "<br>")}</p>
+      <p><strong>${tr ? "Kapsam" : "Scope"}:</strong><br>${escapeHtml(info.scope || "-").replaceAll("\n", "<br>")}</p>
+      <p><strong>${tr ? "Genel Denetim Notları" : "General Audit Notes"}:</strong><br>${escapeHtml(info.notes || "-").replaceAll("\n", "<br>")}</p>`;
+  }
+
+  window.exportAuditToPdf = async function() {
+    const tr = currentLang === "tr";
+    if (!currentAuditId) {
+      alert(tr ? "PDF raporu için önce bir denetim oluşturun veya açın." : "Create or open an audit before exporting a PDF report.");
+      return;
+    }
+    await loadMasterModel();
+    await renderReport();
+    window.print();
+  };
+
+  function csvCell(value) {
+    return `"${String(value ?? "").replaceAll('"', '""')}"`;
+  }
+
+  window.exportAuditToExcel = async function() {
+    const tr = currentLang === "tr";
+    if (!currentAuditId) {
+      alert(tr ? "Excel raporu için önce bir denetim oluşturun veya açın." : "Create or open an audit before exporting an Excel report.");
+      return;
+    }
+    await loadMasterModel();
+    const info = currentAuditData?.auditInfo || {};
+    const headers = tr
+      ? ["Alan", "PQ No", "CE", "PPQ", "Saha", "Durum", "Soru", "İncelenecek Kanıtlar", "Bulgu / Not"]
+      : ["Area", "PQ No", "CE", "PPQ", "Site", "Status", "Question", "Review Evidence", "Finding / Note"];
+    const metaRows = [
+      [tr ? "Denetim ID" : "Audit ID", currentAuditId],
+      [tr ? "İşletme / Kuruluş" : "Organization", info.organizationName || ""],
+      [tr ? "Denetim Tarihi" : "Audit Date", info.auditDate || ""],
+      [tr ? "Denetim Türü" : "Audit Type", info.auditType || ""],
+      [tr ? "Durum" : "Status", info.status === "closed" ? (tr ? "Kapalı" : "Closed") : (tr ? "Açık" : "Open")],
+      [tr ? "Seçili Kontrol Formları" : "Selected Control Forms", (info.selectedForms || AREA_ORDER).join(", ")],
+      [tr ? "Denetim Heyeti" : "Audit Team", arrayToLines(info.auditTeam)],
+      [tr ? "Görüşülen Kişiler" : "Interviewed Persons", arrayToLines(info.interviewedPersons)],
+      [tr ? "Kapsam" : "Scope", info.scope || ""],
+      [tr ? "Genel Denetim Notları" : "General Audit Notes", info.notes || ""]
+    ];
+    const bodyRows = buildAuditReportRows().map(row => [row.area, row.pqNo, row.ce, row.ppq, row.site, row.status, row.question, row.evidence, row.finding]);
+    const csv = "\ufeff" + metaRows.map(r => r.map(csvCell).join(";")).join("\n") + "\n\n" + headers.map(csvCell).join(";") + "\n" + bodyRows.map(r => r.map(csvCell).join(";")).join("\n");
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${currentAuditId || "audit"}_rapor.csv`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
+  window.deleteCurrentAudit = async function() {
+    const tr = currentLang === "tr";
+    if (!currentAuditId) {
+      alert(tr ? "Silinecek aktif denetim yok." : "There is no active audit to delete.");
+      return;
+    }
+    const firstConfirm = tr
+      ? `Aktif denetim silinecek:
+${currentAuditId}
+
+Bu işlem sadece audits/${currentAuditId} kaydını siler; JSON kontrol listesi silinmez. Devam edilsin mi?`
+      : `The active audit will be deleted:
+${currentAuditId}
+
+This only deletes audits/${currentAuditId}; the JSON checklist is not deleted. Continue?`;
+    if (!confirm(firstConfirm)) return;
+    const typed = prompt(tr ? "Silmek için şifreyi girin:" : "Enter the password to delete:");
+    if (typed !== "170312") {
+      alert(tr ? "Şifre hatalı. Silme işlemi iptal edildi." : "Incorrect password. Delete cancelled.");
+      return;
+    }
+    try {
+      await deleteDoc(doc(db, "audits", currentAuditId));
+      currentAuditId = null;
+      currentAuditData = createEmptyAuditData(null);
+      currentUserData = { status: {}, notes: {} };
+      fillAuditFormFromData();
+      updateActiveAuditBanner();
+      await refreshAuditLists();
+      renderPQs();
+      alert(tr ? "Aktif denetim silindi." : "Active audit deleted.");
+    } catch (error) {
+      alert("Hata: " + error.message);
+    }
+  };
+
+  window.deleteAllAuditRecords = async function() {
+    const tr = currentLang === "tr";
+    const warning = tr
+      ? "Firebase audits koleksiyonu altındaki TÜM denetim kayıtları silinecek. JSON ana kontrol listesi silinmez. Bu işlem geri alınamaz."
+      : "ALL audit records under the Firebase audits collection will be deleted. The JSON master checklist will not be deleted. This cannot be undone.";
+    if (!confirm(warning)) return;
+    const typed = prompt(tr ? "Tüm denetimleri silmek için şifreyi girin:" : "Enter the password to delete all audits:");
+    if (typed !== "170312") {
+      alert(tr ? "Şifre hatalı. Toplu silme iptal edildi." : "Incorrect password. Bulk delete cancelled.");
+      return;
+    }
+    try {
+      const snap = await getDocs(collection(db, "audits"));
+      if (snap.empty) {
+        alert(tr ? "Silinecek denetim kaydı bulunamadı." : "No audit records found to delete.");
+        return;
+      }
+      let batch = writeBatch(db);
+      let counter = 0;
+      let total = 0;
+      for (const auditDoc of snap.docs) {
+        batch.delete(auditDoc.ref);
+        counter += 1;
+        total += 1;
+        if (counter === 450) {
+          await batch.commit();
+          batch = writeBatch(db);
+          counter = 0;
+        }
+      }
+      if (counter > 0) await batch.commit();
+      currentAuditId = null;
+      currentAuditData = createEmptyAuditData(null);
+      currentUserData = { status: {}, notes: {} };
+      fillAuditFormFromData();
+      updateActiveAuditBanner();
+      await refreshAuditLists();
+      renderPQs();
+      alert(tr ? `${total} denetim kaydı silindi.` : `${total} audit records deleted.`);
+    } catch (error) {
+      alert("Hata: " + error.message);
+    }
+  };
+
+  window.showAuditSetup = function() {
+    currentView = "audit";
+    document.querySelectorAll(".menu-item").forEach(el => el.classList.remove("active"));
+    const auditMenu = document.getElementById("menu_AUDIT");
+    if (auditMenu) auditMenu.classList.add("active");
+    document.getElementById("pqWorkArea").style.display = "none";
+    document.getElementById("reportScreen").classList.remove("active");
+    document.getElementById("auditSetupScreen").classList.add("active");
+    document.getElementById("areaTitle").innerText = currentLang === "tr" ? "Denetim Oluştur / Aç" : "Create / Open Audit";
+    fillAuditFormFromData();
+    renderDefaultFormsPanel();
+    updateActiveAuditBanner();
+    refreshAuditLists();
+  };
+
+  window.showCurrentArea = function() {
+    document.getElementById("auditSetupScreen").classList.remove("active");
+    switchArea(currentArea);
+  };
 
   function asBool(value) {
     if (value === true) return true;
@@ -443,12 +1112,48 @@
 
   function renderAreaMenu() {
     const menu = document.getElementById("areaMenu");
+    const isTR = currentLang === "tr";
+    const selected = new Set(currentAuditId ? getSelectedForms() : AREA_ORDER);
     menu.innerHTML = AREA_ORDER.map(areaKey => {
       const count = normalizedAreas[areaKey]?.pqs?.length || 0;
-      const active = areaKey === currentArea ? " active" : "";
-      return `<li class="menu-item${active}" onclick="switchArea('${areaKey}')" id="menu_${areaKey}"><span>${areaKey} (${AREA_LABELS[areaKey]})</span><span class="area-count">${count}</span></li>`;
+      const active = areaKey === currentArea && currentView === "area" ? " active" : "";
+      const muted = selected.has(areaKey) ? "" : " unselected";
+      const label = isTR ? `${areaKey} Kontrol Formu` : `${areaKey} Control Form`;
+      const state = selected.has(areaKey) ? `${count} PQ` : (isTR ? "Seçilmedi" : "Not selected");
+      return `<li class="menu-item${active}${muted}" onclick="switchArea('${areaKey}')" id="menu_${areaKey}"><span>${label}<br><small style="color:#94a3b8;font-weight:600;">${AREA_LABELS[areaKey] || areaKey}</small></span><span class="area-count">${state}</span></li>`;
+    }).join("");
+    renderDefaultFormsPanel();
+  }
+
+  function renderDefaultFormsPanel() {
+    const grid = document.getElementById("defaultFormsGrid");
+    if (!grid) return;
+    const isTR = currentLang === "tr";
+    const selected = new Set(currentAuditId ? getSelectedForms() : AREA_ORDER);
+    grid.innerHTML = AREA_ORDER.map(areaKey => {
+      const stats = getAreaStaticStats(areaKey);
+      const active = areaKey === currentArea && currentView === "area" ? " active" : "";
+      const checked = selected.has(areaKey);
+      const muted = checked ? "" : " unselected";
+      const formLabel = isTR ? "Kontrol Formu" : "Control Form";
+      const pqLabel = "PQ";
+      const critLabel = isTR ? "Kriter" : "Criteria";
+      const selectLabel = checked ? (isTR ? "Bu denetime dahil" : "Included in this audit") : (isTR ? "Bu denetime dahil değil" : "Not included in this audit");
+      return `<div class="default-form-card${active}${muted}">
+        <div onclick="switchArea('${areaKey}')" style="cursor:pointer;">
+          <div class="default-form-code">${areaKey}</div>
+          <div class="default-form-name">${AREA_LABELS[areaKey] || areaKey}<br>${formLabel}</div>
+          <div class="default-form-meta"><span>${stats.pqCount} ${pqLabel}</span><span>${stats.criteriaCount} ${critLabel}</span></div>
+        </div>
+        <label class="default-form-select" onclick="event.stopPropagation();">
+          <input id="formSelect_${areaKey}" type="checkbox" ${checked ? "checked" : ""} onchange="setFormSelection('${areaKey}', this.checked)">
+          ${selectLabel}
+        </label>
+      </div>`;
     }).join("");
   }
+
+  window.setFormSelection = setFormSelection;
 
   window.setLanguage = function(lang) {
     currentLang = lang;
@@ -473,8 +1178,44 @@
       lblNoteBox = "Notes to the Auditor:";
     }
 
-    updateAuditLanguageLabels();
-    renderAuditDropdowns();
+
+    document.getElementById("btnOpenAuditSetup").innerText = lang === "tr" ? "Denetim Bilgileri" : "Audit Info";
+    document.getElementById("btnSaveAudit").innerText = lang === "tr" ? "Denetimi Kaydet" : "Save Audit";
+    document.getElementById("btnDeleteCurrentAudit").innerText = lang === "tr" ? "Aktif Denetimi Sil" : "Delete Active Audit";
+    document.getElementById("btnExportPdf").innerText = lang === "tr" ? "PDF Rapor" : "PDF Report";
+    document.getElementById("btnExportExcel").innerText = lang === "tr" ? "Excel Rapor" : "Excel Report";
+    const closeBtnLang = document.getElementById("btnCloseAudit");
+    if (closeBtnLang) closeBtnLang.innerText = isAuditClosed() ? (lang === "tr" ? "Denetimi Yeniden Aç" : "Reopen Audit") : (lang === "tr" ? "Denetimi Kapat" : "Close Audit");
+    document.getElementById("auditSetupTitle").innerText = lang === "tr" ? "Denetim Oluştur / Aç" : "Create / Open Audit";
+    document.getElementById("auditSetupSubtitle").innerText = lang === "tr"
+      ? "İşletme, tarih, denetim ekibi ve görüşülen kişiler bilgileri bu denetim kaydına bağlanır."
+      : "Organization, date, audit team and interviewed persons are linked to this audit record.";
+    document.getElementById("btnBackToQuestions").innerText = lang === "tr" ? "Sorulara Dön" : "Back to Questions";
+    document.getElementById("btnSaveAuditSetup").innerText = lang === "tr" ? "Denetimi Kaydet" : "Save Audit";
+    document.getElementById("btnDeleteAllAudits").innerText = lang === "tr" ? "Tüm Test Denetimlerini Sil" : "Delete All Test Audits";
+    document.getElementById("btnLoadAudit").innerText = lang === "tr" ? "ID ile Aç" : "Open by ID";
+    const auditManagementTitle = document.getElementById("auditManagementTitle");
+    if (auditManagementTitle) auditManagementTitle.innerText = lang === "tr" ? "Denetim Kayıtları" : "Audit Records";
+    const auditManagementSubtitle = document.getElementById("auditManagementSubtitle");
+    if (auditManagementSubtitle) auditManagementSubtitle.innerText = lang === "tr" ? "Mevcut denetimleri ID yazmadan aşağıdaki listelerden seçip açabilirsiniz." : "Open existing audits from the lists below without typing an audit ID.";
+    const openAuditsTitle = document.getElementById("openAuditsTitle");
+    if (openAuditsTitle) openAuditsTitle.innerText = lang === "tr" ? "Devam Eden Denetimler" : "Open Audits";
+    const closedAuditsTitle = document.getElementById("closedAuditsTitle");
+    if (closedAuditsTitle) closedAuditsTitle.innerText = lang === "tr" ? "Kapatılan Denetimler" : "Closed Audits";
+    const btnOpenSelectedAudit = document.getElementById("btnOpenSelectedAudit");
+    if (btnOpenSelectedAudit) btnOpenSelectedAudit.innerText = lang === "tr" ? "Seçili Denetimi Aç" : "Open Selected Audit";
+    const btnOpenSelectedClosedAudit = document.getElementById("btnOpenSelectedClosedAudit");
+    if (btnOpenSelectedClosedAudit) btnOpenSelectedClosedAudit.innerText = lang === "tr" ? "Seçili Denetimi Görüntüle" : "View Selected Audit";
+    const btnRefreshAuditLists = document.getElementById("btnRefreshAuditLists");
+    if (btnRefreshAuditLists) btnRefreshAuditLists.innerText = lang === "tr" ? "Denetim Listelerini Yenile" : "Refresh Audit Lists";
+    const defaultFormsMenuLabel = document.getElementById("defaultFormsMenuLabel");
+    if (defaultFormsMenuLabel) defaultFormsMenuLabel.innerText = lang === "tr" ? "Default Kontrol Formları (9)" : "Default Control Forms (9)";
+    const defaultFormsTitle = document.getElementById("defaultFormsTitle");
+    if (defaultFormsTitle) defaultFormsTitle.innerText = lang === "tr" ? "Default Kontrol Formları" : "Default Control Forms";
+    const defaultFormsSubtitle = document.getElementById("defaultFormsSubtitle");
+    if (defaultFormsSubtitle) defaultFormsSubtitle.innerText = lang === "tr" ? "Bu denetimde kullanılacak kontrol formlarını seçebilirsiniz. Sonradan işaretleyip ekleyebilirsiniz; her formun cevapları aktif denetim altında ayrı saklanır." : "Open one of the 9 ready-made control forms for this audit. Answers for each form are stored separately under the active audit record.";
+    renderAreaMenu();
+    updateActiveAuditBanner();
 
     if (currentAreaData) {
       document.getElementById("areaTitle").innerText = `${currentAreaData.area_name} (${currentArea})`;
@@ -482,155 +1223,6 @@
       updateFilterLabels();
       renderPQs();
     }
-  };
-
-
-  function makeAuditProgressDocRef(areaKey) {
-    if (!activeAuditId || activeAuditId === "default") return doc(db, "user_progress", areaKey);
-    return doc(db, "audit_progress", activeAuditId, "areas", areaKey);
-  }
-
-  function makeAuditDisplayName(record) {
-    if (!record) return currentLang === "tr" ? "Varsayılan Denetim" : "Default Audit";
-    const name = record.name || record.title || record.id || "Denetim";
-    const dateText = record.createdAtText || record.date || "";
-    return dateText ? `${name} - ${dateText}` : name;
-  }
-
-  function updateAuditLanguageLabels() {
-    const tr = currentLang === "tr";
-    const byId = (id, txt) => { const el = document.getElementById(id); if (el) el.innerText = txt; };
-    byId("auditManagerTitle", tr ? "Denetim Yönetimi" : "Audit Management");
-    byId("btnCreateAudit", tr ? "Yeni Denetim" : "New Audit");
-    byId("lblOpenAudits", tr ? "Devam Eden Denetimler" : "Ongoing Audits");
-    byId("lblClosedAudits", tr ? "Kapatılan Denetimler" : "Closed Audits");
-    byId("btnOpenSelectedAudit", tr ? "Seç/Aç" : "Select/Open");
-    byId("btnCloseAudit", tr ? "Kapat" : "Close");
-    byId("btnOpenClosedAudit", tr ? "Görüntüle" : "View");
-    byId("btnDeleteAudit", tr ? "Sil" : "Delete");
-    const info = document.getElementById("activeAuditInfo");
-    if (info) info.innerText = `${tr ? "Aktif" : "Active"}: ${makeAuditDisplayName(activeAuditRecord)}`;
-  }
-
-  async function loadAuditRecords() {
-    const openSelect = document.getElementById("openAuditSelect");
-    const closedSelect = document.getElementById("closedAuditSelect");
-    if (!openSelect || !closedSelect) return;
-    try {
-      const snap = await getDocs(collection(db, "audits"));
-      auditRecordsCache = [];
-      snap.forEach(d => auditRecordsCache.push({ id: d.id, ...d.data() }));
-      auditRecordsCache.sort((a, b) => String(b.createdAtText || b.createdAt || b.id).localeCompare(String(a.createdAtText || a.createdAt || a.id)));
-      renderAuditDropdowns();
-    } catch (err) {
-      openSelect.innerHTML = `<option value="">${currentLang === "tr" ? "Denetimler okunamadı" : "Audits could not be loaded"}</option>`;
-      closedSelect.innerHTML = `<option value="">${currentLang === "tr" ? "Denetimler okunamadı" : "Audits could not be loaded"}</option>`;
-    }
-  }
-
-  function renderAuditDropdowns() {
-    const tr = currentLang === "tr";
-    const openSelect = document.getElementById("openAuditSelect");
-    const closedSelect = document.getElementById("closedAuditSelect");
-    if (!openSelect || !closedSelect) return;
-
-    const openRecords = auditRecordsCache.filter(a => (a.status || "open") !== "closed" && !a.closedAtText);
-    const closedRecords = auditRecordsCache.filter(a => (a.status || "open") === "closed" || a.closedAtText);
-    const recordOptions = records => records.map(a => `<option value="${escapeHtml(a.id)}">${escapeHtml(makeAuditDisplayName(a))}</option>`).join("");
-
-    // Eski kullanımda kayıtlar user_progress/{AREA} altında tutulduğu için
-    // bunu da açık denetim listesinde görünür tutuyoruz.
-    const defaultText = tr ? "Mevcut kayıt / Varsayılan denetim" : "Existing record / Default audit";
-    openSelect.innerHTML = `<option value="default">${defaultText}</option>` + recordOptions(openRecords);
-    closedSelect.innerHTML = closedRecords.length
-      ? recordOptions(closedRecords)
-      : `<option value="">${tr ? "Kapatılan denetim yok" : "No closed audit"}</option>`;
-
-    if (activeAuditId) {
-      if ([...openSelect.options].some(o => o.value === activeAuditId)) openSelect.value = activeAuditId;
-      if ([...closedSelect.options].some(o => o.value === activeAuditId)) closedSelect.value = activeAuditId;
-    }
-    updateAuditLanguageLabels();
-  }
-
-  window.createAuditRecord = async function() {
-    const tr = currentLang === "tr";
-    const name = prompt(tr ? "Denetim adı giriniz:" : "Enter audit name:", tr ? "Yeni Denetim" : "New Audit");
-    if (!name || !name.trim()) return;
-    const id = `audit_${new Date().toISOString().replace(/[-:.TZ]/g, "").slice(0, 14)}`;
-    const record = {
-      name: name.trim(),
-      status: "open",
-      createdAt: serverTimestamp(),
-      createdAtText: new Date().toLocaleString("tr-TR")
-    };
-    await setDoc(doc(db, "audits", id), record);
-    activeAuditId = id;
-    activeAuditRecord = { id, ...record };
-    await loadAuditRecords();
-    await switchArea(currentArea);
-  };
-
-  window.selectAuditFromDropdown = async function(type) {
-    const select = document.getElementById(type === "closed" ? "closedAuditSelect" : "openAuditSelect");
-    const id = select?.value;
-    if (!id) return;
-    if (id === "default") {
-      activeAuditId = "default";
-      activeAuditRecord = { id: "default", name: currentLang === "tr" ? "Mevcut kayıt / Varsayılan denetim" : "Existing record / Default audit", status: "open" };
-    } else {
-      const record = auditRecordsCache.find(a => a.id === id);
-      activeAuditId = id;
-      activeAuditRecord = record || { id, name: id, status: type === "closed" ? "closed" : "open" };
-    }
-    renderAuditDropdowns();
-    if (currentView === "report") await renderReport();
-    else await switchArea(currentArea);
-  };
-
-  window.closeSelectedAudit = async function() {
-    const select = document.getElementById("openAuditSelect");
-    const id = select?.value || (activeAuditId !== "default" ? activeAuditId : "");
-    if (!id || id === "default") {
-      alert(currentLang === "tr" ? "Varsayılan/mevcut kayıt kapatılamaz. Önce yeni bir denetim kaydı oluşturun." : "Default/existing record cannot be closed. Create a new audit record first.");
-      return;
-    }
-    const msg = currentLang === "tr" ? "Bu denetim kapatılsın mı?" : "Close this audit?";
-    if (!confirm(msg)) return;
-    await updateDoc(doc(db, "audits", id), { status: "closed", closedAt: serverTimestamp(), closedAtText: new Date().toLocaleString("tr-TR") });
-    if (activeAuditId === id) {
-      activeAuditRecord = { ...activeAuditRecord, status: "closed", closedAtText: new Date().toLocaleString("tr-TR") };
-    }
-    await loadAuditRecords();
-    if (currentView === "report") await renderReport();
-  };
-
-  window.deleteSelectedAuditWithPassword = async function() {
-    const closedId = document.getElementById("closedAuditSelect")?.value;
-    const openId = document.getElementById("openAuditSelect")?.value;
-    const id = closedId || (openId !== "default" ? openId : "") || (activeAuditId !== "default" ? activeAuditId : "");
-    if (!id) {
-      alert(currentLang === "tr" ? "Silinecek denetim kaydı seçilmedi." : "No audit record selected for deletion.");
-      return;
-    }
-    const pass = prompt(currentLang === "tr" ? "Denetimi silmek için şifre giriniz:" : "Enter password to delete the audit:");
-    if (pass !== DELETE_AUDIT_PASSWORD) {
-      alert(currentLang === "tr" ? "Şifre hatalı. Denetim silinmedi." : "Wrong password. Audit was not deleted.");
-      return;
-    }
-    const ok = confirm(currentLang === "tr" ? "Bu işlem geri alınamaz. Denetim silinsin mi?" : "This cannot be undone. Delete the audit?");
-    if (!ok) return;
-    await deleteDoc(doc(db, "audits", id));
-    for (const areaKey of AREA_ORDER) {
-      try { await deleteDoc(doc(db, "audit_progress", id, "areas", areaKey)); } catch (err) {}
-    }
-    if (activeAuditId === id) {
-      activeAuditId = "default";
-      activeAuditRecord = { id: "default", name: currentLang === "tr" ? "Varsayılan Denetim" : "Default Audit", status: "open" };
-    }
-    await loadAuditRecords();
-    if (currentView === "report") await renderReport();
-    else await switchArea(currentArea);
   };
 
   function getCriteriaCountForPQLang(pq, lang) {
@@ -662,11 +1254,8 @@
     const areaData = normalizedAreas[areaKey] || { pqs: [] };
     const pqs = areaData.pqs || [];
     let userData = { status: {}, notes: {} };
-    try {
-      const snap = await getDoc(makeAuditProgressDocRef(areaKey));
-      if (snap.exists()) userData = snap.data();
-    } catch (err) {
-      userData = { status: {}, notes: {} };
+    if (currentAuditId && currentAuditData?.answers?.[areaKey]) {
+      userData = currentAuditData.answers[areaKey];
     }
     if (!userData.status) userData.status = {};
 
@@ -691,7 +1280,7 @@
     });
     const activePQs = pqs.length - countNA;
     const ei = activePQs > 0 ? Math.round((countS / activePQs) * 100) : 0;
-    return { countS, countNS, countNA, ei, userData };
+    return { countS, countNS, countNA, ei };
   }
 
   window.showReport = async function() {
@@ -700,6 +1289,7 @@
     const reportMenu = document.getElementById("menu_REPORT");
     if (reportMenu) reportMenu.classList.add("active");
     document.getElementById("pqWorkArea").style.display = "none";
+    document.getElementById("auditSetupScreen").classList.remove("active");
     document.getElementById("reportScreen").classList.add("active");
     document.getElementById("areaTitle").innerText = currentLang === "tr" ? "Raporlama Ekranı" : "Reporting Screen";
     document.getElementById("dataSourceInfo").innerText = `Data source: ${DATA_FILE} / Reporting summary`;
@@ -707,71 +1297,30 @@
   };
 
 
-  function getFindingRowsForArea(areaKey, userData) {
-    const areaData = normalizedAreas[areaKey] || { pqs: [] };
-    const rows = [];
-    const pqs = areaData.pqs || [];
-    pqs.forEach((pq, pqIdx) => {
-      const parsedEN = extractNotesAndCriteria(pq.review_evidence_en || pq.Review_Evidence || "");
-      const parsedTR = extractNotesAndCriteria(pq.review_evidence_tr || pq.Incelenecek_Kanitlar || "");
-      const criteriaRows = getActiveCriteria(parsedEN, parsedTR);
-      const nsCriteria = [];
-      criteriaRows.forEach(row => {
-        const line = currentLang === "tr" ? (row.tr || row.en) : (row.en || row.tr);
-        if ((line || "").trim().endsWith(":")) return;
-        const val = userData.status?.[`${pqIdx}_${row.index}`] || "NA";
-        if (val === "NS") nsCriteria.push(line || `Criterion ${row.index + 1}`);
-      });
-      const note = userData.notes?.[pqIdx] || "";
-      if (nsCriteria.length || String(note).trim()) {
-        rows.push({
-          area: areaKey,
-          pqNo: pq.no,
-          ce: pq.ce || areaKey,
-          status: nsCriteria.length ? "NS" : getPQComputedStatusForUserData(pq, pqIdx, userData),
-          question: currentLang === "tr" ? (pq.question_tr || pq.question_en) : (pq.question_en || pq.question_tr),
-          criteria: nsCriteria.join("\n"),
-          note
-        });
-      }
-    });
-    return rows;
-  }
-
-  function getPQComputedStatusForUserData(pq, pqIdx, userData) {
-    const parsedEN = extractNotesAndCriteria(pq.review_evidence_en || pq.Review_Evidence || "");
-    const parsedTR = extractNotesAndCriteria(pq.review_evidence_tr || pq.Incelenecek_Kanitlar || "");
-    const criteriaRows = getActiveCriteria(parsedEN, parsedTR);
-    let hasNS = false, hasS = false, hasScoreable = false;
-    criteriaRows.forEach(row => {
-      const line = row.en || row.tr || "";
-      if (line.trim().endsWith(":")) return;
-      hasScoreable = true;
-      const val = userData.status?.[`${pqIdx}_${row.index}`] || "NA";
-      if (val === "NS") hasNS = true;
-      if (val === "S") hasS = true;
-    });
-    if (!hasScoreable) return "NA";
-    if (hasNS) return "NS";
-    if (hasS) return "S";
-    return "NA";
-  }
-
-  async function renderFindingsReport(areaProgressMap) {
+  function renderFindingsTable() {
     const tr = currentLang === "tr";
     const head = document.getElementById("findingsTableHead");
     const body = document.getElementById("findingsTableBody");
-    document.getElementById("findingsTitle").innerText = tr ? "Bulgu Kayıtları" : "Finding Records";
-    head.innerHTML = `<tr><th>#</th><th>Area</th><th>PQ</th><th>CE</th><th>Status</th><th>${tr ? "Soru" : "Question"}</th><th>${tr ? "NS Kriter" : "NS Criteria"}</th><th>${tr ? "Bulgu / Not" : "Finding / Note"}</th></tr>`;
-    const allFindings = [];
-    AREA_ORDER.forEach(areaKey => allFindings.push(...getFindingRowsForArea(areaKey, areaProgressMap[areaKey] || { status: {}, notes: {} })));
-    if (!allFindings.length) {
-      body.innerHTML = `<tr><td colspan="8" class="loading">${tr ? "Seçili denetimde bulgu veya not kaydı bulunmuyor." : "No findings or notes were found for the selected audit."}</td></tr>`;
+    const title = document.getElementById("findingsTitle");
+    const subtitle = document.getElementById("findingsSubtitle");
+    if (!head || !body) return;
+    if (title) title.innerText = tr ? "Bulgu Kayıtları" : "Finding Records";
+    if (subtitle) subtitle.innerText = tr ? "NS verilen veya bulgu/not yazılan PQ kayıtları burada listelenir." : "PQs marked NS or containing finding/notes are listed here.";
+    head.innerHTML = `<tr>
+      <th>Area</th><th>PQ</th><th>CE</th><th>${tr ? "Durum" : "Status"}</th><th>${tr ? "Soru" : "Question"}</th><th>${tr ? "Bulgu / Not" : "Finding / Note"}</th>
+    </tr>`;
+    const findingRows = buildAuditReportRows().filter(row => row.status === "NS" || String(row.finding || "").trim());
+    if (!findingRows.length) {
+      body.innerHTML = `<tr><td colspan="6" style="text-align:center;color:#64748b;">${tr ? "Bulgu veya NS kayıt bulunmuyor." : "No findings or NS records found."}</td></tr>`;
       return;
     }
-    body.innerHTML = allFindings.map((r, idx) => `<tr>
-      <td>${idx + 1}</td><td>${escapeHtml(r.area)}</td><td>${escapeHtml(r.pqNo)}</td><td>${escapeHtml(r.ce)}</td><td>${escapeHtml(r.status)}</td>
-      <td class="finding-note-cell">${escapeHtml(r.question)}</td><td class="finding-note-cell">${escapeHtml(r.criteria)}</td><td class="finding-note-cell">${escapeHtml(r.note)}</td>
+    body.innerHTML = findingRows.map(row => `<tr>
+      <td>${escapeHtml(row.area)}</td>
+      <td>${escapeHtml(row.pqNo)}</td>
+      <td>${escapeHtml(row.ce)}</td>
+      <td>${escapeHtml(row.status)}</td>
+      <td>${escapeHtml(row.question)}</td>
+      <td>${escapeHtml(row.finding || (row.status === "NS" ? (tr ? "NS olarak işaretlendi; ayrıca bulgu notu yazılmamış." : "Marked NS; no additional finding note entered.") : ""))}</td>
     </tr>`).join("");
   }
 
@@ -782,9 +1331,14 @@
     document.getElementById("reportTitle").innerText = tr ? "Audit Area Bazında Raporlama" : "Audit Area Reporting";
     document.getElementById("reportSubtitle").innerText = tr ? "PQ, kriter, PPQ, saha ve durum dağılımı." : "PQ, criteria, PPQ, site and status distribution.";
     document.getElementById("btnRefreshReport").innerText = tr ? "Yenile" : "Refresh";
+    const pdfBtn = document.getElementById("btnReportPdf");
+    const excelBtn = document.getElementById("btnReportExcel");
+    if (pdfBtn) pdfBtn.innerText = tr ? "PDF Rapor" : "PDF Report";
+    if (excelBtn) excelBtn.innerText = tr ? "Excel Rapor" : "Excel Report";
     document.getElementById("reportNote").innerText = tr
-      ? `Area adına tıklayarak ilgili PQ listesine geçebilirsiniz. S/NS/NA, EI ve bulgu kayıtları seçili denetimden okunur: ${makeAuditDisplayName(activeAuditRecord)}.`
-      : `Click an area name to open its PQ list. S/NS/NA, EI and findings are read from the selected audit: ${makeAuditDisplayName(activeAuditRecord)}.`;
+      ? "Rapor sadece bu denetimde seçili kontrol formlarını içerir. Area adına tıklayarak ilgili PQ listesine geçebilirsiniz. S/NS/NA ve EI değerleri aktif denetim kaydından hesaplanır."
+      : "The report includes only the control forms selected for this audit. Click an area name to open its PQ list. S/NS/NA and EI values come from the active audit record.";
+    renderReportCover();
 
     thead.innerHTML = `<tr>
       <th>#</th><th>Area</th><th>${tr ? "2024 PQ Sayısı" : "Number of 2024 PQs"}</th><th>${tr ? "Kriter Sayısı" : "Criteria Count"}</th><th>PPQ</th><th>On-Site</th><th>Off-Site</th><th>S</th><th>NS</th><th>NA</th><th>EI</th>
@@ -793,12 +1347,11 @@
 
     await loadMasterModel();
     const totals = { pqCount: 0, criteriaCount: 0, ppqCount: 0, onSiteCount: 0, offSiteCount: 0, countS: 0, countNS: 0, countNA: 0 };
-    const areaProgressMap = {};
     let rowsHtml = "";
-    for (const [idx, areaKey] of AREA_ORDER.entries()) {
+    const reportAreas = currentAuditId ? getSelectedForms() : AREA_ORDER;
+    for (const [idx, areaKey] of reportAreas.entries()) {
       const stat = getAreaStaticStats(areaKey);
       const progress = await getAreaProgressStats(areaKey);
-      areaProgressMap[areaKey] = progress.userData || { status: {}, notes: {} };
       totals.pqCount += stat.pqCount;
       totals.criteriaCount += stat.criteriaCount;
       totals.ppqCount += stat.ppqCount;
@@ -822,10 +1375,20 @@
       <td>${totals.countS}</td><td>${totals.countNS}</td><td>${totals.countNA}</td><td>%${totalEi}</td>
     </tr>`;
     tbody.innerHTML = rowsHtml;
-    await renderFindingsReport(areaProgressMap);
+    renderFindingsTable();
   };
 
   window.switchArea = async function(areaKey) {
+    if (currentAuditId && !isFormSelected(areaKey)) {
+      const tr = currentLang === "tr";
+      const addIt = confirm(tr
+        ? `${areaKey} kontrol formu bu denetime dahil değil. Denetime ekleyip açmak ister misiniz?`
+        : `${areaKey} control form is not included in this audit. Add it to the audit and open it?`);
+      if (!addIt) return;
+      setFormSelection(areaKey, true);
+      currentAuditData.auditInfo.updatedAt = new Date().toISOString();
+      await setDoc(doc(db, "audits", currentAuditId), currentAuditData);
+    }
     currentView = "area";
     currentArea = areaKey;
     document.getElementById("pqWorkArea").style.display = "block";
@@ -833,23 +1396,23 @@
     document.querySelectorAll(".menu-item").forEach(el => el.classList.remove("active"));
     const activeMenu = document.getElementById(`menu_${areaKey}`);
     if (activeMenu) activeMenu.classList.add("active");
+    renderDefaultFormsPanel();
 
     const container = document.getElementById("pqContainer");
     container.innerHTML = '<div class="loading">Loading data matrix...</div>';
 
     try {
       await loadMasterModel();
-      const userSnap = await getDoc(makeAuditProgressDocRef(currentArea));
-
       // Always use the latest JSON model for PQ master data.
-      // Firebase is kept only for user progress (S/NS/NA and notes) to prevent stale
-      // audit_structures documents from overriding corrected Excel/JSON text.
+      // Audit responses are stored separately under audits/{auditId}/answers/{area}.
       currentAreaData = normalizedAreas[currentArea];
-      currentUserData = userSnap.exists() ? userSnap.data() : { status: {}, notes: {} };
+      currentAuditData = ensureAuditShape(currentAuditData, currentAuditId);
+      currentUserData = currentAuditId ? getAreaAnswerData(currentArea) : { status: {}, notes: {} };
       if (!currentUserData.status) currentUserData.status = {};
       if (!currentUserData.notes) currentUserData.notes = {};
 
-      document.getElementById("dataSourceInfo").innerText = `Data source: ${DATA_FILE} / ${currentArea} / Audit: ${makeAuditDisplayName(activeAuditRecord)}`;
+      updateActiveAuditBanner();
+      document.getElementById("dataSourceInfo").innerText = `Data source: ${DATA_FILE} / ${currentArea} (Firebase: ${currentAuditId ? "audits/" + currentAuditId : "no active audit"})`;
 
       document.getElementById("areaTitle").innerText = `${currentAreaData.area_name} (${currentArea})`;
       populateFilterOptions();
@@ -1060,13 +1623,14 @@
         const key = `${pqIdx}_${row.index}`;
         if (!currentUserData.status[key]) currentUserData.status[key] = "NA";
         const currentStatus = currentUserData.status[key];
+        const disabledAttr = isAuditClosed() ? "disabled" : "";
         criteriaHtml += `
           <div class="criterion-item">
             <div class="criterion-text">${escapeHtml(activeLineText)}</div>
             <div class="status-options">
-              <input type="radio" name="rad_${pqIdx}_${row.index}" id="rad_S_${pqIdx}_${row.index}" value="S" ${currentStatus === "S" ? "checked" : ""} data-pq="${pqIdx}" data-crit="${row.index}"><label for="rad_S_${pqIdx}_${row.index}">S</label>
-              <input type="radio" name="rad_${pqIdx}_${row.index}" id="rad_NS_${pqIdx}_${row.index}" value="NS" ${currentStatus === "NS" ? "checked" : ""} data-pq="${pqIdx}" data-crit="${row.index}"><label for="rad_NS_${pqIdx}_${row.index}">NS</label>
-              <input type="radio" name="rad_${pqIdx}_${row.index}" id="rad_NA_${pqIdx}_${row.index}" value="NA" ${currentStatus === "NA" ? "checked" : ""} data-pq="${pqIdx}" data-crit="${row.index}"><label for="rad_NA_${pqIdx}_${row.index}">NA</label>
+              <input type="radio" name="rad_${pqIdx}_${row.index}" id="rad_S_${pqIdx}_${row.index}" value="S" ${currentStatus === "S" ? "checked" : ""} ${disabledAttr} data-pq="${pqIdx}" data-crit="${row.index}"><label for="rad_S_${pqIdx}_${row.index}">S</label>
+              <input type="radio" name="rad_${pqIdx}_${row.index}" id="rad_NS_${pqIdx}_${row.index}" value="NS" ${currentStatus === "NS" ? "checked" : ""} ${disabledAttr} data-pq="${pqIdx}" data-crit="${row.index}"><label for="rad_NS_${pqIdx}_${row.index}">NS</label>
+              <input type="radio" name="rad_${pqIdx}_${row.index}" id="rad_NA_${pqIdx}_${row.index}" value="NA" ${currentStatus === "NA" ? "checked" : ""} ${disabledAttr} data-pq="${pqIdx}" data-crit="${row.index}"><label for="rad_NA_${pqIdx}_${row.index}">NA</label>
             </div>
           </div>`;
       });
@@ -1089,7 +1653,7 @@
           ${criteriaHtml}
           <div class="audit-notes-box">
             <label style="font-size:12px; font-weight:bold; color:var(--primary-color); display:block; margin-bottom:5px;">${escapeHtml(lblNotesBox)}</label>
-            <textarea id="note_${pqIdx}">${escapeHtml(savedNote)}</textarea>
+            <textarea id="note_${pqIdx}" ${isAuditClosed() ? "disabled" : ""}>${escapeHtml(savedNote)}</textarea>
           </div>
         </div>`;
 
@@ -1099,18 +1663,31 @@
 
       pqItem.querySelectorAll(".status-options input").forEach(radio => {
         radio.addEventListener("change", async e => {
+          if (isAuditClosed()) {
+            alert(currentLang === "tr" ? "Bu denetim kapalı. Değişiklik yapmak için yeniden açın." : "This audit is closed. Reopen it to make changes.");
+            renderPQs();
+            return;
+          }
           const pIdx = e.target.getAttribute("data-pq");
           const cIdx = e.target.getAttribute("data-crit");
+          await ensureActiveAudit();
+          currentUserData = getAreaAnswerData(currentArea);
           currentUserData.status[`${pIdx}_${cIdx}`] = e.target.value;
           calculateMetrics();
-          await setDoc(makeAuditProgressDocRef(currentArea), currentUserData);
+          await setDoc(doc(db, "audits", currentAuditId), currentAuditData);
         });
       });
 
       const textarea = pqItem.querySelector("textarea");
       textarea.addEventListener("blur", async e => {
+        if (isAuditClosed()) {
+          alert(currentLang === "tr" ? "Bu denetim kapalı. Değişiklik yapmak için yeniden açın." : "This audit is closed. Reopen it to make changes.");
+          return;
+        }
+        await ensureActiveAudit();
+        currentUserData = getAreaAnswerData(currentArea);
         currentUserData.notes[pqIdx] = e.target.value;
-        await setDoc(makeAuditProgressDocRef(currentArea), currentUserData);
+        await setDoc(doc(db, "audits", currentAuditId), currentAuditData);
       });
 
       container.appendChild(pqItem);
@@ -1177,7 +1754,6 @@
   }
 
   setLanguage("tr");
-  loadAuditRecords();
   switchArea("LEG");
 </script>
 </body>
