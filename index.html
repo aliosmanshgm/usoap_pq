@@ -143,6 +143,30 @@
     .audit-notes-box { margin-top: 15px; border-top: 1px solid var(--border-color); padding-top: 12px; }
     .audit-notes-box textarea { width: 100%; height: 65px; padding: 10px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 12px; box-sizing: border-box; resize: vertical; }
 
+
+    .audit-toolbar { background: white; border: 1px solid var(--border-color); border-radius: 12px; padding: 14px 16px; margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .audit-toolbar-title { font-weight: 900; color: #0f172a; font-size: 14px; }
+    .audit-toolbar-meta { color: #64748b; font-size: 12px; margin-top: 3px; }
+    .audit-toolbar-actions { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+    .audit-btn { border: 1px solid var(--border-color); background: #f8fafc; color: #334155; border-radius: 8px; padding: 9px 12px; font-size: 12px; font-weight: 800; cursor: pointer; }
+    .audit-btn.primary { background: var(--primary-color); border-color: var(--primary-color); color: white; }
+    .audit-btn.success { background: var(--success-color); border-color: var(--success-color); color: white; }
+    .audit-btn.danger { background: var(--danger-color); border-color: var(--danger-color); color: white; }
+    .audit-btn.warning { background: #f97316; border-color: #f97316; color: white; }
+    .audit-btn:hover { opacity: .9; }
+    .audit-form-screen { display: none; background: white; border: 1px solid var(--border-color); border-radius: 12px; padding: 18px; margin-bottom: 16px; }
+    .audit-form-screen.active { display: block; }
+    .audit-form-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 16px; }
+    .audit-form-header h2 { margin: 0; color: #0f172a; font-size: 20px; }
+    .audit-form-header p { margin: 5px 0 0 0; color: #64748b; font-size: 13px; }
+    .audit-form-grid { display: grid; grid-template-columns: repeat(2, minmax(220px, 1fr)); gap: 12px; }
+    .audit-field { display: flex; flex-direction: column; gap: 5px; }
+    .audit-field.full { grid-column: 1 / -1; }
+    .audit-field label { font-size: 11px; font-weight: 900; color: #475569; text-transform: uppercase; letter-spacing: .03em; }
+    .audit-field input, .audit-field select, .audit-field textarea { width: 100%; border: 1px solid var(--border-color); border-radius: 8px; padding: 9px 10px; font-size: 13px; background: #fff; color: var(--text-color); }
+    .audit-field textarea { min-height: 70px; resize: vertical; }
+    .audit-load-row { display: grid; grid-template-columns: 1fr auto; gap: 8px; margin-bottom: 14px; }
+
     .filter-panel { background: white; border: 1px solid var(--border-color); border-radius: 12px; padding: 14px 15px; margin-bottom: 14px; display: grid; grid-template-columns: 1.4fr repeat(5, minmax(120px, 1fr)) auto; gap: 10px; align-items: end; }
     .filter-field { display: flex; flex-direction: column; gap: 5px; }
     .filter-field label { font-size: 11px; font-weight: 800; color: #475569; text-transform: uppercase; letter-spacing: .03em; }
@@ -171,6 +195,19 @@
     .report-table .total-row td { background: #fffbeb; font-weight: 900; border-top: 2px solid #92400e; }
     .report-note { margin-top: 10px; color: #64748b; font-size: 12px; line-height: 1.5; }
 
+
+    .default-forms-panel { margin: 16px 0 18px 0; border: 1px solid var(--border-color); border-radius: 12px; padding: 14px; background: #f8fafc; }
+    .default-forms-panel h3 { margin: 0 0 6px 0; font-size: 16px; color: #0f172a; }
+    .default-forms-panel p { margin: 0 0 12px 0; font-size: 12px; color: #64748b; line-height: 1.5; }
+    .default-forms-grid { display: grid; grid-template-columns: repeat(3, minmax(160px, 1fr)); gap: 10px; }
+    .default-form-card { border: 1px solid var(--border-color); background: white; border-radius: 10px; padding: 12px; text-align: left; cursor: pointer; transition: all .15s ease; }
+    .default-form-card:hover { border-color: var(--secondary-color); box-shadow: 0 3px 8px rgba(30,58,138,.10); transform: translateY(-1px); }
+    .default-form-card.active { border-color: var(--secondary-color); background: #eff6ff; }
+    .default-form-code { font-size: 16px; font-weight: 900; color: var(--primary-color); }
+    .default-form-name { margin-top: 3px; font-size: 12px; color: #334155; font-weight: 700; min-height: 30px; }
+    .default-form-meta { margin-top: 8px; display: flex; gap: 6px; flex-wrap: wrap; font-size: 10px; color: #64748b; }
+    .default-form-meta span { background: #f1f5f9; border-radius: 999px; padding: 3px 7px; font-weight: 800; }
+
     .loading { padding: 20px; text-align: center; font-weight: bold; color: var(--secondary-color); }
     .data-source { font-size: 12px; opacity: 0.9; margin-top: 6px; }
     @media (max-width: 900px) {
@@ -179,19 +216,22 @@
       .main-content { overflow: visible; }
       .dashboard-summary { flex-direction: column; align-items: stretch; }
       .pq-header, .criterion-item { flex-direction: column; align-items: stretch; }
-      .filter-panel { grid-template-columns: 1fr; }
+      .filter-panel, .audit-form-grid, .audit-load-row, .default-forms-grid { grid-template-columns: 1fr; }
+      .audit-toolbar, .audit-form-header { flex-direction: column; align-items: stretch; }
       .report-header { flex-direction: column; }
     }
   </style>
 </head>
 <body>
   <div class="sidebar">
-    <h2>USOAP CMA Areas (Live)</h2>
+    <h2>Denetim Modülü</h2>
+    <button class="setup-btn" onclick="showAuditSetup()">Yeni Denetim Oluştur</button>
     <button class="setup-btn" onclick="syncActiveAreaToFirebase()">Sync Area to Firebase</button>
     <ul class="menu-list">
+      <li class="menu-item" onclick="showAuditSetup()" id="menu_AUDIT"><span>Denetim Oluştur</span><span class="area-count">Yeni</span></li>
       <li class="menu-item" onclick="showReport()" id="menu_REPORT"><span>Raporlama</span><span class="area-count">851</span></li>
     </ul>
-    <div class="sidebar-section-label">Audit Areas</div>
+    <div class="sidebar-section-label" id="defaultFormsMenuLabel">Default Kontrol Formları (9)</div>
     <ul class="menu-list" id="areaMenu"></ul>
   </div>
 
@@ -205,6 +245,83 @@
         <button class="lang-btn" id="btnLangEN" onclick="setLanguage('en')">EN</button>
       </div>
     </header>
+
+
+    <div class="audit-toolbar" id="auditToolbar">
+      <div>
+        <div class="audit-toolbar-title" id="activeAuditTitle">Aktif denetim yok</div>
+        <div class="audit-toolbar-meta" id="activeAuditMeta">Cevaplar ayrı bir denetim kaydı altında saklanacak. İlk kayıt sırasında otomatik denetim oluşturulabilir.</div>
+      </div>
+      <div class="audit-toolbar-actions">
+        <button class="audit-btn primary" type="button" onclick="showAuditSetup()" id="btnOpenAuditSetup">Denetim Bilgileri</button>
+        <button class="audit-btn" type="button" onclick="saveCurrentAudit()" id="btnSaveAudit">Denetimi Kaydet</button>
+        <button class="audit-btn danger" type="button" onclick="deleteCurrentAudit()" id="btnDeleteCurrentAudit">Aktif Denetimi Sil</button>
+      </div>
+    </div>
+
+    <div class="audit-form-screen" id="auditSetupScreen">
+      <div class="audit-form-header">
+        <div>
+          <h2 id="auditSetupTitle">Denetim Oluştur / Aç</h2>
+          <p id="auditSetupSubtitle">İşletme, tarih, denetim ekibi ve görüşülen kişiler bilgileri bu denetim kaydına bağlanır.</p>
+        </div>
+        <div class="report-actions">
+          <button class="audit-btn warning" type="button" onclick="deleteAllAuditRecords()" id="btnDeleteAllAudits">Tüm Test Denetimlerini Sil</button>
+          <button class="audit-btn" type="button" onclick="showCurrentArea()" id="btnBackToQuestions">Sorulara Dön</button>
+          <button class="audit-btn success" type="button" onclick="saveAuditSetup()" id="btnSaveAuditSetup">Denetimi Kaydet</button>
+        </div>
+      </div>
+
+      <div class="audit-load-row">
+        <input id="loadAuditId" type="text" placeholder="Mevcut denetim ID yazın, örn: AUDIT-20260627-1234">
+        <button class="audit-btn" type="button" onclick="loadAuditById()" id="btnLoadAudit">Denetimi Aç</button>
+      </div>
+
+      <div class="default-forms-panel" id="defaultFormsPanel">
+        <h3 id="defaultFormsTitle">Default Kontrol Formları</h3>
+        <p id="defaultFormsSubtitle">Bu denetimde kullanılacak 9 adet hazır kontrol formundan birini açabilirsiniz. Her formun cevapları aktif denetim kaydı altında ayrı saklanır.</p>
+        <div class="default-forms-grid" id="defaultFormsGrid"></div>
+      </div>
+
+      <div class="audit-form-grid">
+        <div class="audit-field">
+          <label for="auditIdInput">Denetim ID</label>
+          <input id="auditIdInput" type="text" placeholder="Otomatik oluşturulur">
+        </div>
+        <div class="audit-field">
+          <label for="auditDateInput">Denetim Tarihi</label>
+          <input id="auditDateInput" type="date">
+        </div>
+        <div class="audit-field">
+          <label for="organizationInput">İşletme / Kuruluş</label>
+          <input id="organizationInput" type="text" placeholder="Denetlenen işletme adı">
+        </div>
+        <div class="audit-field">
+          <label for="auditTypeInput">Denetim Türü</label>
+          <input id="auditTypeInput" type="text" placeholder="İlk denetim, takip, iç denetim vb.">
+        </div>
+        <div class="audit-field full">
+          <label for="addressInput">Adres / Lokasyon</label>
+          <input id="addressInput" type="text" placeholder="Denetim lokasyonu">
+        </div>
+        <div class="audit-field full">
+          <label for="scopeInput">Denetim Kapsamı</label>
+          <textarea id="scopeInput" placeholder="Kapsam, dahil edilen alanlar, özel notlar..."></textarea>
+        </div>
+        <div class="audit-field">
+          <label for="auditTeamInput">Denetim Ekibi</label>
+          <textarea id="auditTeamInput" placeholder="Her satıra bir kişi yazabilirsiniz"></textarea>
+        </div>
+        <div class="audit-field">
+          <label for="interviewedInput">Görüşülen Kişiler</label>
+          <textarea id="interviewedInput" placeholder="Ad Soyad - Görev şeklinde yazabilirsiniz"></textarea>
+        </div>
+        <div class="audit-field full">
+          <label for="auditNotesInput">Genel Denetim Notları</label>
+          <textarea id="auditNotesInput" placeholder="Genel gözlem, açılış toplantısı notları, kapanış notları..."></textarea>
+        </div>
+      </div>
+    </div>
 
     <div id="pqWorkArea">
     <div class="dashboard-summary">
@@ -296,7 +413,7 @@
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-  import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+  import { getFirestore, doc, getDoc, setDoc, deleteDoc, collection, getDocs, writeBatch } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
   const DATA_FILE = "PQ_Teftis_JSON_Model.json";
   const AREA_ORDER = ["LEG", "ORG", "PEL", "OPS", "AIR", "AIG", "ANS", "AGA", "SSP"];
@@ -329,6 +446,8 @@
   let currentArea = "LEG";
   let currentAreaData = null;
   let currentUserData = {};
+  let currentAuditId = null;
+  let currentAuditData = createEmptyAuditData(null);
   let currentLang = "tr";
   let currentView = "area";
   let lblRefBox = "Mevzuat Referansı:";
@@ -344,6 +463,274 @@
       .replace(/"/g, "&quot;")
       .replace(/'/g, "&#039;");
   }
+
+
+  function todayIsoDate() {
+    return new Date().toISOString().slice(0, 10);
+  }
+
+  function makeAuditId() {
+    const d = new Date();
+    const stamp = d.toISOString().slice(0, 10).replaceAll("-", "");
+    const rand = Math.floor(1000 + Math.random() * 9000);
+    return `AUDIT-${stamp}-${rand}`;
+  }
+
+  function linesToArray(value) {
+    return String(value || "").split("\n").map(v => v.trim()).filter(Boolean);
+  }
+
+  function arrayToLines(value) {
+    return Array.isArray(value) ? value.join("\n") : String(value || "");
+  }
+
+  function createEmptyAuditData(auditId) {
+    const id = auditId || makeAuditId();
+    return {
+      auditInfo: {
+        auditId: id,
+        organizationName: "",
+        auditDate: todayIsoDate(),
+        auditType: "",
+        auditTeam: [],
+        interviewedPersons: [],
+        address: "",
+        scope: "",
+        notes: "",
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+      },
+      answers: {}
+    };
+  }
+
+  function ensureAuditShape(data, auditId) {
+    const fallback = createEmptyAuditData(auditId);
+    const merged = data && typeof data === "object" ? data : fallback;
+    if (!merged.auditInfo) merged.auditInfo = fallback.auditInfo;
+    if (!merged.auditInfo.auditId) merged.auditInfo.auditId = auditId || makeAuditId();
+    if (!merged.answers) merged.answers = {};
+    AREA_ORDER.forEach(areaKey => {
+      if (!merged.answers[areaKey]) merged.answers[areaKey] = { status: {}, notes: {} };
+      if (!merged.answers[areaKey].status) merged.answers[areaKey].status = {};
+      if (!merged.answers[areaKey].notes) merged.answers[areaKey].notes = {};
+    });
+    return merged;
+  }
+
+  function getAreaAnswerData(areaKey = currentArea) {
+    currentAuditData = ensureAuditShape(currentAuditData, currentAuditId);
+    if (!currentAuditData.answers[areaKey]) currentAuditData.answers[areaKey] = { status: {}, notes: {} };
+    if (!currentAuditData.answers[areaKey].status) currentAuditData.answers[areaKey].status = {};
+    if (!currentAuditData.answers[areaKey].notes) currentAuditData.answers[areaKey].notes = {};
+    return currentAuditData.answers[areaKey];
+  }
+
+  function updateActiveAuditBanner() {
+    const info = currentAuditData?.auditInfo || {};
+    const tr = currentLang === "tr";
+    const title = document.getElementById("activeAuditTitle");
+    const meta = document.getElementById("activeAuditMeta");
+    if (!title || !meta) return;
+    if (!currentAuditId) {
+      title.innerText = tr ? "Aktif denetim yok" : "No active audit";
+      meta.innerText = tr
+        ? "Cevaplar ayrı bir denetim kaydı altında saklanacak. İlk kayıt sırasında otomatik denetim oluşturulabilir."
+        : "Answers will be stored under a separate audit record. An audit can be created automatically on first save.";
+      return;
+    }
+    title.innerText = `${info.organizationName || (tr ? "İsimsiz Denetim" : "Unnamed Audit")} — ${currentAuditId}`;
+    meta.innerText = `${tr ? "Tarih" : "Date"}: ${info.auditDate || "-"} | ${tr ? "Tür" : "Type"}: ${info.auditType || "-"} | ${tr ? "Kayıt yolu" : "Path"}: audits/${currentAuditId}`;
+  }
+
+  function fillAuditFormFromData() {
+    const info = currentAuditData?.auditInfo || {};
+    document.getElementById("auditIdInput").value = info.auditId || currentAuditId || "";
+    document.getElementById("auditDateInput").value = info.auditDate || todayIsoDate();
+    document.getElementById("organizationInput").value = info.organizationName || "";
+    document.getElementById("auditTypeInput").value = info.auditType || "";
+    document.getElementById("addressInput").value = info.address || "";
+    document.getElementById("scopeInput").value = info.scope || "";
+    document.getElementById("auditTeamInput").value = arrayToLines(info.auditTeam);
+    document.getElementById("interviewedInput").value = arrayToLines(info.interviewedPersons);
+    document.getElementById("auditNotesInput").value = info.notes || "";
+  }
+
+  function readAuditFormToData() {
+    const requestedId = document.getElementById("auditIdInput").value.trim() || currentAuditId || makeAuditId();
+    currentAuditId = requestedId;
+    currentAuditData = ensureAuditShape(currentAuditData, currentAuditId);
+    currentAuditData.auditInfo = {
+      ...currentAuditData.auditInfo,
+      auditId: currentAuditId,
+      organizationName: document.getElementById("organizationInput").value.trim(),
+      auditDate: document.getElementById("auditDateInput").value || todayIsoDate(),
+      auditType: document.getElementById("auditTypeInput").value.trim(),
+      auditTeam: linesToArray(document.getElementById("auditTeamInput").value),
+      interviewedPersons: linesToArray(document.getElementById("interviewedInput").value),
+      address: document.getElementById("addressInput").value.trim(),
+      scope: document.getElementById("scopeInput").value.trim(),
+      notes: document.getElementById("auditNotesInput").value.trim(),
+      updatedAt: new Date().toISOString()
+    };
+    currentUserData = getAreaAnswerData(currentArea);
+    updateActiveAuditBanner();
+  }
+
+  async function ensureActiveAudit() {
+    if (!currentAuditId) {
+      currentAuditData = createEmptyAuditData(null);
+      currentAuditId = currentAuditData.auditInfo.auditId;
+      currentUserData = getAreaAnswerData(currentArea);
+      updateActiveAuditBanner();
+      fillAuditFormFromData();
+    }
+    currentAuditData = ensureAuditShape(currentAuditData, currentAuditId);
+    currentAuditData.auditInfo.updatedAt = new Date().toISOString();
+    return currentAuditData;
+  }
+
+  window.saveCurrentAudit = async function() {
+    try {
+      await ensureActiveAudit();
+      await setDoc(doc(db, "audits", currentAuditId), currentAuditData);
+      updateActiveAuditBanner();
+      alert(currentLang === "tr" ? "Denetim kaydedildi." : "Audit saved.");
+    } catch (error) {
+      alert("Hata: " + error.message);
+    }
+  };
+
+  window.saveAuditSetup = async function() {
+    try {
+      readAuditFormToData();
+      await setDoc(doc(db, "audits", currentAuditId), currentAuditData);
+      currentUserData = getAreaAnswerData(currentArea);
+      updateActiveAuditBanner();
+      alert(currentLang === "tr" ? "Denetim bilgileri kaydedildi." : "Audit information saved.");
+      showCurrentArea();
+    } catch (error) {
+      alert("Hata: " + error.message);
+    }
+  };
+
+  window.loadAuditById = async function() {
+    const auditId = document.getElementById("loadAuditId").value.trim();
+    if (!auditId) {
+      alert(currentLang === "tr" ? "Lütfen denetim ID girin." : "Please enter an audit ID.");
+      return;
+    }
+    try {
+      const snap = await getDoc(doc(db, "audits", auditId));
+      if (!snap.exists()) throw new Error(currentLang === "tr" ? "Bu ID ile denetim bulunamadı." : "No audit found with this ID.");
+      currentAuditId = auditId;
+      currentAuditData = ensureAuditShape(snap.data(), auditId);
+      currentUserData = getAreaAnswerData(currentArea);
+      fillAuditFormFromData();
+      updateActiveAuditBanner();
+      renderPQs();
+      alert(currentLang === "tr" ? "Denetim açıldı." : "Audit loaded.");
+    } catch (error) {
+      alert("Hata: " + error.message);
+    }
+  };
+
+  window.deleteCurrentAudit = async function() {
+    const tr = currentLang === "tr";
+    if (!currentAuditId) {
+      alert(tr ? "Silinecek aktif denetim yok." : "There is no active audit to delete.");
+      return;
+    }
+    const firstConfirm = tr
+      ? `Aktif denetim silinecek:
+${currentAuditId}
+
+Bu işlem sadece audits/${currentAuditId} kaydını siler; JSON kontrol listesi silinmez. Devam edilsin mi?`
+      : `The active audit will be deleted:
+${currentAuditId}
+
+This only deletes audits/${currentAuditId}; the JSON checklist is not deleted. Continue?`;
+    if (!confirm(firstConfirm)) return;
+    const typed = prompt(tr ? "Silmek için DENETIM SIL yazın:" : "Type DELETE AUDIT to delete:");
+    if (typed !== (tr ? "DENETIM SIL" : "DELETE AUDIT")) {
+      alert(tr ? "Silme işlemi iptal edildi." : "Delete cancelled.");
+      return;
+    }
+    try {
+      await deleteDoc(doc(db, "audits", currentAuditId));
+      currentAuditId = null;
+      currentAuditData = createEmptyAuditData(null);
+      currentUserData = { status: {}, notes: {} };
+      fillAuditFormFromData();
+      updateActiveAuditBanner();
+      renderPQs();
+      alert(tr ? "Aktif denetim silindi." : "Active audit deleted.");
+    } catch (error) {
+      alert("Hata: " + error.message);
+    }
+  };
+
+  window.deleteAllAuditRecords = async function() {
+    const tr = currentLang === "tr";
+    const warning = tr
+      ? "Firebase audits koleksiyonu altındaki TÜM denetim kayıtları silinecek. JSON ana kontrol listesi ve audit_structures silinmez. Bu işlem geri alınamaz."
+      : "ALL audit records under the Firebase audits collection will be deleted. The JSON master checklist and audit_structures will not be deleted. This cannot be undone.";
+    if (!confirm(warning)) return;
+    const typed = prompt(tr ? "Tüm denetimleri silmek için TUMUNU SIL yazın:" : "Type DELETE ALL to delete all audits:");
+    if (typed !== (tr ? "TUMUNU SIL" : "DELETE ALL")) {
+      alert(tr ? "Toplu silme iptal edildi." : "Bulk delete cancelled.");
+      return;
+    }
+    try {
+      const snap = await getDocs(collection(db, "audits"));
+      if (snap.empty) {
+        alert(tr ? "Silinecek denetim kaydı bulunamadı." : "No audit records found to delete.");
+        return;
+      }
+      let batch = writeBatch(db);
+      let counter = 0;
+      let total = 0;
+      for (const auditDoc of snap.docs) {
+        batch.delete(auditDoc.ref);
+        counter += 1;
+        total += 1;
+        if (counter === 450) {
+          await batch.commit();
+          batch = writeBatch(db);
+          counter = 0;
+        }
+      }
+      if (counter > 0) await batch.commit();
+      currentAuditId = null;
+      currentAuditData = createEmptyAuditData(null);
+      currentUserData = { status: {}, notes: {} };
+      fillAuditFormFromData();
+      updateActiveAuditBanner();
+      renderPQs();
+      alert(tr ? `${total} denetim kaydı silindi.` : `${total} audit records deleted.`);
+    } catch (error) {
+      alert("Hata: " + error.message);
+    }
+  };
+
+  window.showAuditSetup = function() {
+    currentView = "audit";
+    document.querySelectorAll(".menu-item").forEach(el => el.classList.remove("active"));
+    const auditMenu = document.getElementById("menu_AUDIT");
+    if (auditMenu) auditMenu.classList.add("active");
+    document.getElementById("pqWorkArea").style.display = "none";
+    document.getElementById("reportScreen").classList.remove("active");
+    document.getElementById("auditSetupScreen").classList.add("active");
+    document.getElementById("areaTitle").innerText = currentLang === "tr" ? "Denetim Oluştur / Aç" : "Create / Open Audit";
+    fillAuditFormFromData();
+    renderDefaultFormsPanel();
+    updateActiveAuditBanner();
+  };
+
+  window.showCurrentArea = function() {
+    document.getElementById("auditSetupScreen").classList.remove("active");
+    switchArea(currentArea);
+  };
 
   function asBool(value) {
     if (value === true) return true;
@@ -397,10 +784,31 @@
 
   function renderAreaMenu() {
     const menu = document.getElementById("areaMenu");
+    const isTR = currentLang === "tr";
     menu.innerHTML = AREA_ORDER.map(areaKey => {
       const count = normalizedAreas[areaKey]?.pqs?.length || 0;
-      const active = areaKey === currentArea ? " active" : "";
-      return `<li class="menu-item${active}" onclick="switchArea('${areaKey}')" id="menu_${areaKey}"><span>${areaKey} (${AREA_LABELS[areaKey]})</span><span class="area-count">${count}</span></li>`;
+      const active = areaKey === currentArea && currentView === "area" ? " active" : "";
+      const label = isTR ? `${areaKey} Kontrol Formu` : `${areaKey} Control Form`;
+      return `<li class="menu-item${active}" onclick="switchArea('${areaKey}')" id="menu_${areaKey}"><span>${label}<br><small style="color:#94a3b8;font-weight:600;">${AREA_LABELS[areaKey] || areaKey}</small></span><span class="area-count">${count} PQ</span></li>`;
+    }).join("");
+    renderDefaultFormsPanel();
+  }
+
+  function renderDefaultFormsPanel() {
+    const grid = document.getElementById("defaultFormsGrid");
+    if (!grid) return;
+    const isTR = currentLang === "tr";
+    grid.innerHTML = AREA_ORDER.map(areaKey => {
+      const stats = getAreaStaticStats(areaKey);
+      const active = areaKey === currentArea && currentView === "area" ? " active" : "";
+      const formLabel = isTR ? "Kontrol Formu" : "Control Form";
+      const pqLabel = isTR ? "PQ" : "PQ";
+      const critLabel = isTR ? "Kriter" : "Criteria";
+      return `<button type="button" class="default-form-card${active}" onclick="switchArea('${areaKey}')">
+        <div class="default-form-code">${areaKey}</div>
+        <div class="default-form-name">${AREA_LABELS[areaKey] || areaKey}<br>${formLabel}</div>
+        <div class="default-form-meta"><span>${stats.pqCount} ${pqLabel}</span><span>${stats.criteriaCount} ${critLabel}</span></div>
+      </button>`;
     }).join("");
   }
 
@@ -426,6 +834,27 @@
       lblRefBox = "ICAO Reference:";
       lblNoteBox = "Notes to the Auditor:";
     }
+
+
+    document.getElementById("btnOpenAuditSetup").innerText = lang === "tr" ? "Denetim Bilgileri" : "Audit Info";
+    document.getElementById("btnSaveAudit").innerText = lang === "tr" ? "Denetimi Kaydet" : "Save Audit";
+    document.getElementById("btnDeleteCurrentAudit").innerText = lang === "tr" ? "Aktif Denetimi Sil" : "Delete Active Audit";
+    document.getElementById("auditSetupTitle").innerText = lang === "tr" ? "Denetim Oluştur / Aç" : "Create / Open Audit";
+    document.getElementById("auditSetupSubtitle").innerText = lang === "tr"
+      ? "İşletme, tarih, denetim ekibi ve görüşülen kişiler bilgileri bu denetim kaydına bağlanır."
+      : "Organization, date, audit team and interviewed persons are linked to this audit record.";
+    document.getElementById("btnBackToQuestions").innerText = lang === "tr" ? "Sorulara Dön" : "Back to Questions";
+    document.getElementById("btnSaveAuditSetup").innerText = lang === "tr" ? "Denetimi Kaydet" : "Save Audit";
+    document.getElementById("btnDeleteAllAudits").innerText = lang === "tr" ? "Tüm Test Denetimlerini Sil" : "Delete All Test Audits";
+    document.getElementById("btnLoadAudit").innerText = lang === "tr" ? "Denetimi Aç" : "Open Audit";
+    const defaultFormsMenuLabel = document.getElementById("defaultFormsMenuLabel");
+    if (defaultFormsMenuLabel) defaultFormsMenuLabel.innerText = lang === "tr" ? "Default Kontrol Formları (9)" : "Default Control Forms (9)";
+    const defaultFormsTitle = document.getElementById("defaultFormsTitle");
+    if (defaultFormsTitle) defaultFormsTitle.innerText = lang === "tr" ? "Default Kontrol Formları" : "Default Control Forms";
+    const defaultFormsSubtitle = document.getElementById("defaultFormsSubtitle");
+    if (defaultFormsSubtitle) defaultFormsSubtitle.innerText = lang === "tr" ? "Bu denetimde kullanılacak 9 adet hazır kontrol formundan birini açabilirsiniz. Her formun cevapları aktif denetim kaydı altında ayrı saklanır." : "Open one of the 9 ready-made control forms for this audit. Answers for each form are stored separately under the active audit record.";
+    renderAreaMenu();
+    updateActiveAuditBanner();
 
     if (currentAreaData) {
       document.getElementById("areaTitle").innerText = `${currentAreaData.area_name} (${currentArea})`;
@@ -482,11 +911,8 @@
     const areaData = normalizedAreas[areaKey] || { pqs: [] };
     const pqs = areaData.pqs || [];
     let userData = { status: {}, notes: {} };
-    try {
-      const snap = await getDoc(doc(db, "user_progress", areaKey));
-      if (snap.exists()) userData = snap.data();
-    } catch (err) {
-      userData = { status: {}, notes: {} };
+    if (currentAuditId && currentAuditData?.answers?.[areaKey]) {
+      userData = currentAuditData.answers[areaKey];
     }
     if (!userData.status) userData.status = {};
 
@@ -520,6 +946,7 @@
     const reportMenu = document.getElementById("menu_REPORT");
     if (reportMenu) reportMenu.classList.add("active");
     document.getElementById("pqWorkArea").style.display = "none";
+    document.getElementById("auditSetupScreen").classList.remove("active");
     document.getElementById("reportScreen").classList.add("active");
     document.getElementById("areaTitle").innerText = currentLang === "tr" ? "Raporlama Ekranı" : "Reporting Screen";
     document.getElementById("dataSourceInfo").innerText = `Data source: ${DATA_FILE} / Reporting summary`;
@@ -534,8 +961,8 @@
     document.getElementById("reportSubtitle").innerText = tr ? "PQ, kriter, PPQ, saha ve durum dağılımı." : "PQ, criteria, PPQ, site and status distribution.";
     document.getElementById("btnRefreshReport").innerText = tr ? "Yenile" : "Refresh";
     document.getElementById("reportNote").innerText = tr
-      ? "Area adına tıklayarak ilgili PQ listesine geçebilirsiniz. S/NS/NA ve EI değerleri Firebase kullanıcı ilerlemesinden, PQ/kriter sayıları JSON ana modelinden hesaplanır."
-      : "Click an area name to open its PQ list. S/NS/NA and EI values come from Firebase user progress; PQ/criteria counts are calculated from the JSON master model.";
+      ? "Area adına tıklayarak ilgili PQ listesine geçebilirsiniz. S/NS/NA ve EI değerleri aktif denetim kaydından, PQ/kriter sayıları JSON ana modelinden hesaplanır."
+      : "Click an area name to open its PQ list. S/NS/NA and EI values come from the active audit record; PQ/criteria counts are calculated from the JSON master model.";
 
     thead.innerHTML = `<tr>
       <th>#</th><th>Area</th><th>${tr ? "2024 PQ Sayısı" : "Number of 2024 PQs"}</th><th>${tr ? "Kriter Sayısı" : "Criteria Count"}</th><th>PPQ</th><th>On-Site</th><th>Off-Site</th><th>S</th><th>NS</th><th>NA</th><th>EI</th>
@@ -581,23 +1008,23 @@
     document.querySelectorAll(".menu-item").forEach(el => el.classList.remove("active"));
     const activeMenu = document.getElementById(`menu_${areaKey}`);
     if (activeMenu) activeMenu.classList.add("active");
+    renderDefaultFormsPanel();
 
     const container = document.getElementById("pqContainer");
     container.innerHTML = '<div class="loading">Loading data matrix...</div>';
 
     try {
       await loadMasterModel();
-      const userSnap = await getDoc(doc(db, "user_progress", currentArea));
-
       // Always use the latest JSON model for PQ master data.
-      // Firebase is kept only for user progress (S/NS/NA and notes) to prevent stale
-      // audit_structures documents from overriding corrected Excel/JSON text.
+      // Audit responses are stored separately under audits/{auditId}/answers/{area}.
       currentAreaData = normalizedAreas[currentArea];
-      currentUserData = userSnap.exists() ? userSnap.data() : { status: {}, notes: {} };
+      currentAuditData = ensureAuditShape(currentAuditData, currentAuditId);
+      currentUserData = currentAuditId ? getAreaAnswerData(currentArea) : { status: {}, notes: {} };
       if (!currentUserData.status) currentUserData.status = {};
       if (!currentUserData.notes) currentUserData.notes = {};
 
-      document.getElementById("dataSourceInfo").innerText = `Data source: ${DATA_FILE} / ${currentArea} (Firebase: user progress only)`;
+      updateActiveAuditBanner();
+      document.getElementById("dataSourceInfo").innerText = `Data source: ${DATA_FILE} / ${currentArea} (Firebase: ${currentAuditId ? "audits/" + currentAuditId : "no active audit"})`;
 
       document.getElementById("areaTitle").innerText = `${currentAreaData.area_name} (${currentArea})`;
       populateFilterOptions();
@@ -849,16 +1276,20 @@
         radio.addEventListener("change", async e => {
           const pIdx = e.target.getAttribute("data-pq");
           const cIdx = e.target.getAttribute("data-crit");
+          await ensureActiveAudit();
+          currentUserData = getAreaAnswerData(currentArea);
           currentUserData.status[`${pIdx}_${cIdx}`] = e.target.value;
           calculateMetrics();
-          await setDoc(doc(db, "user_progress", currentArea), currentUserData);
+          await setDoc(doc(db, "audits", currentAuditId), currentAuditData);
         });
       });
 
       const textarea = pqItem.querySelector("textarea");
       textarea.addEventListener("blur", async e => {
+        await ensureActiveAudit();
+        currentUserData = getAreaAnswerData(currentArea);
         currentUserData.notes[pqIdx] = e.target.value;
-        await setDoc(doc(db, "user_progress", currentArea), currentUserData);
+        await setDoc(doc(db, "audits", currentAuditId), currentAuditData);
       });
 
       container.appendChild(pqItem);
