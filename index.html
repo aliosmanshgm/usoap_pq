@@ -252,6 +252,9 @@
 
     .loading { padding: 20px; text-align: center; font-weight: bold; color: var(--secondary-color); }
     .data-source { font-size: 12px; opacity: 0.9; margin-top: 6px; }
+    .audit-list-card.hidden { display: none; }
+    .screen-help-box { background:#eff6ff; border:1px solid #bfdbfe; color:#1e3a8a; border-radius:10px; padding:12px; font-size:12px; line-height:1.5; margin-bottom:12px; }
+
     @media (max-width: 900px) {
       body { flex-direction: column; height: auto; overflow: auto; }
       .sidebar { width: 100%; height: auto; }
@@ -267,14 +270,23 @@
 <body>
   <div class="sidebar">
     <h2>Denetim Modülü</h2>
-    <button class="setup-btn" onclick="showAuditSetup()">Yeni Denetim Oluştur</button>
+    <button class="setup-btn" onclick="startNewAudit()">Yeni Denetim Oluştur</button>
+
+    <div class="sidebar-section-label">Denetim İşlemleri</div>
     <ul class="menu-list">
-      <li class="menu-item" onclick="showAuditSetup()" id="menu_AUDIT"><span>Denetim Oluştur</span><span class="area-count">Yeni</span></li>
-      <li class="menu-item" onclick="showAuditRecords()" id="menu_RECORDS"><span>Denetim Kayıtları</span><span class="area-count">Liste</span></li>
-      <li class="menu-item" onclick="showReport()" id="menu_REPORT"><span>Raporlama</span><span class="area-count">851</span></li>
+      <li class="menu-item" onclick="startNewAudit()" id="menu_AUDIT"><span>Yeni Denetim Oluştur</span><span class="area-count">Yeni</span></li>
+      <li class="menu-item" onclick="showAuditRecords('open')" id="menu_OPEN_AUDITS"><span>Devam Eden Denetimler</span><span class="area-count">Açık</span></li>
+      <li class="menu-item" onclick="showAuditRecords('closed')" id="menu_CLOSED_AUDITS"><span>Kapatılan Denetimler</span><span class="area-count">Kapalı</span></li>
     </ul>
-    <div class="sidebar-section-label sidebar-toggle" id="defaultFormsMenuLabel" onclick="toggleSidebarForms()">Default Kontrol Formları (9) ▸</div>
+
+    <div class="sidebar-section-label sidebar-toggle" id="defaultFormsMenuLabel" onclick="toggleSidebarForms()">Kontrol Formları (9) ▸</div>
     <ul class="menu-list" id="areaMenu" style="display:none;"></ul>
+
+    <div class="sidebar-section-label">Havuz ve Raporlar</div>
+    <ul class="menu-list">
+      <li class="menu-item" onclick="showFindingsPool()" id="menu_FINDINGS"><span>Bulgu Havuzu</span><span class="area-count">Tüm</span></li>
+      <li class="menu-item" onclick="showReport()" id="menu_REPORT"><span>Raporlama</span><span class="area-count">Özet</span></li>
+    </ul>
   </div>
 
   <div class="main-content">
@@ -296,7 +308,7 @@
       </div>
       <div class="audit-toolbar-actions">
         <button class="audit-btn primary" type="button" onclick="showAuditSetup()" id="btnOpenAuditSetup">Denetim Bilgileri</button>
-        <button class="audit-btn" type="button" onclick="saveCurrentAudit()" id="btnSaveAudit">Denetimi Kaydet</button>
+        <button class="audit-btn" type="button" onclick="saveCurrentAudit()" id="btnSaveAudit">Denetim Durumunu Kaydet</button>
         <button class="audit-btn warning" type="button" onclick="toggleAuditClosed()" id="btnCloseAudit">Denetimi Kapat</button>
         <button class="audit-btn" type="button" onclick="exportAuditToPdf()" id="btnExportPdf">PDF Rapor</button>
         <button class="audit-btn" type="button" onclick="exportAuditToExcel()" id="btnExportExcel">Excel Rapor</button>
@@ -311,9 +323,8 @@
           <p id="auditSetupSubtitle">İşletme, tarih, denetim ekibi ve görüşülen kişiler bilgileri bu denetim kaydına bağlanır.</p>
         </div>
         <div class="report-actions">
-          <button class="audit-btn warning" type="button" onclick="deleteAllAuditRecords()" id="btnDeleteAllAudits">Tüm Test Denetimlerini Sil</button>
           <button class="audit-btn" type="button" onclick="showCurrentArea()" id="btnBackToQuestions">Sorulara Dön</button>
-          <button class="audit-btn success" type="button" onclick="saveAuditSetup()" id="btnSaveAuditSetup">Denetimi Kaydet</button>
+          <button class="audit-btn success" type="button" onclick="saveAuditSetup()" id="btnSaveAuditSetup">Denetimi Oluştur / Kaydet</button>
         </div>
       </div>
 
@@ -373,8 +384,7 @@
           <p id="auditRecordsSubtitle">Devam eden ve kapatılan denetimleri ayrı listelerden seçip açabilirsiniz.</p>
         </div>
         <div class="report-actions">
-          <button class="audit-btn" type="button" onclick="showAuditSetup()" id="btnNewAuditFromRecords">Yeni Denetim Oluştur</button>
-          <button class="audit-btn" type="button" onclick="showCurrentArea()" id="btnBackToQuestionsFromRecords">Sorulara Dön</button>
+          <button class="audit-btn" type="button" onclick="startNewAudit()" id="btnNewAuditFromRecords">Yeni Denetim Oluştur</button>
         </div>
       </div>
 
@@ -382,14 +392,14 @@
         <h3 id="auditManagementTitle">Denetim Kayıtları</h3>
         <p id="auditManagementSubtitle">Mevcut denetimleri ID yazmadan aşağıdaki listelerden seçip açabilirsiniz.</p>
         <div class="audit-list-grid">
-          <div class="audit-list-card">
+          <div class="audit-list-card" id="openAuditListCard">
             <h4 id="openAuditsTitle">Devam Eden Denetimler</h4>
             <select id="openAuditSelect"><option value="">Liste yükleniyor...</option></select>
             <div class="audit-list-actions">
               <button class="audit-btn primary" type="button" onclick="loadSelectedAudit('openAuditSelect')" id="btnOpenSelectedAudit">Seçili Denetimi Aç</button>
             </div>
           </div>
-          <div class="audit-list-card">
+          <div class="audit-list-card" id="closedAuditListCard">
             <h4 id="closedAuditsTitle">Kapatılan Denetimler</h4>
             <select id="closedAuditSelect"><option value="">Liste yükleniyor...</option></select>
             <div class="audit-list-actions">
@@ -400,6 +410,7 @@
         <div class="audit-refresh-info" id="auditListInfo"></div>
         <div class="audit-list-actions" style="margin-top:10px;">
           <button class="audit-btn" type="button" onclick="refreshAuditLists()" id="btnRefreshAuditLists">Denetim Listelerini Yenile</button>
+          <button class="audit-btn danger" type="button" onclick="deleteAllAuditRecords()" id="btnDeleteAllAudits">Tüm Test Denetimlerini Sil</button>
         </div>
         <div class="audit-manual-open">
           <div class="audit-load-row">
@@ -500,9 +511,20 @@
         </table>
       </div>
       <div class="report-note" id="reportNote"></div>
+    </div>
+
+    <div class="report-screen" id="findingsPoolScreen">
+      <div class="report-header">
+        <div>
+          <h2 id="findingsTitle">Bulgu Havuzu</h2>
+          <p id="findingsSubtitle">Tüm denetimlerde NS verilen veya bulgu/not yazılan PQ kayıtları burada listelenir.</p>
+        </div>
+        <div class="report-actions">
+          <button class="report-btn" id="btnRefreshFindings" type="button" onclick="renderFindingsPool()">Yenile</button>
+          <button class="report-btn" id="btnExportFindings" type="button" onclick="exportFindingsPoolToCsv()">Excel'e Aktar</button>
+        </div>
+      </div>
       <div class="findings-section" id="findingsSection">
-        <h3 id="findingsTitle">Bulgu Kayıtları</h3>
-        <p id="findingsSubtitle">NS verilen veya bulgu/not yazılan PQ kayıtları burada listelenir.</p>
         <div class="findings-table-wrap">
           <table class="findings-table">
             <thead id="findingsTableHead"></thead>
@@ -552,6 +574,8 @@
   let currentAuditData = createEmptyAuditData(null);
   let currentLang = "tr";
   let currentView = "area";
+  let currentRecordsMode = "open";
+  let findingsPoolRows = [];
   let lblRefBox = "Mevzuat Referansı:";
   let lblNoteBox = "Denetçiye Notlar:";
   let filterListenersAttached = false;
@@ -670,6 +694,31 @@
     return currentAuditData?.auditInfo?.status === "closed";
   }
 
+  function hideAllMainScreens() {
+    const pq = document.getElementById("pqWorkArea");
+    const report = document.getElementById("reportScreen");
+    const setup = document.getElementById("auditSetupScreen");
+    const records = document.getElementById("auditRecordsScreen");
+    const findings = document.getElementById("findingsPoolScreen");
+    if (pq) pq.style.display = "none";
+    if (report) report.classList.remove("active");
+    if (setup) setup.classList.remove("active");
+    if (records) records.classList.remove("active");
+    if (findings) findings.classList.remove("active");
+  }
+
+  function updateToolbarForView() {
+    const toolbar = document.getElementById("auditToolbar");
+    if (!toolbar) return;
+    toolbar.style.display = currentView === "area" ? "flex" : "none";
+  }
+
+  function setActiveMenu(menuId) {
+    document.querySelectorAll(".menu-item").forEach(el => el.classList.remove("active"));
+    const menu = document.getElementById(menuId);
+    if (menu) menu.classList.add("active");
+  }
+
   function syncFormCheckboxesFromAudit() {
     AREA_ORDER.forEach(areaKey => {
       const cb = document.getElementById(`formSelect_${areaKey}`);
@@ -693,7 +742,8 @@
     const statusText = info.status === "closed" ? (tr ? "Kapalı" : "Closed") : (tr ? "Açık" : "Open");
     const formText = `${getSelectedForms().length}/9 ${tr ? "form seçili" : "forms selected"}`;
     title.innerHTML = `${escapeHtml(info.organizationName || (tr ? "İsimsiz Denetim" : "Unnamed Audit"))} — ${escapeHtml(currentAuditId)} <span class="audit-closed-label">${escapeHtml(statusText)}</span>`;
-    meta.innerText = `${tr ? "Tarih" : "Date"}: ${info.auditDate || "-"} | ${tr ? "Tür" : "Type"}: ${info.auditType || "-"} | ${formText} | ${tr ? "Kayıt yolu" : "Path"}: audits/${currentAuditId}`;
+    const savedText = info.updatedAt ? `${tr ? "Son kayıt" : "Last saved"}: ${new Date(info.updatedAt).toLocaleString("tr-TR")}` : "";
+    meta.innerText = `${tr ? "Tarih" : "Date"}: ${info.auditDate || "-"} | ${tr ? "Tür" : "Type"}: ${info.auditType || "-"} | ${formText} | ${savedText} | ${tr ? "Kayıt yolu" : "Path"}: audits/${currentAuditId}`;
     const closeBtn = document.getElementById("btnCloseAudit");
     if (closeBtn) closeBtn.innerText = info.status === "closed" ? (tr ? "Denetimi Yeniden Aç" : "Reopen Audit") : (tr ? "Denetimi Kapat" : "Close Audit");
   }
@@ -735,6 +785,11 @@
       const closedAudits = auditDirectory.filter(item => item.data?.auditInfo?.status === "closed");
       setAuditSelectOptions("openAuditSelect", openAudits, tr ? "Devam eden denetim bulunamadı." : "No open audits found.");
       setAuditSelectOptions("closedAuditSelect", closedAudits, tr ? "Kapatılan denetim bulunamadı." : "No closed audits found.");
+      const openCountEl = document.querySelector("#menu_OPEN_AUDITS .area-count");
+      const closedCountEl = document.querySelector("#menu_CLOSED_AUDITS .area-count");
+      if (openCountEl) openCountEl.innerText = `${openAudits.length}`;
+      if (closedCountEl) closedCountEl.innerText = `${closedAudits.length}`;
+      updateAuditRecordsModeLabels();
       if (infoEl) infoEl.innerText = tr
         ? `${openAudits.length} devam eden, ${closedAudits.length} kapatılan denetim listelendi.`
         : `${openAudits.length} open and ${closedAudits.length} closed audits listed.`;
@@ -763,8 +818,8 @@
     const label = document.getElementById("defaultFormsMenuLabel");
     if (menu) menu.style.display = sidebarFormsVisible ? "block" : "none";
     if (label) label.innerText = currentLang === "tr"
-      ? `Default Kontrol Formları (9) ${sidebarFormsVisible ? "▾" : "▸"}`
-      : `Default Control Forms (9) ${sidebarFormsVisible ? "▾" : "▸"}`;
+      ? `Kontrol Formları (9) ${sidebarFormsVisible ? "▾" : "▸"}`
+      : `Control Forms (9) ${sidebarFormsVisible ? "▾" : "▸"}`;
   }
 
   window.toggleSidebarForms = function() {
@@ -1157,41 +1212,65 @@ This only deletes audits/${currentAuditId}; the JSON checklist is not deleted. C
     }
   };
 
+  window.startNewAudit = function() {
+    currentAuditId = null;
+    currentAuditData = createEmptyAuditData(null);
+    currentUserData = { status: {}, notes: {} };
+    showAuditSetup();
+  };
+
   window.showAuditSetup = function() {
     currentView = "audit";
-    document.querySelectorAll(".menu-item").forEach(el => el.classList.remove("active"));
-    const auditMenu = document.getElementById("menu_AUDIT");
-    if (auditMenu) auditMenu.classList.add("active");
-    document.getElementById("pqWorkArea").style.display = "none";
-    document.getElementById("reportScreen").classList.remove("active");
-    const recordsScreen = document.getElementById("auditRecordsScreen");
-    if (recordsScreen) recordsScreen.classList.remove("active");
+    setActiveMenu("menu_AUDIT");
+    hideAllMainScreens();
+    updateToolbarForView();
     document.getElementById("auditSetupScreen").classList.add("active");
-    document.getElementById("areaTitle").innerText = currentLang === "tr" ? "Denetim Oluştur" : "Create Audit";
+    document.getElementById("areaTitle").innerText = currentAuditId ? (currentLang === "tr" ? "Denetim Bilgileri" : "Audit Information") : (currentLang === "tr" ? "Yeni Denetim Oluştur" : "Create New Audit");
+    document.getElementById("dataSourceInfo").innerText = currentAuditId ? `Firebase: audits/${currentAuditId}` : (currentLang === "tr" ? "Yeni kayıt ekranı" : "New audit screen");
     fillAuditFormFromData();
     setDefaultFormsPanelVisible(false);
     renderDefaultFormsPanel();
     updateActiveAuditBanner();
   };
 
-  window.showAuditRecords = async function() {
+  window.showAuditRecords = async function(mode = "open") {
     currentView = "records";
-    document.querySelectorAll(".menu-item").forEach(el => el.classList.remove("active"));
-    const recordsMenu = document.getElementById("menu_RECORDS");
-    if (recordsMenu) recordsMenu.classList.add("active");
-    document.getElementById("pqWorkArea").style.display = "none";
-    document.getElementById("reportScreen").classList.remove("active");
-    document.getElementById("auditSetupScreen").classList.remove("active");
+    currentRecordsMode = mode === "closed" ? "closed" : "open";
+    setActiveMenu(currentRecordsMode === "closed" ? "menu_CLOSED_AUDITS" : "menu_OPEN_AUDITS");
+    hideAllMainScreens();
+    updateToolbarForView();
     document.getElementById("auditRecordsScreen").classList.add("active");
-    document.getElementById("areaTitle").innerText = currentLang === "tr" ? "Denetim Kayıtları" : "Audit Records";
+    const tr = currentLang === "tr";
+    document.getElementById("areaTitle").innerText = currentRecordsMode === "closed" ? (tr ? "Kapatılan Denetimler" : "Closed Audits") : (tr ? "Devam Eden Denetimler" : "Open Audits");
+    document.getElementById("dataSourceInfo").innerText = currentRecordsMode === "closed" ? "Firebase: audits / closed" : "Firebase: audits / open";
+    updateAuditRecordsModeLabels();
     updateActiveAuditBanner();
     await refreshAuditLists();
   };
 
+  function updateAuditRecordsModeLabels() {
+    const tr = currentLang === "tr";
+    const isClosed = currentRecordsMode === "closed";
+    const title = document.getElementById("auditRecordsTitle");
+    const subtitle = document.getElementById("auditRecordsSubtitle");
+    const openCard = document.getElementById("openAuditListCard");
+    const closedCard = document.getElementById("closedAuditListCard");
+    if (openCard) openCard.classList.toggle("hidden", isClosed);
+    if (closedCard) closedCard.classList.toggle("hidden", !isClosed);
+    if (title) title.innerText = isClosed ? (tr ? "Kapatılan Denetimler" : "Closed Audits") : (tr ? "Devam Eden Denetimler" : "Open Audits");
+    if (subtitle) subtitle.innerText = isClosed
+      ? (tr ? "Kapatılmış denetimleri görüntüleyebilir, rapor alabilir veya yeniden açabilirsiniz." : "View closed audits, export reports, or reopen them.")
+      : (tr ? "Devam eden denetimleri seçip çalışmaya devam edebilir, kapatabilir veya silebilirsiniz." : "Select an open audit to continue work, close it, or delete it.");
+    const mgmtTitle = document.getElementById("auditManagementTitle");
+    const mgmtSubtitle = document.getElementById("auditManagementSubtitle");
+    if (mgmtTitle) mgmtTitle.innerText = isClosed ? (tr ? "Kapatılan Denetimler" : "Closed Audits") : (tr ? "Devam Eden Denetimler" : "Open Audits");
+    if (mgmtSubtitle) mgmtSubtitle.innerText = isClosed
+      ? (tr ? "Kapalı kayıtları ID yazmadan listeden seçebilirsiniz." : "Select closed records from the list without typing an ID.")
+      : (tr ? "Açık kayıtları ID yazmadan listeden seçebilirsiniz." : "Select open records from the list without typing an ID.");
+  }
+
   window.showCurrentArea = function() {
-    document.getElementById("auditSetupScreen").classList.remove("active");
-    const recordsScreen = document.getElementById("auditRecordsScreen");
-    if (recordsScreen) recordsScreen.classList.remove("active");
+    hideAllMainScreens();
     switchArea(currentArea);
   };
 
@@ -1315,13 +1394,17 @@ This only deletes audits/${currentAuditId}; the JSON checklist is not deleted. C
 
 
     const menuAudit = document.querySelector("#menu_AUDIT span:first-child");
-    if (menuAudit) menuAudit.innerText = lang === "tr" ? "Denetim Oluştur" : "Create Audit";
-    const menuRecords = document.querySelector("#menu_RECORDS span:first-child");
-    if (menuRecords) menuRecords.innerText = lang === "tr" ? "Denetim Kayıtları" : "Audit Records";
-    const menuRecordsCount = document.querySelector("#menu_RECORDS .area-count");
-    if (menuRecordsCount) menuRecordsCount.innerText = lang === "tr" ? "Liste" : "List";
+    if (menuAudit) menuAudit.innerText = lang === "tr" ? "Yeni Denetim Oluştur" : "Create New Audit";
+    const menuOpen = document.querySelector("#menu_OPEN_AUDITS span:first-child");
+    if (menuOpen) menuOpen.innerText = lang === "tr" ? "Devam Eden Denetimler" : "Open Audits";
+    const menuClosed = document.querySelector("#menu_CLOSED_AUDITS span:first-child");
+    if (menuClosed) menuClosed.innerText = lang === "tr" ? "Kapatılan Denetimler" : "Closed Audits";
+    const menuFindings = document.querySelector("#menu_FINDINGS span:first-child");
+    if (menuFindings) menuFindings.innerText = lang === "tr" ? "Bulgu Havuzu" : "Findings Pool";
+    const menuReport = document.querySelector("#menu_REPORT span:first-child");
+    if (menuReport) menuReport.innerText = lang === "tr" ? "Raporlama" : "Reporting";
     document.getElementById("btnOpenAuditSetup").innerText = lang === "tr" ? "Denetim Bilgileri" : "Audit Info";
-    document.getElementById("btnSaveAudit").innerText = lang === "tr" ? "Denetimi Kaydet" : "Save Audit";
+    document.getElementById("btnSaveAudit").innerText = lang === "tr" ? "Denetim Durumunu Kaydet" : "Save Audit Progress";
     document.getElementById("btnDeleteCurrentAudit").innerText = lang === "tr" ? "Aktif Denetimi Sil" : "Delete Active Audit";
     document.getElementById("btnExportPdf").innerText = lang === "tr" ? "PDF Rapor" : "PDF Report";
     document.getElementById("btnExportExcel").innerText = lang === "tr" ? "Excel Rapor" : "Excel Report";
@@ -1332,7 +1415,7 @@ This only deletes audits/${currentAuditId}; the JSON checklist is not deleted. C
       ? "Yeni denetim kaydı oluşturun veya aktif denetimin bilgilerini güncelleyin."
       : "Create a new audit record or update the active audit information.";
     document.getElementById("btnBackToQuestions").innerText = lang === "tr" ? "Sorulara Dön" : "Back to Questions";
-    document.getElementById("btnSaveAuditSetup").innerText = lang === "tr" ? "Denetimi Kaydet" : "Save Audit";
+    document.getElementById("btnSaveAuditSetup").innerText = lang === "tr" ? "Denetimi Oluştur / Kaydet" : "Create / Save Audit";
     document.getElementById("btnDeleteAllAudits").innerText = lang === "tr" ? "Tüm Test Denetimlerini Sil" : "Delete All Test Audits";
     document.getElementById("btnLoadAudit").innerText = lang === "tr" ? "ID ile Aç" : "Open by ID";
     const auditManagementTitle = document.getElementById("auditManagementTitle");
@@ -1365,6 +1448,8 @@ This only deletes audits/${currentAuditId}; the JSON checklist is not deleted. C
     setDefaultFormsPanelVisible(defaultFormsVisible);
     renderAreaMenu();
     updateActiveAuditBanner();
+    updateToolbarForView();
+    updateAuditRecordsModeLabels();
 
     if (currentAreaData) {
       document.getElementById("areaTitle").innerText = `${currentAreaData.area_name} (${currentArea})`;
@@ -1434,13 +1519,9 @@ This only deletes audits/${currentAuditId}; the JSON checklist is not deleted. C
 
   window.showReport = async function() {
     currentView = "report";
-    document.querySelectorAll(".menu-item").forEach(el => el.classList.remove("active"));
-    const reportMenu = document.getElementById("menu_REPORT");
-    if (reportMenu) reportMenu.classList.add("active");
-    document.getElementById("pqWorkArea").style.display = "none";
-    document.getElementById("auditSetupScreen").classList.remove("active");
-    const recordsScreen = document.getElementById("auditRecordsScreen");
-    if (recordsScreen) recordsScreen.classList.remove("active");
+    setActiveMenu("menu_REPORT");
+    hideAllMainScreens();
+    updateToolbarForView();
     document.getElementById("reportScreen").classList.add("active");
     document.getElementById("areaTitle").innerText = currentLang === "tr" ? "Raporlama Ekranı" : "Reporting Screen";
     document.getElementById("dataSourceInfo").innerText = `Data source: ${DATA_FILE} / Reporting summary`;
@@ -1474,6 +1555,149 @@ This only deletes audits/${currentAuditId}; the JSON checklist is not deleted. C
       <td>${escapeHtml(row.finding || (row.status === "NS" ? (tr ? "NS olarak işaretlendi; ayrıca bulgu notu yazılmamış." : "Marked NS; no additional finding note entered.") : ""))}</td>
     </tr>`).join("");
   }
+
+  function getStatusSummaryForAuditData(pq, pqIdx, areaKey, auditData) {
+    const userData = auditData?.answers?.[areaKey] || { status: {}, notes: {} };
+    const parsedEN = extractNotesAndCriteria(pq.review_evidence_en || pq.Review_Evidence || "");
+    const parsedTR = extractNotesAndCriteria(pq.review_evidence_tr || pq.Incelenecek_Kanitlar || "");
+    const criteriaRows = getActiveCriteria(parsedEN, parsedTR);
+    let hasNS = false, hasS = false, hasScoreable = false;
+    criteriaRows.forEach(row => {
+      const line = row.en || row.tr || "";
+      if (line.trim().endsWith(":")) return;
+      hasScoreable = true;
+      const val = userData.status?.[`${pqIdx}_${row.index}`] || "NA";
+      if (val === "NS") hasNS = true;
+      if (val === "S") hasS = true;
+    });
+    if (!hasScoreable) return "NA";
+    if (hasNS) return "NS";
+    if (hasS) return "S";
+    return "NA";
+  }
+
+  async function collectFindingsPoolRows() {
+    await loadMasterModel();
+    const snap = await getDocs(collection(db, "audits"));
+    const rows = [];
+    snap.forEach(auditDoc => {
+      const auditId = auditDoc.id;
+      const auditData = ensureAuditShape(auditDoc.data(), auditId);
+      const info = auditData.auditInfo || {};
+      const selectedAreas = Array.isArray(info.selectedForms) && info.selectedForms.length ? info.selectedForms : AREA_ORDER;
+      selectedAreas.forEach(areaKey => {
+        const areaData = normalizedAreas[areaKey] || { pqs: [] };
+        const userData = auditData.answers?.[areaKey] || { notes: {} };
+        (areaData.pqs || []).forEach((pq, pqIdx) => {
+          const status = getStatusSummaryForAuditData(pq, pqIdx, areaKey, auditData);
+          const finding = userData.notes?.[pqIdx] || "";
+          if (status !== "NS" && !String(finding || "").trim()) return;
+          rows.push({
+            auditId,
+            organization: info.organizationName || "",
+            auditDate: info.auditDate || "",
+            auditStatus: info.status || "open",
+            area: areaKey,
+            pqNo: pq.no || "",
+            ce: pq.ce || "",
+            pqIndex: pqIdx,
+            status,
+            question: currentLang === "tr" ? (pq.question_tr || pq.question_en) : (pq.question_en || pq.question_tr),
+            finding: finding || (status === "NS" ? (currentLang === "tr" ? "NS olarak işaretlendi; ayrıca bulgu notu yazılmamış." : "Marked NS; no additional finding note entered.") : "")
+          });
+        });
+      });
+    });
+    rows.sort((a, b) => `${b.auditDate}${b.auditId}`.localeCompare(`${a.auditDate}${a.auditId}`));
+    return rows;
+  }
+
+  window.showFindingsPool = async function() {
+    currentView = "findings";
+    setActiveMenu("menu_FINDINGS");
+    hideAllMainScreens();
+    updateToolbarForView();
+    document.getElementById("findingsPoolScreen").classList.add("active");
+    document.getElementById("areaTitle").innerText = currentLang === "tr" ? "Bulgu Havuzu" : "Findings Pool";
+    document.getElementById("dataSourceInfo").innerText = "Firebase: audits / findings pool";
+    await renderFindingsPool();
+  };
+
+  window.renderFindingsPool = async function() {
+    const tr = currentLang === "tr";
+    const head = document.getElementById("findingsTableHead");
+    const body = document.getElementById("findingsTableBody");
+    const title = document.getElementById("findingsTitle");
+    const subtitle = document.getElementById("findingsSubtitle");
+    const refreshBtn = document.getElementById("btnRefreshFindings");
+    const exportBtn = document.getElementById("btnExportFindings");
+    if (!head || !body) return;
+    if (title) title.innerText = tr ? "Bulgu Havuzu" : "Findings Pool";
+    if (subtitle) subtitle.innerText = tr ? "Tüm denetimlerde NS verilen veya bulgu/not yazılan PQ kayıtları burada listelenir." : "PQs marked NS or containing finding/notes across all audits are listed here.";
+    if (refreshBtn) refreshBtn.innerText = tr ? "Yenile" : "Refresh";
+    if (exportBtn) exportBtn.innerText = tr ? "Excel'e Aktar" : "Export to Excel";
+    head.innerHTML = `<tr>
+      <th>${tr ? "Denetim" : "Audit"}</th><th>${tr ? "İşletme" : "Organization"}</th><th>${tr ? "Tarih" : "Date"}</th><th>${tr ? "Denetim Durumu" : "Audit Status"}</th><th>Area</th><th>PQ</th><th>CE</th><th>${tr ? "PQ Durumu" : "PQ Status"}</th><th>${tr ? "Soru" : "Question"}</th><th>${tr ? "Bulgu / Not" : "Finding / Note"}</th><th>${tr ? "İşlem" : "Action"}</th>
+    </tr>`;
+    body.innerHTML = `<tr><td colspan="11" style="text-align:center;color:#64748b;">${tr ? "Bulgu havuzu yükleniyor..." : "Loading findings pool..."}</td></tr>`;
+    try {
+      findingsPoolRows = await collectFindingsPoolRows();
+      if (!findingsPoolRows.length) {
+        body.innerHTML = `<tr><td colspan="11" style="text-align:center;color:#64748b;">${tr ? "Bulgu veya NS kayıt bulunmuyor." : "No findings or NS records found."}</td></tr>`;
+        return;
+      }
+      body.innerHTML = findingsPoolRows.map(row => `<tr>
+        <td>${escapeHtml(row.auditId)}</td>
+        <td>${escapeHtml(row.organization || "-")}</td>
+        <td>${escapeHtml(row.auditDate || "-")}</td>
+        <td>${escapeHtml(row.auditStatus === "closed" ? (tr ? "Kapalı" : "Closed") : (tr ? "Açık" : "Open"))}</td>
+        <td>${escapeHtml(row.area)}</td>
+        <td>${escapeHtml(row.pqNo)}</td>
+        <td>${escapeHtml(row.ce)}</td>
+        <td>${escapeHtml(row.status)}</td>
+        <td>${escapeHtml(row.question)}</td>
+        <td>${escapeHtml(row.finding)}</td>
+        <td><button class="audit-btn" type="button" onclick="loadAuditAndGoToArea('${escapeHtml(row.auditId)}','${escapeHtml(row.area)}')">${tr ? "Aç" : "Open"}</button></td>
+      </tr>`).join("");
+    } catch (error) {
+      body.innerHTML = `<tr><td colspan="11" style="text-align:center;color:#991b1b;">Hata: ${escapeHtml(error.message)}</td></tr>`;
+    }
+  };
+
+  window.loadAuditAndGoToArea = async function(auditId, areaKey) {
+    const snap = await getDoc(doc(db, "audits", auditId));
+    if (!snap.exists()) {
+      alert(currentLang === "tr" ? "Denetim bulunamadı." : "Audit not found.");
+      return;
+    }
+    currentAuditId = auditId;
+    currentAuditData = ensureAuditShape(snap.data(), auditId);
+    currentUserData = getAreaAnswerData(areaKey);
+    fillAuditFormFromData();
+    updateActiveAuditBanner();
+    await switchArea(areaKey);
+  };
+
+  window.exportFindingsPoolToCsv = function() {
+    const tr = currentLang === "tr";
+    const rows = findingsPoolRows || [];
+    if (!rows.length) {
+      alert(tr ? "Dışa aktarılacak bulgu kaydı yok." : "There are no finding records to export.");
+      return;
+    }
+    const headers = tr ? ["Denetim ID", "İşletme", "Tarih", "Denetim Durumu", "Area", "PQ", "CE", "PQ Durumu", "Soru", "Bulgu / Not"] : ["Audit ID", "Organization", "Date", "Audit Status", "Area", "PQ", "CE", "PQ Status", "Question", "Finding / Note"];
+    const bodyRows = rows.map(r => [r.auditId, r.organization, r.auditDate, r.auditStatus, r.area, r.pqNo, r.ce, r.status, r.question, r.finding]);
+    const csv = "\ufeff" + headers.map(csvCell).join(";") + "\n" + bodyRows.map(r => r.map(csvCell).join(";")).join("\n");
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "bulgu_havuzu.csv";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
 
   window.renderReport = async function() {
     const tbody = document.getElementById("reportTableBody");
@@ -1526,7 +1750,6 @@ This only deletes audits/${currentAuditId}; the JSON checklist is not deleted. C
       <td>${totals.countS}</td><td>${totals.countNS}</td><td>${totals.countNA}</td><td>%${totalEi}</td>
     </tr>`;
     tbody.innerHTML = rowsHtml;
-    renderFindingsTable();
   };
 
   window.switchArea = async function(areaKey) {
