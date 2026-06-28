@@ -359,7 +359,7 @@
         </div>
       </div>
 
-      <div class="screen-help-box" id="auditLifecycleHelp">Denetim yaşam döngüsü: Planlama → Hazırlık → Saha/Masa Başı Denetim → Bulgu ve Değerlendirme → Raporlama/Kapatma.</div>
+      <div class="screen-help-box" id="auditLifecycleHelp">Denetim akışı: Planlama → Denetim → Raporlama / Kapatma. Bulgular ayrı Bulgu Havuzu ekranında takip edilir.</div>
       <div class="process-map" id="auditProcessMap"></div>
 
       <div class="default-forms-panel collapsed" id="defaultFormsPanel">
@@ -389,15 +389,9 @@
           <input id="auditTypeInput" type="text" placeholder="İlk denetim, takip, iç denetim vb.">
         </div>
         <div class="audit-field">
-          <label for="workflowStatusInput">Denetim Aşaması</label>
-          <select id="workflowStatusInput">
-            <option value="draft">Taslak</option>
-            <option value="planned">Planlandı</option>
-            <option value="in_progress">Devam Ediyor</option>
-            <option value="reporting">Rapor Hazırlanıyor</option>
-            <option value="closed">Kapatıldı</option>
-            <option value="cancelled">İptal Edildi</option>
-          </select>
+          <label>Denetim Aşaması</label>
+          <input id="workflowStatusDisplay" type="text" value="Taslak" readonly>
+          <input id="workflowStatusInput" type="hidden" value="draft">
         </div>
         <div class="audit-field">
           <label for="userRoleInput">Kullanıcı Rolü</label>
@@ -797,15 +791,16 @@
   function getPQExtraFields(areaKey, pqIdx, auditData = currentAuditData) {
     const area = auditData?.answers?.[areaKey] || {};
     if (!area.fields) area.fields = {};
-    if (!area.fields[pqIdx]) area.fields[pqIdx] = { evidenceReviewed: "", correctiveAction: "", responsibleUnit: "", dueDate: "", severity: "minor", findingStatus: "open", closureNote: "" };
+    if (!area.fields[pqIdx]) area.fields[pqIdx] = { evidenceReviewed: "", findingStatus: "open", closureNote: "" };
     return area.fields[pqIdx];
   }
   function getFindingId(auditId, areaKey, pqNo) { return `${auditId || "AUDIT"}-${areaKey}-PQ${String(pqNo || "").replace(/[^0-9A-Za-z.]/g, "")}`; }
   function renderAuditProcessMap() {
     const el = document.getElementById("auditProcessMap"); if (!el) return;
     const tr = currentLang === "tr"; const status = currentAuditData?.auditInfo?.workflowStatus || "draft";
-    const steps = [["draft", tr ? "1. Planlama" : "1. Planning"],["planned", tr ? "2. Hazırlık" : "2. Preparation"],["in_progress", tr ? "3. Denetim" : "3. Audit"],["reporting", tr ? "4. Bulgu & Değerlendirme" : "4. Findings & Evaluation"],["closed", tr ? "5. Raporlama/Kapatma" : "5. Reporting/Closure"]];
-    el.innerHTML = steps.map(([key,label]) => `<div class="process-step ${key === status ? "active" : ""}">${escapeHtml(label)}</div>`).join("");
+    const activeGroup = ["draft", "planned"].includes(status) ? "planning" : (status === "in_progress" ? "audit" : "closing");
+    const steps = [["planning", tr ? "1. Planlama" : "1. Planning"],["audit", tr ? "2. Denetim" : "2. Audit"],["closing", tr ? "3. Raporlama / Kapatma" : "3. Reporting / Closure"]];
+    el.innerHTML = steps.map(([key,label]) => `<div class="process-step ${key === activeGroup ? "active" : ""}">${escapeHtml(label)}</div>`).join("");
   }
 
   function hideAllMainScreens() {
@@ -1022,7 +1017,14 @@
     document.getElementById("organizationInput").value = info.organizationName || "";
     document.getElementById("auditTypeInput").value = info.auditType || "";
     const workflowInput = document.getElementById("workflowStatusInput");
-    if (workflowInput) workflowInput.value = info.workflowStatus || (info.status === "closed" ? "closed" : "draft");
+    const workflowDisplay = document.getElementById("workflowStatusDisplay");
+    const wfValue = info.workflowStatus || (info.status === "closed" ? "closed" : "draft");
+    if (workflowInput) workflowInput.value = wfValue;
+    if (workflowDisplay) {
+      const tr = currentLang === "tr";
+      const labels = { draft: tr ? "Taslak" : "Draft", planned: tr ? "Planlandı" : "Planned", in_progress: tr ? "Denetim Devam Ediyor" : "Audit in Progress", reporting: tr ? "Rapor Hazırlanıyor" : "Reporting", closed: tr ? "Kapatıldı" : "Closed", cancelled: tr ? "İptal Edildi" : "Cancelled" };
+      workflowDisplay.value = labels[wfValue] || wfValue;
+    }
     const roleInput = document.getElementById("userRoleInput");
     if (roleInput) roleInput.value = info.userRole || currentUserRole || "lead_auditor";
     currentUserRole = roleInput ? roleInput.value : (info.userRole || currentUserRole || "lead_auditor");
@@ -1185,7 +1187,7 @@
     const tr = currentLang === "tr";
     const selectedAreas = currentAuditId ? getSelectedForms() : AREA_ORDER;
     const issues = [...getAuditInfoCompletenessIssues()];
-    const summary = { totalPq: 0, missingNotes: 0, nsWithoutFinding: 0, naWithoutJustification: 0, notEvaluated: 0, missingEvidence: 0, missingCorrective: 0, missingResponsible: 0, missingDueDate: 0, auditInfoMissing: issues.length };
+    const summary = { totalPq: 0, missingNotes: 0, nsWithoutFinding: 0, naWithoutJustification: 0, notEvaluated: 0, missingEvidence: 0, auditInfoMissing: issues.length };
 
     selectedAreas.forEach(areaKey => {
       const areaData = normalizedAreas[areaKey] || { pqs: [] };
@@ -1196,9 +1198,6 @@
         const finding = String(userData.notes?.[pqIdx] || "").trim();
         const extra = getPQExtraFields(areaKey, pqIdx, currentAuditData);
         const evidenceReviewed = String(extra.evidenceReviewed || "").trim();
-        const correctiveAction = String(extra.correctiveAction || "").trim();
-        const responsibleUnit = String(extra.responsibleUnit || "").trim();
-        const dueDate = String(extra.dueDate || "").trim();
         const q = getPQQualityStatus(pq, pqIdx, areaKey, currentAuditData);
         if (!finding) {
           summary.missingNotes += 1;
@@ -1212,9 +1211,6 @@
           summary.nsWithoutFinding += 1;
           issues.push({ type: "ns_without_finding", severity: "Kritik", areaKey, pqNo, pqIdx, message: tr ? "NS seçilmiş ancak bulgu notu yazılmamış." : "Marked NS but no finding note is entered.", action: "pq" });
         }
-        if (q.status === "NS" && !correctiveAction) { summary.missingCorrective += 1; issues.push({ type: "missing_corrective", severity: "Kritik", areaKey, pqNo, pqIdx, message: tr ? "NS için düzeltici faaliyet / öneri alanı boş." : "Corrective action is required for NS.", action: "pq" }); }
-        if (q.status === "NS" && !responsibleUnit) { summary.missingResponsible += 1; issues.push({ type: "missing_responsible", severity: "Kritik", areaKey, pqNo, pqIdx, message: tr ? "NS için sorumlu birim alanı boş." : "Responsible unit is required for NS.", action: "pq" }); }
-        if (q.status === "NS" && !dueDate) { summary.missingDueDate += 1; issues.push({ type: "missing_due_date", severity: "Kritik", areaKey, pqNo, pqIdx, message: tr ? "NS için termin tarihi boş." : "Due date is required for NS.", action: "pq" }); }
         if (q.status === "NA" && !finding) {
           summary.naWithoutJustification += 1;
         }
@@ -1224,7 +1220,7 @@
         }
       });
     });
-    const blockingIssues = issues.filter(i => ["audit_info", "missing_note", "missing_evidence", "ns_without_finding", "missing_corrective", "missing_responsible", "missing_due_date"].includes(i.type));
+    const blockingIssues = issues.filter(i => ["audit_info", "missing_note", "missing_evidence", "ns_without_finding"].includes(i.type));
     return { summary, issues, blockingIssues };
   }
 
@@ -1273,7 +1269,7 @@
       card(s.auditInfoMissing, tr ? "Eksik denetim bilgisi" : "Missing audit info", s.auditInfoMissing ? "fail" : "ok"),
       card(s.missingNotes, tr ? "Boş zorunlu not" : "Empty required notes", s.missingNotes ? "fail" : "ok"),
       card(s.missingEvidence, tr ? "Boş kanıt" : "Missing evidence", s.missingEvidence ? "fail" : "ok"),
-      card(s.missingCorrective, tr ? "NS aksiyon eksiği" : "Missing NS action", s.missingCorrective ? "fail" : "ok"),
+      card(s.nsWithoutFinding, tr ? "NS bulgu notu eksik" : "NS without finding note", s.nsWithoutFinding ? "fail" : "ok"),
       card(s.notEvaluated, tr ? "Değerlendirilmemiş PQ" : "Unevaluated PQs", s.notEvaluated ? "warn" : "ok")
     ].join("");
     if (!data.issues.length) {
@@ -1405,10 +1401,6 @@
           evidence,
           finding,
           evidenceReviewed: extra.evidenceReviewed || "",
-          correctiveAction: extra.correctiveAction || "",
-          responsibleUnit: extra.responsibleUnit || "",
-          dueDate: extra.dueDate || "",
-          severity: extra.severity || "minor",
           findingStatus: extra.findingStatus || "open",
           closureNote: extra.closureNote || ""
         });
@@ -1461,8 +1453,8 @@
     if (!(await validateRequiredNotesBeforeFinalAction(tr ? "Excel rapor alma" : "Excel export"))) return;
     const info = currentAuditData?.auditInfo || {};
     const headers = tr
-      ? ["Alan", "PQ No", "CE", "PPQ", "Saha", "Durum", "Soru", "İncelenecek Kanıtlar", "Bulgu / Not", "İncelenen Kanıt", "Düzeltici Faaliyet", "Sorumlu Birim", "Termin", "Kritiklik", "Bulgu Durumu", "Kapanış Notu"]
-      : ["Area", "PQ No", "CE", "PPQ", "Site", "Status", "Question", "Review Evidence", "Finding / Note", "Evidence Reviewed", "Corrective Action", "Responsible Unit", "Due Date", "Severity", "Finding Status", "Closure Note"];
+      ? ["Alan", "PQ No", "CE", "PPQ", "Saha", "Durum", "Soru", "İncelenecek Kanıtlar", "Bulgu / Not", "İncelenen Kanıt", "Bulgu Durumu", "Kapanış Notu"]
+      : ["Area", "PQ No", "CE", "PPQ", "Site", "Status", "Question", "Review Evidence", "Finding / Note", "Evidence Reviewed", "Finding Status", "Closure Note"];
     const metaRows = [
       [tr ? "Denetim ID" : "Audit ID", currentAuditId],
       [tr ? "İşletme / Kuruluş" : "Organization", info.organizationName || ""],
@@ -1475,7 +1467,7 @@
       [tr ? "Kapsam" : "Scope", info.scope || ""],
       [tr ? "Genel Denetim Notları" : "General Audit Notes", info.notes || ""]
     ];
-    const bodyRows = buildAuditReportRows().map(row => [row.area, row.pqNo, row.ce, row.ppq, row.site, row.status, row.question, row.evidence, row.finding, row.evidenceReviewed, row.correctiveAction, row.responsibleUnit, row.dueDate, row.severity, row.findingStatus, row.closureNote]);
+    const bodyRows = buildAuditReportRows().map(row => [row.area, row.pqNo, row.ce, row.ppq, row.site, row.status, row.question, row.evidence, row.finding, row.evidenceReviewed, row.findingStatus, row.closureNote]);
     const csv = "\ufeff" + metaRows.map(r => r.map(csvCell).join(";")).join("\n") + "\n\n" + headers.map(csvCell).join(";") + "\n" + bodyRows.map(r => r.map(csvCell).join(";")).join("\n");
     const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);
@@ -1970,7 +1962,7 @@ This only deletes audits/${currentAuditId}; the JSON checklist is not deleted. C
           const status = getStatusSummaryForAuditData(pq, pqIdx, areaKey, auditData);
           const finding = userData.notes?.[pqIdx] || "";
           const extra = getPQExtraFields(areaKey, pqIdx, auditData);
-          if (status !== "NS" && !String(finding || "").trim() && !String(extra.correctiveAction || "").trim()) return;
+          if (status !== "NS" && !String(finding || "").trim()) return;
           rows.push({
             auditId,
             organization: info.organizationName || "",
@@ -1984,11 +1976,7 @@ This only deletes audits/${currentAuditId}; the JSON checklist is not deleted. C
             question: currentLang === "tr" ? (pq.question_tr || pq.question_en) : (pq.question_en || pq.question_tr),
             findingId: getFindingId(auditId, areaKey, pq.no || pqIdx + 1),
             finding: finding || (status === "NS" ? (currentLang === "tr" ? "NS olarak işaretlendi; ayrıca bulgu notu yazılmamış." : "Marked NS; no additional finding note entered.") : ""),
-            severity: extra.severity || "minor",
             findingStatus: extra.findingStatus || "open",
-            responsibleUnit: extra.responsibleUnit || "",
-            dueDate: extra.dueDate || "",
-            correctiveAction: extra.correctiveAction || "",
             closureNote: extra.closureNote || ""
           });
         });
@@ -2023,13 +2011,13 @@ This only deletes audits/${currentAuditId}; the JSON checklist is not deleted. C
     if (refreshBtn) refreshBtn.innerText = tr ? "Yenile" : "Refresh";
     if (exportBtn) exportBtn.innerText = tr ? "Excel'e Aktar" : "Export to Excel";
     head.innerHTML = `<tr>
-      <th>${tr ? "Bulgu ID" : "Finding ID"}</th><th>${tr ? "Denetim" : "Audit"}</th><th>${tr ? "İşletme" : "Organization"}</th><th>${tr ? "Tarih" : "Date"}</th><th>${tr ? "Denetim Durumu" : "Audit Status"}</th><th>Area</th><th>PQ</th><th>CE</th><th>${tr ? "PQ Durumu" : "PQ Status"}</th><th>${tr ? "Kritiklik" : "Severity"}</th><th>${tr ? "Bulgu Durumu" : "Finding Status"}</th><th>${tr ? "Sorumlu" : "Responsible"}</th><th>${tr ? "Termin" : "Due"}</th><th>${tr ? "Bulgu / Not" : "Finding / Note"}</th><th>${tr ? "Düzeltici Faaliyet" : "Corrective Action"}</th><th>${tr ? "İşlem" : "Action"}</th>
+      <th>${tr ? "Bulgu ID" : "Finding ID"}</th><th>${tr ? "Denetim" : "Audit"}</th><th>${tr ? "İşletme" : "Organization"}</th><th>${tr ? "Tarih" : "Date"}</th><th>${tr ? "Denetim Durumu" : "Audit Status"}</th><th>Area</th><th>PQ</th><th>CE</th><th>${tr ? "PQ Durumu" : "PQ Status"}</th><th>${tr ? "Bulgu Durumu" : "Finding Status"}</th><th>${tr ? "Bulgu / Not" : "Finding / Note"}</th><th>${tr ? "Kapanış Notu" : "Closure Note"}</th><th>${tr ? "İşlem" : "Action"}</th>
     </tr>`;
-    body.innerHTML = `<tr><td colspan="16" style="text-align:center;color:#64748b;">${tr ? "Bulgu havuzu yükleniyor..." : "Loading findings pool..."}</td></tr>`;
+    body.innerHTML = `<tr><td colspan="13" style="text-align:center;color:#64748b;">${tr ? "Bulgu havuzu yükleniyor..." : "Loading findings pool..."}</td></tr>`;
     try {
       findingsPoolRows = await collectFindingsPoolRows();
       if (!findingsPoolRows.length) {
-        body.innerHTML = `<tr><td colspan="16" style="text-align:center;color:#64748b;">${tr ? "Bulgu veya NS kayıt bulunmuyor." : "No findings or NS records found."}</td></tr>`;
+        body.innerHTML = `<tr><td colspan="13" style="text-align:center;color:#64748b;">${tr ? "Bulgu veya NS kayıt bulunmuyor." : "No findings or NS records found."}</td></tr>`;
         return;
       }
       body.innerHTML = findingsPoolRows.map(row => `<tr>
@@ -2042,16 +2030,13 @@ This only deletes audits/${currentAuditId}; the JSON checklist is not deleted. C
         <td>${escapeHtml(row.pqNo)}</td>
         <td>${escapeHtml(row.ce)}</td>
         <td>${escapeHtml(row.status)}</td>
-        <td>${escapeHtml(row.severity)}</td>
         <td>${escapeHtml(row.findingStatus)}</td>
-        <td>${escapeHtml(row.responsibleUnit || "-")}</td>
-        <td>${escapeHtml(row.dueDate || "-")}</td>
         <td>${escapeHtml(row.finding)}</td>
-        <td>${escapeHtml(row.correctiveAction || "-")}</td>
+        <td>${escapeHtml(row.closureNote || "-")}</td>
         <td><button class="audit-btn" type="button" onclick="loadAuditAndGoToArea('${escapeHtml(row.auditId)}','${escapeHtml(row.area)}')">${tr ? "Aç" : "Open"}</button></td>
       </tr>`).join("");
     } catch (error) {
-      body.innerHTML = `<tr><td colspan="16" style="text-align:center;color:#991b1b;">Hata: ${escapeHtml(error.message)}</td></tr>`;
+      body.innerHTML = `<tr><td colspan="13" style="text-align:center;color:#991b1b;">Hata: ${escapeHtml(error.message)}</td></tr>`;
     }
   };
 
@@ -2076,8 +2061,8 @@ This only deletes audits/${currentAuditId}; the JSON checklist is not deleted. C
       alert(tr ? "Dışa aktarılacak bulgu kaydı yok." : "There are no finding records to export.");
       return;
     }
-    const headers = tr ? ["Bulgu ID", "Denetim ID", "İşletme", "Tarih", "Denetim Durumu", "Area", "PQ", "CE", "PQ Durumu", "Kritiklik", "Bulgu Durumu", "Sorumlu Birim", "Termin", "Soru", "Bulgu / Not", "Düzeltici Faaliyet", "Kapanış Notu"] : ["Finding ID", "Audit ID", "Organization", "Date", "Audit Status", "Area", "PQ", "CE", "PQ Status", "Severity", "Finding Status", "Responsible Unit", "Due Date", "Question", "Finding / Note", "Corrective Action", "Closure Note"];
-    const bodyRows = rows.map(r => [r.findingId, r.auditId, r.organization, r.auditDate, r.auditStatus, r.area, r.pqNo, r.ce, r.status, r.severity, r.findingStatus, r.responsibleUnit, r.dueDate, r.question, r.finding, r.correctiveAction, r.closureNote]);
+    const headers = tr ? ["Bulgu ID", "Denetim ID", "İşletme", "Tarih", "Denetim Durumu", "Area", "PQ", "CE", "PQ Durumu", "Bulgu Durumu", "Soru", "Bulgu / Not", "Kapanış Notu"] : ["Finding ID", "Audit ID", "Organization", "Date", "Audit Status", "Area", "PQ", "CE", "PQ Status", "Finding Status", "Question", "Finding / Note", "Closure Note"];
+    const bodyRows = rows.map(r => [r.findingId, r.auditId, r.organization, r.auditDate, r.auditStatus, r.area, r.pqNo, r.ce, r.status, r.findingStatus, r.question, r.finding, r.closureNote]);
     const csv = "\ufeff" + headers.map(csvCell).join(";") + "\n" + bodyRows.map(r => r.map(csvCell).join(";")).join("\n");
     const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);
@@ -2408,9 +2393,6 @@ This only deletes audits/${currentAuditId}; the JSON checklist is not deleted. C
       const pqStatusForRequirements = getPQComputedStatus(pq, pqIdx);
       const noteMissingClass = String(savedNote || "").trim() ? "" : " required-missing";
       const evidenceMissingClass = String(extra.evidenceReviewed || "").trim() ? "" : " required-missing";
-      const correctiveMissingClass = pqStatusForRequirements === "NS" && !String(extra.correctiveAction || "").trim() ? " required-missing" : "";
-      const responsibleMissingClass = pqStatusForRequirements === "NS" && !String(extra.responsibleUnit || "").trim() ? " required-missing" : "";
-      const dueMissingClass = pqStatusForRequirements === "NS" && !String(extra.dueDate || "").trim() ? " required-missing" : "";
       const lblNotesBox = currentLang === "tr" ? "Mevzuat Dayanağı / Bulgu Notları:" : "Compliance Basis / Audit Finding Notes:";
       const lblRequired = currentLang === "tr" ? "Zorunlu" : "Required";
       const requiredHint = currentLang === "tr" ? "Bu alan zorunludur. Mevzuat dayanağı veya bulgu notu giriniz." : "This field is required. Enter compliance basis or audit finding notes.";
@@ -2435,37 +2417,14 @@ This only deletes audits/${currentAuditId}; the JSON checklist is not deleted. C
           </div>
           <div class="pq-extra-grid" data-pq-extra="${pqIdx}">
             <div class="pq-extra-field full${evidenceMissingClass}">
-              <label>${currentLang === "tr" ? "İncelenen Kanıt" : "Evidence Reviewed"} <span class="audit-required-label">${escapeHtml(lblRequired)}</span></label>
+              <label>${currentLang === "tr" ? "İncelenen Kanıt" : "Evidence Reviewed"}</label>
               <textarea data-field="evidenceReviewed" data-pq="${pqIdx}" ${disabledAttrForm}>${escapeHtml(extra.evidenceReviewed || "")}</textarea>
-            </div>
-            <div class="pq-extra-field full${correctiveMissingClass}">
-              <label>${currentLang === "tr" ? "Düzeltici Faaliyet / Öneri" : "Corrective Action / Recommendation"}</label>
-              <textarea data-field="correctiveAction" data-pq="${pqIdx}" ${disabledAttrForm}>${escapeHtml(extra.correctiveAction || "")}</textarea>
-            </div>
-            <div class="pq-extra-field${responsibleMissingClass}">
-              <label>${currentLang === "tr" ? "Sorumlu Birim" : "Responsible Unit"}</label>
-              <input data-field="responsibleUnit" data-pq="${pqIdx}" value="${escapeHtml(extra.responsibleUnit || "")}" ${disabledAttrForm}>
-            </div>
-            <div class="pq-extra-field${dueMissingClass}">
-              <label>${currentLang === "tr" ? "Termin Tarihi" : "Due Date"}</label>
-              <input type="date" data-field="dueDate" data-pq="${pqIdx}" value="${escapeHtml(extra.dueDate || "")}" ${disabledAttrForm}>
-            </div>
-            <div class="pq-extra-field">
-              <label>${currentLang === "tr" ? "Kritiklik" : "Severity"}</label>
-              <select data-field="severity" data-pq="${pqIdx}" ${disabledAttrForm}>
-                <option value="minor" ${extra.severity === "minor" ? "selected" : ""}>${currentLang === "tr" ? "Düşük" : "Minor"}</option>
-                <option value="major" ${extra.severity === "major" ? "selected" : ""}>${currentLang === "tr" ? "Orta" : "Major"}</option>
-                <option value="critical" ${extra.severity === "critical" ? "selected" : ""}>${currentLang === "tr" ? "Kritik" : "Critical"}</option>
-              </select>
             </div>
             <div class="pq-extra-field">
               <label>${currentLang === "tr" ? "Bulgu Durumu" : "Finding Status"}</label>
               <select data-field="findingStatus" data-pq="${pqIdx}" ${disabledAttrForm}>
                 <option value="open" ${extra.findingStatus === "open" ? "selected" : ""}>${currentLang === "tr" ? "Açık" : "Open"}</option>
-                <option value="cap_pending" ${extra.findingStatus === "cap_pending" ? "selected" : ""}>${currentLang === "tr" ? "Düzeltici Faaliyet Bekleniyor" : "CAP Pending"}</option>
-                <option value="in_review" ${extra.findingStatus === "in_review" ? "selected" : ""}>${currentLang === "tr" ? "İncelemede" : "In Review"}</option>
                 <option value="closed" ${extra.findingStatus === "closed" ? "selected" : ""}>${currentLang === "tr" ? "Kapatıldı" : "Closed"}</option>
-                <option value="overdue" ${extra.findingStatus === "overdue" ? "selected" : ""}>${currentLang === "tr" ? "Gecikti" : "Overdue"}</option>
               </select>
             </div>
             <div class="pq-extra-field full">
@@ -2528,7 +2487,7 @@ This only deletes audits/${currentAuditId}; the JSON checklist is not deleted. C
         };
         fieldEl.addEventListener("input", e => {
           const wrap = e.target.closest(".pq-extra-field");
-          if (wrap && ["evidenceReviewed", "correctiveAction", "responsibleUnit", "dueDate"].includes(e.target.getAttribute("data-field"))) wrap.classList.toggle("required-missing", !String(e.target.value || "").trim());
+          if (wrap && ["evidenceReviewed"].includes(e.target.getAttribute("data-field"))) wrap.classList.toggle("required-missing", !String(e.target.value || "").trim());
         });
         fieldEl.addEventListener("blur", saveExtra);
         fieldEl.addEventListener("change", saveExtra);
