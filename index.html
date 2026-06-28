@@ -350,7 +350,7 @@
     <header>
       <h1 id="areaTitle">Loading Area...</h1>
       <p>Firebase Realtime Dynamic Compliance Matrix</p>
-      <div class="data-source" id="dataSourceInfo">Data source: PQ_Teftis_JSON_Model.json</div>
+      <div class="data-source" id="dataSourceInfo">Data source: PQ_JSON_Model.json</div>
       <div class="lang-switch-box">
         <button class="lang-btn active" id="btnLangTR" onclick="setLanguage('tr')">TR</button>
         <button class="lang-btn" id="btnLangEN" onclick="setLanguage('en')">EN</button>
@@ -675,7 +675,7 @@
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
   import { getFirestore, doc, getDoc, setDoc, deleteDoc, collection, getDocs, writeBatch } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
-  const DATA_FILE = "PQ_Teftis_JSON_Model.json";
+  const DATA_FILE = "PQ_JSON_Model.json";
   const AREA_ORDER = ["LEG", "ORG", "PEL", "OPS", "AIR", "AIG", "ANS", "AGA", "SSP"];
   const AREA_LABELS = {
     LEG: "Legislation",
