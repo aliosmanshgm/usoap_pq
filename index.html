@@ -206,6 +206,13 @@
     .findings-table th { background: #fff7ed; color: #7c2d12; font-weight: 900; }
     .findings-table td:nth-child(1), .findings-table td:nth-child(2), .findings-table td:nth-child(4) { text-align: center; white-space: nowrap; }
     .findings-table th:last-child, .findings-table td:last-child { border-right: 0; }
+    .findings-table.compact { table-layout: fixed; min-width: 760px; }
+    .findings-table.compact th, .findings-table.compact td { white-space: normal; word-break: break-word; overflow-wrap: anywhere; line-height: 1.35; }
+    .findings-table.compact th:nth-child(1), .findings-table.compact td:nth-child(1) { width: 95px; }
+    .findings-table.compact th:nth-child(2), .findings-table.compact td:nth-child(2) { width: 70px; }
+    .findings-table.compact th:nth-child(3), .findings-table.compact td:nth-child(3) { width: 60px; }
+    .findings-table.compact th:nth-child(4), .findings-table.compact td:nth-child(4) { width: 85px; }
+    .findings-table.compact th:last-child, .findings-table.compact td:last-child { width: 90px; }
 
 
     .filter-panel { background: white; border: 1px solid var(--border-color); border-radius: 12px; padding: 14px 15px; margin-bottom: 14px; display: grid; grid-template-columns: 1.4fr repeat(5, minmax(120px, 1fr)) auto; gap: 10px; align-items: end; }
@@ -255,11 +262,16 @@
     .report-cover { display: none; }
     @media print {
       body { display: block; height: auto; overflow: visible; background: white; }
-      .sidebar, header, .audit-toolbar, .audit-form-screen, .filter-panel, .report-actions, .pq-header { display: none !important; }
+      .sidebar, header, .audit-toolbar, .audit-form-screen, .filter-panel, .report-actions, .pq-header, .welcome-screen, .audit-list-screen, #qualityControlScreen, #findingsPoolScreen { display: none !important; }
       .main-content { padding: 0; overflow: visible; }
-      .report-screen, .report-screen.active { display: block !important; border: none; padding: 0; }
+      .report-screen { display: none !important; }
+      .report-screen.active { display: block !important; border: none; padding: 0; }
       .report-cover { display: block; margin-bottom: 18px; }
-      .report-table { min-width: 0; }
+      .report-table { min-width: 0; font-size: 10px; }
+      .report-table th, .report-table td { padding: 5px 6px; font-size: 10px; }
+      .findings-table { min-width: 0 !important; table-layout: fixed; width: 100%; }
+      .findings-table th, .findings-table td { padding: 5px 6px; font-size: 9px; line-height: 1.25; white-space: normal !important; word-break: break-word; overflow-wrap: anywhere; }
+      .findings-table-wrap { overflow: visible; border: 1px solid var(--border-color); }
     }
     .default-form-code { font-size: 16px; font-weight: 900; color: var(--primary-color); }
     .default-form-name { margin-top: 3px; font-size: 12px; color: #334155; font-weight: 700; min-height: 30px; }
@@ -376,7 +388,7 @@
         <div class="welcome-card"><h3 id="welcomeCard1Title">Denetim İşlemleri</h3><p id="welcomeCard1Text">Yeni denetim oluşturabilir, devam eden, kapatılan ve arşivlenen denetimleri yönetebilirsiniz.</p></div>
         <div class="welcome-card"><h3 id="welcomeCard2Title">Kontrol Formları</h3><p id="welcomeCard2Text">LEG, ORG, PEL, OPS, AIR, AIG, ANS, AGA ve SSP kontrol formlarında PQ değerlendirmesi yapabilirsiniz.</p></div>
         <div class="welcome-card"><h3 id="welcomeCard3Title">Bulgu Havuzu</h3><p id="welcomeCard3Text">Sadece NS olan kayıtlar bulgu olarak kabul edilir ve bu havuzda izlenir.</p></div>
-        <div class="welcome-card"><h3 id="welcomeCard4Title">Raporlama</h3><p id="welcomeCard4Text">Area bazlı özetleri görebilir, PDF ve Excel raporları alabilirsiniz. PDF raporda NS bulgular ayrıca listelenir.</p></div>
+        <div class="welcome-card"><h3 id="welcomeCard4Title">Raporlama</h3><p id="welcomeCard4Text">Area bazlı özetleri görebilir, PDF ve Excel raporları alabilirsiniz. PDF raporda BULGULAR ayrıca listelenir.</p></div>
         <div class="welcome-card"><h3 id="welcomeCard5Title">Kapatma Öncesi Kontrol</h3><p id="welcomeCard5Text">Denetimi kapatmadan önce eksik not, kanıt ve değerlendirme durumları kontrol edilir.</p></div>
         <div class="welcome-card"><h3 id="welcomeCard6Title">Kayıt Mantığı</h3><p id="welcomeCard6Text">Otomatik kayıt korunur; ayrıca PQ ekranında Denetim Durumunu Kaydet butonu ile manuel kayıt alınabilir.</p></div>
       </div>
@@ -602,9 +614,9 @@
       </div>
       <div class="report-note" id="reportNote"></div>
       <div class="report-findings-block" id="reportFindingsBlock">
-        <h3 class="report-findings-title" id="reportFindingsTitle">NS Bulgular</h3>
+        <h3 class="report-findings-title" id="reportFindingsTitle">BULGULAR</h3>
         <div class="findings-table-wrap">
-          <table class="findings-table">
+          <table class="findings-table compact">
             <thead id="reportFindingsTableHead"></thead>
             <tbody id="reportFindingsTableBody"></tbody>
           </table>
@@ -618,7 +630,7 @@
       <div class="report-header">
         <div>
           <h2 id="qualityTitle">Kapatma Öncesi Kontrol</h2>
-          <p id="qualitySubtitle">Denetim kapatılmadan önce zorunlu alanlar, değerlendirme durumu ve bulgu kayıtları kontrol edilir.</p>
+          <p id="qualitySubtitle" style="display:none;"></p>
         </div>
         <div class="report-actions">
           <button class="report-btn" id="btnRefreshQuality" type="button" onclick="renderQualityControl()">Yenile</button>
@@ -634,14 +646,14 @@
           <tbody id="qualityTableBody"></tbody>
         </table>
       </div>
-      <div class="report-note" id="qualityNote"></div>
+      <div class="report-note" id="qualityNote" style="display:none;"></div>
     </div>
 
     <div class="report-screen" id="findingsPoolScreen">
       <div class="report-header">
         <div>
           <h2 id="findingsTitle">Bulgu Havuzu</h2>
-          <p id="findingsSubtitle">Tüm denetimlerde sadece NS verilen PQ kayıtları burada listelenir.</p>
+          <p id="findingsSubtitle">Aktif denetimde sadece NS verilen PQ kayıtları burada listelenir.</p>
         </div>
         <div class="report-actions">
           <button class="report-btn" id="btnRefreshFindings" type="button" onclick="renderFindingsPool()">Yenile</button>
@@ -650,7 +662,7 @@
       </div>
       <div class="findings-section" id="findingsSection">
         <div class="findings-table-wrap">
-          <table class="findings-table">
+          <table class="findings-table compact">
             <thead id="findingsTableHead"></thead>
             <tbody id="findingsTableBody"></tbody>
           </table>
@@ -904,7 +916,7 @@
     set("welcomeCard3Title", tr ? "Bulgu Havuzu" : "Findings Pool");
     set("welcomeCard3Text", tr ? "Sadece NS olan kayıtlar bulgu olarak kabul edilir ve bu havuzda izlenir." : "Only NS records are treated as findings and listed in this pool.");
     set("welcomeCard4Title", tr ? "Raporlama" : "Reporting");
-    set("welcomeCard4Text", tr ? "Area bazlı özetleri görebilir, PDF ve Excel raporları alabilirsiniz. PDF raporda NS bulgular ayrıca listelenir." : "Review area summaries and export PDF or Excel reports. NS findings are listed separately in the PDF report.");
+    set("welcomeCard4Text", tr ? "Area bazlı özetleri görebilir, PDF ve Excel raporları alabilirsiniz. PDF raporda BULGULAR ayrıca listelenir." : "Review area summaries and export PDF or Excel reports. Findings are listed separately in the PDF report.");
     set("welcomeCard5Title", tr ? "Kapatma Öncesi Kontrol" : "Pre-closure Check");
     set("welcomeCard5Text", tr ? "Denetimi kapatmadan önce eksik not, kanıt ve değerlendirme durumları kontrol edilir." : "Before closing an audit, missing notes, evidence, and evaluation status are checked.");
     set("welcomeCard6Title", tr ? "Kayıt Mantığı" : "Saving Logic");
@@ -1334,7 +1346,7 @@
     document.getElementById("btnQualityBack").innerText = tr ? "PQ Ekranına Dön" : "Back to PQ Screen";
     document.getElementById("btnQualityCloseAudit").innerText = tr ? "Uygunsa Denetimi Kapat" : "Close Audit if OK";
     title.innerText = tr ? "Kapatma Öncesi Kontrol" : "Pre-close Quality Check";
-    subtitle.innerText = tr ? "Denetim kapatılmadan önce zorunlu alanlar, değerlendirme durumu ve bulgu kayıtları kontrol edilir." : "Required fields, evaluation status and findings are checked before closing the audit.";
+    if (subtitle) subtitle.innerText = "";
     head.innerHTML = `<tr><th>${tr ? "Tür" : "Type"}</th><th>${tr ? "Önem" : "Severity"}</th><th>Area</th><th>PQ</th><th>${tr ? "Açıklama" : "Description"}</th><th>${tr ? "İşlem" : "Action"}</th></tr>`;
     body.innerHTML = `<tr><td colspan="6" style="text-align:center;color:#64748b;">${tr ? "Kontrol yapılıyor..." : "Checking..."}</td></tr>`;
     const data = await collectQualityControlData();
@@ -1362,9 +1374,7 @@
       </tr>`).join("");
     }
     window.__qualityIssues = data.issues;
-    note.innerText = tr
-      ? "Bloke eden eksikler giderilmeden denetim kapatılamaz. Uyarılar ise kalite amaçlıdır; özellikle tüm kriterleri NA kalan PQ'lar gözden geçirilmelidir."
-      : "The audit cannot be closed until blocking issues are resolved. Warnings are for quality review; especially PQs with all criteria left as NA should be reviewed.";
+    if (note) note.innerText = "";
     return data;
   };
 
@@ -1989,21 +1999,19 @@ This only deletes audits/${currentAuditId}; the JSON checklist is not deleted. C
     const body = document.getElementById("reportFindingsTableBody");
     const title = document.getElementById("reportFindingsTitle");
     if (!head || !body) return;
-    if (title) title.innerText = tr ? "NS Bulgular" : "NS Findings";
+    if (title) title.innerText = tr ? "BULGULAR" : "FINDINGS";
     head.innerHTML = `<tr>
-      <th>Area</th><th>PQ</th><th>CE</th><th>${tr ? "Durum" : "Status"}</th><th>${tr ? "Soru" : "Question"}</th><th>${tr ? "Bulgu / Not" : "Finding / Note"}</th><th>${tr ? "İncelenen Kanıt" : "Evidence Reviewed"}</th>
+      <th>Area</th><th>PQ</th><th>CE</th><th>${tr ? "Bulgu / Not" : "Finding / Note"}</th><th>${tr ? "İncelenen Kanıt" : "Evidence Reviewed"}</th>
     </tr>`;
     const findingRows = buildAuditReportRows().filter(row => row.status === "NS");
     if (!findingRows.length) {
-      body.innerHTML = `<tr><td colspan="7" style="text-align:center;color:#64748b;">${tr ? "NS bulgu kaydı bulunmuyor." : "No NS findings found."}</td></tr>`;
+      body.innerHTML = `<tr><td colspan="5" style="text-align:center;color:#64748b;">${tr ? "Bulgu kaydı bulunmuyor." : "No findings found."}</td></tr>`;
       return;
     }
     body.innerHTML = findingRows.map(row => `<tr>
       <td>${escapeHtml(row.area)}</td>
       <td>${escapeHtml(row.pqNo)}</td>
       <td>${escapeHtml(row.ce)}</td>
-      <td>${escapeHtml(row.status)}</td>
-      <td>${escapeHtml(row.question)}</td>
       <td>${escapeHtml(row.finding || (tr ? "NS olarak işaretlendi; ayrıca bulgu notu yazılmamış." : "Marked NS; no additional finding note entered."))}</td>
       <td>${escapeHtml(row.evidenceReviewed || "-")}</td>
     </tr>`).join("");
@@ -2031,41 +2039,41 @@ This only deletes audits/${currentAuditId}; the JSON checklist is not deleted. C
 
   async function collectFindingsPoolRows() {
     await loadMasterModel();
-    const snap = await getDocs(collection(db, "audits"));
     const rows = [];
-    snap.forEach(auditDoc => {
-      const auditId = auditDoc.id;
-      const auditData = ensureAuditShape(auditDoc.data(), auditId);
-      const info = auditData.auditInfo || {};
-      const selectedAreas = Array.isArray(info.selectedForms) && info.selectedForms.length ? info.selectedForms : AREA_ORDER;
-      selectedAreas.forEach(areaKey => {
-        const areaData = normalizedAreas[areaKey] || { pqs: [] };
-        const userData = auditData.answers?.[areaKey] || { notes: {} };
-        (areaData.pqs || []).forEach((pq, pqIdx) => {
-          const status = getStatusSummaryForAuditData(pq, pqIdx, areaKey, auditData);
-          const finding = userData.notes?.[pqIdx] || "";
-          const extra = getPQExtraFields(areaKey, pqIdx, auditData);
-          if (status !== "NS") return;
-          rows.push({
-            auditId,
-            organization: info.organizationName || "",
-            auditDate: info.auditDate || "",
-            auditStatus: info.status || "open",
-            area: areaKey,
-            pqNo: pq.no || "",
-            ce: pq.ce || "",
-            pqIndex: pqIdx,
-            status,
-            question: currentLang === "tr" ? (pq.question_tr || pq.question_en) : (pq.question_en || pq.question_tr),
-            findingId: getFindingId(auditId, areaKey, pq.no || pqIdx + 1),
-            finding: finding || (status === "NS" ? (currentLang === "tr" ? "NS olarak işaretlendi; ayrıca bulgu notu yazılmamış." : "Marked NS; no additional finding note entered.") : ""),
-            findingStatus: extra.findingStatus || "open",
-            closureNote: extra.closureNote || ""
-          });
+    if (!currentAuditId) return rows;
+    currentAuditData = ensureAuditShape(currentAuditData, currentAuditId);
+    const auditId = currentAuditId;
+    const auditData = currentAuditData;
+    const info = auditData.auditInfo || {};
+    const selectedAreas = Array.isArray(info.selectedForms) && info.selectedForms.length ? info.selectedForms : AREA_ORDER;
+    selectedAreas.forEach(areaKey => {
+      const areaData = normalizedAreas[areaKey] || { pqs: [] };
+      const userData = auditData.answers?.[areaKey] || { notes: {} };
+      (areaData.pqs || []).forEach((pq, pqIdx) => {
+        const status = getStatusSummaryForAuditData(pq, pqIdx, areaKey, auditData);
+        if (status !== "NS") return;
+        const finding = userData.notes?.[pqIdx] || "";
+        const extra = getPQExtraFields(areaKey, pqIdx, auditData);
+        rows.push({
+          auditId,
+          organization: info.organizationName || "",
+          auditDate: info.auditDate || "",
+          auditStatus: info.status || "open",
+          area: areaKey,
+          pqNo: pq.no || "",
+          ce: pq.ce || "",
+          pqIndex: pqIdx,
+          status,
+          question: currentLang === "tr" ? (pq.question_tr || pq.question_en) : (pq.question_en || pq.question_tr),
+          findingId: getFindingId(auditId, areaKey, pq.no || pqIdx + 1),
+          finding: finding || (currentLang === "tr" ? "NS olarak işaretlendi; ayrıca bulgu notu yazılmamış." : "Marked NS; no additional finding note entered."),
+          evidenceReviewed: extra.evidenceReviewed || "",
+          findingStatus: extra.findingStatus || "open",
+          closureNote: extra.closureNote || ""
         });
       });
     });
-    rows.sort((a, b) => `${b.auditDate}${b.auditId}`.localeCompare(`${a.auditDate}${a.auditId}`));
+    rows.sort((a, b) => `${a.area}${a.pqNo}`.localeCompare(`${b.area}${b.pqNo}`));
     return rows;
   }
 
@@ -2076,7 +2084,7 @@ This only deletes audits/${currentAuditId}; the JSON checklist is not deleted. C
     updateToolbarForView();
     document.getElementById("findingsPoolScreen").classList.add("active");
     document.getElementById("areaTitle").innerText = currentLang === "tr" ? "Bulgu Havuzu" : "Findings Pool";
-    document.getElementById("dataSourceInfo").innerText = "Firebase: audits / findings pool";
+    document.getElementById("dataSourceInfo").innerText = currentAuditId ? `Firebase: audits/${currentAuditId} / findings pool` : "Bulgu Havuzu için aktif denetim seçilmedi";
     await renderFindingsPool();
   };
 
@@ -2090,36 +2098,38 @@ This only deletes audits/${currentAuditId}; the JSON checklist is not deleted. C
     const exportBtn = document.getElementById("btnExportFindings");
     if (!head || !body) return;
     if (title) title.innerText = tr ? "Bulgu Havuzu" : "Findings Pool";
-    if (subtitle) subtitle.innerText = tr ? "Tüm denetimlerde sadece NS verilen PQ kayıtları burada listelenir." : "Only PQs marked NS across all audits are listed here.";
+    if (subtitle) subtitle.innerText = currentAuditId
+      ? (tr ? `Aktif denetimdeki BULGULAR listelenir: ${currentAuditId}` : `Findings for the active audit are listed: ${currentAuditId}`)
+      : (tr ? "Bulgu Havuzu için önce bir denetim açın veya oluşturun." : "Open or create an audit first to view the findings pool.");
     if (refreshBtn) refreshBtn.innerText = tr ? "Yenile" : "Refresh";
     if (exportBtn) exportBtn.innerText = tr ? "Excel'e Aktar" : "Export to Excel";
     head.innerHTML = `<tr>
-      <th>${tr ? "Bulgu ID" : "Finding ID"}</th><th>${tr ? "Denetim" : "Audit"}</th><th>${tr ? "İşletme" : "Organization"}</th><th>${tr ? "Tarih" : "Date"}</th><th>${tr ? "Denetim Durumu" : "Audit Status"}</th><th>Area</th><th>PQ</th><th>CE</th><th>${tr ? "PQ Durumu" : "PQ Status"}</th><th>${tr ? "Bulgu Durumu" : "Finding Status"}</th><th>${tr ? "Bulgu / Not" : "Finding / Note"}</th><th>${tr ? "Kapanış Notu" : "Closure Note"}</th><th>${tr ? "İşlem" : "Action"}</th>
+      <th>${tr ? "Bulgu ID" : "Finding ID"}</th><th>Area</th><th>PQ</th><th>CE</th><th>${tr ? "Bulgu / Not" : "Finding / Note"}</th><th>${tr ? "İncelenen Kanıt" : "Evidence Reviewed"}</th><th>${tr ? "Kapanış Notu" : "Closure Note"}</th><th>${tr ? "İşlem" : "Action"}</th>
     </tr>`;
-    body.innerHTML = `<tr><td colspan="13" style="text-align:center;color:#64748b;">${tr ? "Bulgu havuzu yükleniyor..." : "Loading findings pool..."}</td></tr>`;
+    if (!currentAuditId) {
+      findingsPoolRows = [];
+      body.innerHTML = `<tr><td colspan="8" style="text-align:center;color:#64748b;">${tr ? "Aktif denetim yok. Önce Devam Eden/Kapatılan Denetimler listesinden bir denetim açın." : "No active audit. Open an audit from Open/Closed Audits first."}</td></tr>`;
+      return;
+    }
+    body.innerHTML = `<tr><td colspan="8" style="text-align:center;color:#64748b;">${tr ? "Bulgu havuzu yükleniyor..." : "Loading findings pool..."}</td></tr>`;
     try {
       findingsPoolRows = await collectFindingsPoolRows();
       if (!findingsPoolRows.length) {
-        body.innerHTML = `<tr><td colspan="13" style="text-align:center;color:#64748b;">${tr ? "NS bulgu kaydı bulunmuyor." : "No NS findings found."}</td></tr>`;
+        body.innerHTML = `<tr><td colspan="8" style="text-align:center;color:#64748b;">${tr ? "Bu denetimde bulgu kaydı bulunmuyor." : "No findings found for this audit."}</td></tr>`;
         return;
       }
       body.innerHTML = findingsPoolRows.map(row => `<tr>
         <td>${escapeHtml(row.findingId)}</td>
-        <td>${escapeHtml(row.auditId)}</td>
-        <td>${escapeHtml(row.organization || "-")}</td>
-        <td>${escapeHtml(row.auditDate || "-")}</td>
-        <td>${escapeHtml(row.auditStatus === "closed" ? (tr ? "Kapalı" : "Closed") : (tr ? "Açık" : "Open"))}</td>
         <td>${escapeHtml(row.area)}</td>
         <td>${escapeHtml(row.pqNo)}</td>
         <td>${escapeHtml(row.ce)}</td>
-        <td>${escapeHtml(row.status)}</td>
-        <td>${escapeHtml(row.findingStatus)}</td>
         <td>${escapeHtml(row.finding)}</td>
+        <td>${escapeHtml(row.evidenceReviewed || "-")}</td>
         <td>${escapeHtml(row.closureNote || "-")}</td>
         <td><button class="audit-btn" type="button" onclick="loadAuditAndGoToArea('${escapeHtml(row.auditId)}','${escapeHtml(row.area)}')">${tr ? "Aç" : "Open"}</button></td>
       </tr>`).join("");
     } catch (error) {
-      body.innerHTML = `<tr><td colspan="13" style="text-align:center;color:#991b1b;">Hata: ${escapeHtml(error.message)}</td></tr>`;
+      body.innerHTML = `<tr><td colspan="8" style="text-align:center;color:#991b1b;">Hata: ${escapeHtml(error.message)}</td></tr>`;
     }
   };
 
@@ -2144,8 +2154,8 @@ This only deletes audits/${currentAuditId}; the JSON checklist is not deleted. C
       alert(tr ? "Dışa aktarılacak bulgu kaydı yok." : "There are no finding records to export.");
       return;
     }
-    const headers = tr ? ["Bulgu ID", "Denetim ID", "İşletme", "Tarih", "Denetim Durumu", "Area", "PQ", "CE", "PQ Durumu", "Bulgu Durumu", "Soru", "Bulgu / Not", "Kapanış Notu"] : ["Finding ID", "Audit ID", "Organization", "Date", "Audit Status", "Area", "PQ", "CE", "PQ Status", "Finding Status", "Question", "Finding / Note", "Closure Note"];
-    const bodyRows = rows.map(r => [r.findingId, r.auditId, r.organization, r.auditDate, r.auditStatus, r.area, r.pqNo, r.ce, r.status, r.findingStatus, r.question, r.finding, r.closureNote]);
+    const headers = tr ? ["Bulgu ID", "Denetim ID", "İşletme", "Tarih", "Area", "PQ", "CE", "Soru", "Bulgu / Not", "İncelenen Kanıt", "Kapanış Notu"] : ["Finding ID", "Audit ID", "Organization", "Date", "Area", "PQ", "CE", "Question", "Finding / Note", "Evidence Reviewed", "Closure Note"];
+    const bodyRows = rows.map(r => [r.findingId, r.auditId, r.organization, r.auditDate, r.area, r.pqNo, r.ce, r.question, r.finding, r.evidenceReviewed, r.closureNote]);
     const csv = "\ufeff" + headers.map(csvCell).join(";") + "\n" + bodyRows.map(r => r.map(csvCell).join(";")).join("\n");
     const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);
