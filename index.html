@@ -40,7 +40,17 @@
       padding: 20px 0;
       box-shadow: 2px 0 5px rgba(0,0,0,0.1);
       flex-shrink: 0;
+      height: 100vh;
+      overflow-y: auto;
+      overflow-x: hidden;
+      min-height: 0;
+      scrollbar-width: thin;
+      scrollbar-color: #475569 #0f172a;
     }
+    .sidebar::-webkit-scrollbar { width: 8px; }
+    .sidebar::-webkit-scrollbar-track { background: #0f172a; }
+    .sidebar::-webkit-scrollbar-thumb { background: #475569; border-radius: 999px; }
+    .sidebar::-webkit-scrollbar-thumb:hover { background: #64748b; }
     .sidebar h2 {
       font-size: 14px;
       padding: 0 20px 10px 20px;
@@ -311,7 +321,7 @@
 
     @media (max-width: 900px) {
       body { flex-direction: column; height: auto; overflow: auto; }
-      .sidebar { width: 100%; height: auto; }
+      .sidebar { width: 100%; height: auto; max-height: none; overflow-y: visible; }
       .main-content { overflow: visible; }
       .dashboard-summary { flex-direction: column; align-items: stretch; }
       .pq-header, .criterion-item { flex-direction: column; align-items: stretch; }
