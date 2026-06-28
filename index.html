@@ -283,13 +283,27 @@
     .audit-list-card.hidden { display: none; }
     .screen-help-box { background:#eff6ff; border:1px solid #bfdbfe; color:#1e3a8a; border-radius:10px; padding:12px; font-size:12px; line-height:1.5; margin-bottom:12px; }
 
+
+    .welcome-screen { display:none; background:white; border:1px solid var(--border-color); border-radius:12px; padding:22px; }
+    .welcome-screen.active { display:block; }
+    .welcome-hero { background:linear-gradient(135deg,#eff6ff,#f8fafc); border:1px solid #bfdbfe; border-radius:14px; padding:22px; margin-bottom:18px; }
+    .welcome-hero h2 { margin:0 0 8px 0; color:#0f172a; font-size:24px; }
+    .welcome-hero p { margin:0; color:#475569; font-size:14px; line-height:1.6; }
+    .welcome-grid { display:grid; grid-template-columns:repeat(3,minmax(180px,1fr)); gap:12px; margin-top:14px; }
+    .welcome-card { border:1px solid var(--border-color); border-radius:12px; padding:14px; background:#fff; }
+    .welcome-card h3 { margin:0 0 7px 0; color:#1e3a8a; font-size:15px; }
+    .welcome-card p { margin:0; color:#64748b; font-size:12px; line-height:1.5; }
+    .welcome-actions { display:flex; gap:10px; flex-wrap:wrap; margin-top:16px; }
+    .report-findings-block { margin-top:18px; }
+    .report-findings-title { margin:0 0 8px 0; color:#0f172a; font-size:16px; }
+
     @media (max-width: 900px) {
       body { flex-direction: column; height: auto; overflow: auto; }
       .sidebar { width: 100%; height: auto; }
       .main-content { overflow: visible; }
       .dashboard-summary { flex-direction: column; align-items: stretch; }
       .pq-header, .criterion-item { flex-direction: column; align-items: stretch; }
-      .filter-panel, .audit-form-grid, .audit-load-row, .audit-list-grid, .default-forms-grid { grid-template-columns: 1fr; }
+      .filter-panel, .audit-form-grid, .audit-load-row, .audit-list-grid, .default-forms-grid, .welcome-grid { grid-template-columns: 1fr; }
       .audit-toolbar, .audit-form-header { flex-direction: column; align-items: stretch; }
       .report-header { flex-direction: column; }
     }
@@ -302,6 +316,7 @@
 
     <div class="sidebar-section-label">Denetim İşlemleri</div>
     <ul class="menu-list">
+      <li class="menu-item" onclick="showWelcome()" id="menu_WELCOME"><span>Ana Sayfa / Rehber</span><span class="area-count">?</span></li>
       <li class="menu-item" onclick="startNewAudit()" id="menu_AUDIT"><span>Yeni Denetim Oluştur</span><span class="area-count">Yeni</span></li>
       <li class="menu-item" onclick="showAuditRecords('open')" id="menu_OPEN_AUDITS"><span>Devam Eden Denetimler</span><span class="area-count">Açık</span></li>
       <li class="menu-item" onclick="showAuditRecords('closed')" id="menu_CLOSED_AUDITS"><span>Kapatılan Denetimler</span><span class="area-count">Kapalı</span></li>
@@ -344,6 +359,26 @@
         <button class="audit-btn" type="button" onclick="exportAuditToExcel()" id="btnExportExcel">Excel Rapor</button>
         <button class="audit-btn" type="button" onclick="archiveCurrentAudit()" id="btnArchiveCurrentAudit">Arşivle</button>
         <button class="audit-btn danger" type="button" onclick="deleteCurrentAudit()" id="btnDeleteCurrentAudit">Aktif Denetimi Sil</button>
+      </div>
+    </div>
+
+    <div class="welcome-screen" id="welcomeScreen">
+      <div class="welcome-hero">
+        <h2 id="welcomeTitle">Hoş Geldiniz</h2>
+        <p id="welcomeIntro">Bu uygulama, USOAP PQ denetimlerinizi planlamak, kontrol formlarını doldurmak, bulguları takip etmek ve rapor almak için hazırlanmıştır.</p>
+        <div class="welcome-actions">
+          <button class="audit-btn primary" type="button" onclick="startNewAudit()" id="welcomeNewAuditBtn">Yeni Denetim Oluştur</button>
+          <button class="audit-btn" type="button" onclick="showAuditRecords('open')" id="welcomeOpenAuditsBtn">Devam Eden Denetimler</button>
+          <button class="audit-btn" type="button" onclick="showReport()" id="welcomeReportBtn">Raporlama</button>
+        </div>
+      </div>
+      <div class="welcome-grid">
+        <div class="welcome-card"><h3 id="welcomeCard1Title">Denetim İşlemleri</h3><p id="welcomeCard1Text">Yeni denetim oluşturabilir, devam eden, kapatılan ve arşivlenen denetimleri yönetebilirsiniz.</p></div>
+        <div class="welcome-card"><h3 id="welcomeCard2Title">Kontrol Formları</h3><p id="welcomeCard2Text">LEG, ORG, PEL, OPS, AIR, AIG, ANS, AGA ve SSP kontrol formlarında PQ değerlendirmesi yapabilirsiniz.</p></div>
+        <div class="welcome-card"><h3 id="welcomeCard3Title">Bulgu Havuzu</h3><p id="welcomeCard3Text">Sadece NS olan kayıtlar bulgu olarak kabul edilir ve bu havuzda izlenir.</p></div>
+        <div class="welcome-card"><h3 id="welcomeCard4Title">Raporlama</h3><p id="welcomeCard4Text">Area bazlı özetleri görebilir, PDF ve Excel raporları alabilirsiniz. PDF raporda NS bulgular ayrıca listelenir.</p></div>
+        <div class="welcome-card"><h3 id="welcomeCard5Title">Kapatma Öncesi Kontrol</h3><p id="welcomeCard5Text">Denetimi kapatmadan önce eksik not, kanıt ve değerlendirme durumları kontrol edilir.</p></div>
+        <div class="welcome-card"><h3 id="welcomeCard6Title">Kayıt Mantığı</h3><p id="welcomeCard6Text">Otomatik kayıt korunur; ayrıca PQ ekranında Denetim Durumunu Kaydet butonu ile manuel kayıt alınabilir.</p></div>
       </div>
     </div>
 
@@ -566,6 +601,15 @@
         </table>
       </div>
       <div class="report-note" id="reportNote"></div>
+      <div class="report-findings-block" id="reportFindingsBlock">
+        <h3 class="report-findings-title" id="reportFindingsTitle">NS Bulgular</h3>
+        <div class="findings-table-wrap">
+          <table class="findings-table">
+            <thead id="reportFindingsTableHead"></thead>
+            <tbody id="reportFindingsTableBody"></tbody>
+          </table>
+        </div>
+      </div>
     </div>
 
 
@@ -597,7 +641,7 @@
       <div class="report-header">
         <div>
           <h2 id="findingsTitle">Bulgu Havuzu</h2>
-          <p id="findingsSubtitle">Tüm denetimlerde NS verilen veya bulgu/not yazılan PQ kayıtları burada listelenir.</p>
+          <p id="findingsSubtitle">Tüm denetimlerde sadece NS verilen PQ kayıtları burada listelenir.</p>
         </div>
         <div class="report-actions">
           <button class="report-btn" id="btnRefreshFindings" type="button" onclick="renderFindingsPool()">Yenile</button>
@@ -810,12 +854,14 @@
     const records = document.getElementById("auditRecordsScreen");
     const findings = document.getElementById("findingsPoolScreen");
     const quality = document.getElementById("qualityControlScreen");
+    const welcome = document.getElementById("welcomeScreen");
     if (pq) pq.style.display = "none";
     if (report) report.classList.remove("active");
     if (setup) setup.classList.remove("active");
     if (records) records.classList.remove("active");
     if (findings) findings.classList.remove("active");
     if (quality) quality.classList.remove("active");
+    if (welcome) welcome.classList.remove("active");
   }
 
   function updateToolbarForView() {
@@ -828,6 +874,41 @@
     document.querySelectorAll(".menu-item").forEach(el => el.classList.remove("active"));
     const menu = document.getElementById(menuId);
     if (menu) menu.classList.add("active");
+  }
+
+  window.showWelcome = function() {
+    currentView = "welcome";
+    setActiveMenu("menu_WELCOME");
+    hideAllMainScreens();
+    updateToolbarForView();
+    const welcome = document.getElementById("welcomeScreen");
+    if (welcome) welcome.classList.add("active");
+    const tr = currentLang === "tr";
+    document.getElementById("areaTitle").innerText = tr ? "Ana Sayfa / Kullanım Rehberi" : "Home / User Guide";
+    document.getElementById("dataSourceInfo").innerText = tr ? "Başlangıç ekranı" : "Start screen";
+    updateWelcomeTexts();
+  };
+
+  function updateWelcomeTexts() {
+    const tr = currentLang === "tr";
+    const set = (id, text) => { const el = document.getElementById(id); if (el) el.innerText = text; };
+    set("welcomeTitle", tr ? "Hoş Geldiniz" : "Welcome");
+    set("welcomeIntro", tr ? "Bu uygulama, USOAP PQ denetimlerinizi planlamak, kontrol formlarını doldurmak, NS bulguları takip etmek ve rapor almak için hazırlanmıştır." : "This tool helps you plan USOAP PQ audits, complete control forms, track NS findings, and export reports.");
+    set("welcomeNewAuditBtn", tr ? "Yeni Denetim Oluştur" : "Create New Audit");
+    set("welcomeOpenAuditsBtn", tr ? "Devam Eden Denetimler" : "Open Audits");
+    set("welcomeReportBtn", tr ? "Raporlama" : "Reporting");
+    set("welcomeCard1Title", tr ? "Denetim İşlemleri" : "Audit Operations");
+    set("welcomeCard1Text", tr ? "Yeni denetim oluşturabilir, devam eden, kapatılan ve arşivlenen denetimleri yönetebilirsiniz." : "Create new audits and manage open, closed, and archived audit records.");
+    set("welcomeCard2Title", tr ? "Kontrol Formları" : "Control Forms");
+    set("welcomeCard2Text", tr ? "LEG, ORG, PEL, OPS, AIR, AIG, ANS, AGA ve SSP kontrol formlarında PQ değerlendirmesi yapabilirsiniz." : "Work through the LEG, ORG, PEL, OPS, AIR, AIG, ANS, AGA, and SSP control forms.");
+    set("welcomeCard3Title", tr ? "Bulgu Havuzu" : "Findings Pool");
+    set("welcomeCard3Text", tr ? "Sadece NS olan kayıtlar bulgu olarak kabul edilir ve bu havuzda izlenir." : "Only NS records are treated as findings and listed in this pool.");
+    set("welcomeCard4Title", tr ? "Raporlama" : "Reporting");
+    set("welcomeCard4Text", tr ? "Area bazlı özetleri görebilir, PDF ve Excel raporları alabilirsiniz. PDF raporda NS bulgular ayrıca listelenir." : "Review area summaries and export PDF or Excel reports. NS findings are listed separately in the PDF report.");
+    set("welcomeCard5Title", tr ? "Kapatma Öncesi Kontrol" : "Pre-closure Check");
+    set("welcomeCard5Text", tr ? "Denetimi kapatmadan önce eksik not, kanıt ve değerlendirme durumları kontrol edilir." : "Before closing an audit, missing notes, evidence, and evaluation status are checked.");
+    set("welcomeCard6Title", tr ? "Kayıt Mantığı" : "Saving Logic");
+    set("welcomeCard6Text", tr ? "Otomatik kayıt korunur; ayrıca PQ ekranında Denetim Durumunu Kaydet butonu ile manuel kayıt alınabilir." : "Auto-save remains active, and the PQ screen also provides a manual Save Audit Status button.");
   }
 
   function syncFormCheckboxesFromAudit() {
@@ -1769,7 +1850,10 @@ This only deletes audits/${currentAuditId}; the JSON checklist is not deleted. C
     const menuClosed = document.querySelector("#menu_CLOSED_AUDITS span:first-child");
     if (menuClosed) menuClosed.innerText = lang === "tr" ? "Kapatılan Denetimler" : "Closed Audits";
     const menuFindings = document.querySelector("#menu_FINDINGS span:first-child");
+    const menuWelcome = document.querySelector("#menu_WELCOME span:first-child");
+    if (menuWelcome) menuWelcome.innerText = lang === "tr" ? "Ana Sayfa / Rehber" : "Home / Guide";
     if (menuFindings) menuFindings.innerText = lang === "tr" ? "Bulgu Havuzu" : "Findings Pool";
+    updateWelcomeTexts();
     const menuReport = document.querySelector("#menu_REPORT span:first-child");
     if (menuReport) menuReport.innerText = lang === "tr" ? "Raporlama" : "Reporting";
     document.getElementById("btnOpenAuditSetup").innerText = lang === "tr" ? "Denetim Bilgileri" : "Audit Info";
@@ -1901,19 +1985,17 @@ This only deletes audits/${currentAuditId}; the JSON checklist is not deleted. C
 
   function renderFindingsTable() {
     const tr = currentLang === "tr";
-    const head = document.getElementById("findingsTableHead");
-    const body = document.getElementById("findingsTableBody");
-    const title = document.getElementById("findingsTitle");
-    const subtitle = document.getElementById("findingsSubtitle");
+    const head = document.getElementById("reportFindingsTableHead");
+    const body = document.getElementById("reportFindingsTableBody");
+    const title = document.getElementById("reportFindingsTitle");
     if (!head || !body) return;
-    if (title) title.innerText = tr ? "Bulgu Kayıtları" : "Finding Records";
-    if (subtitle) subtitle.innerText = tr ? "NS verilen veya bulgu/not yazılan PQ kayıtları burada listelenir." : "PQs marked NS or containing finding/notes are listed here.";
+    if (title) title.innerText = tr ? "NS Bulgular" : "NS Findings";
     head.innerHTML = `<tr>
-      <th>Area</th><th>PQ</th><th>CE</th><th>${tr ? "Durum" : "Status"}</th><th>${tr ? "Soru" : "Question"}</th><th>${tr ? "Bulgu / Not" : "Finding / Note"}</th>
+      <th>Area</th><th>PQ</th><th>CE</th><th>${tr ? "Durum" : "Status"}</th><th>${tr ? "Soru" : "Question"}</th><th>${tr ? "Bulgu / Not" : "Finding / Note"}</th><th>${tr ? "İncelenen Kanıt" : "Evidence Reviewed"}</th>
     </tr>`;
-    const findingRows = buildAuditReportRows().filter(row => row.status === "NS" || String(row.finding || "").trim());
+    const findingRows = buildAuditReportRows().filter(row => row.status === "NS");
     if (!findingRows.length) {
-      body.innerHTML = `<tr><td colspan="6" style="text-align:center;color:#64748b;">${tr ? "Bulgu veya NS kayıt bulunmuyor." : "No findings or NS records found."}</td></tr>`;
+      body.innerHTML = `<tr><td colspan="7" style="text-align:center;color:#64748b;">${tr ? "NS bulgu kaydı bulunmuyor." : "No NS findings found."}</td></tr>`;
       return;
     }
     body.innerHTML = findingRows.map(row => `<tr>
@@ -1922,7 +2004,8 @@ This only deletes audits/${currentAuditId}; the JSON checklist is not deleted. C
       <td>${escapeHtml(row.ce)}</td>
       <td>${escapeHtml(row.status)}</td>
       <td>${escapeHtml(row.question)}</td>
-      <td>${escapeHtml(row.finding || (row.status === "NS" ? (tr ? "NS olarak işaretlendi; ayrıca bulgu notu yazılmamış." : "Marked NS; no additional finding note entered.") : ""))}</td>
+      <td>${escapeHtml(row.finding || (tr ? "NS olarak işaretlendi; ayrıca bulgu notu yazılmamış." : "Marked NS; no additional finding note entered."))}</td>
+      <td>${escapeHtml(row.evidenceReviewed || "-")}</td>
     </tr>`).join("");
   }
 
@@ -1962,7 +2045,7 @@ This only deletes audits/${currentAuditId}; the JSON checklist is not deleted. C
           const status = getStatusSummaryForAuditData(pq, pqIdx, areaKey, auditData);
           const finding = userData.notes?.[pqIdx] || "";
           const extra = getPQExtraFields(areaKey, pqIdx, auditData);
-          if (status !== "NS" && !String(finding || "").trim()) return;
+          if (status !== "NS") return;
           rows.push({
             auditId,
             organization: info.organizationName || "",
@@ -2007,7 +2090,7 @@ This only deletes audits/${currentAuditId}; the JSON checklist is not deleted. C
     const exportBtn = document.getElementById("btnExportFindings");
     if (!head || !body) return;
     if (title) title.innerText = tr ? "Bulgu Havuzu" : "Findings Pool";
-    if (subtitle) subtitle.innerText = tr ? "Tüm denetimlerde NS verilen veya bulgu/not yazılan PQ kayıtları burada listelenir." : "PQs marked NS or containing finding/notes across all audits are listed here.";
+    if (subtitle) subtitle.innerText = tr ? "Tüm denetimlerde sadece NS verilen PQ kayıtları burada listelenir." : "Only PQs marked NS across all audits are listed here.";
     if (refreshBtn) refreshBtn.innerText = tr ? "Yenile" : "Refresh";
     if (exportBtn) exportBtn.innerText = tr ? "Excel'e Aktar" : "Export to Excel";
     head.innerHTML = `<tr>
@@ -2017,7 +2100,7 @@ This only deletes audits/${currentAuditId}; the JSON checklist is not deleted. C
     try {
       findingsPoolRows = await collectFindingsPoolRows();
       if (!findingsPoolRows.length) {
-        body.innerHTML = `<tr><td colspan="13" style="text-align:center;color:#64748b;">${tr ? "Bulgu veya NS kayıt bulunmuyor." : "No findings or NS records found."}</td></tr>`;
+        body.innerHTML = `<tr><td colspan="13" style="text-align:center;color:#64748b;">${tr ? "NS bulgu kaydı bulunmuyor." : "No NS findings found."}</td></tr>`;
         return;
       }
       body.innerHTML = findingsPoolRows.map(row => `<tr>
@@ -2126,6 +2209,7 @@ This only deletes audits/${currentAuditId}; the JSON checklist is not deleted. C
       <td>${totals.countS}</td><td>${totals.countNS}</td><td>${totals.countNA}</td><td>%${totalEi}</td>
     </tr>`;
     tbody.innerHTML = rowsHtml;
+    renderFindingsTable();
   };
 
   window.switchArea = async function(areaKey) {
@@ -2557,7 +2641,8 @@ This only deletes audits/${currentAuditId}; the JSON checklist is not deleted. C
   }
 
   setLanguage("tr");
-  switchArea("LEG");
+  showWelcome();
+  loadMasterModel().catch(err => console.warn(err));
 </script>
 </body>
 </html>
