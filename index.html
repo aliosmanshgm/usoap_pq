@@ -358,7 +358,7 @@
     </header>
 
 
-    <div class="audit-toolbar" id="auditToolbar">
+    <div class="audit-toolbar" id="auditToolbar" style="display:none;">
       <div>
         <div class="audit-toolbar-title" id="activeAuditTitle">Aktif denetim yok</div>
         <div class="audit-toolbar-meta" id="activeAuditMeta">Cevaplar ayrı bir denetim kaydı altında saklanacak. İlk kayıt sırasında otomatik denetim oluşturulabilir.</div>
@@ -879,7 +879,9 @@
   function updateToolbarForView() {
     const toolbar = document.getElementById("auditToolbar");
     if (!toolbar) return;
-    toolbar.style.display = currentView === "area" ? "flex" : "none";
+    // Kontrol formu sadece ön izleme amacıyla açıldığında üstte "Aktif denetim yok" barı görünmesin.
+    // Bu araç çubuğu yalnızca gerçek bir aktif/seçili denetim kaydı varken ve PQ çalışma ekranındayken gösterilir.
+    toolbar.style.display = (currentView === "area" && !!currentAuditId) ? "flex" : "none";
   }
 
   function setActiveMenu(menuId) {
@@ -936,6 +938,7 @@
     const title = document.getElementById("activeAuditTitle");
     const meta = document.getElementById("activeAuditMeta");
     if (!title || !meta) return;
+    updateToolbarForView();
     if (!currentAuditId) {
       title.innerText = tr ? "Aktif denetim yok" : "No active audit";
       meta.innerText = tr
