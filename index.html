@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>USOAP CMA Denetim ve CAP Yönetim Sistemi - Faz 1</title>
+  <title>USOAP CMA Denetim ve CAP Yönetim Sistemi - Faz 2</title>
   <style>
     :root {
       --primary: #1e3a8a;
@@ -130,6 +130,14 @@
     .danger-banner { background: var(--soft-red); border: 1px solid #fecaca; border-left: 5px solid #ef4444; padding: 14px 16px; border-radius: 12px; color: #991b1b; font-size: 13px; line-height: 1.6; margin-bottom: 14px; }
     .model-code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 11px; background: #0f172a; color: #e2e8f0; border-radius: 12px; padding: 14px; overflow-x: auto; line-height: 1.6; }
     .hidden { display: none !important; }
+    .phase2-kpi { display:grid; grid-template-columns: repeat(auto-fit,minmax(150px,1fr)); gap:10px; margin-bottom:14px; }
+    .phase2-kpi .kpi { background:#fff; border:1px solid var(--border); border-radius:12px; padding:12px; }
+    .phase2-kpi .kpi b { display:block; color:#0f172a; font-size:22px; }
+    .phase2-kpi .kpi span { color:var(--muted); font-size:11px; font-weight:800; text-transform:uppercase; }
+    .inline-actions { display:flex; gap:6px; flex-wrap:wrap; }
+    .detail-grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap:10px; }
+    .detail-box { background:#f8fafc; border:1px solid var(--border); border-radius:10px; padding:10px; font-size:12px; line-height:1.5; }
+    .detail-box strong { display:block; color:#0f172a; margin-bottom:4px; }
     @media (max-width: 980px) {
       body { flex-direction: column; overflow: auto; height: auto; }
       .sidebar { width: 100%; min-width: 0; height: auto; max-height: 45vh; }
@@ -153,7 +161,7 @@
   <aside class="sidebar">
     <div class="brand">
       <h1>USOAP CMA<br>Denetim ve CAP Yönetimi</h1>
-      <p>Faz 1 mimari sürümü: yıllık program, master form kütüphanesi, rol bazlı menü ve süreç omurgası.</p>
+      <p>Faz 2 sürümü: yıllık denetim programı ve planlı denetim modülü işlevsel hale getirildi.</p>
     </div>
     <div class="role-box">
       <label for="roleSelect">Test Rolü</label>
@@ -169,11 +177,11 @@
     <div class="topbar">
       <div>
         <h2 id="pageTitle">Ana Sayfa</h2>
-        <p id="pageSubtitle">Faz 1 teknik mimari ekranı.</p>
+        <p id="pageSubtitle">Faz 2 yıllık denetim programı modülü.</p>
       </div>
       <div class="top-actions">
         <button class="btn" onclick="refreshAll()">Yenile</button>
-        <button class="btn" onclick="exportPhase1Json()">Faz 1 JSON Dışa Aktar</button>
+        <button class="btn" onclick="exportPhase1Json()">Faz 2 JSON Dışa Aktar</button>
         <button class="btn primary" onclick="window.print()">Yazdır / PDF</button>
       </div>
     </div>
@@ -351,6 +359,8 @@
     db: null,
     firebaseReady: false,
     firebaseMessage: "Bağlantı denenmedi",
+    editingProgramId: null,
+    editingAuditId: null,
     role: localStorage.getItem("usoap_phase1_role") || "admin",
     orgContext: localStorage.getItem("usoap_phase1_org") || "org_demo",
     currentSection: "home",
@@ -652,34 +662,28 @@
     const totalPq = state.masterRows.length;
     const programs = state.auditPrograms.length;
     const audits = state.audits.length;
+    const activePrograms = state.auditPrograms.filter(p => ["approved", "active"].includes(p.status)).length;
+    const planned = state.audits.filter(a => a.status === "planned").length;
+    const responseWaiting = state.audits.filter(a => a.status === "waiting_auditee_response").length;
     const findings = state.findings.filter(f => f.status !== "closed" && f.status !== "finding_closed").length;
     document.getElementById("home").innerHTML = `
       <div class="info-banner">
-        <strong>Faz 1 amacı:</strong> Mevcut uygulamayı yeni süreç mimarisine hazırlamak. Bu sürümde menü, rol görünürlüğü, yıllık program, planlı denetim ve master kontrol formu kütüphanesi omurgası kuruldu. Tam denetim uygulaması, kuruluş portalı ve CAP iş akışları sonraki fazlarda detaylandırılacak.
+        <strong>Faz 2 amacı:</strong> Yıllık Denetim Programı ve Programa Denetim Ekle modülleri işlevsel hale getirildi. Bu sürümde program oluşturma, program statü yönetimi, planlı denetim oluşturma/düzenleme, kritik tarih hesaplama ve statü bazlı denetim listeleri çalışır.
       </div>
       <div class="grid">
         <div class="card stat span-3"><div class="label">Master PQ</div><div class="num">${totalPq}</div><p>${DATA_FILE} üzerinden okunan read-only kayıt.</p></div>
-        <div class="card stat span-3"><div class="label">Yıllık Program</div><div class="num">${programs}</div><p>Firestore veya yerel kayıt.</p></div>
-        <div class="card stat span-3"><div class="label">Denetim Kaydı</div><div class="num">${audits}</div><p>Programa bağlı denetimler.</p></div>
+        <div class="card stat span-3"><div class="label">Yıllık Program</div><div class="num">${programs}</div><p>${activePrograms} aktif/onaylı program.</p></div>
+        <div class="card stat span-3"><div class="label">Denetim Kaydı</div><div class="num">${audits}</div><p>${planned} planlı, ${responseWaiting} cevap bekleyen.</p></div>
         <div class="card stat span-3"><div class="label">Açık Bulgu</div><div class="num">${findings}</div><p>NS kaynaklı bulgular.</p></div>
         <div class="card span-6">
-          <h3>Süreç Omurgası</h3>
-          <p>Yıllık Program → Planlı Denetim → Kuruluş Ön Cevabı → Ön Değerlendirme → Denetim Uygulama → İtiraz → Nihai Rapor → 45 günlük CAP → CAP değerlendirme/izleme → Bulgu kapatma.</p>
-          <div>${Object.values(AUDIT_STATUS).slice(0, 9).map(x => `<span class="pill blue">${escapeHtml(x)}</span>`).join("")}</div>
+          <h3>Faz 2 İş Akışı</h3>
+          <p>Önce yıllık program oluşturulur ve onay/aktif statüsüne alınır. Sonra programa bağlı planlı denetim kaydı açılır. Denetim kartından kuruluş cevap süreci, ön değerlendirme ve aktif denetim statülerine geçiş yapılabilir.</p>
+          <div>${["Yıllık Program", "Programa Denetim", "Planlı Denetim", "Kritik Tarihler", "Statü Geçişleri"].map(x => `<span class="pill blue">${escapeHtml(x)}</span>`).join("")}</div>
         </div>
         <div class="card span-6">
-          <h3>Rol Bazlı Yapı</h3>
-          <p>Denetlenen kuruluş ayrı kullanıcı olarak kurgulandı. Faz 1'de rol seçimi test amaçlıdır; gerçek güvenlik Firebase Auth ve Firestore Rules ile sonraki fazda uygulanmalıdır.</p>
-          <div>${Object.entries(ROLES).map(([k,v]) => `<span class="pill ${k === state.role ? "green" : "gray"}">${escapeHtml(v)}</span>`).join("")}</div>
-        </div>
-        <div class="card span-12">
-          <h3>Kritik Tarih Kuralları</h3>
-          <div class="table-wrap"><table><thead><tr><th>Olay</th><th>Kural</th><th>Veri Alanı</th></tr></thead><tbody>
-            <tr><td>Ön değerlendirme</td><td>Denetim başlangıç tarihi - 1 gün</td><td><code>preEvaluationDueDate</code></td></tr>
-            <tr><td>İtiraz</td><td>Denetim bitiş tarihi + 2 gün</td><td><code>objectionDueDate</code></td></tr>
-            <tr><td>Nihai rapor</td><td>Denetim bitiş tarihi + 15 gün</td><td><code>finalReportDueDate</code></td></tr>
-            <tr><td>USOAP CMA CAP sunumu</td><td>Nihai rapor gönderim tarihi + 45 gün</td><td><code>capDueDays: 45</code></td></tr>
-          </tbody></table></div>
+          <h3>Sonraki Faz</h3>
+          <p>Faz 3'te kuruluş portalı üzerinden ön cevap girişi, denetçi ön değerlendirmesi ve aktif denetimde PQ bazlı S/NS/NA değerlendirme ekranı gerçek akışa bağlanacak.</p>
+          <div><button class="btn primary" onclick="showSection('programCreate')">Yıllık Program Oluştur</button><button class="btn" onclick="showSection('programAddAudit')">Programa Denetim Ekle</button><button class="btn" onclick="showSection('plannedAudits')">Planlı Denetimler</button></div>
         </div>
       </div>`;
   }
@@ -730,7 +734,7 @@
   function renderFormRevisions() {
     const isAdmin = state.role === "admin";
     document.getElementById("formRevisions").innerHTML = `
-      ${isAdmin ? `<div class="info-banner">Yönetici rolü master kontrol formu revizyonlarını yönetebilir. Faz 1'de revizyon metadata kaydı oluşturulur; gerçek PQ satır snapshot'larının alt koleksiyon olarak saklanması Faz 2'de önerilir.</div>` : `<div class="warn-banner">Bu ekran sadece yönetici rolüyle düzenlenebilir. Mevcut rol: ${escapeHtml(ROLES[state.role])}</div>`}
+      ${isAdmin ? `<div class="info-banner">Yönetici rolü master kontrol formu revizyonlarını yönetebilir. Faz 2'de revizyon metadata kaydı korunur; gerçek PQ satır snapshot'larının alt koleksiyon olarak saklanması sonraki revizyon geliştirmesinde önerilir.</div>` : `<div class="warn-banner">Bu ekran sadece yönetici rolüyle düzenlenebilir. Mevcut rol: ${escapeHtml(ROLES[state.role])}</div>`}
       <div class="table-wrap"><table><thead><tr><th>Form</th><th>Aktif Revizyon</th><th>Yürürlük</th><th>Kaynak</th><th>PQ</th><th>Durum</th><th>İşlem</th></tr></thead><tbody>
         ${AREA_ORDER.map(area => {
           const rev = state.formRevisions.find(r => r.formId === area && r.status === "active") || {};
@@ -768,27 +772,117 @@
     document.getElementById("revisionArchive").innerHTML = archived.length ? `<div class="table-wrap"><table><thead><tr><th>Form</th><th>Revizyon</th><th>Yürürlük</th><th>Özet</th><th>Kaynak</th></tr></thead><tbody>${archived.map(r => `<tr><td>${escapeHtml(r.formId)}</td><td>${escapeHtml(r.revisionNo)}</td><td>${escapeHtml(r.effectiveDate)}</td><td>${escapeHtml(r.changeSummary)}</td><td>${escapeHtml(r.sourceFile)}</td></tr>`).join("")}</tbody></table></div>` : `<div class="empty">Arşivlenmiş revizyon bulunmuyor.</div>`;
   }
 
+  function programStatusLabel(status) {
+    const labels = { draft: "Taslak", approved: "Onaylandı", active: "Aktif", closed: "Kapatıldı", archived: "Arşivlendi" };
+    return labels[status] || status || "Taslak";
+  }
+  function programStatusPill(status) {
+    const cls = status === "active" ? "green" : status === "approved" ? "blue" : status === "closed" ? "gray" : status === "archived" ? "gray" : "yellow";
+    return `<span class="pill ${cls}">${escapeHtml(programStatusLabel(status))}</span>`;
+  }
+  function auditMethodLabel(value) {
+    return { onsite: "Yerinde", remote: "Uzaktan", hybrid: "Hibrit" }[value] || value || "-";
+  }
+  function auditTypeLabel(value) {
+    return {
+      planned_announced: "Planlı / Haberli",
+      planned_unannounced: "Planlı / Habersiz",
+      unplanned_announced: "Plansız / Haberli",
+      unplanned_unannounced: "Plansız / Habersiz"
+    }[value] || value || "-";
+  }
+  function dateOrDash(value) { return value || "-"; }
+  function daysBetween(dateText) {
+    if (!dateText) return null;
+    const todayDate = new Date(today() + "T00:00:00");
+    const target = new Date(dateText + "T00:00:00");
+    return Math.ceil((target - todayDate) / 86400000);
+  }
+  function criticalDateForAudit(audit) {
+    const candidates = [
+      { key: "auditeeResponseDueDate", label: "Kuruluş cevap son tarihi", date: audit.auditeeResponseDueDate, statuses: ["planned", "waiting_auditee_response"] },
+      { key: "preEvaluationDueDate", label: "Ön değerlendirme son tarihi", date: audit.preEvaluationDueDate, statuses: ["waiting_auditee_response", "pre_evaluation"] },
+      { key: "plannedStartDate", label: "Denetim başlangıcı", date: audit.plannedStartDate, statuses: ["planned", "pre_evaluation"] },
+      { key: "plannedEndDate", label: "Denetim bitişi", date: audit.plannedEndDate, statuses: ["audit_in_progress"] },
+      { key: "objectionDueDate", label: "İtiraz son tarihi", date: audit.objectionDueDate, statuses: ["objection_period"] },
+      { key: "finalReportDueDate", label: "Nihai rapor son tarihi", date: audit.finalReportDueDate, statuses: ["final_report_preparation"] },
+      { key: "capDueDate", label: "CAP sunma son tarihi", date: audit.capDueDate, statuses: ["cap_waiting"] }
+    ];
+    return candidates.find(c => c.statuses.includes(audit.status) && c.date) || candidates.find(c => c.date) || null;
+  }
+  function getProgramAuditStats(programId) {
+    const audits = state.audits.filter(a => a.programId === programId);
+    const byStatus = audits.reduce((acc, audit) => { acc[audit.status || "draft"] = (acc[audit.status || "draft"] || 0) + 1; return acc; }, {});
+    const forms = new Set();
+    audits.forEach(a => (a.selectedForms || []).forEach(f => forms.add(f)));
+    return { total: audits.length, byStatus, forms: [...forms] };
+  }
+  function programSelectOptions(selectedId = "") {
+    return state.auditPrograms
+      .slice()
+      .sort((a,b) => (b.year || 0) - (a.year || 0))
+      .map(p => `<option value="${escapeHtml(p.programId)}" ${p.programId === selectedId ? "selected" : ""}>${escapeHtml(p.programId)} - ${escapeHtml(p.name)}</option>`).join("");
+  }
+
+  function programPill(status) {
+    const cls = status === "active" ? "green" : status === "approved" ? "blue" : status === "closed" ? "yellow" : status === "archived" ? "gray" : "purple";
+    return `<span class="pill ${cls}">${escapeHtml(PROGRAM_STATUS[status] || status || "Taslak")}</span>`;
+  }
+  function programAuditCounts(programId) {
+    const audits = state.audits.filter(a => a.programId === programId);
+    return {
+      total: audits.length,
+      planned: audits.filter(a => ["planned", "programmed"].includes(a.status)).length,
+      active: audits.filter(a => ["waiting_auditee_response", "pre_evaluation", "audit_in_progress", "objection_period", "final_report_preparation", "final_report_sent"].includes(a.status)).length,
+      cap: audits.filter(a => ["cap_waiting", "cap_under_review", "cap_monitoring"].includes(a.status)).length,
+      closed: audits.filter(a => a.status === "closed").length,
+      archived: audits.filter(a => a.status === "archived").length
+    };
+  }
+  function programCompletionPercent(programId) {
+    const c = programAuditCounts(programId);
+    const denominator = c.total - c.archived;
+    return denominator > 0 ? Math.round((c.closed / denominator) * 100) : 0;
+  }
+  window.newAnnualProgram = function() {
+    state.editProgramId = null;
+    showSection("programCreate");
+  };
+  window.editAnnualProgram = function(programId) {
+    state.editProgramId = programId;
+    showSection("programCreate");
+  };
   function renderProgramCreate() {
     const year = new Date().getFullYear();
+    const edit = state.editProgramId ? getProgram(state.editProgramId) : null;
+    const isEdit = Boolean(edit);
+    const defaultProgramName = `${year} Yılı USOAP CMA Denetim Programı`;
     document.getElementById("programCreate").innerHTML = `
-      <div class="info-banner">Denetim programı yıllık açılır. Program; amaç, kapsam, kriter, risk/öncelik yaklaşımı ve planlanan denetimleri bağlayan üst kayıttır.</div>
-      <div class="card"><h3>Yıllık Program Oluştur</h3>
+      <div class="info-banner"><strong>Faz 2:</strong> Denetim programı yıllık açılır. Bu kayıt; amaç, kapsam, kriter, risk/öncelik yaklaşımı ve programa bağlı denetimleri yöneten üst kayıttır.</div>
+      <div class="card"><h3>${isEdit ? "Yıllık Programı Düzenle" : "Yıllık Program Oluştur"}</h3>
         <div class="form-grid">
-          <div class="field"><label>Yıl</label><input id="programYear" type="number" min="2024" max="2100" value="${year}"></div>
-          <div class="field"><label>Program Adı</label><input id="programName" value="${year} Yılı USOAP CMA Denetim Programı"></div>
-          <div class="field full"><label>Program Amacı</label><textarea id="programObjective" placeholder="Yıllık denetim programının amacı..."></textarea></div>
-          <div class="field full"><label>Kapsam</label><textarea id="programScope" placeholder="Denetlenecek alanlar, kuruluşlar, süreçler..."></textarea></div>
-          <div class="field full"><label>Denetim Kriterleri</label><textarea id="programCriteria" placeholder="USOAP CMA PQ, ICAO Annex, ulusal mevzuat, prosedürler..."></textarea></div>
-          <div class="field full"><label>Risk / Öncelik Yaklaşımı</label><textarea id="programRisk" placeholder="Önceki denetimler, performans, değişiklikler, şikayetler, riskler..."></textarea></div>
+          <div class="field"><label>Yıl</label><input id="programYear" type="number" min="2024" max="2100" value="${escapeHtml(edit?.year || year)}" ${isEdit ? "readonly" : ""}></div>
+          <div class="field"><label>Program Durumu</label><select id="programStatus">${Object.entries(PROGRAM_STATUS).filter(([k]) => k !== "archived").map(([k,v]) => `<option value="${k}" ${k === (edit?.status || "draft") ? "selected" : ""}>${v}</option>`).join("")}</select></div>
+          <div class="field full"><label>Program Adı</label><input id="programName" value="${escapeHtml(edit?.name || defaultProgramName)}"></div>
+          <div class="field full"><label>Program Amacı</label><textarea id="programObjective" placeholder="Yıllık denetim programının amacı...">${escapeHtml(edit?.objective || "")}</textarea></div>
+          <div class="field full"><label>Kapsam</label><textarea id="programScope" placeholder="Denetlenecek alanlar, kuruluşlar, süreçler...">${escapeHtml(edit?.scope || "")}</textarea></div>
+          <div class="field full"><label>Denetim Kriterleri</label><textarea id="programCriteria" placeholder="USOAP CMA PQ, ICAO Annex, ulusal mevzuat, prosedürler...">${escapeHtml(edit?.criteria || "")}</textarea></div>
+          <div class="field full"><label>Risk / Öncelik Yaklaşımı</label><textarea id="programRisk" placeholder="Önceki denetimler, performans, değişiklikler, şikayetler, riskler...">${escapeHtml(edit?.riskApproachNote || "")}</textarea></div>
         </div>
-        <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn success" onclick="saveAnnualProgram()">Yıllık Programı Kaydet</button><button class="btn" onclick="showSection('annualPrograms')">Programları Gör</button></div>
+        <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">
+          <button class="btn success" onclick="saveAnnualProgram()">${isEdit ? "Programı Güncelle" : "Yıllık Programı Kaydet"}</button>
+          <button class="btn" onclick="state.editProgramId=null; renderProgramCreate()">Yeni Form Aç</button>
+          <button class="btn" onclick="showSection('annualPrograms')">Programları Gör</button>
+        </div>
       </div>`;
   }
   window.saveAnnualProgram = async function() {
     const year = document.getElementById("programYear").value.trim();
     if (!year) return alert("Yıl girin.");
-    const programId = `PROGRAM-${year}`;
+    const programId = state.editProgramId || `PROGRAM-${year}`;
+    const existing = getProgram(programId) || {};
     const data = {
+      ...existing,
       programId,
       year: Number(year),
       name: document.getElementById("programName").value.trim() || `${year} Yılı Denetim Programı`,
@@ -796,58 +890,142 @@
       scope: document.getElementById("programScope").value.trim(),
       criteria: document.getElementById("programCriteria").value.trim(),
       riskApproachNote: document.getElementById("programRisk").value.trim(),
-      status: "draft",
-      createdBy: state.role,
-      createdAt: new Date().toISOString(),
+      status: document.getElementById("programStatus").value || "draft",
+      createdBy: existing.createdBy || state.role,
+      createdAt: existing.createdAt || new Date().toISOString(),
       updatedAt: new Date().toISOString()
     };
     await saveRecord(COLLECTIONS.auditPrograms, programId, data);
+    state.editProgramId = null;
     await loadData();
     renderAll();
     alert("Yıllık denetim programı kaydedildi.");
     showSection("annualPrograms");
   };
-  function renderAnnualPrograms() {
-    const rows = state.auditPrograms.sort((a,b) => (b.year || 0) - (a.year || 0));
-    document.getElementById("annualPrograms").innerHTML = rows.length ? `
-      <div class="table-wrap"><table><thead><tr><th>Program</th><th>Yıl</th><th>Durum</th><th>Amaç</th><th>Denetim Sayısı</th><th>İşlem</th></tr></thead><tbody>${rows.map(p => {
-        const auditCount = state.audits.filter(a => a.programId === p.programId).length;
-        return `<tr><td><strong>${escapeHtml(p.name)}</strong><br><small>${escapeHtml(p.programId)}</small></td><td>${escapeHtml(p.year)}</td><td><span class="pill blue">${escapeHtml(p.status || "draft")}</span></td><td>${escapeHtml(p.objective || "-")}</td><td>${auditCount}</td><td><button class="btn" onclick="prefillAuditProgram('${p.programId}')">Denetim Ekle</button></td></tr>`;
-      }).join("")}</tbody></table></div>` : `<div class="empty">Henüz yıllık program oluşturulmadı. <br><br><button class="btn primary" onclick="showSection('programCreate')">Yıllık Program Oluştur</button></div>`;
+  window.setProgramFilter = function(key, value) {
+    state.programFilters[key] = value;
+    renderAnnualPrograms();
+  };
+  window.resetProgramFilters = function() {
+    state.programFilters = { search: "", status: "all", year: "all" };
+    renderAnnualPrograms();
+  };
+  function getFilteredPrograms() {
+    const f = state.programFilters;
+    return [...state.auditPrograms].filter(p => {
+      if (f.status !== "all" && (p.status || "draft") !== f.status) return false;
+      if (f.year !== "all" && String(p.year) !== String(f.year)) return false;
+      if (f.search) {
+        const haystack = [p.programId, p.name, p.objective, p.scope, p.criteria, p.riskApproachNote].join(" ").toLowerCase();
+        if (!haystack.includes(f.search.toLowerCase())) return false;
+      }
+      return true;
+    }).sort((a,b) => (b.year || 0) - (a.year || 0));
   }
+  function renderAnnualPrograms() {
+    const rows = getFilteredPrograms();
+    const years = [...new Set(state.auditPrograms.map(p => p.year).filter(Boolean))].sort((a,b) => b - a);
+    const totalAudits = rows.reduce((sum, p) => sum + programAuditCounts(p.programId).total, 0);
+    const activePrograms = rows.filter(p => p.status === "active").length;
+    const closedPrograms = rows.filter(p => p.status === "closed").length;
+    document.getElementById("annualPrograms").innerHTML = `
+      <div class="summary-strip">
+        <div class="mini-stat"><strong>${rows.length}</strong><span>Listelenen program</span></div>
+        <div class="mini-stat"><strong>${activePrograms}</strong><span>Aktif program</span></div>
+        <div class="mini-stat"><strong>${totalAudits}</strong><span>Bağlı denetim</span></div>
+        <div class="mini-stat"><strong>${closedPrograms}</strong><span>Kapatılan program</span></div>
+      </div>
+      <div class="toolbar">
+        <div class="field"><label>Arama</label><input type="search" value="${escapeHtml(state.programFilters.search)}" placeholder="Program adı, amaç, kapsam..." onchange="setProgramFilter('search', this.value)"></div>
+        <div class="field"><label>Durum</label><select onchange="setProgramFilter('status', this.value)"><option value="all">Tümü</option>${Object.entries(PROGRAM_STATUS).map(([k,v]) => `<option value="${k}" ${state.programFilters.status === k ? "selected" : ""}>${v}</option>`).join("")}</select></div>
+        <div class="field"><label>Yıl</label><select onchange="setProgramFilter('year', this.value)"><option value="all">Tümü</option>${years.map(y => `<option value="${y}" ${String(state.programFilters.year) === String(y) ? "selected" : ""}>${y}</option>`).join("")}</select></div>
+        <button class="btn" onclick="resetProgramFilters()">Filtreleri Temizle</button>
+        <button class="btn primary" onclick="newAnnualProgram()">Yeni Program</button>
+      </div>
+      ${rows.length ? `<div class="table-wrap"><table><thead><tr><th>Program</th><th>Yıl</th><th>Durum</th><th>Amaç / Kapsam</th><th>Denetim Özeti</th><th>İşlem</th></tr></thead><tbody>${rows.map(p => {
+        const c = programAuditCounts(p.programId);
+        const pct = programCompletionPercent(p.programId);
+        return `<tr><td><strong>${escapeHtml(p.name)}</strong><br><small>${escapeHtml(p.programId)}</small></td><td>${escapeHtml(p.year)}</td><td>${programPill(p.status || "draft")}</td><td><strong>Amaç:</strong> ${escapeHtml(p.objective || "-")}<br><strong>Kapsam:</strong> ${escapeHtml(p.scope || "-")}</td><td><span class="pill blue">${c.total} denetim</span><span class="pill yellow">${c.planned} planlı</span><span class="pill purple">${c.cap} CAP</span><span class="pill green">${c.closed} kapalı</span><div class="progress-line"><span style="width:${pct}%"></span></div><small>%${pct} kapanma</small></td><td><div class="audit-actions"><button class="btn" onclick="viewProgramDetails('${p.programId}')">Detay</button><button class="btn" onclick="editAnnualProgram('${p.programId}')">Düzenle</button><button class="btn primary" onclick="prefillAuditProgram('${p.programId}')">Denetim Ekle</button><button class="btn" onclick="changeProgramStatus('${p.programId}','approved')">Onayla</button><button class="btn success" onclick="changeProgramStatus('${p.programId}','active')">Aktif Yap</button><button class="btn warning" onclick="changeProgramStatus('${p.programId}','closed')">Kapat</button><button class="btn danger" onclick="archiveProgram('${p.programId}')">Arşivle</button></div></td></tr>`;
+      }).join("")}</tbody></table></div>` : `<div class="empty">Henüz yıllık program oluşturulmadı veya filtreye uygun kayıt yok.<br><br><button class="btn primary" onclick="newAnnualProgram()">Yıllık Program Oluştur</button></div>`}`;
+  }
+  window.changeProgramStatus = async function(programId, status) {
+    const p = getProgram(programId);
+    if (!p) return;
+    if (status === "closed") {
+      const openAudits = state.audits.filter(a => a.programId === programId && !["closed", "archived", "cancelled"].includes(a.status));
+      if (openAudits.length && !confirm(`Bu programa bağlı ${openAudits.length} açık denetim var. Program yine de kapatılsın mı?`)) return;
+    }
+    await updateRecord(COLLECTIONS.auditPrograms, programId, { status, [`${status}At`]: new Date().toISOString() });
+    await loadData(); renderAll(); showSection("annualPrograms");
+  };
+  window.archiveProgram = async function(programId) {
+    const audits = state.audits.filter(a => a.programId === programId && a.status !== "archived");
+    const msg = audits.length ? `Bu programa bağlı ${audits.length} denetim var. Sadece program kaydı arşivlenecek; denetimler ayrı kalacak. Devam edilsin mi?` : "Program arşivlensin mi?";
+    if (!confirm(msg)) return;
+    await updateRecord(COLLECTIONS.auditPrograms, programId, { status: "archived", archivedAt: new Date().toISOString() });
+    await loadData(); renderAll(); showSection("annualPrograms");
+  };
+  window.viewProgramDetails = function(programId) {
+    const p = getProgram(programId); if (!p) return;
+    const audits = state.audits.filter(a => a.programId === programId);
+    const c = programAuditCounts(programId);
+    const rows = audits.map(a => `<tr><td>${escapeHtml(a.auditId)}</td><td>${escapeHtml(a.organizationName || "-")}</td><td>${formatDate(a.plannedStartDate)} - ${formatDate(a.plannedEndDate)}</td><td>${statusPill(a.status || "planned")}</td><td>${(a.selectedForms || []).map(f => `<span class="pill gray">${f}</span>`).join("")}</td></tr>`).join("");
+    showModal(`Program Detayı - ${escapeHtml(p.programId)}`, `<div class="detail-grid"><div class="detail-box"><b>Program</b>${escapeHtml(p.name || "-")}</div><div class="detail-box"><b>Durum</b>${programPill(p.status || "draft")}</div><div class="detail-box"><b>Amaç</b>${escapeHtml(p.objective || "-")}</div><div class="detail-box"><b>Kapsam</b>${escapeHtml(p.scope || "-")}</div><div class="detail-box"><b>Kriter</b>${escapeHtml(p.criteria || "-")}</div><div class="detail-box"><b>Risk / Öncelik</b>${escapeHtml(p.riskApproachNote || "-")}</div></div><div class="summary-strip" style="margin-top:14px"><div class="mini-stat"><strong>${c.total}</strong><span>Denetim</span></div><div class="mini-stat"><strong>${c.planned}</strong><span>Planlı</span></div><div class="mini-stat"><strong>${c.active}</strong><span>Süreçte</span></div><div class="mini-stat"><strong>${c.closed}</strong><span>Kapatıldı</span></div></div><div class="table-wrap"><table><thead><tr><th>Denetim</th><th>Kuruluş</th><th>Tarih</th><th>Durum</th><th>Formlar</th></tr></thead><tbody>${rows || `<tr><td colspan="5">Bu programa bağlı denetim yok.</td></tr>`}</tbody></table></div>`);
+  };
   window.prefillAuditProgram = function(programId) {
+    state.editAuditId = null;
     showSection("programAddAudit");
-    setTimeout(() => { const sel = document.getElementById("auditProgramSelect"); if (sel) sel.value = programId; }, 50);
+    setTimeout(() => { const sel = document.getElementById("auditProgramSelect"); if (sel) sel.value = programId; updateAuditDuePreview(); }, 50);
   };
 
   function renderProgramAddAudit() {
-    const programOptions = state.auditPrograms.map(p => `<option value="${p.programId}">${p.programId} - ${p.name}</option>`).join("");
-    const formChecks = AREA_ORDER.map(area => `<label class="check-tile"><input type="checkbox" name="auditForms" value="${area}"> ${area}<small>${AREA_LABELS[area]}</small></label>`).join("");
+    const edit = state.editAuditId ? getAudit(state.editAuditId) : null;
+    const isEdit = Boolean(edit);
+    const programOptions = state.auditPrograms.filter(p => p.status !== "archived").map(p => `<option value="${p.programId}" ${p.programId === edit?.programId ? "selected" : ""}>${p.programId} - ${p.name}</option>`).join("");
+    const formChecks = AREA_ORDER.map(area => `<label class="check-tile"><input type="checkbox" name="auditForms" value="${area}" ${(edit?.selectedForms || []).includes(area) ? "checked" : ""}> ${area}<small>${AREA_LABELS[area]}</small></label>`).join("");
     document.getElementById("programAddAudit").innerHTML = `
       ${state.auditPrograms.length ? "" : `<div class="warn-banner">Programa denetim eklemek için önce yıllık program oluşturmalısınız.</div>`}
-      <div class="card"><h3>Programa Denetim Ekle</h3>
+      <div class="card"><h3>${isEdit ? "Planlı Denetimi Düzenle" : "Programa Denetim Ekle"}</h3>
         <div class="form-grid">
-          <div class="field"><label>Yıllık Program</label><select id="auditProgramSelect">${programOptions}</select></div>
-          <div class="field"><label>Kuruluş / İşletme</label><input id="auditOrgName" placeholder="Denetlenecek kuruluş adı"></div>
-          <div class="field"><label>Planlı Başlangıç</label><input id="auditStart" type="date"></div>
-          <div class="field"><label>Planlı Bitiş</label><input id="auditEnd" type="date"></div>
-          <div class="field"><label>Denetim Yeri</label><input id="auditLocation" placeholder="Yer / tesis / şehir"></div>
-          <div class="field"><label>Denetim Yöntemi</label><select id="auditMethod"><option value="onsite">Yerinde</option><option value="remote">Uzaktan</option><option value="hybrid">Hibrit</option></select></div>
-          <div class="field"><label>Denetim Şekli</label><select id="auditType"><option value="planned_announced">Planlı / Haberli</option><option value="planned_unannounced">Planlı / Habersiz</option><option value="unplanned_announced">Plansız / Haberli</option><option value="unplanned_unannounced">Plansız / Habersiz</option></select></div>
-          <div class="field"><label>Görev Unvanları</label><input id="requiredTitles" placeholder="Virgülle ayırın: Baş denetçi, Denetçi, Teknik uzman"></div>
+          <div class="field"><label>Yıllık Program</label><select id="auditProgramSelect" onchange="updateAuditDuePreview()">${programOptions}</select></div>
+          <div class="field"><label>Kuruluş / İşletme</label><input id="auditOrgName" placeholder="Denetlenecek kuruluş adı" value="${escapeHtml(edit?.organizationName || "")}"></div>
+          <div class="field"><label>Kuruluş ID</label><input id="auditOrgId" placeholder="Otomatik üretilir veya mevcut ID" value="${escapeHtml(edit?.organizationId || "")}"></div>
+          <div class="field"><label>Planlı Başlangıç</label><input id="auditStart" type="date" value="${escapeHtml(edit?.plannedStartDate || "")}" onchange="updateAuditDuePreview()"></div>
+          <div class="field"><label>Planlı Bitiş</label><input id="auditEnd" type="date" value="${escapeHtml(edit?.plannedEndDate || "")}" onchange="updateAuditDuePreview()"></div>
+          <div class="field"><label>Denetim Yeri</label><input id="auditLocation" placeholder="Yer / tesis / şehir" value="${escapeHtml(edit?.location || "")}"></div>
+          <div class="field"><label>Denetim Yöntemi</label><select id="auditMethod">${Object.entries(AUDIT_METHOD_LABELS).map(([k,v]) => `<option value="${k}" ${k === (edit?.auditMethod || "onsite") ? "selected" : ""}>${v}</option>`).join("")}</select></div>
+          <div class="field"><label>Denetim Şekli</label><select id="auditType">${Object.entries(AUDIT_TYPE_LABELS).map(([k,v]) => `<option value="${k}" ${k === (edit?.auditType || "planned_announced") ? "selected" : ""}>${v}</option>`).join("")}</select></div>
+          <div class="field"><label>Kuruluş Ön Cevap Son Tarihi</label><input id="auditeeResponseDueDate" type="date" value="${escapeHtml(edit?.auditeeResponseDueDate || "")}"></div>
+          <div class="field"><label>Risk / Öncelik Seviyesi</label><select id="riskPriorityLevel"><option value="normal" ${edit?.riskPriorityLevel === "normal" ? "selected" : ""}>Normal</option><option value="high" ${edit?.riskPriorityLevel === "high" ? "selected" : ""}>Yüksek</option><option value="critical" ${edit?.riskPriorityLevel === "critical" ? "selected" : ""}>Kritik</option></select></div>
+          <div class="field"><label>Görev Unvanları</label><input id="requiredTitles" value="${escapeHtml((edit?.requiredTitles || []).join(", "))}" placeholder="Virgülle ayırın: Baş denetçi, Denetçi, Teknik uzman"></div>
           <div class="field full"><label>Kontrol Formları</label><div class="checkbox-grid">${formChecks}</div></div>
-          <div class="field full"><label>Denetim Amacı</label><textarea id="auditObjectives"></textarea></div>
-          <div class="field full"><label>Denetim Kapsamı</label><textarea id="auditScope"></textarea></div>
-          <div class="field full"><label>Denetim Kriterleri</label><textarea id="auditCriteria"></textarea></div>
-          <div class="field full"><label>Risk / Öncelik Notu</label><textarea id="auditRisk"></textarea></div>
+          <div class="field full"><label>Denetim Amacı</label><textarea id="auditObjectives">${escapeHtml(edit?.objectives || "")}</textarea></div>
+          <div class="field full"><label>Denetim Kapsamı</label><textarea id="auditScope">${escapeHtml(edit?.scope || "")}</textarea></div>
+          <div class="field full"><label>Denetim Kriterleri</label><textarea id="auditCriteria">${escapeHtml(edit?.criteria || "")}</textarea></div>
+          <div class="field full"><label>Risk / Öncelik Notu</label><textarea id="auditRisk">${escapeHtml(edit?.riskPriorityNote || "")}</textarea></div>
         </div>
-        <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn success" onclick="savePlannedAudit()">Planlı Denetimi Kaydet</button><button class="btn" onclick="checkAllAuditForms(true)">Tüm Formları Seç</button><button class="btn" onclick="checkAllAuditForms(false)">Temizle</button></div>
+        <div id="auditDuePreview" style="margin-top:12px"></div>
+        <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn success" onclick="savePlannedAudit()">${isEdit ? "Denetimi Güncelle" : "Planlı Denetimi Kaydet"}</button><button class="btn" onclick="checkAllAuditForms(true)">Tüm Formları Seç</button><button class="btn" onclick="checkAllAuditForms(false)">Temizle</button><button class="btn" onclick="newPlannedAudit()">Yeni Form Aç</button><button class="btn" onclick="showSection('plannedAudits')">Planlı Denetimleri Gör</button></div>
       </div>`;
+    updateAuditDuePreview();
   }
+  window.updateAuditDuePreview = function() {
+    const start = document.getElementById("auditStart")?.value || "";
+    const end = document.getElementById("auditEnd")?.value || "";
+    const responseEl = document.getElementById("auditeeResponseDueDate");
+    if (responseEl && start && !responseEl.value) responseEl.value = addDays(start, -7);
+    const preview = document.getElementById("auditDuePreview");
+    if (!preview) return;
+    preview.innerHTML = `<div class="summary-strip"><div class="mini-stat"><strong>${formatDate(responseEl?.value || (start ? addDays(start, -7) : ""))}</strong><span>Kuruluş cevap son tarihi</span></div><div class="mini-stat"><strong>${formatDate(start ? addDays(start, -1) : "")}</strong><span>Ön değerlendirme son tarihi</span></div><div class="mini-stat"><strong>${formatDate(end ? addDays(end, 2) : "")}</strong><span>İtiraz son tarihi</span></div><div class="mini-stat"><strong>${formatDate(end ? addDays(end, 15) : "")}</strong><span>Nihai rapor son tarihi</span></div><div class="mini-stat"><strong>45 gün</strong><span>CAP sunma süresi</span></div></div>`;
+  };
   window.checkAllAuditForms = function(checked) { document.querySelectorAll("input[name='auditForms']").forEach(cb => cb.checked = checked); };
+  window.newPlannedAudit = function() { state.editAuditId = null; renderProgramAddAudit(); };
+  window.editAudit = function(auditId) { state.editAuditId = auditId; showSection("programAddAudit"); };
   window.savePlannedAudit = async function() {
     const programId = document.getElementById("auditProgramSelect").value;
     if (!programId) return alert("Yıllık program seçin.");
+    const program = getProgram(programId);
+    if (!program) return alert("Seçilen program bulunamadı.");
     const orgName = document.getElementById("auditOrgName").value.trim();
     if (!orgName) return alert("Kuruluş / işletme adı girin.");
     const selectedForms = [...document.querySelectorAll("input[name='auditForms']:checked")].map(cb => cb.value);
@@ -855,15 +1033,19 @@
     const start = document.getElementById("auditStart").value;
     const end = document.getElementById("auditEnd").value;
     if (!start || !end) return alert("Planlı başlangıç ve bitiş tarihlerini girin.");
-    const orgId = `org_${orgName.toLowerCase().replace(/[^a-z0-9ğüşöçıİĞÜŞÖÇ]+/gi, "_").replace(/^_+|_+$/g, "").slice(0, 40) || "demo"}`;
-    const auditId = uid(`AUDIT-${new Date(start).getFullYear()}`);
+    if (new Date(end) < new Date(start)) return alert("Planlı bitiş tarihi başlangıç tarihinden önce olamaz.");
+    const generatedOrgId = `org_${orgName.toLowerCase().replace(/[^a-z0-9ğüşöçıİĞÜŞÖÇ]+/gi, "_").replace(/^_+|_+$/g, "").slice(0, 40) || "demo"}`;
+    const orgId = document.getElementById("auditOrgId").value.trim() || generatedOrgId;
+    const existing = state.editAuditId ? getAudit(state.editAuditId) : null;
+    const auditId = existing?.auditId || uid(`AUDIT-${new Date(start).getFullYear()}`);
     const selectedFormRevisions = {};
     selectedForms.forEach(area => {
       const rev = state.formRevisions.find(r => r.formId === area && r.status === "active");
       selectedFormRevisions[area] = rev?.revisionId || `${area}-REV-JSON-CURRENT`;
     });
-    await saveRecord(COLLECTIONS.organizations, orgId, { organizationId: orgId, name: orgName, type: "Kuruluş", active: true, createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() });
+    await saveRecord(COLLECTIONS.organizations, orgId, { organizationId: orgId, name: orgName, type: "Kuruluş", active: true, createdAt: existing?.createdAt || new Date().toISOString(), updatedAt: new Date().toISOString() });
     const data = {
+      ...(existing || {}),
       auditId,
       programId,
       organizationId: orgId,
@@ -880,41 +1062,113 @@
       scope: document.getElementById("auditScope").value.trim(),
       criteria: document.getElementById("auditCriteria").value.trim(),
       riskPriorityNote: document.getElementById("auditRisk").value.trim(),
-      status: "planned",
-      auditeeResponseDueDate: addDays(start, -7),
+      riskPriorityLevel: document.getElementById("riskPriorityLevel").value,
+      status: existing?.status || "planned",
+      auditeeResponseDueDate: document.getElementById("auditeeResponseDueDate").value || addDays(start, -7),
       preEvaluationDueDate: addDays(start, -1),
       objectionDueDate: addDays(end, 2),
       finalReportDueDate: addDays(end, 15),
       capDueDays: 45,
-      capDueDate: "",
-      objectionStatus: "waiting",
-      createdBy: state.role,
-      createdAt: new Date().toISOString(),
+      capDueDate: existing?.capDueDate || "",
+      objectionStatus: existing?.objectionStatus || "waiting",
+      createdBy: existing?.createdBy || state.role,
+      createdAt: existing?.createdAt || new Date().toISOString(),
       updatedAt: new Date().toISOString()
     };
     await saveRecord(COLLECTIONS.audits, auditId, data);
+    state.editAuditId = null;
     await loadData();
     renderAll();
     alert("Planlı denetim kaydedildi.");
     showSection("plannedAudits");
   };
 
+  function rerenderCurrentAuditList() {
+    const cfg = {
+      plannedAudits: [["planned", "programmed"], "Planlı Denetimler", "Programa alınmış veya planlanmış denetimler."],
+      waitingAuditeeResponse: [["waiting_auditee_response"], "Cevap Bekleyen Denetimler", "Kuruluşa ön cevap süresi verilmiş denetimler."],
+      preEvaluation: [["pre_evaluation"], "Ön Değerlendirme", "Denetim heyetinin planlı denetim tarihinden bir gün öncesine kadar ön değerlendirme yapacağı kayıtlar."],
+      activeAudits: [["audit_in_progress"], "Aktif Denetimler", "Denetim tarihleri içinde sahada/uzaktan yürütülen denetimler."],
+      objectionAudits: [["objection_period"], "İtiraz Sürecindeki Denetimler", "Denetim bitişinden itibaren 2 günlük itiraz süreci."],
+      finalReportAudits: [["final_report_preparation", "final_report_sent", "cap_waiting"], "Nihai Rapor Bekleyenler", "Denetim bitişinden itibaren 15 gün içinde nihai rapor ve sonrasında CAP bekleme süreci."]
+    };
+    const item = cfg[state.currentSection];
+    if (item) renderAuditList(state.currentSection, item[0], item[1], item[2]);
+    else renderAll();
+  }
+  window.setAuditFilter = function(key, value) { state.auditFilters[key] = value; rerenderCurrentAuditList(); };
+  window.resetAuditFilters = function() { state.auditFilters = { search: "", programId: "all", method: "all", type: "all", dateFrom: "", dateTo: "" }; rerenderCurrentAuditList(); };
+  function applyAuditFilters(rows) {
+    const f = state.auditFilters;
+    return rows.filter(a => {
+      if (f.programId !== "all" && a.programId !== f.programId) return false;
+      if (f.method !== "all" && a.auditMethod !== f.method) return false;
+      if (f.type !== "all" && a.auditType !== f.type) return false;
+      if (f.dateFrom && (!a.plannedEndDate || a.plannedEndDate < f.dateFrom)) return false;
+      if (f.dateTo && (!a.plannedStartDate || a.plannedStartDate > f.dateTo)) return false;
+      if (f.search) {
+        const haystack = [a.auditId, a.programId, a.organizationName, a.organizationId, a.location, a.scope, a.objectives, a.criteria, (a.selectedForms || []).join(" "), (a.requiredTitles || []).join(" ")].join(" ").toLowerCase();
+        if (!haystack.includes(f.search.toLowerCase())) return false;
+      }
+      return true;
+    }).sort((a,b) => String(a.plannedStartDate || "").localeCompare(String(b.plannedStartDate || "")));
+  }
+  function auditFilterToolbar() {
+    const programOptions = state.auditPrograms.map(p => `<option value="${p.programId}" ${state.auditFilters.programId === p.programId ? "selected" : ""}>${p.programId}</option>`).join("");
+    return `<div class="toolbar"><div class="field"><label>Arama</label><input type="search" value="${escapeHtml(state.auditFilters.search)}" placeholder="Denetim, kuruluş, yer, form..." onchange="setAuditFilter('search', this.value)"></div><div class="field"><label>Program</label><select onchange="setAuditFilter('programId', this.value)"><option value="all">Tümü</option>${programOptions}</select></div><div class="field"><label>Yöntem</label><select onchange="setAuditFilter('method', this.value)"><option value="all">Tümü</option>${Object.entries(AUDIT_METHOD_LABELS).map(([k,v]) => `<option value="${k}" ${state.auditFilters.method === k ? "selected" : ""}>${v}</option>`).join("")}</select></div><div class="field"><label>Şekil</label><select onchange="setAuditFilter('type', this.value)"><option value="all">Tümü</option>${Object.entries(AUDIT_TYPE_LABELS).map(([k,v]) => `<option value="${k}" ${state.auditFilters.type === k ? "selected" : ""}>${v}</option>`).join("")}</select></div><div class="field"><label>Başlangıçtan</label><input type="date" value="${escapeHtml(state.auditFilters.dateFrom)}" onchange="setAuditFilter('dateFrom', this.value)"></div><div class="field"><label>Bitişe kadar</label><input type="date" value="${escapeHtml(state.auditFilters.dateTo)}" onchange="setAuditFilter('dateTo', this.value)"></div><button class="btn" onclick="resetAuditFilters()">Temizle</button><button class="btn primary" onclick="showSection('programAddAudit')">Denetim Ekle</button></div>`;
+  }
   function renderAuditList(sectionId, statuses, title, subtitle) {
-    const rows = state.audits.filter(a => statuses.includes(a.status));
+    const baseRows = state.audits.filter(a => statuses.includes(a.status));
+    const rows = applyAuditFilters(baseRows);
+    const dueSoon = rows.filter(a => {
+      const d = daysBetween(nextCriticalDate(a));
+      return d !== null && d >= 0 && d <= 7;
+    }).length;
+    const overdue = rows.filter(a => {
+      const d = daysBetween(nextCriticalDate(a));
+      return d !== null && d < 0;
+    }).length;
     document.getElementById(sectionId).innerHTML = `
       <div class="info-banner"><strong>${escapeHtml(title)}:</strong> ${escapeHtml(subtitle)}</div>
-      <div class="list">${rows.map(renderAuditCard).join("") || `<div class="empty">Bu statüde denetim kaydı bulunmuyor.</div>`}</div>`;
+      <div class="summary-strip"><div class="mini-stat"><strong>${baseRows.length}</strong><span>Bu statüde toplam</span></div><div class="mini-stat"><strong>${rows.length}</strong><span>Filtre sonrası</span></div><div class="mini-stat"><strong>${dueSoon}</strong><span>7 gün içinde kritik</span></div><div class="mini-stat"><strong>${overdue}</strong><span>Geciken kritik tarih</span></div></div>
+      ${auditFilterToolbar()}
+      <div class="list">${rows.map(renderAuditCard).join("") || `<div class="empty">Bu statüde veya filtreye uygun denetim kaydı bulunmuyor.</div>`}</div>`;
   }
   function statusPill(status) {
-    const cls = status === "closed" ? "green" : status === "archived" ? "gray" : status.includes("cap") ? "purple" : status.includes("objection") ? "yellow" : "blue";
+    const cls = status === "closed" ? "green" : status === "archived" ? "gray" : String(status).includes("cap") ? "purple" : String(status).includes("objection") ? "yellow" : "blue";
     return `<span class="pill ${cls}">${escapeHtml(AUDIT_STATUS[status] || status)}</span>`;
+  }
+  function nextCriticalDate(audit) {
+    const map = {
+      planned: audit.auditeeResponseDueDate,
+      programmed: audit.plannedStartDate,
+      waiting_auditee_response: audit.auditeeResponseDueDate,
+      pre_evaluation: audit.preEvaluationDueDate,
+      audit_in_progress: audit.plannedEndDate,
+      objection_period: audit.objectionDueDate,
+      final_report_preparation: audit.finalReportDueDate,
+      final_report_sent: audit.capDueDate,
+      cap_waiting: audit.capDueDate,
+      cap_under_review: audit.capDueDate,
+      cap_monitoring: audit.capDueDate
+    };
+    return map[audit.status] || audit.plannedStartDate || audit.finalReportDueDate || "";
+  }
+  function criticalDateText(audit) {
+    const date = nextCriticalDate(audit);
+    const d = daysBetween(date);
+    const label = d === null ? "-" : d < 0 ? `${Math.abs(d)} gün gecikti` : d === 0 ? "Bugün" : `${d} gün kaldı`;
+    const cls = d !== null && d < 0 ? "red" : d !== null && d <= 7 ? "yellow" : "gray";
+    return `<span class="pill ${cls}">${formatDate(date)} / ${label}</span>`;
   }
   function renderAuditCard(audit) {
     const next = nextActionForAudit(audit);
+    const method = AUDIT_METHOD_LABELS[audit.auditMethod] || audit.auditMethod || "-";
+    const type = AUDIT_TYPE_LABELS[audit.auditType] || audit.auditType || "-";
     return `<div class="audit-card">
-      <div><h4>${escapeHtml(audit.organizationName || "-")}</h4><div class="audit-meta"><strong>${escapeHtml(audit.auditId)}</strong> | ${escapeHtml(audit.programId || "-")}<br>${escapeHtml(audit.plannedStartDate || "-")} → ${escapeHtml(audit.plannedEndDate || "-")} | ${escapeHtml(audit.location || "-")}</div></div>
-      <div><div>${statusPill(audit.status || "draft")}</div><div style="margin-top:6px">${(audit.selectedForms || []).map(a => `<span class="pill gray">${a}</span>`).join("")}</div><div class="audit-meta" style="margin-top:6px">Ön değ.: ${escapeHtml(audit.preEvaluationDueDate || "-")} | İtiraz: ${escapeHtml(audit.objectionDueDate || "-")} | Rapor: ${escapeHtml(audit.finalReportDueDate || "-")}</div></div>
-      <div class="audit-actions"><button class="btn" onclick="showAuditDetails('${audit.auditId}')">Detay</button>${next ? `<button class="btn primary" onclick="advanceAudit('${audit.auditId}','${next.status}')">${escapeHtml(next.label)}</button>` : ""}<button class="btn warning" onclick="archiveAudit('${audit.auditId}')">Arşivle</button></div>
+      <div><h4>${escapeHtml(audit.organizationName || "-")}</h4><div class="audit-meta"><strong>${escapeHtml(audit.auditId)}</strong> | ${escapeHtml(audit.programId || "-")}<br>${formatDate(audit.plannedStartDate)} → ${formatDate(audit.plannedEndDate)} | ${escapeHtml(audit.location || "-")}<br>${escapeHtml(method)} | ${escapeHtml(type)}</div></div>
+      <div><div>${statusPill(audit.status || "draft")} ${audit.riskPriorityLevel ? `<span class="pill ${audit.riskPriorityLevel === "critical" ? "red" : audit.riskPriorityLevel === "high" ? "yellow" : "gray"}">${escapeHtml(audit.riskPriorityLevel)}</span>` : ""}</div><div style="margin-top:6px">${(audit.selectedForms || []).map(a => `<span class="pill gray">${a}</span>`).join("")}</div><div class="audit-meta" style="margin-top:6px">Kritik tarih: ${criticalDateText(audit)}</div></div>
+      <div class="audit-actions"><button class="btn" onclick="showAuditDetails('${audit.auditId}')">Detay</button><button class="btn" onclick="editAudit('${audit.auditId}')">Düzenle</button>${next ? `<button class="btn primary" onclick="advanceAudit('${audit.auditId}','${next.status}')">${escapeHtml(next.label)}</button>` : ""}<button class="btn warning" onclick="archiveAudit('${audit.auditId}')">Arşivle</button></div>
     </div>`;
   }
   function nextActionForAudit(audit) {
@@ -934,14 +1188,20 @@
     return map[audit.status];
   }
   window.advanceAudit = async function(auditId, status) {
-    const audit = state.audits.find(a => a.auditId === auditId || a.id === auditId);
+    const audit = getAudit(auditId);
     if (!audit) return;
     const patch = { status };
+    if (status === "waiting_auditee_response") patch.auditeeResponseStartedAt = new Date().toISOString();
+    if (status === "pre_evaluation") patch.preEvaluationStartedAt = new Date().toISOString();
+    if (status === "audit_in_progress") patch.auditStartedAt = new Date().toISOString();
+    if (status === "objection_period") patch.objectionStartedAt = new Date().toISOString();
+    if (status === "final_report_preparation") patch.finalReportPreparationStartedAt = new Date().toISOString();
     if (status === "final_report_sent") {
       patch.finalReportSentDate = today();
       patch.capDueDate = addDays(today(), 45);
     }
     if (status === "cap_waiting" && !audit.capDueDate) patch.capDueDate = addDays(audit.finalReportSentDate || today(), 45);
+    if (status === "closed") patch.closedAt = new Date().toISOString();
     await updateRecord(COLLECTIONS.audits, auditId, patch);
     await loadData();
     renderAll();
@@ -953,10 +1213,23 @@
     await loadData(); renderAll(); showSection(state.currentSection);
   };
   window.showAuditDetails = function(auditId) {
-    const a = state.audits.find(x => x.auditId === auditId || x.id === auditId);
+    const a = getAudit(auditId);
     if (!a) return;
-    alert(`Denetim Detayı\n\nID: ${a.auditId}\nKuruluş: ${a.organizationName}\nDurum: ${AUDIT_STATUS[a.status] || a.status}\nFormlar: ${(a.selectedForms || []).join(", ")}\n\nFaz 2'de bu buton detay çalışma ekranına bağlanacak.`);
+    const p = getProgram(a.programId);
+    showModal(`Denetim Detayı - ${escapeHtml(a.auditId)}`, `<div class="detail-grid"><div class="detail-box"><b>Program</b>${escapeHtml(a.programId || "-")}<br>${escapeHtml(p?.name || "")}</div><div class="detail-box"><b>Kuruluş</b>${escapeHtml(a.organizationName || "-")}<br><small>${escapeHtml(a.organizationId || "-")}</small></div><div class="detail-box"><b>Durum</b>${statusPill(a.status || "planned")}</div><div class="detail-box"><b>Denetim Şekli/Yöntemi</b>${escapeHtml(AUDIT_TYPE_LABELS[a.auditType] || a.auditType || "-")}<br>${escapeHtml(AUDIT_METHOD_LABELS[a.auditMethod] || a.auditMethod || "-")}</div><div class="detail-box"><b>Tarih/Yer</b>${formatDate(a.plannedStartDate)} - ${formatDate(a.plannedEndDate)}<br>${escapeHtml(a.location || "-")}</div><div class="detail-box"><b>Kontrol Formları</b>${(a.selectedForms || []).map(x => `<span class="pill gray">${x}</span>`).join("") || "-"}</div><div class="detail-box"><b>Kritik Tarihler</b>Kuruluş cevap: ${formatDate(a.auditeeResponseDueDate)}<br>Ön değerlendirme: ${formatDate(a.preEvaluationDueDate)}<br>İtiraz: ${formatDate(a.objectionDueDate)}<br>Nihai rapor: ${formatDate(a.finalReportDueDate)}<br>CAP: ${formatDate(a.capDueDate)} / ${a.capDueDays || 45} gün</div><div class="detail-box"><b>Görev Unvanları</b>${escapeHtml((a.requiredTitles || []).join(", ") || "-")}</div><div class="detail-box"><b>Amaç</b>${escapeHtml(a.objectives || "-")}</div><div class="detail-box"><b>Kapsam</b>${escapeHtml(a.scope || "-")}</div><div class="detail-box"><b>Kriter</b>${escapeHtml(a.criteria || "-")}</div><div class="detail-box"><b>Risk / Öncelik</b>${escapeHtml(a.riskPriorityNote || "-")}</div></div><div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn" onclick="closeModal(); editAudit('${a.auditId}')">Düzenle</button>${nextActionForAudit(a) ? `<button class="btn primary" onclick="closeModal(); advanceAudit('${a.auditId}','${nextActionForAudit(a).status}')">${escapeHtml(nextActionForAudit(a).label)}</button>` : ""}</div>`);
   };
+  window.showModal = function(title, body) {
+    let modal = document.getElementById("appModal");
+    if (!modal) {
+      document.body.insertAdjacentHTML("beforeend", `<div id="appModal" class="modal-backdrop"><div class="modal-card"><div class="modal-head"><h3 id="appModalTitle"></h3><button class="btn" onclick="closeModal()">Kapat</button></div><div id="appModalBody" class="modal-body"></div></div></div>`);
+      modal = document.getElementById("appModal");
+      modal.addEventListener("click", e => { if (e.target.id === "appModal") closeModal(); });
+    }
+    document.getElementById("appModalTitle").innerHTML = title;
+    document.getElementById("appModalBody").innerHTML = body;
+    modal.classList.add("open");
+  };
+  window.closeModal = function() { const modal = document.getElementById("appModal"); if (modal) modal.classList.remove("open"); };
 
   function renderAuditeePortal() {
     const ownAudits = state.audits.filter(a => a.organizationId === state.orgContext || state.role !== "auditee");
@@ -1016,7 +1289,7 @@
         </tbody></table></div></div>
         <div class="card span-6"><h3>Bağlantı Durumu</h3><p>${escapeHtml(state.firebaseMessage)}</p><p><strong>Mevcut test rolü:</strong> ${escapeHtml(ROLES[state.role])}</p><p><strong>Kuruluş bağlamı:</strong> ${escapeHtml(state.orgContext)}</p></div>
         <div class="card span-12"><h3>Firestore Koleksiyon Omurgası</h3><pre class="model-code">${escapeHtml(collectionsJson)}</pre></div>
-        <div class="card span-12"><h3>Fazlara Bölünen Geliştirme</h3><p><strong>Faz 1:</strong> Mimari omurga ve menü/veri modeli. <strong>Faz 2:</strong> Yıllık program ve planlı denetimlerin tam işlevsel hale getirilmesi. <strong>Faz 3:</strong> Denetim uygulama ve kuruluş cevapları. <strong>Faz 4:</strong> İtiraz ve nihai rapor. <strong>Faz 5:</strong> CAP planı/adımları. <strong>Faz 6:</strong> Dashboard, Kanban, trend ve raporlama.</p></div>
+        <div class="card span-12"><h3>Fazlara Bölünen Geliştirme</h3><p><strong>Faz 1:</strong> Mimari omurga ve menü/veri modeli. <strong>Faz 2:</strong> Yıllık program ve planlı denetimlerin işlevsel hale getirilmesi. <strong>Faz 3:</strong> Denetim uygulama ve kuruluş cevapları. <strong>Faz 4:</strong> İtiraz ve nihai rapor. <strong>Faz 5:</strong> CAP planı/adımları. <strong>Faz 6:</strong> Dashboard, Kanban, trend ve raporlama.</p></div>
       </div>`;
   }
 
@@ -1040,7 +1313,7 @@
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = "usoap_phase1_export.json";
+    a.download = "usoap_phase2_audit_program_export.json";
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
