@@ -138,6 +138,12 @@
     .detail-grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap:10px; }
     .detail-box { background:#f8fafc; border:1px solid var(--border); border-radius:10px; padding:10px; font-size:12px; line-height:1.5; }
     .detail-box strong { display:block; color:#0f172a; margin-bottom:4px; }
+    .modal-backdrop { display:none; position:fixed; inset:0; background:rgba(15,23,42,.55); z-index:999; align-items:flex-start; justify-content:center; padding:5vh 18px; overflow:auto; }
+    .modal-backdrop.open { display:flex; }
+    .modal-card { background:#fff; width:min(980px,100%); border-radius:16px; box-shadow:0 25px 60px rgba(15,23,42,.25); border:1px solid var(--border); overflow:hidden; }
+    .modal-head { display:flex; justify-content:space-between; align-items:center; gap:12px; padding:16px 18px; border-bottom:1px solid var(--border); background:#f8fafc; }
+    .modal-head h3 { margin:0; font-size:16px; }
+    .modal-body { padding:18px; max-height:75vh; overflow:auto; }
     @media (max-width: 980px) {
       body { flex-direction: column; overflow: auto; height: auto; }
       .sidebar { width: 100%; min-width: 0; height: auto; max-height: 45vh; }
@@ -309,6 +315,27 @@
     cap_resubmission_required: "Yeniden CAP Bekleniyor"
   };
 
+  const PROGRAM_STATUS = {
+    draft: "Taslak",
+    approved: "Onaylandı",
+    active: "Aktif",
+    closed: "Kapatıldı",
+    archived: "Arşivlendi"
+  };
+
+  const AUDIT_METHOD_LABELS = {
+    onsite: "Yerinde",
+    remote: "Uzaktan",
+    hybrid: "Hibrit"
+  };
+
+  const AUDIT_TYPE_LABELS = {
+    planned_announced: "Planlı / Haberli",
+    planned_unannounced: "Planlı / Habersiz",
+    unplanned_announced: "Plansız / Haberli",
+    unplanned_unannounced: "Plansız / Habersiz"
+  };
+
   const MENUS = [
     { group: "Genel", items: [
       { id: "home", label: "Ana Sayfa", tag: "Rehber" }
@@ -359,8 +386,10 @@
     db: null,
     firebaseReady: false,
     firebaseMessage: "Bağlantı denenmedi",
-    editingProgramId: null,
-    editingAuditId: null,
+    editProgramId: null,
+    editAuditId: null,
+    programFilters: { search: "", status: "all", year: "all" },
+    auditFilters: { search: "", programId: "all", method: "all", type: "all", dateFrom: "", dateTo: "" },
     role: localStorage.getItem("usoap_phase1_role") || "admin",
     orgContext: localStorage.getItem("usoap_phase1_org") || "org_demo",
     currentSection: "home",
@@ -822,6 +851,21 @@
       .slice()
       .sort((a,b) => (b.year || 0) - (a.year || 0))
       .map(p => `<option value="${escapeHtml(p.programId)}" ${p.programId === selectedId ? "selected" : ""}>${escapeHtml(p.programId)} - ${escapeHtml(p.name)}</option>`).join("");
+  }
+
+  function getProgram(programId) {
+    return state.auditPrograms.find(p => p.programId === programId || p.id === programId) || null;
+  }
+
+  function getAudit(auditId) {
+    return state.audits.find(a => a.auditId === auditId || a.id === auditId) || null;
+  }
+
+  function formatDate(value) {
+    if (!value) return "-";
+    const d = new Date(String(value).slice(0, 10) + "T00:00:00");
+    if (Number.isNaN(d.getTime())) return String(value);
+    return new Intl.DateTimeFormat("tr-TR", { day: "2-digit", month: "2-digit", year: "numeric" }).format(d);
   }
 
   function programPill(status) {
