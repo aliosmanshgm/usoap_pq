@@ -153,6 +153,25 @@
     .timeline-item b { color:#0f172a; }
     .person-list { margin:8px 0 0 0; padding-left:18px; color:#334155; font-size:12px; line-height:1.55; }
     .readonly-note { background:#f8fafc; border:1px dashed #cbd5e1; border-radius:10px; padding:10px; color:var(--muted); font-size:12px; line-height:1.5; }
+
+    .response-toolbar { display:flex; gap:10px; flex-wrap:wrap; align-items:flex-end; margin-bottom:14px; }
+    .response-layout { display:grid; grid-template-columns: minmax(0, 1fr); gap:14px; }
+    .response-area-block { border:1px solid var(--border); border-radius:14px; background:#fff; margin-bottom:12px; overflow:hidden; }
+    .response-area-head { display:flex; justify-content:space-between; gap:10px; align-items:center; background:#f8fafc; border-bottom:1px solid var(--border); padding:12px 14px; }
+    .response-area-head h3 { margin:0; font-size:14px; color:#0f172a; }
+    .response-pq-card { border-bottom:1px solid var(--border); padding:13px 14px; }
+    .response-pq-card:last-child { border-bottom:0; }
+    .response-pq-title { font-size:13px; line-height:1.55; color:#1f2937; margin-bottom:10px; }
+    .response-pq-title b { color:#0f172a; }
+    .response-row { display:grid; grid-template-columns: minmax(0,2fr) minmax(220px,1fr); gap:10px; }
+    .response-row textarea { min-height:74px; }
+    .response-mini { font-size:12px; color:var(--muted); line-height:1.55; background:#f8fafc; border:1px dashed #cbd5e1; border-radius:10px; padding:10px; white-space:pre-wrap; }
+    .pre-eval-box { background:#eef2ff; border:1px solid #c7d2fe; border-left:5px solid #6366f1; border-radius:12px; padding:12px; color:#312e81; font-size:12px; line-height:1.55; }
+    .split-panel { display:grid; grid-template-columns: 1fr 1fr; gap:14px; }
+    .checkline { display:flex; gap:8px; align-items:center; font-size:12px; color:#334155; margin-top:8px; }
+    .checkline input { width:auto; }
+    .status-ribbon { display:flex; gap:8px; flex-wrap:wrap; margin:8px 0 0; }
+    @media (max-width: 980px) { .response-row, .split-panel { grid-template-columns:1fr; } }
     @media (max-width: 980px) {
       body { flex-direction: column; overflow: auto; height: auto; }
       .sidebar { width: 100%; min-width: 0; height: auto; max-height: 45vh; }
@@ -177,7 +196,7 @@
   <aside class="sidebar">
     <div class="brand">
       <h1>USOAP CMA<br>Denetim ve CAP Yönetimi</h1>
-      <p>Faz 3A sürümü: denetim dosyası ve heyet atama modülü eklendi.</p>
+      <p>Faz 3B sürümü: kuruluş cevap süreci ve denetçi ön değerlendirme modülü eklendi.</p>
     </div>
     <div class="role-box">
       <label for="roleSelect">Test Rolü</label>
@@ -193,11 +212,11 @@
     <div class="topbar">
       <div>
         <h2 id="pageTitle">Ana Sayfa</h2>
-        <p id="pageSubtitle">Faz 3A denetim dosyası ve heyet atama modülü.</p>
+        <p id="pageSubtitle">Faz 3B kuruluş cevap süreci ve denetçi ön değerlendirme modülü.</p>
       </div>
       <div class="top-actions">
         <button class="btn" onclick="refreshAll()">Yenile</button>
-        <button class="btn" onclick="exportPhase1Json()">Faz 3A JSON Dışa Aktar</button>
+        <button class="btn" onclick="exportPhase1Json()">Faz 3B JSON Dışa Aktar</button>
         <button class="btn primary" onclick="window.print()">Yazdır / PDF</button>
       </div>
     </div>
@@ -256,6 +275,7 @@
     auditAssignments: "auditAssignments",
     organizationResponses: "organizationResponses",
     auditResponses: "auditResponses",
+    auditPreEvaluations: "auditPreEvaluations",
     findings: "findings",
     capPlans: "capPlans",
     capSteps: "capSteps",
@@ -401,6 +421,8 @@
     editProgramId: null,
     editAuditId: null,
     currentAuditFileId: localStorage.getItem("usoap_phase3a_current_audit_file") || "",
+    currentAuditeeResponseAuditId: localStorage.getItem("usoap_phase3b_current_response_audit") || "",
+    currentPreEvaluationAuditId: localStorage.getItem("usoap_phase3b_current_preeval_audit") || "",
     programFilters: { search: "", status: "all", year: "all" },
     auditFilters: { search: "", programId: "all", method: "all", type: "all", dateFrom: "", dateTo: "" },
     role: localStorage.getItem("usoap_phase1_role") || "admin",
@@ -411,6 +433,8 @@
     auditPrograms: [],
     audits: [],
     auditAssignments: [],
+    organizationResponses: [],
+    auditPreEvaluations: [],
     organizations: [],
     findings: [],
     capPlans: [],
@@ -561,6 +585,8 @@
     state.auditPrograms = await readCollection(COLLECTIONS.auditPrograms);
     state.audits = await readCollection(COLLECTIONS.audits);
     state.auditAssignments = await readCollection(COLLECTIONS.auditAssignments);
+    state.organizationResponses = await readCollection(COLLECTIONS.organizationResponses);
+    state.auditPreEvaluations = await readCollection(COLLECTIONS.auditPreEvaluations);
     state.organizations = await readCollection(COLLECTIONS.organizations);
     state.findings = await readCollection(COLLECTIONS.findings);
     state.capPlans = await readCollection(COLLECTIONS.capPlans);
@@ -659,7 +685,7 @@
     renderAuditFile();
     renderAuditList("plannedAudits", ["planned", "programmed"], "Planlı Denetimler", "Programa alınmış veya planlanmış denetimler.");
     renderAuditList("waitingAuditeeResponse", ["waiting_auditee_response"], "Cevap Bekleyen Denetimler", "Kuruluşa ön cevap süresi verilmiş denetimler.");
-    renderAuditList("preEvaluation", ["pre_evaluation"], "Ön Değerlendirme", "Denetim heyetinin planlı denetim tarihinden bir gün öncesine kadar ön değerlendirme yapacağı kayıtlar.");
+    renderPreEvaluation();
     renderAuditList("activeAudits", ["audit_in_progress"], "Aktif Denetimler", "Denetim tarihleri içinde sahada/uzaktan yürütülen denetimler.");
     renderAuditList("objectionAudits", ["objection_period"], "İtiraz Sürecindeki Denetimler", "Denetim bitişinden itibaren 2 günlük itiraz süreci.");
     renderAuditList("finalReportAudits", ["final_report_preparation", "final_report_sent", "cap_waiting"], "Nihai Rapor Bekleyenler", "Denetim bitişinden itibaren 15 gün içinde nihai rapor ve sonrasında CAP bekleme süreci.");
@@ -671,7 +697,7 @@
   }
   function renderSection(sectionId) {
     const map = {
-      home: ["Ana Sayfa", "Faz 3A: denetim dosyası ve heyet atama omurgası."],
+      home: ["Ana Sayfa", "Faz 3B: kuruluş ön cevapları ve denetçi ön değerlendirme omurgası."],
       masterLibrary: ["Master Kontrol Formları / Form Kütüphanesi", "JSON kaynaklı read-only PQ master kütüphanesi."],
       formRevisions: ["Form Revizyonları", "Yönetici rolü için master kontrol formu revizyon omurgası."],
       revisionArchive: ["Revizyon Arşivi", "Arşivlenmiş form revizyonları."],
@@ -681,7 +707,7 @@
       auditFile: ["Denetim Dosyası / Heyet Atama", "Seçili denetimin planlama dosyası, heyet ve görev dağılımı yönetilir."],
       plannedAudits: ["Planlı Denetimler", "Planlı veya programa alınmış denetimler."],
       waitingAuditeeResponse: ["Cevap Bekleyen Denetimler", "Denetlenen kuruluş cevap sürecindeki denetimler."],
-      preEvaluation: ["Ön Değerlendirme", "Denetim heyetinin ön değerlendirme süreci."],
+      preEvaluation: ["Ön Değerlendirme", "Kuruluş cevapları üzerinden denetim heyeti ön değerlendirme notları ve sahada doğrulama planı."],
       activeAudits: ["Aktif Denetimler", "Denetim uygulama aşaması."],
       objectionAudits: ["İtiraz Süreci", "Denetim bitişinden sonraki 2 günlük itiraz süreci."],
       finalReportAudits: ["Nihai Rapor Bekleyenler", "Nihai rapor ve CAP bekleme süreci."],
@@ -714,7 +740,7 @@
     const findings = state.findings.filter(f => f.status !== "closed" && f.status !== "finding_closed").length;
     document.getElementById("home").innerHTML = `
       <div class="info-banner">
-        <strong>Faz 3A amacı:</strong> Faz 2 yıllık program ve planlı denetim omurgasının üzerine Denetim Dosyası ve Heyet Atama modülü eklendi. Bu sürümde planlı denetim seçilip dosya bilgileri görüntülenir, heyet başkanı/üyeleri/teknik uzman/gözlemci/kuruluş temsilcisi atanır ve görev dağılımı kaydedilir.
+        <strong>Faz 3B amacı:</strong> Faz 2 yıllık program ve Faz 3A denetim dosyası/heyet omurgasının üzerine kuruluş ön cevap süreci ve denetçi ön değerlendirme modülü eklendi. Bu sürümde kuruluş portalından PQ bazlı ön cevaplar alınır, denetçiler cevapları görerek ön değerlendirme notu ve sahada doğrulama işaretleri oluşturur.
       </div>
       <div class="grid">
         <div class="card stat span-3"><div class="label">Master PQ</div><div class="num">${totalPq}</div><p>${DATA_FILE} üzerinden okunan read-only kayıt.</p></div>
@@ -724,12 +750,12 @@
         <div class="card span-6">
           <h3>Faz 2 İş Akışı</h3>
           <p>Önce yıllık program oluşturulur ve onay/aktif statüsüne alınır. Sonra programa bağlı planlı denetim kaydı açılır. Denetim kartından kuruluş cevap süreci, ön değerlendirme ve aktif denetim statülerine geçiş yapılabilir.</p>
-          <div>${["Yıllık Program", "Programa Denetim", "Denetim Dosyası", "Heyet Atama", "Kritik Tarihler", "Statü Geçişleri"].map(x => `<span class="pill blue">${escapeHtml(x)}</span>`).join("")}</div>
+          <div>${["Yıllık Program", "Programa Denetim", "Denetim Dosyası", "Kuruluş Cevabı", "Ön Değerlendirme", "Statü Geçişleri"].map(x => `<span class="pill blue">${escapeHtml(x)}</span>`).join("")}</div>
         </div>
         <div class="card span-6">
           <h3>Sonraki Faz</h3>
-          <p>Faz 3'te kuruluş portalı üzerinden ön cevap girişi, denetçi ön değerlendirmesi ve aktif denetimde PQ bazlı S/NS/NA değerlendirme ekranı gerçek akışa bağlanacak.</p>
-          <div><button class="btn primary" onclick="showSection('programCreate')">Yıllık Program Oluştur</button><button class="btn" onclick="showSection('programAddAudit')">Programa Denetim Ekle</button><button class="btn" onclick="showSection('auditFile')">Denetim Dosyası / Heyet</button><button class="btn" onclick="showSection('plannedAudits')">Planlı Denetimler</button></div>
+          <p>Faz 4'te aktif denetim uygulama ekranında PQ bazlı S/NS/NA değerlendirme, denetçi bulgu notu ve incelenen kanıt alanları gerçek akışa bağlanacak.</p>
+          <div><button class="btn primary" onclick="showSection('programCreate')">Yıllık Program Oluştur</button><button class="btn" onclick="showSection('programAddAudit')">Programa Denetim Ekle</button><button class="btn" onclick="showSection('auditFile')">Denetim Dosyası / Heyet</button><button class="btn" onclick="showSection('auditeeResponses')">Kuruluş Ön Cevapları</button><button class="btn" onclick="showSection('preEvaluation')">Ön Değerlendirme</button></div>
         </div>
       </div>`;
   }
@@ -1252,7 +1278,7 @@
     const disabled = canManageAssignments() ? "" : "disabled";
     const readonlyNote = canManageAssignments() ? "" : `<div class="readonly-note">Bu rolde heyet bilgileri salt okunur gösterilir. Kaydetme yetkisi Yönetici, Program Yöneticisi ve Baş Denetçi rollerindedir.</div>`;
     section.innerHTML = `
-      <div class="info-banner"><strong>Faz 3A:</strong> Denetim dosyası, planlı denetimin operasyonel hazırlık kaydıdır. Bu ekranda denetim bilgileri, seçili kontrol formları, kritik tarihler ve heyet/görev atamaları birlikte yönetilir.</div>
+      <div class="info-banner"><strong>Faz 3B:</strong> Denetim dosyası, planlı denetimin operasyonel hazırlık kaydıdır. Bu ekranda denetim bilgileri, seçili kontrol formları, kritik tarihler ve heyet/görev atamaları birlikte yönetilir.</div>
       <div class="toolbar">
         <div class="field" style="min-width:280px"><label>Denetim Dosyası Seç</label><select id="auditFileSelect" onchange="selectAuditFile(this.value)">${auditFileOptions(audit.auditId)}</select></div>
         <button class="btn" onclick="showAuditDetails('${audit.auditId}')">Detay Modalı</button>
@@ -1284,7 +1310,7 @@
           <div class="field full"><label>İletişim ve Erişim Notu</label><textarea id="assignAccessNote" ${disabled} placeholder="Gizlilik, erişim, saha giriş, uzaktan bağlantı vb.">${escapeHtml(assignment.communicationAccessNote || "")}</textarea></div>
         </div></div>
       </div>
-      <div class="card" style="margin-top:14px"><h3>Dosya Hazırlık Kontrolü</h3><div class="phase3-status">${c.checks.map(item => `<span class="pill ${item.ok ? "green" : "red"}">${item.ok ? "✓" : "!"} ${escapeHtml(item.label)}</span>`).join("")}</div><div class="progress-line" style="margin-top:10px"><span style="width:${c.percent}%"></span></div><p>${c.percent === 100 ? "Denetim dosyası Faz 3A açısından hazır görünüyor." : "Eksik alanlar tamamlandığında denetim hazırlık dosyası tamamlanmış sayılır."}</p></div>
+      <div class="card" style="margin-top:14px"><h3>Dosya Hazırlık Kontrolü</h3><div class="phase3-status">${c.checks.map(item => `<span class="pill ${item.ok ? "green" : "red"}">${item.ok ? "✓" : "!"} ${escapeHtml(item.label)}</span>`).join("")}</div><div class="progress-line" style="margin-top:10px"><span style="width:${c.percent}%"></span></div><p>${c.percent === 100 ? "Denetim dosyası Faz 3A/3B açısından hazır görünüyor." : "Eksik alanlar tamamlandığında denetim hazırlık dosyası tamamlanmış sayılır."}</p></div>
       ${canManageAssignments() ? `<div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn success" onclick="saveAuditAssignment('${audit.auditId}')">Heyet ve Dosya Notlarını Kaydet</button><button class="btn" onclick="renderAuditFile()">Değişiklikleri Geri Al</button>${nextActionForAudit(audit) ? `<button class="btn primary" onclick="advanceAudit('${audit.auditId}','${nextActionForAudit(audit).status}')">${escapeHtml(nextActionForAudit(audit).label)}</button>` : ""}</div>` : ""}
     `;
   }
@@ -1413,12 +1439,18 @@
     const next = nextActionForAudit(audit);
     const method = AUDIT_METHOD_LABELS[audit.auditMethod] || audit.auditMethod || "-";
     const type = AUDIT_TYPE_LABELS[audit.auditType] || audit.auditType || "-";
+    const isAuditee = state.role === 'auditee';
+    const canEditPlan = ['admin','program_manager'].includes(state.role);
+    const canAdvance = ['admin','program_manager','lead_auditor'].includes(state.role);
+    const auditeeActions = `<button class="btn" onclick="showAuditDetails('${audit.auditId}')">Detay</button><button class="btn primary" onclick="openAuditeeResponse('${audit.auditId}')">Ön Cevaplar</button>`;
+    const staffActions = `<button class="btn" onclick="showAuditDetails('${audit.auditId}')">Detay</button><button class="btn" onclick="openAuditFile('${audit.auditId}')">Denetim Dosyası</button><button class="btn" onclick="openAuditeeResponse('${audit.auditId}')">Kuruluş Cevapları</button><button class="btn" onclick="openPreEvaluation('${audit.auditId}')">Ön Değerlendirme</button>${canEditPlan ? `<button class="btn" onclick="editAudit('${audit.auditId}')">Düzenle</button>` : ""}${next && canAdvance ? `<button class="btn primary" onclick="advanceAudit('${audit.auditId}','${next.status}')">${escapeHtml(next.label)}</button>` : ""}${canEditPlan ? `<button class="btn warning" onclick="archiveAudit('${audit.auditId}')">Arşivle</button>` : ""}`;
     return `<div class="audit-card">
       <div><h4>${escapeHtml(audit.organizationName || "-")}</h4><div class="audit-meta"><strong>${escapeHtml(audit.auditId)}</strong> | ${escapeHtml(audit.programId || "-")}<br>${formatDate(audit.plannedStartDate)} → ${formatDate(audit.plannedEndDate)} | ${escapeHtml(audit.location || "-")}<br>${escapeHtml(method)} | ${escapeHtml(type)}</div></div>
-      <div><div>${statusPill(audit.status || "draft")} ${audit.riskPriorityLevel ? `<span class="pill ${audit.riskPriorityLevel === "critical" ? "red" : audit.riskPriorityLevel === "high" ? "yellow" : "gray"}">${escapeHtml(audit.riskPriorityLevel)}</span>` : ""}</div><div style="margin-top:6px">${(audit.selectedForms || []).map(a => `<span class="pill gray">${a}</span>`).join("")} ${assignmentPill(audit.auditId)}</div><div class="audit-meta" style="margin-top:6px">Kritik tarih: ${criticalDateText(audit)}</div></div>
-      <div class="audit-actions"><button class="btn" onclick="showAuditDetails('${audit.auditId}')">Detay</button><button class="btn" onclick="openAuditFile('${audit.auditId}')">Denetim Dosyası</button><button class="btn" onclick="editAudit('${audit.auditId}')">Düzenle</button>${next ? `<button class="btn primary" onclick="advanceAudit('${audit.auditId}','${next.status}')">${escapeHtml(next.label)}</button>` : ""}<button class="btn warning" onclick="archiveAudit('${audit.auditId}')">Arşivle</button></div>
+      <div><div>${statusPill(audit.status || "draft")} ${audit.riskPriorityLevel ? `<span class="pill ${audit.riskPriorityLevel === "critical" ? "red" : audit.riskPriorityLevel === "high" ? "yellow" : "gray"}">${escapeHtml(audit.riskPriorityLevel)}</span>` : ""}</div><div style="margin-top:6px">${(audit.selectedForms || []).map(a => `<span class="pill gray">${a}</span>`).join("")} ${assignmentPill(audit.auditId)}</div><div class="status-ribbon">${orgResponsePill(audit.auditId)}${preEvalPill(audit.auditId)}</div><div class="audit-meta" style="margin-top:6px">Kritik tarih: ${criticalDateText(audit)}</div></div>
+      <div class="audit-actions">${isAuditee ? auditeeActions : staffActions}</div>
     </div>`;
   }
+
   function nextActionForAudit(audit) {
     const map = {
       planned: { status: "waiting_auditee_response", label: "Cevap Sürecine Al" },
@@ -1464,7 +1496,7 @@
     const a = getAudit(auditId);
     if (!a) return;
     const p = getProgram(a.programId);
-    showModal(`Denetim Detayı - ${escapeHtml(a.auditId)}`, `<div class="detail-grid"><div class="detail-box"><b>Program</b>${escapeHtml(a.programId || "-")}<br>${escapeHtml(p?.name || "")}</div><div class="detail-box"><b>Kuruluş</b>${escapeHtml(a.organizationName || "-")}<br><small>${escapeHtml(a.organizationId || "-")}</small></div><div class="detail-box"><b>Durum</b>${statusPill(a.status || "planned")}</div><div class="detail-box"><b>Dosya/Hazırlık</b>${assignmentPill(a.auditId)}</div><div class="detail-box"><b>Denetim Şekli/Yöntemi</b>${escapeHtml(AUDIT_TYPE_LABELS[a.auditType] || a.auditType || "-")}<br>${escapeHtml(AUDIT_METHOD_LABELS[a.auditMethod] || a.auditMethod || "-")}</div><div class="detail-box"><b>Tarih/Yer</b>${formatDate(a.plannedStartDate)} - ${formatDate(a.plannedEndDate)}<br>${escapeHtml(a.location || "-")}</div><div class="detail-box"><b>Kontrol Formları</b>${(a.selectedForms || []).map(x => `<span class="pill gray">${x}</span>`).join("") || "-"}</div><div class="detail-box"><b>Kritik Tarihler</b>Kuruluş cevap: ${formatDate(a.auditeeResponseDueDate)}<br>Ön değerlendirme: ${formatDate(a.preEvaluationDueDate)}<br>İtiraz: ${formatDate(a.objectionDueDate)}<br>Nihai rapor: ${formatDate(a.finalReportDueDate)}<br>CAP: ${a.capDueDate ? formatDate(a.capDueDate) : `${a.capDueDays || 45} gün / nihai rapordan sonra`}</div><div class="detail-box"><b>Görev Unvanları</b>${escapeHtml((a.requiredTitles || []).join(", ") || "-")}</div><div class="detail-box"><b>Amaç</b>${escapeHtml(a.objectives || "-")}</div><div class="detail-box"><b>Kapsam</b>${escapeHtml(a.scope || "-")}</div><div class="detail-box"><b>Kriter</b>${escapeHtml(a.criteria || "-")}</div><div class="detail-box"><b>Risk / Öncelik</b>${escapeHtml(a.riskPriorityNote || "-")}</div></div><h3 style="margin-top:16px">Heyet ve Görev Ataması</h3>${assignmentSummaryHtml(a.auditId)}<div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn" onclick="closeModal(); openAuditFile('${a.auditId}')">Denetim Dosyası / Heyet</button><button class="btn" onclick="closeModal(); editAudit('${a.auditId}')">Plan Bilgilerini Düzenle</button>${nextActionForAudit(a) ? `<button class="btn primary" onclick="closeModal(); advanceAudit('${a.auditId}','${nextActionForAudit(a).status}')">${escapeHtml(nextActionForAudit(a).label)}</button>` : ""}</div>`);
+    showModal(`Denetim Detayı - ${escapeHtml(a.auditId)}`, `<div class="detail-grid"><div class="detail-box"><b>Program</b>${escapeHtml(a.programId || "-")}<br>${escapeHtml(p?.name || "")}</div><div class="detail-box"><b>Kuruluş</b>${escapeHtml(a.organizationName || "-")}<br><small>${escapeHtml(a.organizationId || "-")}</small></div><div class="detail-box"><b>Durum</b>${statusPill(a.status || "planned")}</div><div class="detail-box"><b>Dosya/Hazırlık</b>${assignmentPill(a.auditId)}</div><div class="detail-box"><b>Denetim Şekli/Yöntemi</b>${escapeHtml(AUDIT_TYPE_LABELS[a.auditType] || a.auditType || "-")}<br>${escapeHtml(AUDIT_METHOD_LABELS[a.auditMethod] || a.auditMethod || "-")}</div><div class="detail-box"><b>Tarih/Yer</b>${formatDate(a.plannedStartDate)} - ${formatDate(a.plannedEndDate)}<br>${escapeHtml(a.location || "-")}</div><div class="detail-box"><b>Kontrol Formları</b>${(a.selectedForms || []).map(x => `<span class="pill gray">${x}</span>`).join("") || "-"}</div><div class="detail-box"><b>Kritik Tarihler</b>Kuruluş cevap: ${formatDate(a.auditeeResponseDueDate)}<br>Ön değerlendirme: ${formatDate(a.preEvaluationDueDate)}<br>İtiraz: ${formatDate(a.objectionDueDate)}<br>Nihai rapor: ${formatDate(a.finalReportDueDate)}<br>CAP: ${a.capDueDate ? formatDate(a.capDueDate) : `${a.capDueDays || 45} gün / nihai rapordan sonra`}</div><div class="detail-box"><b>Görev Unvanları</b>${escapeHtml((a.requiredTitles || []).join(", ") || "-")}</div><div class="detail-box"><b>Amaç</b>${escapeHtml(a.objectives || "-")}</div><div class="detail-box"><b>Kapsam</b>${escapeHtml(a.scope || "-")}</div><div class="detail-box"><b>Kriter</b>${escapeHtml(a.criteria || "-")}</div><div class="detail-box"><b>Risk / Öncelik</b>${escapeHtml(a.riskPriorityNote || "-")}</div></div><h3 style="margin-top:16px">Heyet ve Görev Ataması</h3>${assignmentSummaryHtml(a.auditId)}<h3 style="margin-top:16px">Kuruluş Cevabı ve Ön Değerlendirme</h3><div class="detail-grid"><div class="detail-box"><b>Kuruluş Cevabı</b>${orgResponsePill(a.auditId)}</div><div class="detail-box"><b>Ön Değerlendirme</b>${preEvalPill(a.auditId)}</div></div><div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn" onclick="closeModal(); openAuditFile('${a.auditId}')">Denetim Dosyası / Heyet</button><button class="btn" onclick="closeModal(); openAuditeeResponse('${a.auditId}')">Kuruluş Cevapları</button><button class="btn" onclick="closeModal(); openPreEvaluation('${a.auditId}')">Ön Değerlendirme</button><button class="btn" onclick="closeModal(); editAudit('${a.auditId}')">Plan Bilgilerini Düzenle</button>${nextActionForAudit(a) ? `<button class="btn primary" onclick="closeModal(); advanceAudit('${a.auditId}','${nextActionForAudit(a).status}')">${escapeHtml(nextActionForAudit(a).label)}</button>` : ""}</div>`);
   };
   window.showModal = function(title, body) {
     let modal = document.getElementById("appModal");
@@ -1479,13 +1511,346 @@
   };
   window.closeModal = function() { const modal = document.getElementById("appModal"); if (modal) modal.classList.remove("open"); };
 
+
+
+  function getAuditRowsForAudit(audit) {
+    if (!audit) return [];
+    const forms = audit.selectedForms || [];
+    return forms.flatMap(area => (state.normalizedAreas[area]?.rows || []).map(row => ({ ...row, areaKey: area })));
+  }
+
+  function pqKey(area, pqNo) {
+    return `${String(area || '').replace(/[^A-Za-z0-9_-]/g, '_')}__${String(pqNo || '').replace(/[^A-Za-z0-9_.-]/g, '_')}`;
+  }
+
+  function getOrgResponse(auditId) {
+    return state.organizationResponses.find(r => r.auditId === auditId && (r.responseType || 'pre_response') === 'pre_response') || null;
+  }
+
+  function getPreEvaluation(auditId) {
+    return state.auditPreEvaluations.find(r => r.auditId === auditId) || null;
+  }
+
+  function orgResponseStatusLabel(response, audit) {
+    if (!response) return 'Henüz cevap yok';
+    if (response.status === 'late') return 'Süresi Geçmiş Cevap';
+    if (response.status === 'submitted') return 'Gönderildi';
+    return 'Taslak';
+  }
+
+  function orgResponsePill(auditId) {
+    const audit = getAudit(auditId);
+    const response = getOrgResponse(auditId);
+    const cls = !response ? 'gray' : response.status === 'submitted' ? 'green' : response.status === 'late' ? 'red' : 'yellow';
+    return `<span class="pill ${cls}">Kuruluş Cevabı: ${escapeHtml(orgResponseStatusLabel(response, audit))}</span>`;
+  }
+
+  function preEvalPill(auditId) {
+    const pe = getPreEvaluation(auditId);
+    const cls = !pe ? 'gray' : pe.status === 'completed' ? 'green' : 'yellow';
+    return `<span class="pill ${cls}">Ön Değerlendirme: ${pe ? (pe.status === 'completed' ? 'Tamamlandı' : 'Taslak') : 'Yok'}</span>`;
+  }
+
+  function auditeeVisibleAudits() {
+    return state.audits.filter(a => {
+      if (state.role === 'auditee') return a.organizationId === state.orgContext;
+      return true;
+    }).filter(a => !['archived','cancelled'].includes(a.status));
+  }
+
+  function responseEligibleAudits() {
+    return auditeeVisibleAudits().filter(a => ['waiting_auditee_response','pre_evaluation','audit_in_progress','planned'].includes(a.status));
+  }
+
+  function ensureAuditeeResponseSelection() {
+    const current = state.currentAuditeeResponseAuditId && getAudit(state.currentAuditeeResponseAuditId) ? state.currentAuditeeResponseAuditId : '';
+    if (current) return current;
+    const first = responseEligibleAudits()[0];
+    state.currentAuditeeResponseAuditId = first?.auditId || '';
+    if (state.currentAuditeeResponseAuditId) localStorage.setItem('usoap_phase3b_current_response_audit', state.currentAuditeeResponseAuditId);
+    return state.currentAuditeeResponseAuditId;
+  }
+
+  window.openAuditeeResponse = function(auditId) {
+    state.currentAuditeeResponseAuditId = auditId || '';
+    if (state.currentAuditeeResponseAuditId) localStorage.setItem('usoap_phase3b_current_response_audit', state.currentAuditeeResponseAuditId);
+    showSection('auditeeResponses');
+  };
+
+  window.selectAuditeeResponseAudit = function(auditId) {
+    state.currentAuditeeResponseAuditId = auditId || '';
+    if (state.currentAuditeeResponseAuditId) localStorage.setItem('usoap_phase3b_current_response_audit', state.currentAuditeeResponseAuditId);
+    renderAuditeeResponses();
+  };
+
+  function responseAuditOptions(selectedId = '') {
+    return responseEligibleAudits().map(a => `<option value="${escapeHtml(a.auditId)}" ${a.auditId === selectedId ? 'selected' : ''}>${escapeHtml(a.auditId)} - ${escapeHtml(a.organizationName || '-')} (${formatDate(a.plannedStartDate)})</option>`).join('');
+  }
+
+  function renderResponsePqInputs(audit, response, mode = 'auditee') {
+    const rows = getAuditRowsForAudit(audit);
+    const items = response?.items || response?.pqResponses || {};
+    const byArea = {};
+    rows.forEach(row => { (byArea[row.areaKey] ||= []).push(row); });
+    if (!rows.length) return `<div class="empty">Bu denetim için seçili kontrol formu bulunmuyor.</div>`;
+    return Object.entries(byArea).map(([area, areaRows]) => `
+      <div class="response-area-block">
+        <div class="response-area-head"><h3>${escapeHtml(area)} - ${escapeHtml(AREA_LABELS[area] || '')}</h3><span class="pill blue">${areaRows.length} PQ</span></div>
+        ${areaRows.map(row => {
+          const key = pqKey(area, row.pqNo);
+          const item = items[key] || {};
+          const question = row.questionTr || row.questionEn || '';
+          const evidence = item.evidenceText || item.evidenceLink || '';
+          return `<div class="response-pq-card">
+            <div class="response-pq-title"><b>PQ ${escapeHtml(row.pqNo)}</b> ${escapeHtml(question)}</div>
+            <div class="response-row">
+              <div class="field"><label>Kuruluş Ön Cevabı</label><textarea data-response-key="${escapeHtml(key)}" data-area="${escapeHtml(area)}" data-pq="${escapeHtml(row.pqNo)}" data-kind="response" placeholder="Kuruluş açıklaması / mevcut durum / hazırlık bilgisi...">${escapeHtml(item.responseText || '')}</textarea></div>
+              <div class="field"><label>Kanıt Dosya Adı / Link</label><textarea data-response-key="${escapeHtml(key)}" data-area="${escapeHtml(area)}" data-pq="${escapeHtml(row.pqNo)}" data-kind="evidence" placeholder="Dosya adı, klasör yolu veya bağlantı...">${escapeHtml(evidence)}</textarea></div>
+            </div>
+          </div>`;
+        }).join('')}
+      </div>`).join('');
+  }
+
+  function collectAuditeeResponseItems() {
+    const items = {};
+    document.querySelectorAll('[data-response-key]').forEach(el => {
+      const key = el.dataset.responseKey;
+      const areaKey = el.dataset.area;
+      const pqNo = el.dataset.pq;
+      items[key] ||= { areaKey, pqNo, responseText: '', evidenceText: '' };
+      if (el.dataset.kind === 'response') items[key].responseText = el.value.trim();
+      if (el.dataset.kind === 'evidence') items[key].evidenceText = el.value.trim();
+    });
+    Object.keys(items).forEach(k => {
+      if (!items[k].responseText && !items[k].evidenceText) delete items[k];
+    });
+    return items;
+  }
+
+  function renderAuditeeResponses() {
+    const section = document.getElementById('auditeeResponses');
+    const selectedId = ensureAuditeeResponseSelection();
+    const audits = responseEligibleAudits();
+    if (!audits.length) {
+      section.innerHTML = `<div class="info-banner">Kuruluş ön cevap ekranı, cevap sürecine alınan denetimler için kullanılır. Denetim İşlemleri ekranından planlı denetimi <strong>Cevap Sürecine Al</strong> statüsüne taşıyın.</div><div class="empty">Bu bağlamda ön cevap verilecek denetim bulunmuyor.</div>`;
+      return;
+    }
+    const audit = getAudit(selectedId) || audits[0];
+    if (!state.currentAuditeeResponseAuditId && audit) state.currentAuditeeResponseAuditId = audit.auditId;
+    const response = getOrgResponse(audit.auditId) || {};
+    const days = daysBetween(audit.auditeeResponseDueDate);
+    const duePill = days === null ? '' : `<span class="pill ${days < 0 ? 'red' : days <= 3 ? 'yellow' : 'gray'}">Son tarih: ${formatDate(audit.auditeeResponseDueDate)} / ${days < 0 ? Math.abs(days) + ' gün geçti' : days + ' gün kaldı'}</span>`;
+    const readonly = state.role !== 'auditee' && !['admin','program_manager'].includes(state.role) ? 'disabled' : '';
+    section.innerHTML = `
+      <div class="info-banner"><strong>Faz 3B:</strong> Denetlenen kuruluş, kendisine atanan denetim için genel ve PQ bazlı ön cevaplarını girer. Kanıt dokümanı için ilk etapta sadece dosya adı veya link kaydı tutulur.</div>
+      <div class="response-toolbar">
+        <div class="field" style="min-width:320px"><label>Denetim Seç</label><select onchange="selectAuditeeResponseAudit(this.value)">${responseAuditOptions(audit.auditId)}</select></div>
+        <button class="btn" onclick="showAuditDetails('${audit.auditId}')">Denetim Detayı</button>
+        <button class="btn" onclick="showSection('auditeeAssigned')">Atanan Denetimler</button>
+      </div>
+      <div class="summary-strip">
+        <div class="mini-stat"><strong>${escapeHtml(audit.auditId)}</strong><span>Denetim</span></div>
+        <div class="mini-stat"><strong>${escapeHtml(audit.organizationName || '-')}</strong><span>Kuruluş</span></div>
+        <div class="mini-stat"><strong>${escapeHtml(AUDIT_STATUS[audit.status] || audit.status || '-')}</strong><span>Denetim durumu</span></div>
+        <div class="mini-stat"><strong>${escapeHtml(orgResponseStatusLabel(response, audit))}</strong><span>Cevap durumu</span></div>
+      </div>
+      <div class="status-ribbon">${duePill}${orgResponsePill(audit.auditId)}${preEvalPill(audit.auditId)}</div>
+      <div class="card" style="margin-top:14px"><h3>Genel Ön Cevap</h3><div class="field full"><textarea id="auditeeGeneralResponse" ${readonly} placeholder="Kuruluşun genel ön cevabı, hazırlık notları, genel açıklamaları...">${escapeHtml(response.generalResponse || '')}</textarea></div></div>
+      <div class="card" style="margin-top:14px"><h3>PQ Bazlı Ön Cevaplar</h3>${renderResponsePqInputs(audit, response, 'auditee')}</div>
+      <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn success" onclick="saveAuditeePreResponse(false)" ${readonly}>Taslak Kaydet</button>
+        <button class="btn primary" onclick="saveAuditeePreResponse(true)" ${readonly}>Kuruluş Cevaplarını Gönder</button>
+        <button class="btn" onclick="renderAuditeeResponses()">Yenile</button>
+      </div>`;
+  }
+
+  window.saveAuditeePreResponse = async function(submit) {
+    const auditId = state.currentAuditeeResponseAuditId;
+    const audit = getAudit(auditId);
+    if (!audit) return alert('Denetim seçin.');
+    if (state.role !== 'auditee' && !['admin','program_manager'].includes(state.role)) return alert('Bu ekran kuruluş cevabı girişi içindir. Test için Denetlenen Kuruluş rolünü seçebilirsiniz.');
+    const existing = getOrgResponse(auditId) || {};
+    const status = submit ? (daysBetween(audit.auditeeResponseDueDate) < 0 ? 'late' : 'submitted') : (existing.status || 'draft');
+    const responseId = `ORGRESP-${auditId}`;
+    const data = {
+      ...existing,
+      responseId,
+      responseType: 'pre_response',
+      auditId,
+      organizationId: audit.organizationId || state.orgContext,
+      organizationName: audit.organizationName || '',
+      status,
+      generalResponse: document.getElementById('auditeeGeneralResponse')?.value.trim() || '',
+      items: collectAuditeeResponseItems(),
+      submittedByRole: submit ? state.role : existing.submittedByRole || '',
+      submittedAt: submit ? new Date().toISOString() : existing.submittedAt || null,
+      createdAt: existing.createdAt || new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    };
+    await saveRecord(COLLECTIONS.organizationResponses, responseId, data);
+    if (submit && audit.status === 'waiting_auditee_response') {
+      await updateRecord(COLLECTIONS.audits, auditId, { status: 'pre_evaluation', auditeeResponseSubmittedAt: data.submittedAt });
+    }
+    await loadData();
+    renderAll();
+    state.currentAuditeeResponseAuditId = auditId;
+    localStorage.setItem('usoap_phase3b_current_response_audit', auditId);
+    alert(submit ? 'Kuruluş ön cevapları gönderildi. Denetim ön değerlendirme aşamasına alınabilir.' : 'Kuruluş ön cevap taslağı kaydedildi.');
+    showSection('auditeeResponses');
+  };
+
+  function ensurePreEvaluationSelection() {
+    const eligible = state.audits.filter(a => ['pre_evaluation','waiting_auditee_response','audit_in_progress'].includes(a.status));
+    const current = state.currentPreEvaluationAuditId && getAudit(state.currentPreEvaluationAuditId) ? state.currentPreEvaluationAuditId : '';
+    if (current && eligible.some(a => a.auditId === current)) return current;
+    const first = eligible[0];
+    state.currentPreEvaluationAuditId = first?.auditId || '';
+    if (state.currentPreEvaluationAuditId) localStorage.setItem('usoap_phase3b_current_preeval_audit', state.currentPreEvaluationAuditId);
+    return state.currentPreEvaluationAuditId;
+  }
+
+  window.openPreEvaluation = function(auditId) {
+    state.currentPreEvaluationAuditId = auditId || '';
+    if (state.currentPreEvaluationAuditId) localStorage.setItem('usoap_phase3b_current_preeval_audit', state.currentPreEvaluationAuditId);
+    showSection('preEvaluation');
+  };
+
+  window.selectPreEvaluationAudit = function(auditId) {
+    state.currentPreEvaluationAuditId = auditId || '';
+    if (state.currentPreEvaluationAuditId) localStorage.setItem('usoap_phase3b_current_preeval_audit', state.currentPreEvaluationAuditId);
+    renderPreEvaluation();
+  };
+
+  function preEvaluationOptions(selectedId = '') {
+    return state.audits.filter(a => ['pre_evaluation','waiting_auditee_response','audit_in_progress'].includes(a.status)).map(a => `<option value="${escapeHtml(a.auditId)}" ${a.auditId === selectedId ? 'selected' : ''}>${escapeHtml(a.auditId)} - ${escapeHtml(a.organizationName || '-')} (${formatDate(a.plannedStartDate)})</option>`).join('');
+  }
+
+  function renderOrgResponseReadOnly(audit) {
+    const response = getOrgResponse(audit.auditId);
+    if (!response) return `<div class="warn-banner">Bu denetim için kuruluş ön cevabı henüz gönderilmemiş. Denetçi yine de ön değerlendirme taslağı oluşturabilir.</div>`;
+    const items = response.items || {};
+    const answered = Object.values(items).filter(x => x.responseText || x.evidenceText).length;
+    const sample = Object.values(items).filter(x => x.responseText || x.evidenceText).slice(0, 12);
+    return `<div class="info-banner"><strong>Kuruluş cevabı:</strong> ${escapeHtml(orgResponseStatusLabel(response, audit))}. ${answered} PQ için cevap/kanıt linki girilmiş. Genel cevap aşağıdadır.</div><div class="response-mini"><strong>Genel Cevap</strong>\n${escapeHtml(response.generalResponse || '-')}</div>${sample.length ? `<div style="margin-top:10px" class="table-wrap"><table><thead><tr><th>Area/PQ</th><th>Kuruluş Cevabı</th><th>Kanıt Dosya/Link</th></tr></thead><tbody>${sample.map(x => `<tr><td>${escapeHtml(x.areaKey)}/${escapeHtml(x.pqNo)}</td><td>${escapeHtml(x.responseText || '-')}</td><td>${escapeHtml(x.evidenceText || '-')}</td></tr>`).join('')}</tbody></table></div>` : ''}`;
+  }
+
+  function renderPreEvaluationPqInputs(audit, preEval) {
+    const rows = getAuditRowsForAudit(audit);
+    const response = getOrgResponse(audit.auditId) || {};
+    const responseItems = response.items || {};
+    const items = preEval?.items || {};
+    const byArea = {};
+    rows.forEach(row => { (byArea[row.areaKey] ||= []).push(row); });
+    if (!rows.length) return `<div class="empty">Bu denetim için seçili kontrol formu bulunmuyor.</div>`;
+    return Object.entries(byArea).map(([area, areaRows]) => `
+      <div class="response-area-block">
+        <div class="response-area-head"><h3>${escapeHtml(area)} - ${escapeHtml(AREA_LABELS[area] || '')}</h3><span class="pill blue">${areaRows.length} PQ</span></div>
+        ${areaRows.map(row => {
+          const key = pqKey(area, row.pqNo);
+          const orgItem = responseItems[key] || {};
+          const peItem = items[key] || {};
+          const question = row.questionTr || row.questionEn || '';
+          return `<div class="response-pq-card">
+            <div class="response-pq-title"><b>PQ ${escapeHtml(row.pqNo)}</b> ${escapeHtml(question)}</div>
+            <div class="split-panel">
+              <div class="response-mini"><strong>Kuruluş Cevabı</strong>\n${escapeHtml(orgItem.responseText || '-')}\n\n<strong>Kanıt Dosya/Link</strong>\n${escapeHtml(orgItem.evidenceText || '-')}</div>
+              <div>
+                <div class="field"><label>Denetçi Ön Değerlendirme Notu</label><textarea data-preeval-key="${escapeHtml(key)}" data-area="${escapeHtml(area)}" data-pq="${escapeHtml(row.pqNo)}" data-kind="note" placeholder="Sahada/uzaktan doğrulanacak hususlar, ön değerlendirme...">${escapeHtml(peItem.auditorNote || '')}</textarea></div>
+                <div class="field"><label>Ön Risk / Odak Notu</label><textarea data-preeval-key="${escapeHtml(key)}" data-area="${escapeHtml(area)}" data-pq="${escapeHtml(row.pqNo)}" data-kind="focus" placeholder="Odak alanı, örneklem, özel dikkat edilecek husus...">${escapeHtml(peItem.focusNote || '')}</textarea></div>
+                <label class="checkline"><input type="checkbox" data-preeval-key="${escapeHtml(key)}" data-area="${escapeHtml(area)}" data-pq="${escapeHtml(row.pqNo)}" data-kind="siteCheck" ${peItem.siteCheckRequired ? 'checked' : ''}> Sahada/denetimde doğrulanacak</label>
+              </div>
+            </div>
+          </div>`;
+        }).join('')}
+      </div>`).join('');
+  }
+
+  function collectPreEvaluationItems() {
+    const items = {};
+    document.querySelectorAll('[data-preeval-key]').forEach(el => {
+      const key = el.dataset.preevalKey;
+      const areaKey = el.dataset.area;
+      const pqNo = el.dataset.pq;
+      items[key] ||= { areaKey, pqNo, auditorNote: '', focusNote: '', siteCheckRequired: false };
+      if (el.dataset.kind === 'note') items[key].auditorNote = el.value.trim();
+      if (el.dataset.kind === 'focus') items[key].focusNote = el.value.trim();
+      if (el.dataset.kind === 'siteCheck') items[key].siteCheckRequired = el.checked;
+    });
+    Object.keys(items).forEach(k => {
+      if (!items[k].auditorNote && !items[k].focusNote && !items[k].siteCheckRequired) delete items[k];
+    });
+    return items;
+  }
+
+  function renderPreEvaluation() {
+    const section = document.getElementById('preEvaluation');
+    const eligible = state.audits.filter(a => ['pre_evaluation','waiting_auditee_response','audit_in_progress'].includes(a.status));
+    const selectedId = ensurePreEvaluationSelection();
+    if (!eligible.length) {
+      section.innerHTML = `<div class="info-banner"><strong>Ön Değerlendirme:</strong> Kuruluş cevabı gönderilen veya cevap sürecinde olan denetimler burada değerlendirilir.</div><div class="empty">Ön değerlendirme yapılacak denetim bulunmuyor. Planlı denetimi önce cevap sürecine alın veya kuruluş cevabını gönderin.</div>`;
+      return;
+    }
+    const audit = getAudit(selectedId) || eligible[0];
+    const pe = getPreEvaluation(audit.auditId) || {};
+    const response = getOrgResponse(audit.auditId);
+    const canEdit = ['admin','program_manager','lead_auditor','auditor'].includes(state.role);
+    const disabled = canEdit ? '' : 'disabled';
+    section.innerHTML = `
+      <div class="info-banner"><strong>Faz 3B:</strong> Denetim heyeti, kuruluş ön cevaplarını inceler; sahada doğrulanacak hususları, örneklem/fokus notlarını ve ön değerlendirme kayıtlarını oluşturur. Bu aşama nihai bulgu üretmez.</div>
+      <div class="response-toolbar">
+        <div class="field" style="min-width:320px"><label>Denetim Seç</label><select onchange="selectPreEvaluationAudit(this.value)">${preEvaluationOptions(audit.auditId)}</select></div>
+        <button class="btn" onclick="showAuditDetails('${audit.auditId}')">Denetim Detayı</button>
+        <button class="btn" onclick="openAuditFile('${audit.auditId}')">Denetim Dosyası / Heyet</button>
+        <button class="btn" onclick="openAuditeeResponse('${audit.auditId}')">Kuruluş Cevaplarını Gör</button>
+      </div>
+      <div class="summary-strip"><div class="mini-stat"><strong>${escapeHtml(audit.auditId)}</strong><span>Denetim</span></div><div class="mini-stat"><strong>${escapeHtml(audit.organizationName || '-')}</strong><span>Kuruluş</span></div><div class="mini-stat"><strong>${escapeHtml(AUDIT_STATUS[audit.status] || audit.status || '-')}</strong><span>Denetim durumu</span></div><div class="mini-stat"><strong>${escapeHtml(pe.status === 'completed' ? 'Tamamlandı' : pe.status ? 'Taslak' : 'Başlamadı')}</strong><span>Ön değerlendirme</span></div></div>
+      <div class="status-ribbon">${orgResponsePill(audit.auditId)}${preEvalPill(audit.auditId)}<span class="pill gray">Son tarih: ${formatDate(audit.preEvaluationDueDate)}</span></div>
+      <div class="split-panel" style="margin-top:14px"><div class="card"><h3>Kuruluş Cevap Özeti</h3>${renderOrgResponseReadOnly(audit)}</div><div class="card"><h3>Genel Ön Değerlendirme</h3><div class="field full"><label>Genel Ön Değerlendirme Notu</label><textarea id="preEvalGeneralNote" ${disabled}>${escapeHtml(pe.generalNote || '')}</textarea></div><div class="field full"><label>Ön Risk / Odak Alanı Notu</label><textarea id="preEvalFocusNote" ${disabled}>${escapeHtml(pe.focusNote || '')}</textarea></div></div></div>
+      <div class="card" style="margin-top:14px"><h3>PQ Bazlı Ön Değerlendirme</h3>${renderPreEvaluationPqInputs(audit, pe)}</div>
+      <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn success" onclick="savePreEvaluation(false)" ${disabled}>Taslak Kaydet</button><button class="btn primary" onclick="savePreEvaluation(true)" ${disabled}>Ön Değerlendirmeyi Tamamla</button>${nextActionForAudit(audit) ? `<button class="btn" onclick="advanceAudit('${audit.auditId}','${nextActionForAudit(audit).status}')">${escapeHtml(nextActionForAudit(audit).label)}</button>` : ''}</div>`;
+  }
+
+  window.savePreEvaluation = async function(complete) {
+    const auditId = state.currentPreEvaluationAuditId;
+    const audit = getAudit(auditId);
+    if (!audit) return alert('Denetim seçin.');
+    if (!['admin','program_manager','lead_auditor','auditor'].includes(state.role)) return alert('Bu işlem için denetçi/baş denetçi rolü gerekir.');
+    const existing = getPreEvaluation(auditId) || {};
+    const preEvaluationId = `PREEVAL-${auditId}`;
+    const data = {
+      ...existing,
+      preEvaluationId,
+      auditId,
+      organizationId: audit.organizationId || '',
+      status: complete ? 'completed' : (existing.status || 'draft'),
+      generalNote: document.getElementById('preEvalGeneralNote')?.value.trim() || '',
+      focusNote: document.getElementById('preEvalFocusNote')?.value.trim() || '',
+      items: collectPreEvaluationItems(),
+      completedAt: complete ? new Date().toISOString() : existing.completedAt || null,
+      updatedByRole: state.role,
+      createdAt: existing.createdAt || new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    };
+    await saveRecord(COLLECTIONS.auditPreEvaluations, preEvaluationId, data);
+    if (complete && ['waiting_auditee_response','pre_evaluation'].includes(audit.status)) {
+      await updateRecord(COLLECTIONS.audits, auditId, { status: 'pre_evaluation', preEvaluationCompletedAt: data.completedAt });
+    }
+    await loadData();
+    renderAll();
+    state.currentPreEvaluationAuditId = auditId;
+    localStorage.setItem('usoap_phase3b_current_preeval_audit', auditId);
+    alert(complete ? 'Ön değerlendirme tamamlandı.' : 'Ön değerlendirme taslağı kaydedildi.');
+    showSection('preEvaluation');
+  };
+
   function renderAuditeePortal() {
-    const ownAudits = state.audits.filter(a => a.organizationId === state.orgContext || state.role !== "auditee");
-    const portalNote = `<div class="info-banner">Kuruluş Portalı, denetlenen kuruluş kullanıcısının sadece kendi denetimlerini görmesi için tasarlandı. Test için sol menüde Organization ID değerini kuruluş ID ile eşleştirin. Gerçek erişim kontrolü Firebase Auth + Rules ile yapılacaktır.</div>`;
-    document.getElementById("auditeeAssigned").innerHTML = portalNote + `<div class="list">${ownAudits.map(renderAuditCard).join("") || `<div class="empty">Bu kuruluş bağlamına atanmış denetim yok.</div>`}</div>`;
-    document.getElementById("auditeeResponses").innerHTML = portalNote + `<div class="card"><h3>Ön Cevaplar</h3><p>Faz 2'de kuruluş PQ bazında ön cevap, açıklama ve dosya adı/link kaydı girecek. Cevap son tarihi denetim başlangıcından önce planlanacak.</p></div>`;
-    document.getElementById("auditeeObjections").innerHTML = portalNote + `<div class="card"><h3>İtiraz Bildirimi</h3><p>Denetim bitişinden itibaren 2 gün içinde itiraz var/yok bildirimi yapılacak. Süre geçerse sistem sonraki fazda otomatik “itiraz yoktur” notu oluşturacak.</p></div>`;
-    document.getElementById("auditeeCap").innerHTML = portalNote + `<div class="card"><h3>CAP Girişi</h3><p>Nihai rapor gönderildikten sonra USOAP CMA kapsamında azami 45 gün içinde CAP planı sunulacak. Her bulgu için en az bir CAP adımı zorunlu olacak.</p></div>`;
+    const ownAudits = auditeeVisibleAudits();
+    const portalNote = `<div class="info-banner">Kuruluş Portalı, denetlenen kuruluş kullanıcısının kendi kuruluşuna ait denetimleri görmesi için tasarlandı. Test için sol menüde Organization ID değerini denetim kaydındaki Kuruluş ID ile eşleştirin. Gerçek erişim kontrolü Firebase Auth + Firestore Rules ile uygulanacaktır.</div>`;
+    document.getElementById("auditeeAssigned").innerHTML = portalNote + `<div class="summary-strip"><div class="mini-stat"><strong>${ownAudits.length}</strong><span>Atanmış denetim</span></div><div class="mini-stat"><strong>${ownAudits.filter(a => a.status === 'waiting_auditee_response').length}</strong><span>Cevap bekleyen</span></div><div class="mini-stat"><strong>${ownAudits.filter(a => a.status === 'objection_period').length}</strong><span>İtiraz sürecinde</span></div><div class="mini-stat"><strong>${ownAudits.filter(a => ['cap_waiting','cap_under_review','cap_monitoring'].includes(a.status)).length}</strong><span>CAP süreci</span></div></div><div class="list">${ownAudits.map(renderAuditCard).join("") || `<div class="empty">Bu kuruluş bağlamına atanmış denetim yok.</div>`}</div>`;
+    renderAuditeeResponses();
+    document.getElementById("auditeeObjections").innerHTML = portalNote + `<div class="card"><h3>İtiraz Bildirimi</h3><p>Denetim bitişinden itibaren 2 gün içinde itiraz var/yok bildirimi yapılacak. Bu ekran Faz 4'te gerçek itiraz formuna dönüşecek.</p></div>`;
+    document.getElementById("auditeeCap").innerHTML = portalNote + `<div class="card"><h3>CAP Girişi</h3><p>Nihai rapor gönderildikten sonra USOAP CMA kapsamında azami 45 gün içinde CAP planı sunulacak. Her bulgu için en az bir CAP adımı Faz 5'te zorunlu hale getirilecek.</p></div>`;
   }
 
   function renderFindingsAndCap() {
@@ -1537,7 +1902,7 @@
         </tbody></table></div></div>
         <div class="card span-6"><h3>Bağlantı Durumu</h3><p>${escapeHtml(state.firebaseMessage)}</p><p><strong>Mevcut test rolü:</strong> ${escapeHtml(ROLES[state.role])}</p><p><strong>Kuruluş bağlamı:</strong> ${escapeHtml(state.orgContext)}</p></div>
         <div class="card span-12"><h3>Firestore Koleksiyon Omurgası</h3><pre class="model-code">${escapeHtml(collectionsJson)}</pre></div>
-        <div class="card span-12"><h3>Fazlara Bölünen Geliştirme</h3><p><strong>Faz 1:</strong> Mimari omurga ve menü/veri modeli. <strong>Faz 2:</strong> Yıllık program ve planlı denetimlerin işlevsel hale getirilmesi. <strong>Faz 3A:</strong> Denetim dosyası ve heyet atama. <strong>Faz 3B:</strong> Kuruluş cevap süreci ve ön değerlendirme. <strong>Faz 4:</strong> İtiraz ve nihai rapor. <strong>Faz 5:</strong> CAP planı/adımları. <strong>Faz 6:</strong> Dashboard, Kanban, trend ve raporlama.</p></div>
+        <div class="card span-12"><h3>Fazlara Bölünen Geliştirme</h3><p><strong>Faz 1:</strong> Mimari omurga ve menü/veri modeli. <strong>Faz 2:</strong> Yıllık program ve planlı denetimlerin işlevsel hale getirilmesi. <strong>Faz 3B:</strong> Denetim dosyası ve heyet atama. <strong>Faz 3B:</strong> Kuruluş cevap süreci ve ön değerlendirme. <strong>Faz 4:</strong> İtiraz ve nihai rapor. <strong>Faz 5:</strong> CAP planı/adımları. <strong>Faz 6:</strong> Dashboard, Kanban, trend ve raporlama.</p></div>
       </div>`;
   }
 
@@ -1552,6 +1917,8 @@
       auditPrograms: state.auditPrograms,
       audits: state.audits,
       auditAssignments: state.auditAssignments,
+      organizationResponses: state.organizationResponses,
+      auditPreEvaluations: state.auditPreEvaluations,
       organizations: state.organizations,
       findings: state.findings,
       capPlans: state.capPlans,
@@ -1562,7 +1929,7 @@
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = "usoap_phase3a_audit_file_team_export.json";
+    a.download = "usoap_phase3b_response_preevaluation_export.json";
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
