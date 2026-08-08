@@ -196,14 +196,15 @@
   <aside class="sidebar">
     <div class="brand">
       <h1>USOAP CMA<br>Denetim ve CAP Yönetimi</h1>
-      <p>Faz 3B sürümü: kuruluş cevap süreci ve denetçi ön değerlendirme modülü eklendi.</p>
+      <p>Faz 3B.1 sürümü: kuruluş seçimi kolaylaştırıldı; kuruluş cevap süreci ve ön değerlendirme korunuyor.</p>
     </div>
     <div class="role-box">
       <label for="roleSelect">Test Rolü</label>
       <select id="roleSelect" onchange="setRole(this.value)"></select>
-      <label for="orgContextInput">Kuruluş Bağlamı / Organization ID</label>
-      <input id="orgContextInput" value="org_demo" onchange="setOrgContext(this.value)" />
-      <small style="color:#94a3b8;line-height:1.45;display:block;">Gerçek kullanıcı güvenliği için sonraki fazda Firebase Auth + Firestore Rules uygulanacak.</small>
+      <label for="orgContextSelect">Kuruluş Bağlamı / Test Kuruluşu</label>
+      <select id="orgContextSelect" onchange="setOrgContext(this.value)"></select>
+      <input id="orgContextInput" value="org_demo" onchange="setOrgContext(this.value)" placeholder="Manuel Organization ID" />
+      <small style="color:#94a3b8;line-height:1.45;display:block;">Kuruluş Portalı testinde artık ID ezberlemek gerekmez. Liste, oluşturduğun denetimlerdeki kuruluşlardan otomatik oluşur. Gerçek kullanıcı güvenliği sonraki fazda Firebase Auth + Firestore Rules ile uygulanacak.</small>
     </div>
     <div id="menuRoot"></div>
   </aside>
@@ -212,7 +213,7 @@
     <div class="topbar">
       <div>
         <h2 id="pageTitle">Ana Sayfa</h2>
-        <p id="pageSubtitle">Faz 3B kuruluş cevap süreci ve denetçi ön değerlendirme modülü.</p>
+        <p id="pageSubtitle">Faz 3B.1 kuruluş seçimi kolaylaştırılmış test sürümü.</p>
       </div>
       <div class="top-actions">
         <button class="btn" onclick="refreshAll()">Yenile</button>
@@ -620,10 +621,38 @@
     const allowed = ROLE_SECTIONS[state.role];
     return allowed === "all" || (Array.isArray(allowed) && allowed.includes(sectionId));
   }
+  function getOrganizationContextOptions() {
+    const map = new Map();
+    state.audits.forEach(a => {
+      const id = a.organizationId || "";
+      if (!id) return;
+      map.set(id, { id, name: a.organizationName || id, auditCount: (map.get(id)?.auditCount || 0) + 1 });
+    });
+    state.organizations.forEach(o => {
+      const id = o.organizationId || o.id || "";
+      if (!id) return;
+      const existing = map.get(id);
+      map.set(id, { id, name: o.name || existing?.name || id, auditCount: existing?.auditCount || 0 });
+    });
+    if (state.orgContext && !map.has(state.orgContext)) {
+      map.set(state.orgContext, { id: state.orgContext, name: state.orgContext, auditCount: 0 });
+    }
+    if (!map.size) map.set("org_demo", { id: "org_demo", name: "Demo Kuruluş", auditCount: 0 });
+    return [...map.values()].sort((a,b) => String(a.name).localeCompare(String(b.name), "tr"));
+  }
+
   function renderRoleSelect() {
     const select = document.getElementById("roleSelect");
     select.innerHTML = Object.entries(ROLES).map(([key, label]) => `<option value="${key}" ${key === state.role ? "selected" : ""}>${label}</option>`).join("");
-    document.getElementById("orgContextInput").value = state.orgContext;
+    const orgOptions = getOrganizationContextOptions();
+    const orgSelect = document.getElementById("orgContextSelect");
+    const currentExists = orgOptions.some(o => o.id === state.orgContext);
+    if (!currentExists && orgOptions[0]) state.orgContext = orgOptions[0].id;
+    if (orgSelect) {
+      orgSelect.innerHTML = orgOptions.map(o => `<option value="${escapeHtml(o.id)}" ${o.id === state.orgContext ? "selected" : ""}>${escapeHtml(o.name)} — ${escapeHtml(o.id)}${o.auditCount ? ` (${o.auditCount} denetim)` : ""}</option>`).join("");
+    }
+    const manual = document.getElementById("orgContextInput");
+    if (manual) manual.value = state.orgContext;
   }
   function renderMenu() {
     const root = document.getElementById("menuRoot");
@@ -651,6 +680,10 @@
   window.setOrgContext = function(orgId) {
     state.orgContext = orgId || "org_demo";
     localStorage.setItem("usoap_phase1_org", state.orgContext);
+    const manual = document.getElementById("orgContextInput");
+    if (manual) manual.value = state.orgContext;
+    const orgSelect = document.getElementById("orgContextSelect");
+    if (orgSelect && [...orgSelect.options].some(o => o.value === state.orgContext)) orgSelect.value = state.orgContext;
     renderAll();
   };
   window.showSection = function(sectionId) {
@@ -1445,7 +1478,7 @@
     const auditeeActions = `<button class="btn" onclick="showAuditDetails('${audit.auditId}')">Detay</button><button class="btn primary" onclick="openAuditeeResponse('${audit.auditId}')">Ön Cevaplar</button>`;
     const staffActions = `<button class="btn" onclick="showAuditDetails('${audit.auditId}')">Detay</button><button class="btn" onclick="openAuditFile('${audit.auditId}')">Denetim Dosyası</button><button class="btn" onclick="openAuditeeResponse('${audit.auditId}')">Kuruluş Cevapları</button><button class="btn" onclick="openPreEvaluation('${audit.auditId}')">Ön Değerlendirme</button>${canEditPlan ? `<button class="btn" onclick="editAudit('${audit.auditId}')">Düzenle</button>` : ""}${next && canAdvance ? `<button class="btn primary" onclick="advanceAudit('${audit.auditId}','${next.status}')">${escapeHtml(next.label)}</button>` : ""}${canEditPlan ? `<button class="btn warning" onclick="archiveAudit('${audit.auditId}')">Arşivle</button>` : ""}`;
     return `<div class="audit-card">
-      <div><h4>${escapeHtml(audit.organizationName || "-")}</h4><div class="audit-meta"><strong>${escapeHtml(audit.auditId)}</strong> | ${escapeHtml(audit.programId || "-")}<br>${formatDate(audit.plannedStartDate)} → ${formatDate(audit.plannedEndDate)} | ${escapeHtml(audit.location || "-")}<br>${escapeHtml(method)} | ${escapeHtml(type)}</div></div>
+      <div><h4>${escapeHtml(audit.organizationName || "-")}</h4><div class="audit-meta"><strong>${escapeHtml(audit.auditId)}</strong> | ${escapeHtml(audit.programId || "-")}<br><strong>Kuruluş ID:</strong> ${escapeHtml(audit.organizationId || "-")}<br>${formatDate(audit.plannedStartDate)} → ${formatDate(audit.plannedEndDate)} | ${escapeHtml(audit.location || "-")}<br>${escapeHtml(method)} | ${escapeHtml(type)}</div></div>
       <div><div>${statusPill(audit.status || "draft")} ${audit.riskPriorityLevel ? `<span class="pill ${audit.riskPriorityLevel === "critical" ? "red" : audit.riskPriorityLevel === "high" ? "yellow" : "gray"}">${escapeHtml(audit.riskPriorityLevel)}</span>` : ""}</div><div style="margin-top:6px">${(audit.selectedForms || []).map(a => `<span class="pill gray">${a}</span>`).join("")} ${assignmentPill(audit.auditId)}</div><div class="status-ribbon">${orgResponsePill(audit.auditId)}${preEvalPill(audit.auditId)}</div><div class="audit-meta" style="margin-top:6px">Kritik tarih: ${criticalDateText(audit)}</div></div>
       <div class="audit-actions">${isAuditee ? auditeeActions : staffActions}</div>
     </div>`;
@@ -1846,7 +1879,9 @@
 
   function renderAuditeePortal() {
     const ownAudits = auditeeVisibleAudits();
-    const portalNote = `<div class="info-banner">Kuruluş Portalı, denetlenen kuruluş kullanıcısının kendi kuruluşuna ait denetimleri görmesi için tasarlandı. Test için sol menüde Organization ID değerini denetim kaydındaki Kuruluş ID ile eşleştirin. Gerçek erişim kontrolü Firebase Auth + Firestore Rules ile uygulanacaktır.</div>`;
+    const orgOptions = getOrganizationContextOptions();
+    const orgChooser = `<div class="toolbar"><div class="field" style="min-width:320px"><label>Test Kuruluşu Seç</label><select onchange="setOrgContext(this.value)">${orgOptions.map(o => `<option value="${escapeHtml(o.id)}" ${o.id === state.orgContext ? 'selected' : ''}>${escapeHtml(o.name)} — ${escapeHtml(o.id)}${o.auditCount ? ` (${o.auditCount} denetim)` : ''}</option>`).join('')}</select></div><div class="field" style="min-width:260px"><label>Aktif Organization ID</label><input value="${escapeHtml(state.orgContext)}" onchange="setOrgContext(this.value)" placeholder="Organization ID"></div></div>`;
+    const portalNote = `<div class="info-banner">Kuruluş Portalı, denetlenen kuruluş kullanıcısının kendi kuruluşuna ait denetimleri görmesi için tasarlandı. Test için artık Organization ID kopyalaman gerekmiyor; aşağıdaki listeden ilgili kuruluşu seçebilirsin. Gerçek erişim kontrolü Firebase Auth + Firestore Rules ile uygulanacaktır.</div>${orgChooser}`;
     document.getElementById("auditeeAssigned").innerHTML = portalNote + `<div class="summary-strip"><div class="mini-stat"><strong>${ownAudits.length}</strong><span>Atanmış denetim</span></div><div class="mini-stat"><strong>${ownAudits.filter(a => a.status === 'waiting_auditee_response').length}</strong><span>Cevap bekleyen</span></div><div class="mini-stat"><strong>${ownAudits.filter(a => a.status === 'objection_period').length}</strong><span>İtiraz sürecinde</span></div><div class="mini-stat"><strong>${ownAudits.filter(a => ['cap_waiting','cap_under_review','cap_monitoring'].includes(a.status)).length}</strong><span>CAP süreci</span></div></div><div class="list">${ownAudits.map(renderAuditCard).join("") || `<div class="empty">Bu kuruluş bağlamına atanmış denetim yok.</div>`}</div>`;
     renderAuditeeResponses();
     document.getElementById("auditeeObjections").innerHTML = portalNote + `<div class="card"><h3>İtiraz Bildirimi</h3><p>Denetim bitişinden itibaren 2 gün içinde itiraz var/yok bildirimi yapılacak. Bu ekran Faz 4'te gerçek itiraz formuna dönüşecek.</p></div>`;
