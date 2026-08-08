@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>USOAP CMA Denetim ve CAP Yönetim Sistemi - Faz 2</title>
+  <title>USOAP CMA Denetim ve CAP Yönetim Sistemi - Faz 3A</title>
   <style>
     :root {
       --primary: #1e3a8a;
@@ -144,6 +144,15 @@
     .modal-head { display:flex; justify-content:space-between; align-items:center; gap:12px; padding:16px 18px; border-bottom:1px solid var(--border); background:#f8fafc; }
     .modal-head h3 { margin:0; font-size:16px; }
     .modal-body { padding:18px; max-height:75vh; overflow:auto; }
+
+    .phase3-status { display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; }
+    .assignment-panel { display:grid; grid-template-columns: 1fr 1fr; gap:14px; }
+    .assignment-panel .card { height:100%; }
+    .timeline-list { display:flex; flex-direction:column; gap:8px; }
+    .timeline-item { display:flex; justify-content:space-between; gap:10px; border:1px solid var(--border); border-radius:10px; padding:10px 11px; background:#fff; font-size:12px; }
+    .timeline-item b { color:#0f172a; }
+    .person-list { margin:8px 0 0 0; padding-left:18px; color:#334155; font-size:12px; line-height:1.55; }
+    .readonly-note { background:#f8fafc; border:1px dashed #cbd5e1; border-radius:10px; padding:10px; color:var(--muted); font-size:12px; line-height:1.5; }
     @media (max-width: 980px) {
       body { flex-direction: column; overflow: auto; height: auto; }
       .sidebar { width: 100%; min-width: 0; height: auto; max-height: 45vh; }
@@ -151,6 +160,7 @@
       .grid, .form-grid, .pq-body { grid-template-columns: 1fr; }
       .span-3, .span-4, .span-5, .span-6, .span-7, .span-8, .span-12 { grid-column: span 1; }
       .audit-card { grid-template-columns: 1fr; }
+      .assignment-panel { grid-template-columns: 1fr; }
       .topbar { flex-direction: column; }
     }
     @media print {
@@ -167,7 +177,7 @@
   <aside class="sidebar">
     <div class="brand">
       <h1>USOAP CMA<br>Denetim ve CAP Yönetimi</h1>
-      <p>Faz 2 sürümü: yıllık denetim programı ve planlı denetim modülü işlevsel hale getirildi.</p>
+      <p>Faz 3A sürümü: denetim dosyası ve heyet atama modülü eklendi.</p>
     </div>
     <div class="role-box">
       <label for="roleSelect">Test Rolü</label>
@@ -183,11 +193,11 @@
     <div class="topbar">
       <div>
         <h2 id="pageTitle">Ana Sayfa</h2>
-        <p id="pageSubtitle">Faz 2 yıllık denetim programı modülü.</p>
+        <p id="pageSubtitle">Faz 3A denetim dosyası ve heyet atama modülü.</p>
       </div>
       <div class="top-actions">
         <button class="btn" onclick="refreshAll()">Yenile</button>
-        <button class="btn" onclick="exportPhase1Json()">Faz 2 JSON Dışa Aktar</button>
+        <button class="btn" onclick="exportPhase1Json()">Faz 3A JSON Dışa Aktar</button>
         <button class="btn primary" onclick="window.print()">Yazdır / PDF</button>
       </div>
     </div>
@@ -199,6 +209,7 @@
     <section id="programCreate" class="section"></section>
     <section id="annualPrograms" class="section"></section>
     <section id="programAddAudit" class="section"></section>
+    <section id="auditFile" class="section"></section>
     <section id="plannedAudits" class="section"></section>
     <section id="waitingAuditeeResponse" class="section"></section>
     <section id="preEvaluation" class="section"></section>
@@ -264,11 +275,11 @@
 
   const ROLE_SECTIONS = {
     admin: "all",
-    program_manager: ["home","masterLibrary","annualPrograms","programCreate","programAddAudit","plannedAudits","waitingAuditeeResponse","preEvaluation","activeAudits","objectionAudits","finalReportAudits","reportsAudit","reportsProgram","reportsCap","archive","settings"],
-    lead_auditor: ["home","masterLibrary","plannedAudits","waitingAuditeeResponse","preEvaluation","activeAudits","objectionAudits","finalReportAudits","findingsOpen","capWaiting","capReview","capMonitoring","closedFindings","reportsAudit","reportsProgram","reportsCap","archive"],
-    auditor: ["home","masterLibrary","preEvaluation","activeAudits","findingsOpen","capMonitoring","reportsAudit"],
+    program_manager: ["home","masterLibrary","annualPrograms","programCreate","programAddAudit","auditFile","plannedAudits","waitingAuditeeResponse","preEvaluation","activeAudits","objectionAudits","finalReportAudits","reportsAudit","reportsProgram","reportsCap","archive","settings"],
+    lead_auditor: ["home","masterLibrary","auditFile","plannedAudits","waitingAuditeeResponse","preEvaluation","activeAudits","objectionAudits","finalReportAudits","findingsOpen","capWaiting","capReview","capMonitoring","closedFindings","reportsAudit","reportsProgram","reportsCap","archive"],
+    auditor: ["home","masterLibrary","auditFile","preEvaluation","activeAudits","findingsOpen","capMonitoring","reportsAudit"],
     auditee: ["home","auditeeAssigned","auditeeResponses","auditeeObjections","auditeeCap"],
-    viewer: ["home","masterLibrary","annualPrograms","plannedAudits","activeAudits","findingsOpen","capMonitoring","reportsAudit","reportsProgram","reportsCap","archive"]
+    viewer: ["home","masterLibrary","annualPrograms","auditFile","plannedAudits","activeAudits","findingsOpen","capMonitoring","reportsAudit","reportsProgram","reportsCap","archive"]
   };
 
   const AREA_ORDER = ["LEG", "ORG", "PEL", "OPS", "AIR", "AIG", "ANS", "AGA", "SSP"];
@@ -352,6 +363,7 @@
     ]},
     { group: "Denetim İşlemleri", items: [
       { id: "plannedAudits", label: "Planlı Denetimler", tag: "Plan" },
+      { id: "auditFile", label: "Denetim Dosyası / Heyet", tag: "3A" },
       { id: "waitingAuditeeResponse", label: "Cevap Bekleyen Denetimler", tag: "Kuruluş" },
       { id: "preEvaluation", label: "Ön Değerlendirme", tag: "Heyet" },
       { id: "activeAudits", label: "Aktif Denetimler", tag: "Saha" },
@@ -388,6 +400,7 @@
     firebaseMessage: "Bağlantı denenmedi",
     editProgramId: null,
     editAuditId: null,
+    currentAuditFileId: localStorage.getItem("usoap_phase3a_current_audit_file") || "",
     programFilters: { search: "", status: "all", year: "all" },
     auditFilters: { search: "", programId: "all", method: "all", type: "all", dateFrom: "", dateTo: "" },
     role: localStorage.getItem("usoap_phase1_role") || "admin",
@@ -397,6 +410,7 @@
     normalizedAreas: {},
     auditPrograms: [],
     audits: [],
+    auditAssignments: [],
     organizations: [],
     findings: [],
     capPlans: [],
@@ -546,6 +560,7 @@
   async function loadData() {
     state.auditPrograms = await readCollection(COLLECTIONS.auditPrograms);
     state.audits = await readCollection(COLLECTIONS.audits);
+    state.auditAssignments = await readCollection(COLLECTIONS.auditAssignments);
     state.organizations = await readCollection(COLLECTIONS.organizations);
     state.findings = await readCollection(COLLECTIONS.findings);
     state.capPlans = await readCollection(COLLECTIONS.capPlans);
@@ -641,6 +656,7 @@
     renderProgramCreate();
     renderAnnualPrograms();
     renderProgramAddAudit();
+    renderAuditFile();
     renderAuditList("plannedAudits", ["planned", "programmed"], "Planlı Denetimler", "Programa alınmış veya planlanmış denetimler.");
     renderAuditList("waitingAuditeeResponse", ["waiting_auditee_response"], "Cevap Bekleyen Denetimler", "Kuruluşa ön cevap süresi verilmiş denetimler.");
     renderAuditList("preEvaluation", ["pre_evaluation"], "Ön Değerlendirme", "Denetim heyetinin planlı denetim tarihinden bir gün öncesine kadar ön değerlendirme yapacağı kayıtlar.");
@@ -655,13 +671,14 @@
   }
   function renderSection(sectionId) {
     const map = {
-      home: ["Ana Sayfa", "Sistem mimarisi ve faz 1 kapsamı."],
+      home: ["Ana Sayfa", "Faz 3A: denetim dosyası ve heyet atama omurgası."],
       masterLibrary: ["Master Kontrol Formları / Form Kütüphanesi", "JSON kaynaklı read-only PQ master kütüphanesi."],
       formRevisions: ["Form Revizyonları", "Yönetici rolü için master kontrol formu revizyon omurgası."],
       revisionArchive: ["Revizyon Arşivi", "Arşivlenmiş form revizyonları."],
       programCreate: ["Yıllık Denetim Programı Oluştur", "Her yıl için ayrı denetim programı oluşturulur."],
       annualPrograms: ["Yıllık Programlar", "Oluşturulan yıllık denetim programları."],
       programAddAudit: ["Programa Denetim Ekle", "Yıllık programa bağlı planlı denetim kaydı oluşturulur."],
+      auditFile: ["Denetim Dosyası / Heyet Atama", "Seçili denetimin planlama dosyası, heyet ve görev dağılımı yönetilir."],
       plannedAudits: ["Planlı Denetimler", "Planlı veya programa alınmış denetimler."],
       waitingAuditeeResponse: ["Cevap Bekleyen Denetimler", "Denetlenen kuruluş cevap sürecindeki denetimler."],
       preEvaluation: ["Ön Değerlendirme", "Denetim heyetinin ön değerlendirme süreci."],
@@ -697,7 +714,7 @@
     const findings = state.findings.filter(f => f.status !== "closed" && f.status !== "finding_closed").length;
     document.getElementById("home").innerHTML = `
       <div class="info-banner">
-        <strong>Faz 2 amacı:</strong> Yıllık Denetim Programı ve Programa Denetim Ekle modülleri işlevsel hale getirildi. Bu sürümde program oluşturma, program statü yönetimi, planlı denetim oluşturma/düzenleme, kritik tarih hesaplama ve statü bazlı denetim listeleri çalışır.
+        <strong>Faz 3A amacı:</strong> Faz 2 yıllık program ve planlı denetim omurgasının üzerine Denetim Dosyası ve Heyet Atama modülü eklendi. Bu sürümde planlı denetim seçilip dosya bilgileri görüntülenir, heyet başkanı/üyeleri/teknik uzman/gözlemci/kuruluş temsilcisi atanır ve görev dağılımı kaydedilir.
       </div>
       <div class="grid">
         <div class="card stat span-3"><div class="label">Master PQ</div><div class="num">${totalPq}</div><p>${DATA_FILE} üzerinden okunan read-only kayıt.</p></div>
@@ -707,12 +724,12 @@
         <div class="card span-6">
           <h3>Faz 2 İş Akışı</h3>
           <p>Önce yıllık program oluşturulur ve onay/aktif statüsüne alınır. Sonra programa bağlı planlı denetim kaydı açılır. Denetim kartından kuruluş cevap süreci, ön değerlendirme ve aktif denetim statülerine geçiş yapılabilir.</p>
-          <div>${["Yıllık Program", "Programa Denetim", "Planlı Denetim", "Kritik Tarihler", "Statü Geçişleri"].map(x => `<span class="pill blue">${escapeHtml(x)}</span>`).join("")}</div>
+          <div>${["Yıllık Program", "Programa Denetim", "Denetim Dosyası", "Heyet Atama", "Kritik Tarihler", "Statü Geçişleri"].map(x => `<span class="pill blue">${escapeHtml(x)}</span>`).join("")}</div>
         </div>
         <div class="card span-6">
           <h3>Sonraki Faz</h3>
           <p>Faz 3'te kuruluş portalı üzerinden ön cevap girişi, denetçi ön değerlendirmesi ve aktif denetimde PQ bazlı S/NS/NA değerlendirme ekranı gerçek akışa bağlanacak.</p>
-          <div><button class="btn primary" onclick="showSection('programCreate')">Yıllık Program Oluştur</button><button class="btn" onclick="showSection('programAddAudit')">Programa Denetim Ekle</button><button class="btn" onclick="showSection('plannedAudits')">Planlı Denetimler</button></div>
+          <div><button class="btn primary" onclick="showSection('programCreate')">Yıllık Program Oluştur</button><button class="btn" onclick="showSection('programAddAudit')">Programa Denetim Ekle</button><button class="btn" onclick="showSection('auditFile')">Denetim Dosyası / Heyet</button><button class="btn" onclick="showSection('plannedAudits')">Planlı Denetimler</button></div>
         </div>
       </div>`;
   }
@@ -1127,6 +1144,193 @@
     showSection("plannedAudits");
   };
 
+
+  function getAssignment(auditId) {
+    return state.auditAssignments.find(x => x.auditId === auditId || x.id === `ASSIGN-${auditId}` || x.assignmentId === `ASSIGN-${auditId}`) || null;
+  }
+
+  function canManageAssignments() {
+    return ["admin", "program_manager", "lead_auditor"].includes(state.role);
+  }
+
+  function splitPeople(value) {
+    return String(value || "")
+      .split(/\n|,|;/)
+      .map(x => x.trim())
+      .filter(Boolean);
+  }
+
+  function joinPeople(value) {
+    return Array.isArray(value) ? value.join("\n") : String(value || "");
+  }
+
+  function renderPeople(value) {
+    const people = Array.isArray(value) ? value : splitPeople(value);
+    if (!people.length) return '<span class="pill gray">Tanımlı değil</span>';
+    return `<ul class="person-list">${people.map(p => `<li>${escapeHtml(p)}</li>`).join("")}</ul>`;
+  }
+
+  function assignmentCompleteness(auditId) {
+    const audit = getAudit(auditId);
+    const assignment = getAssignment(auditId) || {};
+    const checks = [
+      { ok: !!audit, label: "Denetim kaydı" },
+      { ok: !!assignment.leadAuditorName, label: "Heyet başkanı" },
+      { ok: splitPeople(joinPeople(assignment.auditorNames)).length > 0, label: "Heyet üyeleri" },
+      { ok: audit && (audit.selectedForms || []).length > 0, label: "Kontrol formu" },
+      { ok: audit && audit.plannedStartDate && audit.plannedEndDate, label: "Denetim tarihi" },
+      { ok: audit && !!audit.location, label: "Denetim yeri" }
+    ];
+    const done = checks.filter(c => c.ok).length;
+    return { done, total: checks.length, checks, percent: Math.round((done / checks.length) * 100) };
+  }
+
+  function assignmentPill(auditId) {
+    const c = assignmentCompleteness(auditId);
+    const cls = c.percent === 100 ? "green" : c.percent >= 60 ? "yellow" : "red";
+    return `<span class="pill ${cls}">Heyet/Dosya ${c.done}/${c.total}</span>`;
+  }
+
+  function auditFileOptions(selectedId = "") {
+    return state.audits
+      .filter(a => !["archived", "cancelled"].includes(a.status))
+      .sort((a,b) => String(a.plannedStartDate || "").localeCompare(String(b.plannedStartDate || "")))
+      .map(a => `<option value="${escapeHtml(a.auditId)}" ${a.auditId === selectedId ? "selected" : ""}>${escapeHtml(a.auditId)} - ${escapeHtml(a.organizationName || "-")} (${formatDate(a.plannedStartDate)})</option>`)
+      .join("");
+  }
+
+  function ensureAuditFileSelection() {
+    const current = state.currentAuditFileId && getAudit(state.currentAuditFileId) ? state.currentAuditFileId : "";
+    if (current) return current;
+    const first = state.audits.find(a => !["archived", "cancelled"].includes(a.status));
+    state.currentAuditFileId = first?.auditId || "";
+    if (state.currentAuditFileId) localStorage.setItem("usoap_phase3a_current_audit_file", state.currentAuditFileId);
+    return state.currentAuditFileId;
+  }
+
+  window.openAuditFile = function(auditId) {
+    state.currentAuditFileId = auditId || "";
+    if (state.currentAuditFileId) localStorage.setItem("usoap_phase3a_current_audit_file", state.currentAuditFileId);
+    showSection("auditFile");
+  };
+
+  window.selectAuditFile = function(auditId) {
+    state.currentAuditFileId = auditId || "";
+    if (state.currentAuditFileId) localStorage.setItem("usoap_phase3a_current_audit_file", state.currentAuditFileId);
+    renderAuditFile();
+  };
+
+  function renderTimeline(audit) {
+    const items = [
+      ["Kuruluş cevap son tarihi", audit.auditeeResponseDueDate],
+      ["Ön değerlendirme son tarihi", audit.preEvaluationDueDate],
+      ["Denetim başlangıcı", audit.plannedStartDate],
+      ["Denetim bitişi", audit.plannedEndDate],
+      ["İtiraz son tarihi", audit.objectionDueDate],
+      ["Nihai rapor son tarihi", audit.finalReportDueDate],
+      ["CAP sunma süresi", audit.capDueDate || `${audit.capDueDays || 45} gün / nihai rapordan sonra`]
+    ];
+    return `<div class="timeline-list">${items.map(([label, value]) => `<div class="timeline-item"><b>${escapeHtml(label)}</b><span>${escapeHtml(formatDate(value) === "Invalid Date" ? value : formatDate(value))}</span></div>`).join("")}</div>`;
+  }
+
+  function renderAuditFile() {
+    const section = document.getElementById("auditFile");
+    if (!section) return;
+    const selectedId = ensureAuditFileSelection();
+    if (!state.audits.length) {
+      section.innerHTML = `<div class="warn-banner">Denetim dosyası oluşturmak için önce yıllık programa bağlı bir denetim kaydı oluşturmalısınız.</div><div class="empty"><button class="btn primary" onclick="showSection('programAddAudit')">Programa Denetim Ekle</button></div>`;
+      return;
+    }
+    const audit = getAudit(selectedId);
+    if (!audit) {
+      section.innerHTML = `<div class="empty">Seçili denetim bulunamadı.</div>`;
+      return;
+    }
+    const assignment = getAssignment(audit.auditId) || {};
+    const program = getProgram(audit.programId);
+    const c = assignmentCompleteness(audit.auditId);
+    const disabled = canManageAssignments() ? "" : "disabled";
+    const readonlyNote = canManageAssignments() ? "" : `<div class="readonly-note">Bu rolde heyet bilgileri salt okunur gösterilir. Kaydetme yetkisi Yönetici, Program Yöneticisi ve Baş Denetçi rollerindedir.</div>`;
+    section.innerHTML = `
+      <div class="info-banner"><strong>Faz 3A:</strong> Denetim dosyası, planlı denetimin operasyonel hazırlık kaydıdır. Bu ekranda denetim bilgileri, seçili kontrol formları, kritik tarihler ve heyet/görev atamaları birlikte yönetilir.</div>
+      <div class="toolbar">
+        <div class="field" style="min-width:280px"><label>Denetim Dosyası Seç</label><select id="auditFileSelect" onchange="selectAuditFile(this.value)">${auditFileOptions(audit.auditId)}</select></div>
+        <button class="btn" onclick="showAuditDetails('${audit.auditId}')">Detay Modalı</button>
+        <button class="btn" onclick="editAudit('${audit.auditId}')">Plan Bilgilerini Düzenle</button>
+        <button class="btn primary" onclick="showSection('plannedAudits')">Denetim Listesine Dön</button>
+      </div>
+      <div class="summary-strip">
+        <div class="mini-stat"><strong>${escapeHtml(audit.auditId)}</strong><span>Denetim ID</span></div>
+        <div class="mini-stat"><strong>${escapeHtml(AUDIT_STATUS[audit.status] || audit.status || "-")}</strong><span>Durum</span></div>
+        <div class="mini-stat"><strong>${c.done}/${c.total}</strong><span>Dosya hazırlık kontrolü</span></div>
+        <div class="mini-stat"><strong>${escapeHtml((audit.selectedForms || []).join(", ") || "-")}</strong><span>Kontrol formları</span></div>
+      </div>
+      <div class="grid">
+        <div class="card span-6"><h3>Denetim Bilgileri</h3><div class="detail-grid"><div class="detail-box"><b>Program</b>${escapeHtml(audit.programId || "-")}<br><small>${escapeHtml(program?.name || "")}</small></div><div class="detail-box"><b>Kuruluş</b>${escapeHtml(audit.organizationName || "-")}<br><small>${escapeHtml(audit.organizationId || "-")}</small></div><div class="detail-box"><b>Tarih / Yer</b>${formatDate(audit.plannedStartDate)} - ${formatDate(audit.plannedEndDate)}<br>${escapeHtml(audit.location || "-")}</div><div class="detail-box"><b>Yöntem / Şekil</b>${escapeHtml(AUDIT_METHOD_LABELS[audit.auditMethod] || audit.auditMethod || "-")}<br>${escapeHtml(AUDIT_TYPE_LABELS[audit.auditType] || audit.auditType || "-")}</div><div class="detail-box"><b>Görev Unvanları</b>${escapeHtml((audit.requiredTitles || []).join(", ") || "-")}</div><div class="detail-box"><b>Risk / Öncelik</b>${escapeHtml(audit.riskPriorityLevel || "-")}<br>${escapeHtml(audit.riskPriorityNote || "")}</div></div></div>
+        <div class="card span-6"><h3>Kritik Tarihler</h3>${renderTimeline(audit)}</div>
+        <div class="card span-12"><h3>Seçili Kontrol Formları ve Revizyonları</h3><div>${(audit.selectedForms || []).map(area => `<span class="pill blue">${area}</span><span class="pill gray">${escapeHtml(audit.selectedFormRevisions?.[area] || `${area}-REV-JSON-CURRENT`)}</span>`).join(" ") || "-"}</div></div>
+      </div>
+      <div class="assignment-panel" style="margin-top:14px">
+        <div class="card"><h3>Heyet Atama</h3>${readonlyNote}<div class="form-grid">
+          <div class="field full"><label>Heyet Başkanı</label><input id="assignLeadAuditor" ${disabled} placeholder="Ad Soyad / unvan" value="${escapeHtml(assignment.leadAuditorName || "")}"></div>
+          <div class="field full"><label>Denetçiler / Heyet Üyeleri</label><textarea id="assignAuditors" ${disabled} placeholder="Her satıra bir kişi yazın">${escapeHtml(joinPeople(assignment.auditorNames))}</textarea></div>
+          <div class="field full"><label>Teknik Uzmanlar</label><textarea id="assignExperts" ${disabled} placeholder="Opsiyonel; her satıra bir kişi">${escapeHtml(joinPeople(assignment.technicalExpertNames))}</textarea></div>
+          <div class="field full"><label>Gözlemciler</label><textarea id="assignObservers" ${disabled} placeholder="Opsiyonel; her satıra bir kişi">${escapeHtml(joinPeople(assignment.observerNames))}</textarea></div>
+          <div class="field full"><label>Denetlenen Kuruluş Temsilcileri</label><textarea id="assignAuditeeReps" ${disabled} placeholder="Kuruluş temsilcileri / muhatap kişiler">${escapeHtml(joinPeople(assignment.auditeeRepresentativeNames))}</textarea></div>
+        </div></div>
+        <div class="card"><h3>Görev Dağılımı ve Hazırlık Notları</h3><div class="form-grid">
+          <div class="field full"><label>Görev Dağılımı / Sorumluluk Notu</label><textarea id="assignWorkDistribution" ${disabled} placeholder="Örn: AGA soruları X, doküman inceleme Y, koordinasyon Z...">${escapeHtml(assignment.workDistributionNote || "")}</textarea></div>
+          <div class="field full"><label>Açılış / Kapanış Toplantısı Hazırlık Notu</label><textarea id="assignMeetingNote" ${disabled} placeholder="Toplantı gündemi, katılımcılar, özel hususlar...">${escapeHtml(assignment.meetingPreparationNote || "")}</textarea></div>
+          <div class="field full"><label>İletişim ve Erişim Notu</label><textarea id="assignAccessNote" ${disabled} placeholder="Gizlilik, erişim, saha giriş, uzaktan bağlantı vb.">${escapeHtml(assignment.communicationAccessNote || "")}</textarea></div>
+        </div></div>
+      </div>
+      <div class="card" style="margin-top:14px"><h3>Dosya Hazırlık Kontrolü</h3><div class="phase3-status">${c.checks.map(item => `<span class="pill ${item.ok ? "green" : "red"}">${item.ok ? "✓" : "!"} ${escapeHtml(item.label)}</span>`).join("")}</div><div class="progress-line" style="margin-top:10px"><span style="width:${c.percent}%"></span></div><p>${c.percent === 100 ? "Denetim dosyası Faz 3A açısından hazır görünüyor." : "Eksik alanlar tamamlandığında denetim hazırlık dosyası tamamlanmış sayılır."}</p></div>
+      ${canManageAssignments() ? `<div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn success" onclick="saveAuditAssignment('${audit.auditId}')">Heyet ve Dosya Notlarını Kaydet</button><button class="btn" onclick="renderAuditFile()">Değişiklikleri Geri Al</button>${nextActionForAudit(audit) ? `<button class="btn primary" onclick="advanceAudit('${audit.auditId}','${nextActionForAudit(audit).status}')">${escapeHtml(nextActionForAudit(audit).label)}</button>` : ""}</div>` : ""}
+    `;
+  }
+
+  window.saveAuditAssignment = async function(auditId) {
+    const audit = getAudit(auditId);
+    if (!audit) return alert("Denetim bulunamadı.");
+    if (!canManageAssignments()) return alert("Bu işlem için yetkiniz yok.");
+    const lead = document.getElementById("assignLeadAuditor")?.value.trim() || "";
+    const auditors = splitPeople(document.getElementById("assignAuditors")?.value || "");
+    if (!lead) return alert("Heyet başkanı girin.");
+    if (!auditors.length) return alert("En az bir heyet üyesi/denetçi girin.");
+    const assignmentId = `ASSIGN-${auditId}`;
+    const existing = getAssignment(auditId) || {};
+    const data = {
+      ...existing,
+      assignmentId,
+      auditId,
+      organizationId: audit.organizationId || "",
+      leadAuditorName: lead,
+      auditorNames: auditors,
+      technicalExpertNames: splitPeople(document.getElementById("assignExperts")?.value || ""),
+      observerNames: splitPeople(document.getElementById("assignObservers")?.value || ""),
+      auditeeRepresentativeNames: splitPeople(document.getElementById("assignAuditeeReps")?.value || ""),
+      workDistributionNote: document.getElementById("assignWorkDistribution")?.value.trim() || "",
+      meetingPreparationNote: document.getElementById("assignMeetingNote")?.value.trim() || "",
+      communicationAccessNote: document.getElementById("assignAccessNote")?.value.trim() || "",
+      updatedByRole: state.role,
+      createdAt: existing.createdAt || new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    };
+    await saveRecord(COLLECTIONS.auditAssignments, assignmentId, data);
+    await loadData();
+    renderAll();
+    state.currentAuditFileId = auditId;
+    localStorage.setItem("usoap_phase3a_current_audit_file", auditId);
+    alert("Denetim heyeti ve dosya notları kaydedildi.");
+    showSection("auditFile");
+  };
+
+  function assignmentSummaryHtml(auditId) {
+    const a = getAssignment(auditId) || {};
+    const c = assignmentCompleteness(auditId);
+    return `<div class="detail-grid"><div class="detail-box"><b>Hazırlık Durumu</b>${assignmentPill(auditId)}</div><div class="detail-box"><b>Heyet Başkanı</b>${escapeHtml(a.leadAuditorName || "-")}</div><div class="detail-box"><b>Heyet Üyeleri</b>${renderPeople(a.auditorNames)}</div><div class="detail-box"><b>Teknik Uzmanlar</b>${renderPeople(a.technicalExpertNames)}</div><div class="detail-box"><b>Gözlemciler</b>${renderPeople(a.observerNames)}</div><div class="detail-box"><b>Kuruluş Temsilcileri</b>${renderPeople(a.auditeeRepresentativeNames)}</div><div class="detail-box"><b>Görev Dağılımı</b>${escapeHtml(a.workDistributionNote || "-")}</div><div class="detail-box"><b>İletişim/Erişim</b>${escapeHtml(a.communicationAccessNote || "-")}</div></div>`;
+  }
+
   function rerenderCurrentAuditList() {
     const cfg = {
       plannedAudits: [["planned", "programmed"], "Planlı Denetimler", "Programa alınmış veya planlanmış denetimler."],
@@ -1211,8 +1415,8 @@
     const type = AUDIT_TYPE_LABELS[audit.auditType] || audit.auditType || "-";
     return `<div class="audit-card">
       <div><h4>${escapeHtml(audit.organizationName || "-")}</h4><div class="audit-meta"><strong>${escapeHtml(audit.auditId)}</strong> | ${escapeHtml(audit.programId || "-")}<br>${formatDate(audit.plannedStartDate)} → ${formatDate(audit.plannedEndDate)} | ${escapeHtml(audit.location || "-")}<br>${escapeHtml(method)} | ${escapeHtml(type)}</div></div>
-      <div><div>${statusPill(audit.status || "draft")} ${audit.riskPriorityLevel ? `<span class="pill ${audit.riskPriorityLevel === "critical" ? "red" : audit.riskPriorityLevel === "high" ? "yellow" : "gray"}">${escapeHtml(audit.riskPriorityLevel)}</span>` : ""}</div><div style="margin-top:6px">${(audit.selectedForms || []).map(a => `<span class="pill gray">${a}</span>`).join("")}</div><div class="audit-meta" style="margin-top:6px">Kritik tarih: ${criticalDateText(audit)}</div></div>
-      <div class="audit-actions"><button class="btn" onclick="showAuditDetails('${audit.auditId}')">Detay</button><button class="btn" onclick="editAudit('${audit.auditId}')">Düzenle</button>${next ? `<button class="btn primary" onclick="advanceAudit('${audit.auditId}','${next.status}')">${escapeHtml(next.label)}</button>` : ""}<button class="btn warning" onclick="archiveAudit('${audit.auditId}')">Arşivle</button></div>
+      <div><div>${statusPill(audit.status || "draft")} ${audit.riskPriorityLevel ? `<span class="pill ${audit.riskPriorityLevel === "critical" ? "red" : audit.riskPriorityLevel === "high" ? "yellow" : "gray"}">${escapeHtml(audit.riskPriorityLevel)}</span>` : ""}</div><div style="margin-top:6px">${(audit.selectedForms || []).map(a => `<span class="pill gray">${a}</span>`).join("")} ${assignmentPill(audit.auditId)}</div><div class="audit-meta" style="margin-top:6px">Kritik tarih: ${criticalDateText(audit)}</div></div>
+      <div class="audit-actions"><button class="btn" onclick="showAuditDetails('${audit.auditId}')">Detay</button><button class="btn" onclick="openAuditFile('${audit.auditId}')">Denetim Dosyası</button><button class="btn" onclick="editAudit('${audit.auditId}')">Düzenle</button>${next ? `<button class="btn primary" onclick="advanceAudit('${audit.auditId}','${next.status}')">${escapeHtml(next.label)}</button>` : ""}<button class="btn warning" onclick="archiveAudit('${audit.auditId}')">Arşivle</button></div>
     </div>`;
   }
   function nextActionForAudit(audit) {
@@ -1260,7 +1464,7 @@
     const a = getAudit(auditId);
     if (!a) return;
     const p = getProgram(a.programId);
-    showModal(`Denetim Detayı - ${escapeHtml(a.auditId)}`, `<div class="detail-grid"><div class="detail-box"><b>Program</b>${escapeHtml(a.programId || "-")}<br>${escapeHtml(p?.name || "")}</div><div class="detail-box"><b>Kuruluş</b>${escapeHtml(a.organizationName || "-")}<br><small>${escapeHtml(a.organizationId || "-")}</small></div><div class="detail-box"><b>Durum</b>${statusPill(a.status || "planned")}</div><div class="detail-box"><b>Denetim Şekli/Yöntemi</b>${escapeHtml(AUDIT_TYPE_LABELS[a.auditType] || a.auditType || "-")}<br>${escapeHtml(AUDIT_METHOD_LABELS[a.auditMethod] || a.auditMethod || "-")}</div><div class="detail-box"><b>Tarih/Yer</b>${formatDate(a.plannedStartDate)} - ${formatDate(a.plannedEndDate)}<br>${escapeHtml(a.location || "-")}</div><div class="detail-box"><b>Kontrol Formları</b>${(a.selectedForms || []).map(x => `<span class="pill gray">${x}</span>`).join("") || "-"}</div><div class="detail-box"><b>Kritik Tarihler</b>Kuruluş cevap: ${formatDate(a.auditeeResponseDueDate)}<br>Ön değerlendirme: ${formatDate(a.preEvaluationDueDate)}<br>İtiraz: ${formatDate(a.objectionDueDate)}<br>Nihai rapor: ${formatDate(a.finalReportDueDate)}<br>CAP: ${formatDate(a.capDueDate)} / ${a.capDueDays || 45} gün</div><div class="detail-box"><b>Görev Unvanları</b>${escapeHtml((a.requiredTitles || []).join(", ") || "-")}</div><div class="detail-box"><b>Amaç</b>${escapeHtml(a.objectives || "-")}</div><div class="detail-box"><b>Kapsam</b>${escapeHtml(a.scope || "-")}</div><div class="detail-box"><b>Kriter</b>${escapeHtml(a.criteria || "-")}</div><div class="detail-box"><b>Risk / Öncelik</b>${escapeHtml(a.riskPriorityNote || "-")}</div></div><div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn" onclick="closeModal(); editAudit('${a.auditId}')">Düzenle</button>${nextActionForAudit(a) ? `<button class="btn primary" onclick="closeModal(); advanceAudit('${a.auditId}','${nextActionForAudit(a).status}')">${escapeHtml(nextActionForAudit(a).label)}</button>` : ""}</div>`);
+    showModal(`Denetim Detayı - ${escapeHtml(a.auditId)}`, `<div class="detail-grid"><div class="detail-box"><b>Program</b>${escapeHtml(a.programId || "-")}<br>${escapeHtml(p?.name || "")}</div><div class="detail-box"><b>Kuruluş</b>${escapeHtml(a.organizationName || "-")}<br><small>${escapeHtml(a.organizationId || "-")}</small></div><div class="detail-box"><b>Durum</b>${statusPill(a.status || "planned")}</div><div class="detail-box"><b>Dosya/Hazırlık</b>${assignmentPill(a.auditId)}</div><div class="detail-box"><b>Denetim Şekli/Yöntemi</b>${escapeHtml(AUDIT_TYPE_LABELS[a.auditType] || a.auditType || "-")}<br>${escapeHtml(AUDIT_METHOD_LABELS[a.auditMethod] || a.auditMethod || "-")}</div><div class="detail-box"><b>Tarih/Yer</b>${formatDate(a.plannedStartDate)} - ${formatDate(a.plannedEndDate)}<br>${escapeHtml(a.location || "-")}</div><div class="detail-box"><b>Kontrol Formları</b>${(a.selectedForms || []).map(x => `<span class="pill gray">${x}</span>`).join("") || "-"}</div><div class="detail-box"><b>Kritik Tarihler</b>Kuruluş cevap: ${formatDate(a.auditeeResponseDueDate)}<br>Ön değerlendirme: ${formatDate(a.preEvaluationDueDate)}<br>İtiraz: ${formatDate(a.objectionDueDate)}<br>Nihai rapor: ${formatDate(a.finalReportDueDate)}<br>CAP: ${a.capDueDate ? formatDate(a.capDueDate) : `${a.capDueDays || 45} gün / nihai rapordan sonra`}</div><div class="detail-box"><b>Görev Unvanları</b>${escapeHtml((a.requiredTitles || []).join(", ") || "-")}</div><div class="detail-box"><b>Amaç</b>${escapeHtml(a.objectives || "-")}</div><div class="detail-box"><b>Kapsam</b>${escapeHtml(a.scope || "-")}</div><div class="detail-box"><b>Kriter</b>${escapeHtml(a.criteria || "-")}</div><div class="detail-box"><b>Risk / Öncelik</b>${escapeHtml(a.riskPriorityNote || "-")}</div></div><h3 style="margin-top:16px">Heyet ve Görev Ataması</h3>${assignmentSummaryHtml(a.auditId)}<div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn" onclick="closeModal(); openAuditFile('${a.auditId}')">Denetim Dosyası / Heyet</button><button class="btn" onclick="closeModal(); editAudit('${a.auditId}')">Plan Bilgilerini Düzenle</button>${nextActionForAudit(a) ? `<button class="btn primary" onclick="closeModal(); advanceAudit('${a.auditId}','${nextActionForAudit(a).status}')">${escapeHtml(nextActionForAudit(a).label)}</button>` : ""}</div>`);
   };
   window.showModal = function(title, body) {
     let modal = document.getElementById("appModal");
@@ -1333,7 +1537,7 @@
         </tbody></table></div></div>
         <div class="card span-6"><h3>Bağlantı Durumu</h3><p>${escapeHtml(state.firebaseMessage)}</p><p><strong>Mevcut test rolü:</strong> ${escapeHtml(ROLES[state.role])}</p><p><strong>Kuruluş bağlamı:</strong> ${escapeHtml(state.orgContext)}</p></div>
         <div class="card span-12"><h3>Firestore Koleksiyon Omurgası</h3><pre class="model-code">${escapeHtml(collectionsJson)}</pre></div>
-        <div class="card span-12"><h3>Fazlara Bölünen Geliştirme</h3><p><strong>Faz 1:</strong> Mimari omurga ve menü/veri modeli. <strong>Faz 2:</strong> Yıllık program ve planlı denetimlerin işlevsel hale getirilmesi. <strong>Faz 3:</strong> Denetim uygulama ve kuruluş cevapları. <strong>Faz 4:</strong> İtiraz ve nihai rapor. <strong>Faz 5:</strong> CAP planı/adımları. <strong>Faz 6:</strong> Dashboard, Kanban, trend ve raporlama.</p></div>
+        <div class="card span-12"><h3>Fazlara Bölünen Geliştirme</h3><p><strong>Faz 1:</strong> Mimari omurga ve menü/veri modeli. <strong>Faz 2:</strong> Yıllık program ve planlı denetimlerin işlevsel hale getirilmesi. <strong>Faz 3A:</strong> Denetim dosyası ve heyet atama. <strong>Faz 3B:</strong> Kuruluş cevap süreci ve ön değerlendirme. <strong>Faz 4:</strong> İtiraz ve nihai rapor. <strong>Faz 5:</strong> CAP planı/adımları. <strong>Faz 6:</strong> Dashboard, Kanban, trend ve raporlama.</p></div>
       </div>`;
   }
 
@@ -1347,6 +1551,7 @@
       capStatuses: CAP_STATUS,
       auditPrograms: state.auditPrograms,
       audits: state.audits,
+      auditAssignments: state.auditAssignments,
       organizations: state.organizations,
       findings: state.findings,
       capPlans: state.capPlans,
@@ -1357,7 +1562,7 @@
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = "usoap_phase2_audit_program_export.json";
+    a.download = "usoap_phase3a_audit_file_team_export.json";
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
