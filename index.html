@@ -253,6 +253,8 @@
     .cap-card.monitoring { border-left-color:#0ea5e9; }
     .cap-card.closed { border-left-color:#22c55e; }
     .cap-card.overdue { border-left-color:#ef4444; background:#fff7f7; }
+    .cap-card.selected { border-color:var(--primary); border-left-color:var(--primary); background:#eff6ff; box-shadow:0 0 0 2px rgba(37,99,235,.10); }
+    .cap-save-notice { margin:10px 0; padding:10px 12px; border-radius:10px; background:#ecfdf5; border:1px solid #bbf7d0; color:#166534; font-size:13px; line-height:1.45; }
     .cap-card h4 { margin:0 0 6px 0; font-size:13px; color:#0f172a; }
     .cap-card .cap-meta { font-size:12px; color:var(--muted); line-height:1.55; }
     .cap-card-actions { display:flex; gap:6px; flex-wrap:wrap; margin-top:10px; }
@@ -2888,6 +2890,23 @@
 
   // ===== Faz 6: CAP Girişi, CAP Adımları, Değerlendirme ve İzleme =====
   state.currentCapPlanId = localStorage.getItem("usoap_phase6_current_cap_plan") || "";
+  try { state.capSelections = JSON.parse(localStorage.getItem("usoap_phase6_cap_selections") || "{}"); }
+  catch { state.capSelections = {}; }
+  state.lastCapMessage = "";
+
+  function saveCapSelections() {
+    localStorage.setItem("usoap_phase6_cap_selections", JSON.stringify(state.capSelections || {}));
+  }
+  function getCapSelection(targetSection) {
+    return (state.capSelections && state.capSelections[targetSection]) || state.currentCapPlanId || "";
+  }
+  function setCapSelection(targetSection, capPlanId) {
+    if (!state.capSelections) state.capSelections = {};
+    state.capSelections[targetSection] = capPlanId || "";
+    state.currentCapPlanId = capPlanId || "";
+    saveCapSelections();
+    localStorage.setItem("usoap_phase6_current_cap_plan", state.currentCapPlanId);
+  }
 
   const CAP_STEP_STATUS = {
     not_started: "Başlamadı",
@@ -2988,24 +3007,24 @@
     const audit = capPlanAudit(plan);
     const meta = capProgressMeta(plan);
     const cls = capPlanDueClass(plan);
-    return `<div class="cap-card ${cls}"><h4>${escapeHtml(capPlanIdOf(plan))}</h4><div class="cap-meta"><strong>Kuruluş:</strong> ${escapeHtml(plan.organizationName || audit.organizationName || "-")}<br><strong>Bulgu:</strong> ${escapeHtml(f.areaKey || "-")} / PQ ${escapeHtml(f.pqNo || "-")} / ${escapeHtml(f.ce || "-")}<br><strong>Son tarih:</strong> ${escapeHtml(capDueText(plan))}<br><strong>Adım:</strong> ${meta.steps.length} | <strong>İlerleme:</strong> %${meta.progress} | <strong>Doğrulanan:</strong> ${meta.verified}/${meta.steps.length}</div><div class="progress-track"><span style="width:${meta.progress}%"></span></div><div style="margin-top:8px">${capStatusPill(plan.status)}</div><div class="cap-card-actions"><button class="btn primary" onclick="openCapPlan('${jsArg(capPlanIdOf(plan))}','${targetSection}')">Aç / İşlem Yap</button></div></div>`;
+    const selectedCls = capPlanIdOf(plan) === getCapSelection(targetSection) ? " selected" : "";
+    return `<div class="cap-card ${cls}${selectedCls}"><h4>${escapeHtml(capPlanIdOf(plan))}</h4><div class="cap-meta"><strong>Kuruluş:</strong> ${escapeHtml(plan.organizationName || audit.organizationName || "-")}<br><strong>Bulgu:</strong> ${escapeHtml(f.areaKey || "-")} / PQ ${escapeHtml(f.pqNo || "-")} / ${escapeHtml(f.ce || "-")}<br><strong>Son tarih:</strong> ${escapeHtml(capDueText(plan))}<br><strong>Adım:</strong> ${meta.steps.length} | <strong>İlerleme:</strong> %${meta.progress} | <strong>Doğrulanan:</strong> ${meta.verified}/${meta.steps.length}</div><div class="progress-track"><span style="width:${meta.progress}%"></span></div><div style="margin-top:8px">${capStatusPill(plan.status)}</div><div class="cap-card-actions"><button class="btn primary" onclick="openCapPlan('${jsArg(capPlanIdOf(plan))}','${targetSection}')">Seç / İşlem Yap</button></div></div>`;
   }
   function ensureCapSelection(rows, targetSection) {
-    const current = state.currentCapPlanId;
+    const current = getCapSelection(targetSection);
     if (current && rows.some(c => capPlanIdOf(c) === current)) return current;
     const first = rows[0];
-    state.currentCapPlanId = first ? capPlanIdOf(first) : "";
-    if (state.currentCapPlanId) localStorage.setItem("usoap_phase6_current_cap_plan", state.currentCapPlanId);
-    return state.currentCapPlanId;
+    const nextId = first ? capPlanIdOf(first) : "";
+    setCapSelection(targetSection, nextId);
+    return nextId;
   }
   window.openCapPlan = function(capPlanId, targetSection = "capWaiting") {
-    state.currentCapPlanId = capPlanId || "";
-    if (state.currentCapPlanId) localStorage.setItem("usoap_phase6_current_cap_plan", state.currentCapPlanId);
+    setCapSelection(targetSection, capPlanId || "");
     showSection(targetSection);
   };
   window.selectCapPlan = function(capPlanId, targetSection = "capWaiting") {
-    state.currentCapPlanId = capPlanId || "";
-    if (state.currentCapPlanId) localStorage.setItem("usoap_phase6_current_cap_plan", state.currentCapPlanId);
+    setCapSelection(targetSection, capPlanId || "");
+    state.lastCapMessage = "";
     renderFindingsAndCap();
     renderReports();
   };
@@ -3083,6 +3102,8 @@
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     });
+    setCapSelection(state.currentSection || "auditeeCap", capPlanId);
+    state.lastCapMessage = `Yeni CAP adımı eklendi. Adım bilgilerini doldurup Taslak Kaydet veya CAP Planını Sun işlemini yapabilirsiniz.`;
     await loadData(); renderAll(); showSection(state.currentSection);
   };
   window.removeCapStep = async function(stepId) {
@@ -3099,8 +3120,10 @@
   window.saveCapDraft = async function(capPlanId) {
     if (!capPlanId) return alert("CAP planı seçin.");
     await persistCapPlanForm(capPlanId);
+    setCapSelection(state.currentSection || "auditeeCap", capPlanId);
+    state.lastCapMessage = "CAP taslağı kaydedildi. Bu işlem CAP'i denetleyen değerlendirmesine göndermez; hazır olduğunda CAP Planını Sun butonuna basmalısınız.";
     await loadData(); renderAll(); showSection(state.currentSection);
-    alert("CAP taslağı kaydedildi.");
+    alert("CAP taslağı kaydedildi. Hazır olduğunda CAP Planını Sun butonuyla denetleyen değerlendirmesine gönderebilirsiniz.");
   };
   window.submitCapPlan = async function(capPlanId) {
     const plan = getCapPlan(capPlanId);
@@ -3121,6 +3144,9 @@
     await updateRecord(COLLECTIONS.capPlans, capPlanId, { status: "cap_submitted", submittedAt: new Date().toISOString(), submittedByRole: state.role });
     await updateRecord(COLLECTIONS.findings, plan.findingId, { status: "cap_under_review" });
     if (plan.auditId) await updateRecord(COLLECTIONS.audits, plan.auditId, { status: "cap_under_review" });
+    setCapSelection("auditeeCap", capPlanId);
+    setCapSelection("capReview", capPlanId);
+    state.lastCapMessage = "CAP planı denetleyen değerlendirmesine sunuldu.";
     await loadData(); renderAll(); showSection("auditeeCap");
     alert("CAP planı denetleyen değerlendirmesine sunuldu.");
   };
@@ -3145,7 +3171,11 @@
       await updateRecord(COLLECTIONS.findings, plan.findingId, { status: "cap_resubmission_required" });
       if (plan.auditId) await updateRecord(COLLECTIONS.audits, plan.auditId, { status: "cap_waiting" });
     }
-    await loadData(); renderAll(); showSection(decision === "accept" ? "capMonitoring" : "capReview");
+    const nextSection = decision === "accept" ? "capMonitoring" : "capReview";
+    setCapSelection(nextSection, capPlanId);
+    setCapSelection("auditeeCap", capPlanId);
+    state.lastCapMessage = decision === "accept" ? "CAP kabul edildi ve izleme aşamasına alındı." : "CAP revizyon/iade kararıyla kuruluşa geri gönderildi.";
+    await loadData(); renderAll(); showSection(nextSection);
     alert(decision === "accept" ? "CAP kabul edildi ve izleme aşamasına alındı." : "CAP revizyon/iade kararıyla kuruluşa geri gönderildi.");
   };
   window.reportCapCompletion = async function(capPlanId) {
@@ -3158,6 +3188,9 @@
     if (!steps.length || steps.some(s => Number(s.progressPercent || 0) < 100 || !s.completionDate)) return alert("Tamamlandı bildirimi için tüm adımlarda ilerleme %100 ve tamamlanma tarihi olmalıdır.");
     await updateRecord(COLLECTIONS.capPlans, capPlanId, { status: "completion_reported", completionReportedAt: new Date().toISOString() });
     await updateRecord(COLLECTIONS.findings, plan.findingId, { status: "verification_pending" });
+    setCapSelection("auditeeCap", capPlanId);
+    setCapSelection("capMonitoring", capPlanId);
+    state.lastCapMessage = "CAP tamamlandı bildirimi denetleyen doğrulamasına gönderildi.";
     await loadData(); renderAll(); showSection("auditeeCap");
     alert("CAP tamamlandı bildirimi denetleyen doğrulamasına gönderildi.");
   };
@@ -3173,6 +3206,8 @@
     } else if (plan) {
       await updateRecord(COLLECTIONS.capPlans, step.capPlanId, { status: "verification_pending" });
     }
+    setCapSelection("capMonitoring", step.capPlanId);
+    state.lastCapMessage = ok ? "CAP adımı doğrulandı." : "CAP adımı uygun bulunmadı; kuruluş revizyonu bekleniyor.";
     await loadData(); renderAll(); showSection("capMonitoring");
   };
   window.closeFindingFromCap = async function(capPlanId) {
@@ -3212,10 +3247,11 @@
     const canVerify = ["admin","program_manager","lead_auditor","auditor"].includes(state.role) && ["cap_accepted","implementation_in_progress","completion_reported","verification_pending"].includes(plan.status);
     const planDisabled = canAuditeeEdit ? "" : "disabled";
     const stepHtml = steps.map(s => capStepEditor(s, canAuditeeEdit, canVerify && Number(s.progressPercent || 0) >= 100 && s.status !== "verified")).join("") || `<div class="empty">Henüz CAP adımı yok. CAP sunumu için en az bir adım eklenmelidir.</div>`;
+    const saveNotice = state.lastCapMessage ? `<div class="cap-save-notice">${escapeHtml(state.lastCapMessage)}</div>` : "";
     const evalPanel = canEvaluate ? `<div class="cap-eval-panel"><h3>Denetleyen CAP Değerlendirmesi</h3><div class="field"><label>Değerlendirme Notu</label><textarea id="capEvaluationNote">${escapeHtml(plan.evaluationNote || "")}</textarea></div><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><button class="btn success" onclick="saveCapEvaluation('${jsArg(capPlanId)}','accept')">Kabul Et</button><button class="btn warning" onclick="saveCapEvaluation('${jsArg(capPlanId)}','partial')">Kısmen Kabul / Revizyon İste</button><button class="btn danger" onclick="saveCapEvaluation('${jsArg(capPlanId)}','reject')">İade Et</button></div></div>` : "";
     const monitorPanel = canVerify ? `<div class="cap-monitor-panel"><h3>Doğrulama ve Kapatma</h3><p>Tüm adımlar doğrulandıktan sonra bulgu kapatılabilir. Uygun bulunmayan adım varsa sistem CAP revizyonunu yeniden başlatır.</p><div class="field"><label>Kapanış Notu</label><textarea id="capClosureNote">${escapeHtml(plan.closureNote || "CAP adımları doğrulandı ve bulgu kapatıldı.")}</textarea></div><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><button class="btn success" onclick="closeFindingFromCap('${jsArg(capPlanId)}')">Tüm Adımlar Doğrulandı / Bulguyu Kapat</button></div></div>` : "";
     const auditeeButtons = canAuditeeEdit ? `<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px"><button class="btn" onclick="addCapStep('${jsArg(capPlanId)}')">CAP Adımı Ekle</button><button class="btn success" onclick="saveCapDraft('${jsArg(capPlanId)}')">Taslak Kaydet</button>${canCreateOrRevise ? `<button class="btn primary" onclick="submitCapPlan('${jsArg(capPlanId)}')">CAP Planını Sun</button>` : ""}${canUpdateImplementation ? `<button class="btn primary" onclick="reportCapCompletion('${jsArg(capPlanId)}')">Tamamlandı Bildir</button>` : ""}</div>` : "";
-    return `<div class="cap-detail"><h3>${escapeHtml(capPlanId)}</h3><div class="status-ribbon">${capStatusPill(plan.status)}<span class="pill gray">Son tarih: ${escapeHtml(capDueText(plan))}</span><span class="pill blue">İlerleme: %${meta.progress}</span><span class="pill green">Doğrulanan: ${meta.verified}/${meta.steps.length}</span></div><div class="detail-grid" style="margin-top:10px"><div class="detail-box"><b>Denetim</b>${escapeHtml(plan.auditId || "-")}<br>${escapeHtml(audit.organizationName || plan.organizationName || "-")}</div><div class="detail-box"><b>Bulgu</b>${escapeHtml(finding.areaKey || "-")} / PQ ${escapeHtml(finding.pqNo || "-")}<br>${escapeHtml(finding.ce || "-")}</div><div class="detail-box"><b>CAP Son Tarihi</b>${formatDate(plan.dueDate)}</div><div class="detail-box"><b>Sunum/Değerlendirme</b>Sunum: ${plan.submittedAt ? formatDate(plan.submittedAt) : "-"}<br>Değerlendirme: ${plan.evaluatedAt ? formatDate(plan.evaluatedAt) : "-"}</div></div><div class="cap-finding-box"><strong>Bulgu Metni</strong>\n${escapeHtml(finding.findingText || "-")}\n\n<strong>İncelenen Kanıt</strong>\n${escapeHtml(finding.reviewedEvidence || "-")}</div><div class="grid"><div class="card span-6"><h3>CAP Plan Bilgileri</h3><div class="field"><label>Kök Neden / Değerlendirme</label><textarea id="capRootCause" ${planDisabled}>${escapeHtml(plan.rootCause || "")}</textarea></div><div class="field"><label>Genel Düzeltici Eylem Özeti</label><textarea id="capCorrectionSummary" ${planDisabled}>${escapeHtml(plan.proposedCorrectionSummary || "")}</textarea></div></div><div class="card span-6"><h3>Koordinasyon</h3><div class="field"><label>CAP Koordinatörü / İrtibat</label><input id="capCoordinator" value="${escapeHtml(plan.capCoordinator || "")}" ${planDisabled}></div><div class="field"><label>Plan Notu</label><textarea id="capPlanNote" ${planDisabled}>${escapeHtml(plan.planNote || "")}</textarea></div></div></div><h3 style="margin-top:14px">CAP Adımları</h3>${stepHtml}${auditeeButtons}${evalPanel}${monitorPanel}</div>`;
+    return `<div class="cap-detail"><h3>${escapeHtml(capPlanId)}</h3><div class="status-ribbon">${capStatusPill(plan.status)}<span class="pill gray">Son tarih: ${escapeHtml(capDueText(plan))}</span><span class="pill blue">İlerleme: %${meta.progress}</span><span class="pill green">Doğrulanan: ${meta.verified}/${meta.steps.length}</span></div><div class="detail-grid" style="margin-top:10px"><div class="detail-box"><b>Denetim</b>${escapeHtml(plan.auditId || "-")}<br>${escapeHtml(audit.organizationName || plan.organizationName || "-")}</div><div class="detail-box"><b>Bulgu</b>${escapeHtml(finding.areaKey || "-")} / PQ ${escapeHtml(finding.pqNo || "-")}<br>${escapeHtml(finding.ce || "-")}</div><div class="detail-box"><b>CAP Son Tarihi</b>${formatDate(plan.dueDate)}</div><div class="detail-box"><b>Sunum/Değerlendirme</b>Sunum: ${plan.submittedAt ? formatDate(plan.submittedAt) : "-"}<br>Değerlendirme: ${plan.evaluatedAt ? formatDate(plan.evaluatedAt) : "-"}</div></div><div class="cap-finding-box"><strong>Bulgu Metni</strong>\n${escapeHtml(finding.findingText || "-")}\n\n<strong>İncelenen Kanıt</strong>\n${escapeHtml(finding.reviewedEvidence || "-")}</div><div class="grid"><div class="card span-6"><h3>CAP Plan Bilgileri</h3><div class="field"><label>Kök Neden / Değerlendirme</label><textarea id="capRootCause" ${planDisabled}>${escapeHtml(plan.rootCause || "")}</textarea></div><div class="field"><label>Genel Düzeltici Eylem Özeti</label><textarea id="capCorrectionSummary" ${planDisabled}>${escapeHtml(plan.proposedCorrectionSummary || "")}</textarea></div></div><div class="card span-6"><h3>Koordinasyon</h3><div class="field"><label>CAP Koordinatörü / İrtibat</label><input id="capCoordinator" value="${escapeHtml(plan.capCoordinator || "")}" ${planDisabled}></div><div class="field"><label>Plan Notu</label><textarea id="capPlanNote" ${planDisabled}>${escapeHtml(plan.planNote || "")}</textarea></div></div></div><h3 style="margin-top:14px">CAP Adımları</h3>${saveNotice}${stepHtml}${auditeeButtons}${evalPanel}${monitorPanel}</div>`;
   }
 
   function renderAuditeeCapModule() {
@@ -3223,8 +3259,9 @@
     const rows = auditeeCapPlans();
     const selectedId = ensureCapSelection(rows, "auditeeCap");
     const selected = getCapPlan(selectedId);
-    const portalNote = `<div class="info-banner"><strong>Kuruluş Portalı / CAP Girişi:</strong> Seçili test kuruluşu <strong>${escapeHtml(state.orgContext)}</strong>. Nihai rapor sonrası CAP planı azami 45 gün içinde sunulur. Her bulgu için en az bir CAP adımı zorunludur.</div>`;
-    section.innerHTML = portalNote + capDashboard(rows) + capPlanSelect(rows, selectedId, "auditeeCap") + (selected ? capPlanDetailHtml(selected, "auditee") : `<div class="empty">Bu kuruluş için açık CAP kaydı bulunmuyor.</div>`);
+    const portalNote = `<div class="info-banner"><strong>Kuruluş Portalı / CAP Girişi:</strong> Seçili test kuruluşu <strong>${escapeHtml(state.orgContext)}</strong>. Nihai rapor sonrası CAP planı azami 45 gün içinde sunulur. Her bulgu için en az bir CAP adımı zorunludur. <br><strong>Not:</strong> Taslak Kaydet sadece ara kayıt alır; denetleyen tarafın görüp değerlendirmesi için ayrıca <strong>CAP Planını Sun</strong> butonuna basılmalıdır.</div>`;
+    const rowCards = rows.length ? `<div class="cap-board"><div class="cap-column"><h3>Bu Kuruluşa Ait CAP Planları <span class="pill gray">${rows.length}</span></h3>${rows.map(c => capPlanCard(c, "auditeeCap")).join("")}</div></div>` : "";
+    section.innerHTML = portalNote + capDashboard(rows) + capPlanSelect(rows, selectedId, "auditeeCap") + rowCards + (selected ? capPlanDetailHtml(selected, "auditee") : `<div class="empty">Bu kuruluş için açık CAP kaydı bulunmuyor.</div>`);
   }
   function renderCapWorkflowSection(sectionId, rows, title, subtitle, context) {
     const selectedId = ensureCapSelection(rows, sectionId);
