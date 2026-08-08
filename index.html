@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>USOAP CMA Denetim ve CAP Yönetim Sistemi - Faz 4</title>
+  <title>USOAP CMA Denetim ve CAP Yönetim Sistemi - Faz 5</title>
   <style>
     :root {
       --primary: #1e3a8a;
@@ -190,6 +190,19 @@
     .validation-list { margin:8px 0 0; padding-left:18px; color:#991b1b; font-size:12px; line-height:1.6; }
     .area-jump { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:12px; }
     .area-jump button { padding:6px 9px; font-size:11px; }
+    .phase5-panel { border:1px solid var(--border); border-radius:14px; background:#fff; padding:16px; margin-bottom:14px; }
+    .report-preview { background:#fff; border:1px solid var(--border); border-radius:14px; padding:18px; line-height:1.55; color:#1f2937; }
+    .report-preview h1 { font-size:22px; color:#0f172a; margin:0 0 8px 0; }
+    .report-preview h2 { font-size:16px; color:#0f172a; border-bottom:1px solid var(--border); padding-bottom:6px; margin-top:18px; }
+    .report-preview .meta-table { width:100%; min-width:0; border-collapse:collapse; margin-top:10px; }
+    .report-preview .meta-table th, .report-preview .meta-table td { font-size:12px; padding:8px; border:1px solid var(--border); }
+    .objection-choice { display:flex; gap:10px; flex-wrap:wrap; margin:10px 0; }
+    .objection-choice label { display:inline-flex; align-items:center; gap:8px; border:1px solid var(--border); border-radius:999px; padding:8px 12px; font-size:12px; font-weight:900; background:#fff; cursor:pointer; }
+    .objection-choice input { width:auto; }
+    .deadline-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:10px; margin-bottom:12px; }
+    .deadline-card { border:1px solid var(--border); border-radius:12px; padding:12px; background:#fff; }
+    .deadline-card b { display:block; color:#0f172a; font-size:16px; }
+    .deadline-card span { display:block; margin-top:4px; color:var(--muted); font-size:11px; font-weight:900; text-transform:uppercase; }
     @media (max-width: 980px) { .exec-body { grid-template-columns:1fr; } }
 
     @media (max-width: 980px) { .response-row, .split-panel { grid-template-columns:1fr; } }
@@ -217,7 +230,7 @@
   <aside class="sidebar">
     <div class="brand">
       <h1>USOAP CMA<br>Denetim ve CAP Yönetimi</h1>
-      <p>Faz 4 sürümü: aktif denetim uygulama, S/NS/NA değerlendirme ve bulgu oluşturma modülü eklendi.</p>
+      <p>Faz 5 sürümü: itiraz süreci, nihai rapor hazırlama/gönderme ve CAP bekleme başlatma modülü eklendi.</p>
     </div>
     <div class="role-box">
       <label for="roleSelect">Test Rolü</label>
@@ -234,11 +247,11 @@
     <div class="topbar">
       <div>
         <h2 id="pageTitle">Ana Sayfa</h2>
-        <p id="pageSubtitle">Faz 4 aktif denetim uygulama test sürümü.</p>
+        <p id="pageSubtitle">Faz 5 itiraz ve nihai rapor test sürümü.</p>
       </div>
       <div class="top-actions">
         <button class="btn" onclick="refreshAll()">Yenile</button>
-        <button class="btn" onclick="exportPhase1Json()">Faz 4 JSON Dışa Aktar</button>
+        <button class="btn" onclick="exportPhase1Json()">Faz 5 JSON Dışa Aktar</button>
         <button class="btn primary" onclick="window.print()">Yazdır / PDF</button>
       </div>
     </div>
@@ -318,8 +331,8 @@
 
   const ROLE_SECTIONS = {
     admin: "all",
-    program_manager: ["home","masterLibrary","annualPrograms","programCreate","programAddAudit","auditFile","plannedAudits","waitingAuditeeResponse","preEvaluation","activeAudits","auditExecution","objectionAudits","finalReportAudits","reportsAudit","reportsProgram","reportsCap","archive","settings"],
-    lead_auditor: ["home","masterLibrary","auditFile","plannedAudits","waitingAuditeeResponse","preEvaluation","activeAudits","auditExecution","objectionAudits","finalReportAudits","findingsOpen","capWaiting","capReview","capMonitoring","closedFindings","reportsAudit","reportsProgram","reportsCap","archive"],
+    program_manager: ["home","masterLibrary","annualPrograms","programCreate","programAddAudit","auditFile","plannedAudits","waitingAuditeeResponse","preEvaluation","activeAudits","auditExecution","objectionAudits","auditeeObjections","finalReportAudits","reportsAudit","reportsProgram","reportsCap","archive","settings"],
+    lead_auditor: ["home","masterLibrary","auditFile","plannedAudits","waitingAuditeeResponse","preEvaluation","activeAudits","auditExecution","objectionAudits","auditeeObjections","finalReportAudits","findingsOpen","capWaiting","capReview","capMonitoring","closedFindings","reportsAudit","reportsProgram","reportsCap","archive"],
     auditor: ["home","masterLibrary","auditFile","preEvaluation","activeAudits","auditExecution","findingsOpen","capMonitoring","reportsAudit"],
     auditee: ["home","auditeeAssigned","auditeeResponses","auditeeObjections","auditeeCap"],
     viewer: ["home","masterLibrary","annualPrograms","auditFile","plannedAudits","activeAudits","auditExecution","findingsOpen","capMonitoring","reportsAudit","reportsProgram","reportsCap","archive"]
@@ -448,6 +461,8 @@
     currentAuditeeResponseAuditId: localStorage.getItem("usoap_phase3b_current_response_audit") || "",
     currentPreEvaluationAuditId: localStorage.getItem("usoap_phase3b_current_preeval_audit") || "",
     currentAuditExecutionId: localStorage.getItem("usoap_phase4_current_execution_audit") || "",
+    currentObjectionAuditId: localStorage.getItem("usoap_phase5_current_objection_audit") || "",
+    currentFinalReportAuditId: localStorage.getItem("usoap_phase5_current_final_report_audit") || "",
     programFilters: { search: "", status: "all", year: "all" },
     auditFilters: { search: "", programId: "all", method: "all", type: "all", dateFrom: "", dateTo: "" },
     role: localStorage.getItem("usoap_phase1_role") || "admin",
@@ -465,6 +480,7 @@
     findings: [],
     capPlans: [],
     capSteps: [],
+    reports: [],
     formRevisions: []
   };
 
@@ -618,8 +634,10 @@
     state.findings = await readCollection(COLLECTIONS.findings);
     state.capPlans = await readCollection(COLLECTIONS.capPlans);
     state.capSteps = await readCollection(COLLECTIONS.capSteps);
+    state.reports = await readCollection(COLLECTIONS.reports);
     state.formRevisions = await readCollection(COLLECTIONS.formRevisions);
     ensureDefaultRevisions();
+    await window.applyAutomaticDeadlineTransitions(false);
   }
 
   function ensureDefaultRevisions() {
@@ -748,7 +766,7 @@
     renderAuditList("activeAudits", ["audit_in_progress"], "Aktif Denetimler", "Denetim tarihleri içinde sahada/uzaktan yürütülen denetimler.");
     renderAuditExecution();
     renderAuditList("objectionAudits", ["objection_period"], "İtiraz Sürecindeki Denetimler", "Denetim bitişinden itibaren 2 günlük itiraz süreci.");
-    renderAuditList("finalReportAudits", ["final_report_preparation", "final_report_sent", "cap_waiting"], "Nihai Rapor Bekleyenler", "Denetim bitişinden itibaren 15 gün içinde nihai rapor ve sonrasında CAP bekleme süreci.");
+    renderAuditList("finalReportAudits", ["final_report_preparation", "final_report_sent", "cap_waiting"], "Nihai Rapor Bekleyenler", "Denetim bitişinden itibaren 15 gün içinde nihai rapor hazırlanır/gönderilir; gönderim sonrası CAP süresi başlar.");
     renderAuditeePortal();
     renderFindingsAndCap();
     renderReports();
@@ -757,7 +775,7 @@
   }
   function renderSection(sectionId) {
     const map = {
-      home: ["Ana Sayfa", "Faz 3B: kuruluş ön cevapları ve denetçi ön değerlendirme omurgası."],
+      home: ["Ana Sayfa", "Faz 5: itiraz süreci ve nihai rapor hazırlama/gönderme omurgası."],
       masterLibrary: ["Master Kontrol Formları / Form Kütüphanesi", "JSON kaynaklı read-only PQ master kütüphanesi."],
       formRevisions: ["Form Revizyonları", "Yönetici rolü için master kontrol formu revizyon omurgası."],
       revisionArchive: ["Revizyon Arşivi", "Arşivlenmiş form revizyonları."],
@@ -770,7 +788,7 @@
       preEvaluation: ["Ön Değerlendirme", "Kuruluş cevapları üzerinden denetim heyeti ön değerlendirme notları ve sahada doğrulama planı."],
       activeAudits: ["Aktif Denetimler", "Denetim uygulama aşaması."],
       auditExecution: ["Denetim Çalışması", "Aktif denetimde PQ bazlı S / NS / NA değerlendirme, mevzuat dayanağı, incelenen kanıt ve bulgu oluşturma."],
-      objectionAudits: ["İtiraz Süreci", "Denetim bitişinden sonraki 2 günlük itiraz süreci."],
+      objectionAudits: ["İtiraz Süreci", "Denetim bitişinden sonraki 2 günlük itiraz var/yok bildirim ve değerlendirme süreci."],
       finalReportAudits: ["Nihai Rapor Bekleyenler", "Nihai rapor ve CAP bekleme süreci."],
       auditeeAssigned: ["Kuruluş Portalı / Bana Atanan Denetimler", "Denetlenen kuruluş kullanıcısı sadece kendi kayıtlarını görür."],
       auditeeResponses: ["Kuruluş Portalı / Ön Cevaplar", "Kuruluşun denetim öncesi cevap ve kanıt bağlantısı gireceği alan."],
@@ -781,7 +799,7 @@
       capReview: ["CAP Değerlendirme", "Kabul, kısmen kabul/revizyon veya iade süreci."],
       capMonitoring: ["CAP İzleme", "Kabul edilen CAP adımlarının ilerleme ve doğrulama süreci."],
       closedFindings: ["Kapatılan Bulgular", "Doğrulanarak kapatılmış bulgular."],
-      reportsAudit: ["Denetim Raporları", "Denetim raporu ve bulgu çıktıları."],
+      reportsAudit: ["Denetim Raporları", "Nihai rapor hazırlama, taslak kayıt ve gönderme işlemleri."],
       reportsProgram: ["Program Özeti", "Yıllık program bazında özet."],
       reportsCap: ["CAP Durum Raporu", "CAP bekleyen, geciken ve kapanan bulgular."],
       archive: ["Arşiv", "Arşivlenen denetim, program ve revizyon kayıtları."],
@@ -801,7 +819,7 @@
     const findings = state.findings.filter(f => f.status !== "closed" && f.status !== "finding_closed").length;
     document.getElementById("home").innerHTML = `
       <div class="info-banner">
-        <strong>Faz 3B amacı:</strong> Faz 2 yıllık program ve Faz 3A denetim dosyası/heyet omurgasının üzerine kuruluş ön cevap süreci ve denetçi ön değerlendirme modülü eklendi. Bu sürümde kuruluş portalından PQ bazlı ön cevaplar alınır, denetçiler cevapları görerek ön değerlendirme notu ve sahada doğrulama işaretleri oluşturur.
+        <strong>Faz 5 amacı:</strong> Aktif denetim tamamlandıktan sonra 2 günlük itiraz süreci, itiraz yok/var bildirimi, nihai rapor hazırlama/gönderme ve nihai rapor sonrası 45 günlük CAP bekleme sürecinin başlatılması eklendi.
       </div>
       <div class="grid">
         <div class="card stat span-3"><div class="label">Master PQ</div><div class="num">${totalPq}</div><p>${DATA_FILE} üzerinden okunan read-only kayıt.</p></div>
@@ -815,8 +833,8 @@
         </div>
         <div class="card span-6">
           <h3>Sonraki Faz</h3>
-          <p>Faz 4 ile aktif denetim uygulama ekranında PQ bazlı S/NS/NA değerlendirme, mevzuat dayanağı/bulgu notu, incelenen kanıt, NA gerekçesi ve NS bulgu oluşturma akışı devreye alındı.</p>
-          <div><button class="btn primary" onclick="showSection('programCreate')">Yıllık Program Oluştur</button><button class="btn" onclick="showSection('programAddAudit')">Programa Denetim Ekle</button><button class="btn" onclick="showSection('auditFile')">Denetim Dosyası / Heyet</button><button class="btn" onclick="showSection('auditeeResponses')">Kuruluş Ön Cevapları</button><button class="btn" onclick="showSection('preEvaluation')">Ön Değerlendirme</button><button class="btn" onclick="showSection('auditExecution')">Denetim Çalışması</button></div>
+          <p>Faz 5 ile itiraz süreci ve nihai rapor akışı devreye alındı. Rapor gönderildiğinde açık NS bulguları için 45 günlük CAP bekleme kayıtları oluşturulur.</p>
+          <div><button class="btn primary" onclick="showSection('programCreate')">Yıllık Program Oluştur</button><button class="btn" onclick="showSection('programAddAudit')">Programa Denetim Ekle</button><button class="btn" onclick="showSection('auditFile')">Denetim Dosyası / Heyet</button><button class="btn" onclick="showSection('auditeeResponses')">Kuruluş Ön Cevapları</button><button class="btn" onclick="showSection('preEvaluation')">Ön Değerlendirme</button><button class="btn" onclick="showSection('auditExecution')">Denetim Çalışması</button><button class="btn" onclick="showSection('auditeeObjections')">İtiraz Bildirimi</button><button class="btn" onclick="showSection('reportsAudit')">Nihai Rapor</button></div>
         </div>
       </div>`;
   }
@@ -1425,7 +1443,7 @@
       preEvaluation: [["pre_evaluation"], "Ön Değerlendirme", "Denetim heyetinin planlı denetim tarihinden bir gün öncesine kadar ön değerlendirme yapacağı kayıtlar."],
       activeAudits: [["audit_in_progress"], "Aktif Denetimler", "Denetim tarihleri içinde sahada/uzaktan yürütülen denetimler."],
       objectionAudits: [["objection_period"], "İtiraz Sürecindeki Denetimler", "Denetim bitişinden itibaren 2 günlük itiraz süreci."],
-      finalReportAudits: [["final_report_preparation", "final_report_sent", "cap_waiting"], "Nihai Rapor Bekleyenler", "Denetim bitişinden itibaren 15 gün içinde nihai rapor ve sonrasında CAP bekleme süreci."]
+      finalReportAudits: [["final_report_preparation", "final_report_sent", "cap_waiting"], "Nihai Rapor Bekleyenler", "Denetim bitişinden itibaren 15 gün içinde nihai rapor hazırlanır/gönderilir; gönderim sonrası CAP süresi başlar."]
     };
     const item = cfg[state.currentSection];
     if (item) renderAuditList(state.currentSection, item[0], item[1], item[2]);
@@ -1503,8 +1521,8 @@
     const isAuditee = state.role === 'auditee';
     const canEditPlan = ['admin','program_manager'].includes(state.role);
     const canAdvance = ['admin','program_manager','lead_auditor'].includes(state.role);
-    const auditeeActions = `<button class="btn" onclick="showAuditDetails('${audit.auditId}')">Detay</button><button class="btn primary" onclick="openAuditeeResponse('${audit.auditId}')">Ön Cevaplar</button>`;
-    const staffActions = `<button class="btn" onclick="showAuditDetails('${audit.auditId}')">Detay</button><button class="btn" onclick="openAuditFile('${audit.auditId}')">Denetim Dosyası</button><button class="btn" onclick="openAuditeeResponse('${audit.auditId}')">Kuruluş Cevapları</button><button class="btn" onclick="openPreEvaluation('${audit.auditId}')">Ön Değerlendirme</button><button class="btn" onclick="openAuditExecution('${audit.auditId}')">Denetim Çalışması</button>${canEditPlan ? `<button class="btn" onclick="editAudit('${audit.auditId}')">Düzenle</button>` : ""}${next && canAdvance ? `<button class="btn primary" onclick="advanceAudit('${audit.auditId}','${next.status}')">${escapeHtml(next.label)}</button>` : ""}${canEditPlan ? `<button class="btn warning" onclick="archiveAudit('${audit.auditId}')">Arşivle</button>` : ""}`;
+    const auditeeActions = `<button class="btn" onclick="showAuditDetails('${audit.auditId}')">Detay</button><button class="btn primary" onclick="openAuditeeResponse('${audit.auditId}')">Ön Cevaplar</button>${audit.status === 'objection_period' ? `<button class="btn warning" onclick="openObjectionProcess('${audit.auditId}')">İtiraz Bildirimi</button>` : ""}${['cap_waiting','cap_under_review','cap_monitoring'].includes(audit.status) ? `<button class="btn" onclick="showSection('auditeeCap')">CAP Girişi</button>` : ""}`;
+    const staffActions = `<button class="btn" onclick="showAuditDetails('${audit.auditId}')">Detay</button><button class="btn" onclick="openAuditFile('${audit.auditId}')">Denetim Dosyası</button><button class="btn" onclick="openAuditeeResponse('${audit.auditId}')">Kuruluş Cevapları</button><button class="btn" onclick="openPreEvaluation('${audit.auditId}')">Ön Değerlendirme</button><button class="btn" onclick="openAuditExecution('${audit.auditId}')">Denetim Çalışması</button>${['objection_period','final_report_preparation'].includes(audit.status) ? `<button class="btn warning" onclick="openObjectionProcess('${audit.auditId}')">İtiraz Süreci</button>` : ""}${['final_report_preparation','final_report_sent','cap_waiting','cap_under_review','cap_monitoring','closed'].includes(audit.status) ? `<button class="btn success" onclick="openFinalReport('${audit.auditId}')">Nihai Rapor</button>` : ""}${canEditPlan ? `<button class="btn" onclick="editAudit('${audit.auditId}')">Düzenle</button>` : ""}${next && canAdvance ? `<button class="btn primary" onclick="advanceAudit('${audit.auditId}','${next.status}')">${escapeHtml(next.label)}</button>` : ""}${canEditPlan ? `<button class="btn warning" onclick="archiveAudit('${audit.auditId}')">Arşivle</button>` : ""}`;
     return `<div class="audit-card">
       <div><h4>${escapeHtml(audit.organizationName || "-")}</h4><div class="audit-meta"><strong>${escapeHtml(audit.auditId)}</strong> | ${escapeHtml(audit.programId || "-")}<br><strong>Kuruluş ID:</strong> ${escapeHtml(audit.organizationId || "-")}<br>${formatDate(audit.plannedStartDate)} → ${formatDate(audit.plannedEndDate)} | ${escapeHtml(audit.location || "-")}<br>${escapeHtml(method)} | ${escapeHtml(type)}</div></div>
       <div><div>${statusPill(audit.status || "draft")} ${audit.riskPriorityLevel ? `<span class="pill ${audit.riskPriorityLevel === "critical" ? "red" : audit.riskPriorityLevel === "high" ? "yellow" : "gray"}">${escapeHtml(audit.riskPriorityLevel)}</span>` : ""}</div><div style="margin-top:6px">${(audit.selectedForms || []).map(a => `<span class="pill gray">${a}</span>`).join("")} ${assignmentPill(audit.auditId)}</div><div class="status-ribbon">${orgResponsePill(audit.auditId)}${preEvalPill(audit.auditId)}${auditResponsePill(audit.auditId)}</div><div class="audit-meta" style="margin-top:6px">Kritik tarih: ${criticalDateText(audit)}</div></div>
@@ -1535,6 +1553,11 @@
       const response = getAuditResponse(auditId);
       if (!response || response.status !== "completed") return alert("İtiraz sürecine geçmeden önce Denetim Çalışması ekranında tüm PQ cevaplarını tamamlayın.");
     }
+    if (status === 'final_report_preparation') {
+      const objection = getObjection(auditId);
+      if (!objection && daysBetween(audit.objectionDueDate) < 0) await createAutoNoObjection(audit);
+      if (!objection && daysBetween(audit.objectionDueDate) >= 0 && !confirm('İtiraz süresi henüz tamamlanmadı ve kuruluş bildirimi yok. Yine de rapor hazırlık aşamasına geçilsin mi?')) return;
+    }
     const patch = { status };
     if (status === "waiting_auditee_response") patch.auditeeResponseStartedAt = new Date().toISOString();
     if (status === "pre_evaluation") patch.preEvaluationStartedAt = new Date().toISOString();
@@ -1548,6 +1571,27 @@
     if (status === "cap_waiting" && !audit.capDueDate) patch.capDueDate = addDays(audit.finalReportSentDate || today(), 45);
     if (status === "closed") patch.closedAt = new Date().toISOString();
     await updateRecord(COLLECTIONS.audits, auditId, patch);
+    if (status === 'final_report_sent') {
+      const reportId = `REPORT-${auditId}`;
+      const existingReport = getReport(auditId) || {};
+      await saveRecord(COLLECTIONS.reports, reportId, {
+        ...existingReport,
+        reportId,
+        reportType: 'final',
+        auditId,
+        organizationId: audit.organizationId,
+        organizationName: audit.organizationName,
+        status: 'sent',
+        summaryText: existingReport.summaryText || reportDefaultSummary(audit, auditFindings(auditId)),
+        conclusionText: existingReport.conclusionText || 'NS bulgular için nihai rapor gönderiminden itibaren 45 gün içinde CAP hazırlanması beklenir.',
+        distributionNote: existingReport.distributionNote || '',
+        findingIds: auditFindings(auditId).map(f => f.findingId || f.id),
+        sentAt: new Date().toISOString(),
+        createdAt: existingReport.createdAt || new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+      });
+      await finalizeReportAndStartCap(audit, new Date().toISOString());
+    }
     await loadData();
     renderAll();
     showSection(state.currentSection);
@@ -1561,7 +1605,7 @@
     const a = getAudit(auditId);
     if (!a) return;
     const p = getProgram(a.programId);
-    showModal(`Denetim Detayı - ${escapeHtml(a.auditId)}`, `<div class="detail-grid"><div class="detail-box"><b>Program</b>${escapeHtml(a.programId || "-")}<br>${escapeHtml(p?.name || "")}</div><div class="detail-box"><b>Kuruluş</b>${escapeHtml(a.organizationName || "-")}<br><small>${escapeHtml(a.organizationId || "-")}</small></div><div class="detail-box"><b>Durum</b>${statusPill(a.status || "planned")}</div><div class="detail-box"><b>Dosya/Hazırlık</b>${assignmentPill(a.auditId)}</div><div class="detail-box"><b>Denetim Şekli/Yöntemi</b>${escapeHtml(AUDIT_TYPE_LABELS[a.auditType] || a.auditType || "-")}<br>${escapeHtml(AUDIT_METHOD_LABELS[a.auditMethod] || a.auditMethod || "-")}</div><div class="detail-box"><b>Tarih/Yer</b>${formatDate(a.plannedStartDate)} - ${formatDate(a.plannedEndDate)}<br>${escapeHtml(a.location || "-")}</div><div class="detail-box"><b>Kontrol Formları</b>${(a.selectedForms || []).map(x => `<span class="pill gray">${x}</span>`).join("") || "-"}</div><div class="detail-box"><b>Kritik Tarihler</b>Kuruluş cevap: ${formatDate(a.auditeeResponseDueDate)}<br>Ön değerlendirme: ${formatDate(a.preEvaluationDueDate)}<br>İtiraz: ${formatDate(a.objectionDueDate)}<br>Nihai rapor: ${formatDate(a.finalReportDueDate)}<br>CAP: ${a.capDueDate ? formatDate(a.capDueDate) : `${a.capDueDays || 45} gün / nihai rapordan sonra`}</div><div class="detail-box"><b>Görev Unvanları</b>${escapeHtml((a.requiredTitles || []).join(", ") || "-")}</div><div class="detail-box"><b>Amaç</b>${escapeHtml(a.objectives || "-")}</div><div class="detail-box"><b>Kapsam</b>${escapeHtml(a.scope || "-")}</div><div class="detail-box"><b>Kriter</b>${escapeHtml(a.criteria || "-")}</div><div class="detail-box"><b>Risk / Öncelik</b>${escapeHtml(a.riskPriorityNote || "-")}</div></div><h3 style="margin-top:16px">Heyet ve Görev Ataması</h3>${assignmentSummaryHtml(a.auditId)}<h3 style="margin-top:16px">Kuruluş Cevabı ve Ön Değerlendirme</h3><div class="detail-grid"><div class="detail-box"><b>Kuruluş Cevabı</b>${orgResponsePill(a.auditId)}</div><div class="detail-box"><b>Ön Değerlendirme</b>${preEvalPill(a.auditId)}</div><div class="detail-box"><b>Denetim Çalışması</b>${auditResponsePill(a.auditId)}</div></div><div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn" onclick="closeModal(); openAuditFile('${a.auditId}')">Denetim Dosyası / Heyet</button><button class="btn" onclick="closeModal(); openAuditeeResponse('${a.auditId}')">Kuruluş Cevapları</button><button class="btn" onclick="closeModal(); openPreEvaluation('${a.auditId}')">Ön Değerlendirme</button><button class="btn" onclick="closeModal(); openAuditExecution('${a.auditId}')">Denetim Çalışması</button><button class="btn" onclick="closeModal(); editAudit('${a.auditId}')">Plan Bilgilerini Düzenle</button>${nextActionForAudit(a) ? `<button class="btn primary" onclick="closeModal(); advanceAudit('${a.auditId}','${nextActionForAudit(a).status}')">${escapeHtml(nextActionForAudit(a).label)}</button>` : ""}</div>`);
+    showModal(`Denetim Detayı - ${escapeHtml(a.auditId)}`, `<div class="detail-grid"><div class="detail-box"><b>Program</b>${escapeHtml(a.programId || "-")}<br>${escapeHtml(p?.name || "")}</div><div class="detail-box"><b>Kuruluş</b>${escapeHtml(a.organizationName || "-")}<br><small>${escapeHtml(a.organizationId || "-")}</small></div><div class="detail-box"><b>Durum</b>${statusPill(a.status || "planned")}</div><div class="detail-box"><b>Dosya/Hazırlık</b>${assignmentPill(a.auditId)}</div><div class="detail-box"><b>Denetim Şekli/Yöntemi</b>${escapeHtml(AUDIT_TYPE_LABELS[a.auditType] || a.auditType || "-")}<br>${escapeHtml(AUDIT_METHOD_LABELS[a.auditMethod] || a.auditMethod || "-")}</div><div class="detail-box"><b>Tarih/Yer</b>${formatDate(a.plannedStartDate)} - ${formatDate(a.plannedEndDate)}<br>${escapeHtml(a.location || "-")}</div><div class="detail-box"><b>Kontrol Formları</b>${(a.selectedForms || []).map(x => `<span class="pill gray">${x}</span>`).join("") || "-"}</div><div class="detail-box"><b>Kritik Tarihler</b>Kuruluş cevap: ${formatDate(a.auditeeResponseDueDate)}<br>Ön değerlendirme: ${formatDate(a.preEvaluationDueDate)}<br>İtiraz: ${formatDate(a.objectionDueDate)}<br>Nihai rapor: ${formatDate(a.finalReportDueDate)}<br>CAP: ${a.capDueDate ? formatDate(a.capDueDate) : `${a.capDueDays || 45} gün / nihai rapordan sonra`}</div><div class="detail-box"><b>Görev Unvanları</b>${escapeHtml((a.requiredTitles || []).join(", ") || "-")}</div><div class="detail-box"><b>Amaç</b>${escapeHtml(a.objectives || "-")}</div><div class="detail-box"><b>Kapsam</b>${escapeHtml(a.scope || "-")}</div><div class="detail-box"><b>Kriter</b>${escapeHtml(a.criteria || "-")}</div><div class="detail-box"><b>Risk / Öncelik</b>${escapeHtml(a.riskPriorityNote || "-")}</div></div><h3 style="margin-top:16px">Heyet ve Görev Ataması</h3>${assignmentSummaryHtml(a.auditId)}<h3 style="margin-top:16px">Kuruluş Cevabı, Ön Değerlendirme ve Raporlama</h3><div class="detail-grid"><div class="detail-box"><b>Kuruluş Cevabı</b>${orgResponsePill(a.auditId)}</div><div class="detail-box"><b>Ön Değerlendirme</b>${preEvalPill(a.auditId)}</div><div class="detail-box"><b>Denetim Çalışması</b>${auditResponsePill(a.auditId)}</div><div class="detail-box"><b>İtiraz</b>${objectionPill(a.auditId)}</div><div class="detail-box"><b>Nihai Rapor</b>${reportPill(a.auditId)}</div></div><div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn" onclick="closeModal(); openAuditFile('${a.auditId}')">Denetim Dosyası / Heyet</button><button class="btn" onclick="closeModal(); openAuditeeResponse('${a.auditId}')">Kuruluş Cevapları</button><button class="btn" onclick="closeModal(); openPreEvaluation('${a.auditId}')">Ön Değerlendirme</button><button class="btn" onclick="closeModal(); openAuditExecution('${a.auditId}')">Denetim Çalışması</button><button class="btn" onclick="closeModal(); openObjectionProcess('${a.auditId}')">İtiraz Süreci</button><button class="btn" onclick="closeModal(); openFinalReport('${a.auditId}')">Nihai Rapor</button><button class="btn" onclick="closeModal(); editAudit('${a.auditId}')">Plan Bilgilerini Düzenle</button>${nextActionForAudit(a) ? `<button class="btn primary" onclick="closeModal(); advanceAudit('${a.auditId}','${nextActionForAudit(a).status}')">${escapeHtml(nextActionForAudit(a).label)}</button>` : ""}</div>`);
   };
   window.showModal = function(title, body) {
     let modal = document.getElementById("appModal");
@@ -1916,8 +1960,8 @@
     const portalNote = `<div class="info-banner">Kuruluş Portalı, denetlenen kuruluş kullanıcısının kendi kuruluşuna ait denetimleri görmesi için tasarlandı. Test için artık Organization ID kopyalaman gerekmiyor; aşağıdaki listeden ilgili kuruluşu seçebilirsin. Gerçek erişim kontrolü Firebase Auth + Firestore Rules ile uygulanacaktır.</div>${orgChooser}`;
     document.getElementById("auditeeAssigned").innerHTML = portalNote + `<div class="summary-strip"><div class="mini-stat"><strong>${ownAudits.length}</strong><span>Atanmış denetim</span></div><div class="mini-stat"><strong>${ownAudits.filter(a => a.status === 'waiting_auditee_response').length}</strong><span>Cevap bekleyen</span></div><div class="mini-stat"><strong>${ownAudits.filter(a => a.status === 'objection_period').length}</strong><span>İtiraz sürecinde</span></div><div class="mini-stat"><strong>${ownAudits.filter(a => ['cap_waiting','cap_under_review','cap_monitoring'].includes(a.status)).length}</strong><span>CAP süreci</span></div></div><div class="list">${ownAudits.map(renderAuditCard).join("") || `<div class="empty">Bu kuruluş bağlamına atanmış denetim yok.</div>`}</div>`;
     renderAuditeeResponses();
-    document.getElementById("auditeeObjections").innerHTML = portalNote + `<div class="card"><h3>İtiraz Bildirimi</h3><p>Denetim bitişinden itibaren 2 gün içinde itiraz var/yok bildirimi yapılacak. Bu ekran Faz 4'te gerçek itiraz formuna dönüşecek.</p></div>`;
-    document.getElementById("auditeeCap").innerHTML = portalNote + `<div class="card"><h3>CAP Girişi</h3><p>Nihai rapor gönderildikten sonra USOAP CMA kapsamında azami 45 gün içinde CAP planı sunulacak. Her bulgu için en az bir CAP adımı Faz 5'te zorunlu hale getirilecek.</p></div>`;
+    renderAuditeeObjections(portalNote);
+    document.getElementById("auditeeCap").innerHTML = portalNote + `<div class="card"><h3>CAP Girişi</h3><p>Nihai rapor gönderildikten sonra USOAP CMA kapsamında azami 45 gün içinde CAP planı sunulacak. Her bulgu için en az bir CAP adımı Faz 6'da zorunlu hale getirilecek.</p></div>`;
   }
 
 
@@ -2174,6 +2218,359 @@
     }
   }
 
+
+  function objectionEligibleAudits() {
+    return auditeeVisibleAudits().filter(a => ['objection_period','final_report_preparation','final_report_sent','cap_waiting','cap_under_review','cap_monitoring','closed'].includes(a.status));
+  }
+
+  function getObjection(auditId) {
+    return state.organizationResponses.find(r => r.auditId === auditId && r.responseType === 'objection') || null;
+  }
+
+  function objectionStatusLabel(record, audit) {
+    if (!record && audit?.objectionStatus === 'auto_no_objection') return 'Sistem: İtiraz Yoktur';
+    if (!record) return 'Bekleniyor';
+    if (record.decision === 'no_objection') return record.autoCompleted ? 'Sistem: İtiraz Yoktur' : 'İtiraz Yoktur';
+    if (record.decision === 'objection') return 'İtiraz Bildirildi';
+    return 'Taslak';
+  }
+
+  function objectionPill(auditId) {
+    const audit = getAudit(auditId);
+    const record = getObjection(auditId);
+    const label = objectionStatusLabel(record, audit);
+    const cls = !record && audit?.status === 'objection_period' ? 'yellow' : (record?.decision === 'objection' ? 'red' : record?.decision === 'no_objection' || audit?.objectionStatus === 'auto_no_objection' ? 'green' : 'gray');
+    return `<span class="pill ${cls}">İtiraz: ${escapeHtml(label)}</span>`;
+  }
+
+  function ensureObjectionSelection() {
+    const audits = objectionEligibleAudits();
+    const current = state.currentObjectionAuditId && getAudit(state.currentObjectionAuditId) ? state.currentObjectionAuditId : '';
+    if (current && audits.some(a => a.auditId === current)) return current;
+    const first = audits[0];
+    state.currentObjectionAuditId = first?.auditId || '';
+    if (state.currentObjectionAuditId) localStorage.setItem('usoap_phase5_current_objection_audit', state.currentObjectionAuditId);
+    return state.currentObjectionAuditId;
+  }
+
+  window.openObjectionProcess = function(auditId) {
+    state.currentObjectionAuditId = auditId || '';
+    if (state.currentObjectionAuditId) localStorage.setItem('usoap_phase5_current_objection_audit', state.currentObjectionAuditId);
+    showSection('auditeeObjections');
+  };
+
+  window.selectObjectionAudit = function(auditId) {
+    state.currentObjectionAuditId = auditId || '';
+    if (state.currentObjectionAuditId) localStorage.setItem('usoap_phase5_current_objection_audit', state.currentObjectionAuditId);
+    if (state.role === 'auditee') renderAuditeeObjections();
+    else renderAuditList('objectionAudits', ['objection_period'], 'İtiraz Sürecindeki Denetimler', 'Denetim bitişinden itibaren 2 günlük itiraz var/yok bildirim süreci.');
+  };
+
+  function objectionAuditOptions(selectedId = '') {
+    return objectionEligibleAudits().map(a => `<option value="${escapeHtml(a.auditId)}" ${a.auditId === selectedId ? 'selected' : ''}>${escapeHtml(a.auditId)} - ${escapeHtml(a.organizationName || '-')} (${escapeHtml(AUDIT_STATUS[a.status] || a.status)})</option>`).join('');
+  }
+
+  function renderAuditeeObjections(portalNote = '') {
+    const section = document.getElementById('auditeeObjections');
+    if (!section) return;
+    const audits = objectionEligibleAudits().filter(a => state.role !== 'auditee' || a.organizationId === state.orgContext);
+    if (!audits.length) {
+      section.innerHTML = portalNote + `<div class="info-banner"><strong>İtiraz Bildirimi:</strong> Denetim cevapları tamamlandıktan sonra denetim İtiraz Sürecinde statüsüne alınır. Kuruluş bu ekrandan 2 gün içinde itiraz var/yok bildirimi yapar.</div><div class="empty">Bu kuruluş bağlamında itiraz bildirimi yapılacak denetim bulunmuyor.</div>`;
+      return;
+    }
+    const selectedId = ensureObjectionSelection();
+    const audit = getAudit(selectedId) || audits[0];
+    const record = getObjection(audit.auditId) || {};
+    const days = daysBetween(audit.objectionDueDate);
+    const dueLabel = days === null ? '-' : days < 0 ? `${Math.abs(days)} gün geçti` : days === 0 ? 'Bugün son gün' : `${days} gün kaldı`;
+    const canSubmit = state.role === 'auditee' && audit.status === 'objection_period' && (!record.decision || record.status === 'draft');
+    const readonly = canSubmit ? '' : 'disabled';
+    const choice = record.decision || 'no_objection';
+    section.innerHTML = portalNote + `
+      <div class="info-banner"><strong>Faz 5:</strong> Denetlenen kuruluş, denetim bitişinden itibaren 2 gün içinde itiraz var/yok bildirimi yapabilir. İtiraz yoksa rapor hazırlık aşamasına erken geçilebilir. Süre geçip bildirim yapılmadıysa sistem "itiraz yoktur" kaydı oluşturabilir.</div>
+      <div class="toolbar"><div class="field" style="min-width:320px"><label>İtiraz Denetimi Seç</label><select onchange="selectObjectionAudit(this.value)">${objectionAuditOptions(audit.auditId)}</select></div><button class="btn" onclick="showAuditDetails('${audit.auditId}')">Denetim Detayı</button><button class="btn warning" onclick="applyAutomaticDeadlineTransitions(true)">Süreleri Kontrol Et</button></div>
+      <div class="deadline-grid"><div class="deadline-card"><b>${escapeHtml(audit.auditId)}</b><span>Denetim</span></div><div class="deadline-card"><b>${escapeHtml(audit.organizationName || '-')}</b><span>Kuruluş</span></div><div class="deadline-card"><b>${formatDate(audit.objectionDueDate)}</b><span>İtiraz son tarihi</span></div><div class="deadline-card"><b>${escapeHtml(dueLabel)}</b><span>Kalan/geçen süre</span></div></div>
+      <div class="status-ribbon">${statusPill(audit.status)}${objectionPill(audit.auditId)}${reportPill(audit.auditId)}</div>
+      ${record.decision ? `<div class="${record.decision === 'objection' ? 'warn-banner' : 'info-banner'}"><strong>Mevcut bildirim:</strong> ${escapeHtml(objectionStatusLabel(record, audit))}${record.submittedAt ? ` | ${new Date(record.submittedAt).toLocaleString('tr-TR')}` : ''}</div>` : ''}
+      <div class="card" style="margin-top:14px"><h3>İtiraz Bildirimi</h3>
+        <div class="objection-choice">
+          <label><input ${readonly} type="radio" name="objectionDecision" value="no_objection" ${choice !== 'objection' ? 'checked' : ''}> İtiraz yoktur</label>
+          <label><input ${readonly} type="radio" name="objectionDecision" value="objection" ${choice === 'objection' ? 'checked' : ''}> İtiraz vardır</label>
+        </div>
+        <div class="form-grid">
+          <div class="field full"><label>İtiraz / Açıklama Notu</label><textarea id="objectionNote" ${readonly} placeholder="İtiraz varsa gerekçe, itiraz yoksa kısa onay notu...">${escapeHtml(record.objectionNote || '')}</textarea></div>
+          <div class="field full"><label>Kanıt Dosya Adı / Link <span style="text-transform:none;color:#64748b">(opsiyonel)</span></label><textarea id="objectionEvidence" ${readonly} placeholder="Dosya adı, klasör yolu veya bağlantı...">${escapeHtml(record.evidenceReference || '')}</textarea></div>
+        </div>
+      </div>
+      <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn success" onclick="submitObjectionDecision(false)" ${canSubmit ? '' : 'disabled'}>Taslak Kaydet</button>
+        <button class="btn primary" onclick="submitObjectionDecision(true)" ${canSubmit ? '' : 'disabled'}>Bildirimi Gönder</button>
+        ${['admin','program_manager','lead_auditor'].includes(state.role) ? `<button class="btn warning" onclick="completeObjectionForAudit('${audit.auditId}')">İtiraz Sürecini Tamamla</button>` : ''}
+      </div>`;
+  }
+
+  window.submitObjectionDecision = async function(submit) {
+    const audit = getAudit(state.currentObjectionAuditId);
+    if (!audit) return alert('Denetim seçin.');
+    if (state.role !== 'auditee') return alert('İtiraz bildirimi denetlenen kuruluş rolüyle yapılır.');
+    if (audit.status !== 'objection_period') return alert('Bu denetim itiraz sürecinde değil.');
+    const decision = document.querySelector('input[name="objectionDecision"]:checked')?.value || 'no_objection';
+    const note = document.getElementById('objectionNote')?.value.trim() || '';
+    if (submit && decision === 'objection' && !note) return alert('İtiraz bildirimi için açıklama/gerekçe zorunludur.');
+    const existing = getObjection(audit.auditId) || {};
+    const responseId = `OBJECTION-${audit.auditId}`;
+    const data = {
+      ...existing,
+      responseId,
+      responseType: 'objection',
+      auditId: audit.auditId,
+      organizationId: audit.organizationId,
+      organizationName: audit.organizationName,
+      status: submit ? 'submitted' : 'draft',
+      decision,
+      objectionNote: note,
+      evidenceReference: document.getElementById('objectionEvidence')?.value.trim() || '',
+      submittedByRole: submit ? state.role : existing.submittedByRole || '',
+      submittedAt: submit ? new Date().toISOString() : existing.submittedAt || null,
+      autoCompleted: false,
+      createdAt: existing.createdAt || new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    };
+    await saveRecord(COLLECTIONS.organizationResponses, responseId, data);
+    if (submit) {
+      const patch = { objectionStatus: decision === 'objection' ? 'objection_submitted' : 'no_objection', objectionCompletedAt: new Date().toISOString() };
+      if (decision === 'no_objection') patch.status = 'final_report_preparation';
+      await updateRecord(COLLECTIONS.audits, audit.auditId, patch);
+    }
+    await loadData();
+    renderAll();
+    state.currentObjectionAuditId = audit.auditId;
+    localStorage.setItem('usoap_phase5_current_objection_audit', audit.auditId);
+    alert(submit ? (decision === 'no_objection' ? 'İtiraz yoktur bildirimi gönderildi; denetim nihai rapor hazırlık aşamasına alındı.' : 'İtiraz bildirimi gönderildi.') : 'İtiraz bildirimi taslak kaydedildi.');
+    showSection('auditeeObjections');
+  };
+
+  window.completeObjectionForAudit = async function(auditId) {
+    const audit = getAudit(auditId);
+    if (!audit) return;
+    if (!['admin','program_manager','lead_auditor'].includes(state.role)) return alert('Bu işlem için Yönetici/Program Yöneticisi/Baş Denetçi rolü gerekir.');
+    const objection = getObjection(auditId);
+    if (!objection && daysBetween(audit.objectionDueDate) >= 0 && !confirm('Kuruluş bildirimi yok ve 2 günlük süre henüz tamamlanmadı. Yine de itiraz yoktur kabul edilerek tamamlanacak. Devam edilsin mi?')) return;
+    if (!objection) await createAutoNoObjection(audit);
+    await updateRecord(COLLECTIONS.audits, auditId, { status: 'final_report_preparation', objectionStatus: objection?.decision === 'objection' ? 'objection_reviewed' : 'no_objection', objectionCompletedAt: new Date().toISOString() });
+    await loadData(); renderAll(); showSection('objectionAudits');
+  };
+
+  async function createAutoNoObjection(audit) {
+    const responseId = `OBJECTION-${audit.auditId}`;
+    const data = {
+      responseId,
+      responseType: 'objection',
+      auditId: audit.auditId,
+      organizationId: audit.organizationId,
+      organizationName: audit.organizationName,
+      status: 'submitted',
+      decision: 'no_objection',
+      objectionNote: 'Süre içerisinde itiraz bildirilmediği için sistem tarafından itiraz yoktur olarak kaydedildi.',
+      evidenceReference: '',
+      submittedByRole: 'system',
+      submittedAt: new Date().toISOString(),
+      autoCompleted: true,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    };
+    await saveRecord(COLLECTIONS.organizationResponses, responseId, data);
+  }
+
+  window.applyAutomaticDeadlineTransitions = async function(showResult = true) {
+    let count = 0;
+    for (const audit of state.audits.filter(a => a.status === 'objection_period')) {
+      if (getObjection(audit.auditId)) continue;
+      if (daysBetween(audit.objectionDueDate) !== null && daysBetween(audit.objectionDueDate) < 0) {
+        await createAutoNoObjection(audit);
+        await updateRecord(COLLECTIONS.audits, audit.auditId, { status: 'final_report_preparation', objectionStatus: 'auto_no_objection', objectionCompletedAt: new Date().toISOString() });
+        count++;
+      }
+    }
+    if (count) await loadData();
+    if (showResult) {
+      renderAll();
+      showSection(state.currentSection);
+      alert(count ? `${count} denetim için otomatik "itiraz yoktur" kaydı oluşturuldu ve nihai rapor hazırlık aşamasına alındı.` : 'Otomatik tamamlanacak itiraz süreci bulunmadı.');
+    }
+  };
+
+  function reportEligibleAudits() {
+    return state.audits.filter(a => ['final_report_preparation','final_report_sent','cap_waiting','cap_under_review','cap_monitoring','closed'].includes(a.status));
+  }
+
+  function getReport(auditId) {
+    return state.reports.find(r => r.auditId === auditId && (r.reportType || 'final') === 'final') || null;
+  }
+
+  function reportPill(auditId) {
+    const audit = getAudit(auditId);
+    const report = getReport(auditId);
+    if (report?.status === 'sent' || audit?.finalReportSentDate) return `<span class="pill green">Nihai Rapor: Gönderildi</span>`;
+    if (report?.status === 'draft') return `<span class="pill yellow">Nihai Rapor: Taslak</span>`;
+    return `<span class="pill gray">Nihai Rapor: Yok</span>`;
+  }
+
+  function ensureFinalReportSelection() {
+    const audits = reportEligibleAudits();
+    const current = state.currentFinalReportAuditId && getAudit(state.currentFinalReportAuditId) ? state.currentFinalReportAuditId : '';
+    if (current && audits.some(a => a.auditId === current)) return current;
+    const first = audits[0];
+    state.currentFinalReportAuditId = first?.auditId || '';
+    if (state.currentFinalReportAuditId) localStorage.setItem('usoap_phase5_current_final_report_audit', state.currentFinalReportAuditId);
+    return state.currentFinalReportAuditId;
+  }
+
+  window.openFinalReport = function(auditId) {
+    state.currentFinalReportAuditId = auditId || '';
+    if (state.currentFinalReportAuditId) localStorage.setItem('usoap_phase5_current_final_report_audit', state.currentFinalReportAuditId);
+    showSection('reportsAudit');
+  };
+
+  window.selectFinalReportAudit = function(auditId) {
+    state.currentFinalReportAuditId = auditId || '';
+    if (state.currentFinalReportAuditId) localStorage.setItem('usoap_phase5_current_final_report_audit', state.currentFinalReportAuditId);
+    renderReports();
+  };
+
+  function finalReportAuditOptions(selectedId = '') {
+    return reportEligibleAudits().map(a => `<option value="${escapeHtml(a.auditId)}" ${a.auditId === selectedId ? 'selected' : ''}>${escapeHtml(a.auditId)} - ${escapeHtml(a.organizationName || '-')} (${escapeHtml(AUDIT_STATUS[a.status] || a.status)})</option>`).join('');
+  }
+
+  function auditFindings(auditId) {
+    return state.findings.filter(f => f.auditId === auditId && !['void','withdrawn'].includes(f.status));
+  }
+
+  function reportDefaultSummary(audit, findings) {
+    return `Denetim ${formatDate(audit.plannedStartDate)} - ${formatDate(audit.plannedEndDate)} tarihleri arasında ${audit.organizationName || 'ilgili kuruluş'} nezdinde gerçekleştirilmiştir. Denetim kapsamındaki kontrol formlarında yapılan değerlendirme sonucunda ${findings.length} NS bulgu tespit edilmiştir.`;
+  }
+
+  function reportHtml(audit, report, findings) {
+    const assignment = getAssignment(audit.auditId) || {};
+    const objection = getObjection(audit.auditId);
+    const rows = findings.map(f => `<tr><td>${escapeHtml(f.areaKey || '-')}</td><td>${escapeHtml(f.pqNo || '-')}</td><td>${escapeHtml(f.ce || '-')}</td><td>${escapeHtml(f.findingText || '-')}</td><td>${escapeHtml(f.reviewedEvidence || '-')}</td></tr>`).join('');
+    return `<div class="report-preview">
+      <h1>USOAP CMA DENETİM NİHAİ RAPORU</h1>
+      <p><strong>Denetim:</strong> ${escapeHtml(audit.auditId)} | <strong>Kuruluş:</strong> ${escapeHtml(audit.organizationName || '-')}</p>
+      <table class="meta-table"><tbody>
+        <tr><th>Program</th><td>${escapeHtml(audit.programId || '-')}</td><th>Denetim Tarihi</th><td>${formatDate(audit.plannedStartDate)} - ${formatDate(audit.plannedEndDate)}</td></tr>
+        <tr><th>Yer</th><td>${escapeHtml(audit.location || '-')}</td><th>Yöntem / Şekil</th><td>${escapeHtml(AUDIT_METHOD_LABELS[audit.auditMethod] || audit.auditMethod || '-')} / ${escapeHtml(AUDIT_TYPE_LABELS[audit.auditType] || audit.auditType || '-')}</td></tr>
+        <tr><th>Heyet Başkanı</th><td>${escapeHtml(assignment.leadAuditorName || '-')}</td><th>Heyet Üyeleri</th><td>${escapeHtml((assignment.auditorNames || []).join(', ') || '-')}</td></tr>
+        <tr><th>Kontrol Formları</th><td colspan="3">${escapeHtml((audit.selectedForms || []).join(', ') || '-')}</td></tr>
+      </tbody></table>
+      <h2>1. Amaç, Kapsam ve Kriterler</h2>
+      <p><strong>Amaç:</strong> ${escapeHtml(audit.objectives || '-')}</p>
+      <p><strong>Kapsam:</strong> ${escapeHtml(audit.scope || '-')}</p>
+      <p><strong>Kriterler:</strong> ${escapeHtml(audit.criteria || '-')}</p>
+      <h2>2. Yönetici Özeti</h2><p>${escapeHtml(report.summaryText || reportDefaultSummary(audit, findings))}</p>
+      <h2>3. İtiraz Süreci</h2><p>${escapeHtml(objection ? `${objectionStatusLabel(objection, audit)}. ${objection.objectionNote || ''}` : 'İtiraz bildirimi bulunmamaktadır.')}</p>
+      <h2>4. Bulgular</h2>
+      <table class="meta-table"><thead><tr><th>Area</th><th>PQ</th><th>CE</th><th>Bulgu</th><th>İncelenen Kanıt</th></tr></thead><tbody>${rows || `<tr><td colspan="5">NS bulgu bulunmamaktadır.</td></tr>`}</tbody></table>
+      <h2>5. Sonuç ve Takip</h2><p>${escapeHtml(report.conclusionText || 'NS bulgular için nihai rapor gönderiminden itibaren 45 gün içinde CAP hazırlanması beklenir.')}</p>
+      ${report.distributionNote ? `<h2>6. Dağıtım / Gönderim Notu</h2><p>${escapeHtml(report.distributionNote)}</p>` : ''}
+    </div>`;
+  }
+
+  function renderFinalReportModule() {
+    const section = document.getElementById('reportsAudit');
+    const audits = reportEligibleAudits();
+    if (!audits.length) {
+      section.innerHTML = `<div class="info-banner"><strong>Nihai Rapor:</strong> İtiraz süreci tamamlanan denetimler burada rapora dönüştürülür.</div><div class="empty">Nihai rapor hazırlanacak denetim bulunmuyor. Önce denetimi İtiraz Sürecinden Nihai Rapor Hazırlanıyor aşamasına alın.</div>`;
+      return;
+    }
+    const selectedId = ensureFinalReportSelection();
+    const audit = getAudit(selectedId) || audits[0];
+    const report = getReport(audit.auditId) || {};
+    const findings = auditFindings(audit.auditId);
+    const days = daysBetween(audit.finalReportDueDate);
+    const canEdit = ['admin','program_manager','lead_auditor'].includes(state.role) && audit.status === 'final_report_preparation';
+    const disabled = canEdit ? '' : 'disabled';
+    section.innerHTML = `
+      <div class="info-banner"><strong>Faz 5:</strong> Nihai rapor, denetim bitişinden itibaren 15 gün içinde hazırlanıp gönderilmelidir. Gönderim yapıldığında açık NS bulguları için 45 günlük CAP bekleme süreci otomatik başlatılır.</div>
+      <div class="toolbar"><div class="field" style="min-width:340px"><label>Nihai Rapor Denetimi Seç</label><select onchange="selectFinalReportAudit(this.value)">${finalReportAuditOptions(audit.auditId)}</select></div><button class="btn" onclick="showAuditDetails('${audit.auditId}')">Denetim Detayı</button><button class="btn" onclick="openObjectionProcess('${audit.auditId}')">İtiraz Süreci</button><button class="btn primary" onclick="window.print()">Yazdır / PDF</button></div>
+      <div class="deadline-grid"><div class="deadline-card"><b>${escapeHtml(audit.auditId)}</b><span>Denetim</span></div><div class="deadline-card"><b>${formatDate(audit.finalReportDueDate)}</b><span>Nihai rapor son tarihi</span></div><div class="deadline-card"><b>${days === null ? '-' : days < 0 ? Math.abs(days) + ' gün gecikti' : days + ' gün kaldı'}</b><span>Süre durumu</span></div><div class="deadline-card"><b>${findings.length}</b><span>NS bulgu</span></div></div>
+      <div class="status-ribbon">${statusPill(audit.status)}${objectionPill(audit.auditId)}${reportPill(audit.auditId)}</div>
+      ${!canEdit && audit.status === 'final_report_preparation' ? `<div class="readonly-note">Nihai raporu düzenlemek/göndermek için Yönetici, Program Yöneticisi veya Baş Denetçi rolü gerekir.</div>` : ''}
+      ${audit.status !== 'final_report_preparation' ? `<div class="readonly-note">Bu rapor gönderilmiş veya sonraki aşamaya geçmiş olabilir. Alanlar salt okunur gösterilir.</div>` : ''}
+      <div class="split-panel" style="margin-top:14px">
+        <div class="phase5-panel"><h3>Rapor Bilgileri</h3>
+          <div class="field"><label>Yönetici Özeti</label><textarea id="reportSummaryText" ${disabled}>${escapeHtml(report.summaryText || reportDefaultSummary(audit, findings))}</textarea></div>
+          <div class="field"><label>Sonuç / Takip Notu</label><textarea id="reportConclusionText" ${disabled}>${escapeHtml(report.conclusionText || 'NS bulgular için nihai rapor gönderiminden itibaren 45 gün içinde CAP hazırlanması beklenir.')}</textarea></div>
+          <div class="field"><label>Dağıtım / Gönderim Notu</label><textarea id="reportDistributionNote" ${disabled}>${escapeHtml(report.distributionNote || '')}</textarea></div>
+          <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn success" onclick="saveFinalReport(false)" ${disabled}>Taslak Raporu Kaydet</button><button class="btn primary" onclick="saveFinalReport(true)" ${disabled}>Nihai Raporu Gönder</button></div>
+        </div>
+        <div>${reportHtml(audit, report, findings)}</div>
+      </div>`;
+  }
+
+  window.saveFinalReport = async function(send) {
+    const audit = getAudit(state.currentFinalReportAuditId);
+    if (!audit) return alert('Denetim seçin.');
+    if (!['admin','program_manager','lead_auditor'].includes(state.role)) return alert('Nihai rapor için Yönetici/Program Yöneticisi/Baş Denetçi rolü gerekir.');
+    const findings = auditFindings(audit.auditId);
+    const reportId = `REPORT-${audit.auditId}`;
+    const existing = getReport(audit.auditId) || {};
+    const data = {
+      ...existing,
+      reportId,
+      reportType: 'final',
+      auditId: audit.auditId,
+      organizationId: audit.organizationId,
+      organizationName: audit.organizationName,
+      status: send ? 'sent' : 'draft',
+      summaryText: document.getElementById('reportSummaryText')?.value.trim() || reportDefaultSummary(audit, findings),
+      conclusionText: document.getElementById('reportConclusionText')?.value.trim() || '',
+      distributionNote: document.getElementById('reportDistributionNote')?.value.trim() || '',
+      findingIds: findings.map(f => f.findingId || f.id),
+      sentAt: send ? new Date().toISOString() : existing.sentAt || null,
+      createdByRole: existing.createdByRole || state.role,
+      updatedByRole: state.role,
+      createdAt: existing.createdAt || new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    };
+    await saveRecord(COLLECTIONS.reports, reportId, data);
+    if (send) {
+      await finalizeReportAndStartCap(audit, data.sentAt);
+    }
+    await loadData(); renderAll();
+    state.currentFinalReportAuditId = audit.auditId;
+    localStorage.setItem('usoap_phase5_current_final_report_audit', audit.auditId);
+    alert(send ? 'Nihai rapor gönderildi. Açık bulgular için 45 günlük CAP bekleme kayıtları oluşturuldu.' : 'Nihai rapor taslağı kaydedildi.');
+    showSection('reportsAudit');
+  };
+
+  async function finalizeReportAndStartCap(audit, sentAtIso) {
+    const sentDate = String(sentAtIso || new Date().toISOString()).slice(0,10);
+    const capDueDate = addDays(sentDate, audit.capDueDays || 45);
+    await updateRecord(COLLECTIONS.audits, audit.auditId, { status: 'cap_waiting', finalReportSentDate: sentDate, finalReportSentAt: sentAtIso, capDueDays: audit.capDueDays || 45, capDueDate });
+    const findings = auditFindings(audit.auditId).filter(f => !['closed','finding_closed','void','withdrawn'].includes(f.status));
+    for (const f of findings) {
+      const findingId = f.findingId || f.id;
+      const capPlanId = `CAP-${findingId}`;
+      const existing = state.capPlans.find(c => (c.capPlanId || c.id) === capPlanId) || {};
+      await saveRecord(COLLECTIONS.capPlans, capPlanId, {
+        ...existing,
+        capPlanId,
+        findingId,
+        auditId: audit.auditId,
+        organizationId: audit.organizationId,
+        organizationName: audit.organizationName,
+        dueDate: existing.dueDate || capDueDate,
+        status: existing.status || 'cap_waiting',
+        submittedAt: existing.submittedAt || null,
+        evaluationNote: existing.evaluationNote || '',
+        createdAt: existing.createdAt || new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+      });
+      await updateRecord(COLLECTIONS.findings, findingId, { status: 'cap_waiting', finalReportIncluded: true, capPlanId, capDueDate });
+    }
+  }
+
   function renderFindingsAndCap() {
     const openFindings = state.findings.filter(f => !["closed", "finding_closed", "void", "withdrawn"].includes(f.status));
     const closedFindings = state.findings.filter(f => ["closed", "finding_closed"].includes(f.status));
@@ -2196,13 +2593,13 @@
   }
 
   function renderReports() {
-    document.getElementById("reportsAudit").innerHTML = `<div class="card"><h3>Denetim Raporları</h3><p>Faz 4'te taslak/nihai rapor şablonu; denetim amacı, kapsam, kriterler, ekip, tarih/lokasyon, bulgular, kanıtlar, sonuçlar ve itiraz bilgileriyle yeniden yapılandırılacak.</p></div>`;
+    renderFinalReportModule();
     const programRows = state.auditPrograms.map(p => {
       const audits = state.audits.filter(a => a.programId === p.programId);
       return `<tr><td>${escapeHtml(p.programId)}</td><td>${escapeHtml(p.name)}</td><td>${audits.length}</td><td>${audits.filter(a => a.status === "closed").length}</td><td>${audits.filter(a => a.status === "archived").length}</td></tr>`;
     }).join("");
     document.getElementById("reportsProgram").innerHTML = `<div class="table-wrap"><table><thead><tr><th>Program</th><th>Adı</th><th>Denetim</th><th>Kapatılan</th><th>Arşiv</th></tr></thead><tbody>${programRows || `<tr><td colspan="5">Program bulunmuyor.</td></tr>`}</tbody></table></div>`;
-    document.getElementById("reportsCap").innerHTML = `<div class="card"><h3>CAP Durum Raporu</h3><p>Açık bulgu: ${state.findings.filter(f => !["closed", "finding_closed"].includes(f.status)).length}. CAP planı: ${state.capPlans.length}. Faz 6'da geciken CAP, yaklaşan görevler ve Kanban entegrasyonu eklenecek.</p></div>`;
+    document.getElementById("reportsCap").innerHTML = `<div class="card"><h3>CAP Durum Raporu</h3><p>Açık bulgu: ${state.findings.filter(f => !["closed", "finding_closed"].includes(f.status)).length}. CAP planı: ${state.capPlans.length}. Faz 6'da CAP girişi, geciken CAP, yaklaşan görevler ve Kanban entegrasyonu eklenecek.</p></div>`;
   }
   function renderArchive() {
     const archivedAudits = state.audits.filter(a => a.status === "archived");
@@ -2223,7 +2620,7 @@
         </tbody></table></div></div>
         <div class="card span-6"><h3>Bağlantı Durumu</h3><p>${escapeHtml(state.firebaseMessage)}</p><p><strong>Mevcut test rolü:</strong> ${escapeHtml(ROLES[state.role])}</p><p><strong>Kuruluş bağlamı:</strong> ${escapeHtml(state.orgContext)}</p></div>
         <div class="card span-12"><h3>Firestore Koleksiyon Omurgası</h3><pre class="model-code">${escapeHtml(collectionsJson)}</pre></div>
-        <div class="card span-12"><h3>Fazlara Bölünen Geliştirme</h3><p><strong>Faz 1:</strong> Mimari omurga ve menü/veri modeli. <strong>Faz 2:</strong> Yıllık program ve planlı denetimlerin işlevsel hale getirilmesi. <strong>Faz 3B:</strong> Denetim dosyası ve heyet atama. <strong>Faz 3B:</strong> Kuruluş cevap süreci ve ön değerlendirme. <strong>Faz 4:</strong> Aktif denetim uygulama ve PQ bazlı S/NS/NA değerlendirme. <strong>Faz 5:</strong> CAP planı/adımları. <strong>Faz 6:</strong> Dashboard, Kanban, trend ve raporlama.</p></div>
+        <div class="card span-12"><h3>Fazlara Bölünen Geliştirme</h3><p><strong>Faz 1:</strong> Mimari omurga ve menü/veri modeli. <strong>Faz 2:</strong> Yıllık program ve planlı denetimlerin işlevsel hale getirilmesi. <strong>Faz 3A:</strong> Denetim dosyası ve heyet atama. <strong>Faz 3B:</strong> Kuruluş cevap süreci ve ön değerlendirme. <strong>Faz 4:</strong> Aktif denetim uygulama ve PQ bazlı S/NS/NA değerlendirme. <strong>Faz 5:</strong> İtiraz süreci ve nihai rapor hazırlama/gönderme. <strong>Faz 6:</strong> CAP planı/adımları, Dashboard, Kanban, trend ve raporlama.</p></div>
       </div>`;
   }
 
@@ -2245,13 +2642,14 @@
       findings: state.findings,
       capPlans: state.capPlans,
       capSteps: state.capSteps,
+      reports: state.reports,
       formRevisions: state.formRevisions
     };
     const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json;charset=utf-8" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = "usoap_phase4_audit_execution_export.json";
+    a.download = "usoap_phase5_objection_final_report_export.json";
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
