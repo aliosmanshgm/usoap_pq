@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>USOAP CMA Denetim ve CAP Yönetim Sistemi - Faz 6</title>
+  <title>USOAP CMA Denetim ve CAP Yönetim Sistemi - Faz 7</title>
   <style>
     :root {
       --primary: #1e3a8a;
@@ -281,6 +281,35 @@
     .cap-mini-table th, .cap-mini-table td { font-size:12px; padding:8px; border:1px solid var(--border); }
     @media (max-width: 980px) { .cap-step-grid { grid-template-columns:1fr; } .cap-step-grid .field:nth-child(n) { grid-column:1/-1; } }
 
+
+    .auth-overlay { position: fixed; inset: 0; background: rgba(15,23,42,.86); z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 18px; backdrop-filter: blur(4px); }
+    .auth-card { width: min(460px, 100%); background: #fff; border-radius: 18px; padding: 22px; box-shadow: 0 24px 80px rgba(0,0,0,.35); border: 1px solid var(--border); }
+    .auth-card h2 { margin: 0 0 6px 0; color: #0f172a; }
+    .auth-card p { margin: 0 0 14px 0; color: var(--muted); font-size: 13px; line-height: 1.55; }
+    .auth-card input { width: 100%; border: 1px solid var(--border); border-radius: 10px; padding: 11px 12px; margin: 6px 0; font-size: 14px; }
+    .auth-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+    .auth-status { display: inline-flex; align-items: center; gap: 6px; padding: 7px 10px; border: 1px solid var(--border); border-radius: 999px; background: #fff; font-size: 12px; font-weight: 800; color: #334155; }
+    .auth-status.locked { border-color: #bbf7d0; background: #ecfdf5; color: #166534; }
+    .auth-status.demo { border-color: #fde68a; background: #fffbeb; color: #92400e; }
+    .notification-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; margin-bottom: 14px; }
+    .notification-stat { background:#fff; border:1px solid var(--border); border-radius:14px; padding:13px; }
+    .notification-stat b { display:block; color:#0f172a; font-size:26px; line-height:1; }
+    .notification-stat span { color:var(--muted); font-size:11px; font-weight:900; text-transform:uppercase; }
+    .notification-list { display:flex; flex-direction:column; gap:10px; }
+    .notification-item { background:#fff; border:1px solid var(--border); border-left:6px solid #64748b; border-radius:14px; padding:13px 14px; display:grid; grid-template-columns: 1fr auto; gap:12px; align-items:center; }
+    .notification-item.overdue { border-left-color: var(--danger); background:#fff7f7; }
+    .notification-item.soon { border-left-color: #f59e0b; background:#fffbeb; }
+    .notification-item.info { border-left-color: var(--primary-2); background:#eff6ff; }
+    .notification-item.done { opacity:.62; }
+    .notification-item h4 { margin:0 0 4px 0; color:#0f172a; font-size:14px; }
+    .notification-item p { margin:0; color:#64748b; font-size:12px; line-height:1.45; }
+    .deadline-inline { display:inline-flex; align-items:center; gap:5px; border-radius:999px; padding:3px 8px; font-size:11px; font-weight:900; border:1px solid var(--border); background:#fff; }
+    .deadline-inline.overdue { color:#991b1b; background:#fee2e2; border-color:#fecaca; }
+    .deadline-inline.soon { color:#92400e; background:#fef3c7; border-color:#fde68a; }
+    .deadline-inline.ok { color:#166534; background:#dcfce7; border-color:#bbf7d0; }
+    .user-table td input, .user-table td select { width:100%; min-width:130px; border:1px solid var(--border); border-radius:8px; padding:7px; font-size:12px; }
+    .auth-lock-note { background:#ecfdf5; border:1px solid #bbf7d0; border-left:5px solid #10b981; color:#166534; border-radius:12px; padding:12px 14px; margin-bottom:14px; font-size:13px; line-height:1.5; }
+
     @media (max-width: 980px) { .exec-body { grid-template-columns:1fr; } .criteria-fields { grid-template-columns:1fr; padding-left:12px; } .criteria-fields .field:nth-child(n) { grid-column:1/-1; } .criteria-text, .criteria-status-row, .criteria-status-help { padding-left:12px; margin-left:12px; } }
 
     @media (max-width: 980px) { .response-row, .split-panel { grid-template-columns:1fr; } }
@@ -305,10 +334,24 @@
   </style>
 </head>
 <body>
+  <div id="authOverlay" class="auth-overlay hidden">
+    <div class="auth-card">
+      <h2>USOAP CMA Giriş</h2>
+      <p>Gerçek yetkilendirme için Firebase Authentication ile giriş yapın. Kullanıcı rolü <strong>users</strong> koleksiyonundaki profil kaydından okunur.</p>
+      <input type="email" id="authEmail" placeholder="E-posta">
+      <input type="password" id="authPassword" placeholder="Şifre">
+      <div id="authMessage" class="warn-banner hidden" style="margin:8px 0 0 0"></div>
+      <div class="auth-actions">
+        <button class="btn primary" onclick="loginWithEmail()">Giriş Yap</button>
+        <button class="btn" onclick="continueDemoMode()">Demo/Test Modunda Devam Et</button>
+      </div>
+      <p style="margin-top:12px">İlk kurulumda Firebase Authentication kullanıcılarını Firebase Console üzerinden oluşturup, ardından <strong>Ayarlar / Yetkiler</strong> ekranında UID, rol ve kuruluş eşlemesini tanımlayın.</p>
+    </div>
+  </div>
   <aside class="sidebar">
     <div class="brand">
       <h1>USOAP CMA<br>Denetim ve CAP Yönetimi</h1>
-      <p>Faz 6 sürümü: CAP girişi, CAP adımları, değerlendirme ve izleme modülü eklendi.</p>
+      <p>Faz 7 sürümü: bildirimler, gecikme uyarıları ve kullanıcı bazlı yetkilendirme eklendi.</p>
     </div>
     <div class="role-box">
       <label for="roleSelect">Test Rolü</label>
@@ -325,16 +368,20 @@
     <div class="topbar">
       <div>
         <h2 id="pageTitle">Ana Sayfa</h2>
-        <p id="pageSubtitle">Faz 6 CAP girişi, değerlendirme ve izleme test sürümü.</p>
+        <p id="pageSubtitle">Faz 7 bildirimler, gecikme uyarıları ve kullanıcı bazlı yetkilendirme test sürümü.</p>
       </div>
       <div class="top-actions">
+        <span id="authStatusBadge" class="auth-status demo">Demo/Test</span>
+        <button id="notificationTopButton" class="btn warning" onclick="showSection('notifications')">Bildirimler</button>
+        <button id="logoutButton" class="btn" onclick="logoutCurrentUser()">Çıkış</button>
         <button class="btn" onclick="refreshAll()">Yenile</button>
-        <button class="btn" onclick="exportPhase1Json()">Faz 6 JSON Dışa Aktar</button>
+        <button class="btn" onclick="exportPhase1Json()">Faz 7 JSON Dışa Aktar</button>
         <button class="btn primary" onclick="window.print()">Yazdır / PDF</button>
       </div>
     </div>
 
     <section id="home" class="section active"></section>
+    <section id="notifications" class="section"></section>
     <section id="masterLibrary" class="section"></section>
     <section id="formRevisions" class="section"></section>
     <section id="revisionArchive" class="section"></section>
@@ -368,6 +415,7 @@
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
   import { getFirestore, collection, doc, getDocs, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+  import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
 
   const DATA_FILE = "PQ_JSON_Model.json";
   const FIREBASE_CONFIG = {
@@ -483,7 +531,8 @@
 
   const MENUS = [
     { group: "Genel", items: [
-      { id: "home", label: "Ana Sayfa", tag: "Rehber" }
+      { id: "home", label: "Ana Sayfa", tag: "Rehber" },
+      { id: "notifications", label: "Bildirimler / Uyarılar", tag: "Yeni" }
     ]},
     { group: "Master Kontrol Formları", items: [
       { id: "masterLibrary", label: "Form Kütüphanesi", tag: "Read-only" },
@@ -531,6 +580,12 @@
 
   const state = {
     db: null,
+    auth: null,
+    authUser: null,
+    userProfile: null,
+    authReady: false,
+    demoMode: localStorage.getItem("usoap_phase7_demo_mode") === "true",
+    notificationReads: JSON.parse(localStorage.getItem("usoap_phase7_notification_reads") || "[]"),
     firebaseReady: false,
     firebaseMessage: "Bağlantı denenmedi",
     editProgramId: null,
@@ -548,6 +603,7 @@
     currentSection: "home",
     masterRows: [],
     normalizedAreas: {},
+    users: [],
     auditPrograms: [],
     audits: [],
     auditAssignments: [],
@@ -682,8 +738,9 @@
     try {
       const app = initializeApp(FIREBASE_CONFIG);
       state.db = getFirestore(app);
+      state.auth = getAuth(app);
       state.firebaseReady = true;
-      state.firebaseMessage = "Firestore bağlantısı hazır. Yazma/okuma yetkisi güvenlik kurallarına bağlıdır.";
+      state.firebaseMessage = "Firestore/Firebase Auth hazır. Yetki rolü users koleksiyonundan ve Firestore Rules kurallarından gelir.";
     } catch (err) {
       state.firebaseReady = false;
       state.firebaseMessage = "Firebase başlatılamadı. Yerel kayıt modu kullanılacak.";
@@ -702,6 +759,8 @@
   }
 
   async function loadData() {
+    state.users = await readCollection(COLLECTIONS.users);
+    applyAuthProfile();
     state.auditPrograms = await readCollection(COLLECTIONS.auditPrograms);
     state.audits = await readCollection(COLLECTIONS.audits);
     state.auditAssignments = await readCollection(COLLECTIONS.auditAssignments);
@@ -850,10 +909,13 @@
     renderReports();
     renderArchive();
     renderSettings();
+    renderNotificationsPanel();
+    renderAuthState();
   }
   function renderSection(sectionId) {
     const map = {
-      home: ["Ana Sayfa", "Faz 6: CAP girişi, CAP adımları, CAP değerlendirme ve izleme modülü."],
+      home: ["Ana Sayfa", "Faz 7: bildirimler, gecikme uyarıları ve kullanıcı bazlı yetkilendirme."],
+      notifications: ["Bildirimler / Gecikme Uyarıları", "Kritik tarihler, geciken işler, yaklaşan görevler ve CAP uyarıları."],
       masterLibrary: ["Master Kontrol Formları / Form Kütüphanesi", "JSON kaynaklı read-only PQ master kütüphanesi."],
       formRevisions: ["Form Revizyonları", "Yönetici rolü için master kontrol formu revizyon omurgası."],
       revisionArchive: ["Revizyon Arşivi", "Arşivlenmiş form revizyonları."],
@@ -2864,9 +2926,12 @@
       exportedAt: new Date().toISOString(),
       role: state.role,
       orgContext: state.orgContext,
+      authUser: state.authUser ? { uid: state.authUser.uid, email: state.authUser.email } : null,
+      userProfile: state.userProfile || null,
       collections: COLLECTIONS,
       auditStatuses: AUDIT_STATUS,
       capStatuses: CAP_STATUS,
+      users: state.users,
       auditPrograms: state.auditPrograms,
       audits: state.audits,
       auditAssignments: state.auditAssignments,
@@ -3444,12 +3509,361 @@ ${escapeHtml(finding.reviewedEvidence || "-")}</div><div class="grid"><div class
   }
 
 
+
+  // =========================
+  // Faz 7 - Auth, Bildirimler ve Gecikme Uyarıları
+  // =========================
+  function isAuthLocked() {
+    return !!state.authUser && !state.demoMode;
+  }
+  function activeUid() { return state.authUser?.uid || "demo"; }
+  function profileRole() { return state.userProfile?.role || state.role || "viewer"; }
+  function profileOrg() { return state.userProfile?.organizationId || state.orgContext || ""; }
+  function authLabel() {
+    if (state.demoMode) return "Demo/Test Modu";
+    if (state.authUser) return `${state.authUser.email || state.authUser.uid} / ${ROLES[state.role] || state.role}`;
+    return "Giriş bekleniyor";
+  }
+  function showAuthOverlay(show, message = "") {
+    const overlay = document.getElementById("authOverlay");
+    const msg = document.getElementById("authMessage");
+    if (!overlay) return;
+    overlay.classList.toggle("hidden", !show);
+    if (msg) {
+      msg.classList.toggle("hidden", !message);
+      msg.innerHTML = escapeHtml(message || "");
+    }
+  }
+  async function initAuthGate() {
+    if (!state.auth || state.demoMode) {
+      state.authReady = true;
+      showAuthOverlay(false);
+      return;
+    }
+    await new Promise(resolve => {
+      const unsubscribe = onAuthStateChanged(state.auth, user => {
+        state.authUser = user || null;
+        state.authReady = true;
+        if (!user) showAuthOverlay(true);
+        else showAuthOverlay(false);
+        unsubscribe();
+        resolve();
+      }, () => resolve());
+    });
+  }
+  function applyAuthProfile() {
+    if (state.demoMode) return;
+    if (!state.authUser) {
+      state.userProfile = null;
+      state.role = "viewer";
+      return;
+    }
+    let profile = state.users.find(u => (u.uid || u.id) === state.authUser.uid || String(u.email || "").toLowerCase() === String(state.authUser.email || "").toLowerCase());
+    if (!profile && state.users.length === 0) {
+      profile = {
+        id: state.authUser.uid,
+        uid: state.authUser.uid,
+        email: state.authUser.email || "",
+        displayName: state.authUser.displayName || state.authUser.email || "İlk Yönetici",
+        role: "admin",
+        organizationId: "org_shgm",
+        active: true,
+        bootstrapAdmin: true,
+        createdAt: new Date().toISOString()
+      };
+      state.users.push(profile);
+      saveRecord(COLLECTIONS.users, state.authUser.uid, profile);
+    }
+    state.userProfile = profile || {
+      uid: state.authUser.uid,
+      email: state.authUser.email || "",
+      displayName: state.authUser.email || state.authUser.uid,
+      role: "viewer",
+      organizationId: "",
+      active: false,
+      pendingProfile: true
+    };
+    state.role = state.userProfile.active === false ? "viewer" : (state.userProfile.role || "viewer");
+    if (state.userProfile.organizationId) {
+      state.orgContext = state.userProfile.organizationId;
+      localStorage.setItem("usoap_phase1_org", state.orgContext);
+    }
+  }
+  window.loginWithEmail = async function() {
+    const email = document.getElementById("authEmail")?.value.trim();
+    const pass = document.getElementById("authPassword")?.value || "";
+    if (!email || !pass) return showAuthOverlay(true, "E-posta ve şifre girin.");
+    if (!state.auth) return showAuthOverlay(true, "Firebase Auth başlatılamadı.");
+    try {
+      state.demoMode = false;
+      localStorage.removeItem("usoap_phase7_demo_mode");
+      const cred = await signInWithEmailAndPassword(state.auth, email, pass);
+      state.authUser = cred.user;
+      showAuthOverlay(false);
+      await loadData();
+      renderAll();
+      showSection(sectionAllowed(state.currentSection) ? state.currentSection : "home");
+    } catch (err) {
+      showAuthOverlay(true, `Giriş başarısız: ${err.message || err}`);
+    }
+  };
+  window.continueDemoMode = async function() {
+    state.demoMode = true;
+    localStorage.setItem("usoap_phase7_demo_mode", "true");
+    showAuthOverlay(false);
+    await loadData();
+    renderAll();
+    showSection("home");
+  };
+  window.logoutCurrentUser = async function() {
+    if (state.auth && state.authUser) await signOut(state.auth);
+    state.authUser = null;
+    state.userProfile = null;
+    state.demoMode = false;
+    localStorage.removeItem("usoap_phase7_demo_mode");
+    showAuthOverlay(true, "Çıkış yapıldı.");
+    renderAuthState();
+  };
+
+  function userCanManageUsers() { return state.role === "admin"; }
+  function userRowsHtml() {
+    const rows = state.users.slice().sort((a,b)=>String(a.email||a.displayName||"").localeCompare(String(b.email||b.displayName||""), "tr"));
+    const body = rows.map(u => {
+      const id = u.uid || u.id;
+      return `<tr><td><input id="u_uid_${escapeHtml(id)}" value="${escapeHtml(id)}" disabled></td><td><input id="u_name_${escapeHtml(id)}" value="${escapeHtml(u.displayName || "")}" ${userCanManageUsers()?"":"disabled"}></td><td><input id="u_email_${escapeHtml(id)}" value="${escapeHtml(u.email || "")}" ${userCanManageUsers()?"":"disabled"}></td><td><select id="u_role_${escapeHtml(id)}" ${userCanManageUsers()?"":"disabled"}>${Object.entries(ROLES).map(([k,l])=>`<option value="${k}" ${k===(u.role||"viewer")?"selected":""}>${escapeHtml(l)}</option>`).join("")}</select></td><td><input id="u_org_${escapeHtml(id)}" value="${escapeHtml(u.organizationId || "")}" ${userCanManageUsers()?"":"disabled"}></td><td><select id="u_active_${escapeHtml(id)}" ${userCanManageUsers()?"":"disabled"}><option value="true" ${u.active!==false?"selected":""}>Aktif</option><option value="false" ${u.active===false?"selected":""}>Pasif</option></select></td><td>${userCanManageUsers()?`<button class="btn success" onclick="saveUserProfile('${jsArg(id)}')">Kaydet</button>`:"-"}</td></tr>`;
+    }).join("");
+    return `<div class="table-wrap"><table class="user-table"><thead><tr><th>UID</th><th>Ad Soyad</th><th>E-posta</th><th>Rol</th><th>Kuruluş ID</th><th>Durum</th><th>İşlem</th></tr></thead><tbody>${body || `<tr><td colspan="7">Kullanıcı profili yok. Firebase Auth kullanıcısını oluşturduktan sonra aşağıdaki formdan profil ekleyin.</td></tr>`}</tbody></table></div>`;
+  }
+  function newUserFormHtml() {
+    if (!userCanManageUsers()) return `<div class="warn-banner">Kullanıcı profili yönetimi yalnızca Yönetici rolüyle yapılır.</div>`;
+    return `<div class="card span-12"><h3>Kullanıcı Profil Kaydı Ekle</h3><p>Firebase Authentication kullanıcısını Console üzerinden oluşturduktan sonra UID bilgisini buraya kaydedin. Gerçek yetki bu profil ve Firestore Rules üzerinden uygulanır.</p><div class="form-grid"><div class="field"><label>Firebase UID</label><input id="newUserUid" placeholder="Auth UID"></div><div class="field"><label>E-posta</label><input id="newUserEmail" placeholder="kullanici@..." type="email"></div><div class="field"><label>Ad Soyad</label><input id="newUserName" placeholder="Ad Soyad"></div><div class="field"><label>Rol</label><select id="newUserRole">${Object.entries(ROLES).map(([k,l])=>`<option value="${k}">${escapeHtml(l)}</option>`).join("")}</select></div><div class="field"><label>Kuruluş ID</label><input id="newUserOrg" placeholder="org_001 / org_shgm"></div><div class="field"><label>Durum</label><select id="newUserActive"><option value="true">Aktif</option><option value="false">Pasif</option></select></div></div><button class="btn success" style="margin-top:10px" onclick="createUserProfile()">Profil Kaydet</button></div>`;
+  }
+  window.createUserProfile = async function() {
+    if (!userCanManageUsers()) return alert("Yalnızca yönetici kullanıcı profili ekleyebilir.");
+    const uidVal = document.getElementById("newUserUid")?.value.trim();
+    if (!uidVal) return alert("Firebase UID zorunludur.");
+    const row = {
+      id: uidVal,
+      uid: uidVal,
+      email: document.getElementById("newUserEmail")?.value.trim() || "",
+      displayName: document.getElementById("newUserName")?.value.trim() || "",
+      role: document.getElementById("newUserRole")?.value || "viewer",
+      organizationId: document.getElementById("newUserOrg")?.value.trim() || "",
+      active: document.getElementById("newUserActive")?.value !== "false",
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    };
+    await saveRecord(COLLECTIONS.users, uidVal, row);
+    await loadData(); renderAll(); showSection("settings");
+    alert("Kullanıcı profili kaydedildi.");
+  };
+  window.saveUserProfile = async function(uidVal) {
+    if (!userCanManageUsers()) return alert("Yalnızca yönetici kullanıcı profili kaydedebilir.");
+    const existing = state.users.find(u => (u.uid || u.id) === uidVal) || {};
+    const row = {
+      ...existing,
+      id: uidVal,
+      uid: uidVal,
+      displayName: document.getElementById(`u_name_${uidVal}`)?.value.trim() || "",
+      email: document.getElementById(`u_email_${uidVal}`)?.value.trim() || "",
+      role: document.getElementById(`u_role_${uidVal}`)?.value || "viewer",
+      organizationId: document.getElementById(`u_org_${uidVal}`)?.value.trim() || "",
+      active: document.getElementById(`u_active_${uidVal}`)?.value !== "false",
+      updatedAt: new Date().toISOString()
+    };
+    await saveRecord(COLLECTIONS.users, uidVal, row);
+    await loadData(); renderAll(); showSection("settings");
+    alert("Kullanıcı profili güncellendi.");
+  };
+
+  function renderAuthState() {
+    const badge = document.getElementById("authStatusBadge");
+    const logout = document.getElementById("logoutButton");
+    if (badge) {
+      badge.className = `auth-status ${isAuthLocked()?"locked":"demo"}`;
+      badge.innerHTML = `${isAuthLocked()?"🔒":"🧪"} ${escapeHtml(authLabel())}`;
+    }
+    if (logout) logout.style.display = state.authUser && !state.demoMode ? "inline-flex" : "none";
+    const btn = document.getElementById("notificationTopButton");
+    if (btn) {
+      const unread = buildNotifications().filter(n => !state.notificationReads.includes(n.id)).length;
+      btn.innerHTML = `Bildirimler${unread ? ` (${unread})` : ""}`;
+    }
+    const roleSelect = document.getElementById("roleSelect");
+    if (roleSelect) roleSelect.disabled = isAuthLocked();
+    const orgInput = document.getElementById("orgContextInput");
+    if (orgInput) orgInput.disabled = isAuthLocked() && state.role === "auditee";
+    const orgSelect = document.getElementById("orgContextSelect");
+    if (orgSelect) orgSelect.disabled = isAuthLocked() && state.role === "auditee";
+  }
+
+  // Override role selector with auth lock support
+  renderRoleSelect = function() {
+    const select = document.getElementById("roleSelect");
+    select.innerHTML = Object.entries(ROLES).map(([key, label]) => `<option value="${key}" ${key === state.role ? "selected" : ""}>${label}</option>`).join("");
+    const orgOptions = getOrganizationContextOptions();
+    const orgSelect = document.getElementById("orgContextSelect");
+    const currentExists = orgOptions.some(o => o.id === state.orgContext);
+    if (!currentExists && orgOptions[0] && !(isAuthLocked() && state.role === "auditee")) state.orgContext = orgOptions[0].id;
+    if (orgSelect) orgSelect.innerHTML = orgOptions.map(o => `<option value="${escapeHtml(o.id)}" ${o.id === state.orgContext ? "selected" : ""}>${escapeHtml(o.name)} — ${escapeHtml(o.id)}${o.auditCount ? ` (${o.auditCount} denetim)` : ""}</option>`).join("");
+    const manual = document.getElementById("orgContextInput");
+    if (manual) manual.value = state.orgContext;
+    renderAuthState();
+  };
+
+  sectionAllowed = function(sectionId) {
+    if (sectionId === "notifications") return true;
+    const allowed = ROLE_SECTIONS[state.role];
+    return allowed === "all" || (Array.isArray(allowed) && allowed.includes(sectionId));
+  };
+
+  function daysFromToday(dateText) {
+    if (!dateText) return null;
+    const a = new Date(today() + "T00:00:00");
+    const b = new Date(String(dateText).slice(0,10) + "T00:00:00");
+    if (Number.isNaN(b.getTime())) return null;
+    return Math.round((b - a) / 86400000);
+  }
+  function deadlineClass(dateText, completed=false) {
+    if (completed) return "ok";
+    const d = daysFromToday(dateText);
+    if (d === null) return "ok";
+    if (d < 0) return "overdue";
+    if (d <= 7) return "soon";
+    return "ok";
+  }
+  function deadlineText(dateText, completed=false) {
+    if (!dateText) return "Tarih yok";
+    if (completed) return `Tamamlandı / ${formatDate(dateText)}`;
+    const d = daysFromToday(dateText);
+    if (d === null) return formatDate(dateText);
+    if (d < 0) return `${formatDate(dateText)} / ${Math.abs(d)} gün gecikti`;
+    if (d === 0) return `${formatDate(dateText)} / bugün son gün`;
+    return `${formatDate(dateText)} / ${d} gün kaldı`;
+  }
+  function deadlineBadge(dateText, completed=false) {
+    return `<span class="deadline-inline ${deadlineClass(dateText, completed)}">${escapeHtml(deadlineText(dateText, completed))}</span>`;
+  }
+  function isAuditVisibleForCurrentUser(audit) {
+    if (!audit) return false;
+    if (state.demoMode || !state.authUser) return true;
+    if (["admin","program_manager","viewer"].includes(state.role)) return true;
+    if (state.role === "auditee") return audit.organizationId === profileOrg();
+    const assignment = getAssignment(audit.auditId) || {};
+    const uid = activeUid();
+    const email = String(state.authUser?.email || "").toLowerCase();
+    const name = String(state.userProfile?.displayName || "").toLowerCase();
+    const uidFields = [assignment.leadAuditorUid, ...(assignment.auditorUids || []), ...(assignment.technicalExpertUids || []), ...(assignment.observerUids || [])].filter(Boolean);
+    if (uidFields.includes(uid)) return true;
+    const text = [assignment.leadAuditorName, ...(assignment.auditorNames || []), ...(assignment.technicalExpertNames || [])].join(" ").toLowerCase();
+    return (!!email && text.includes(email)) || (!!name && text.includes(name));
+  }
+  function visibleAuditsForCurrentUser(rows = state.audits) { return rows.filter(isAuditVisibleForCurrentUser); }
+
+  function buildNotifications() {
+    const out = [];
+    const add = (n) => { if (n.date && (n.days === null || n.days <= 14 || n.severity === "overdue")) out.push(n); };
+    visibleAuditsForCurrentUser().forEach(a => {
+      const pushAudit = (kind, title, date, doneStatuses, section, actionText) => {
+        const done = doneStatuses.includes(a.status);
+        if (done) return;
+        const days = daysFromToday(date);
+        const severity = days !== null && days < 0 ? "overdue" : days !== null && days <= 7 ? "soon" : "info";
+        add({ id:`audit-${a.auditId}-${kind}`, type:"audit", severity, days, date, section, title, actionText, auditId:a.auditId, org:a.organizationName, text:`${a.auditId} / ${a.organizationName || "-"} / ${deadlineText(date)}` });
+      };
+      if (["planned","programmed"].includes(a.status)) pushAudit("auditee-response", "Kuruluş cevap süresi yaklaşıyor", a.auditeeResponseDueDate, ["pre_evaluation","audit_in_progress","objection_period","final_report_preparation","final_report_sent","cap_waiting","cap_under_review","cap_monitoring","closed"], "waitingAuditeeResponse", "Cevap sürecini kontrol et");
+      if (["waiting_auditee_response","pre_evaluation"].includes(a.status)) pushAudit("preeval", "Ön değerlendirme son tarihi", a.preEvaluationDueDate, ["audit_in_progress","objection_period","final_report_preparation","final_report_sent","cap_waiting","cap_under_review","cap_monitoring","closed"], "preEvaluation", "Ön değerlendirme");
+      if (a.status === "objection_period") pushAudit("objection", "İtiraz bildirimi son tarihi", a.objectionDueDate, ["final_report_preparation","final_report_sent","cap_waiting","cap_under_review","cap_monitoring","closed"], state.role === "auditee" ? "auditeeObjections" : "objectionAudits", "İtiraz sürecini aç");
+      if (a.status === "final_report_preparation") pushAudit("final-report", "Nihai rapor son tarihi", a.finalReportDueDate, ["final_report_sent","cap_waiting","cap_under_review","cap_monitoring","closed"], "reportsAudit", "Nihai rapor");
+      if (["final_report_sent","cap_waiting"].includes(a.status)) pushAudit("cap-submit", "CAP sunma son tarihi", a.capDueDate, ["cap_under_review","cap_monitoring","closed"], state.role === "auditee" ? "auditeeCap" : "capWaiting", "CAP girişi");
+    });
+    state.capPlans.filter(c => isAuditVisibleForCurrentUser(getAudit(c.auditId))).forEach(c => {
+      if (["finding_closed","closed"].includes(c.status)) return;
+      const days = daysFromToday(c.dueDate);
+      const severity = days !== null && days < 0 ? "overdue" : days !== null && days <= 7 ? "soon" : "info";
+      add({ id:`cap-${capPlanIdOf(c)}-due`, type:"cap", severity, days, date:c.dueDate, section: state.role === "auditee" ? "auditeeCap" : "capWaiting", title:"CAP planı son tarihi", actionText:"CAP planını aç", auditId:c.auditId, org:c.organizationName, text:`${capPlanIdOf(c)} / ${c.organizationName || "-"} / ${deadlineText(c.dueDate)}` });
+    });
+    state.capSteps.forEach(step => {
+      const plan = getCapPlan(step.capPlanId);
+      if (!plan || ["verified","deleted"].includes(step.status)) return;
+      if (!isAuditVisibleForCurrentUser(getAudit(plan.auditId))) return;
+      const date = step.revisedImplementationDate || step.estimatedImplementationDate;
+      const days = daysFromToday(date);
+      const severity = days !== null && days < 0 ? "overdue" : days !== null && days <= 7 ? "soon" : "info";
+      add({ id:`capstep-${step.capStepId || step.id}`, type:"cap-step", severity, days, date, section: state.role === "auditee" ? "auditeeCap" : "capMonitoring", title:`CAP adımı ${step.stepNo || ""}`, actionText:"CAP izle", auditId:plan.auditId, org:plan.organizationName, text:`${plan.organizationName || "-"} / ${step.responsibleUnit || "-"} / ${deadlineText(date)}` });
+    });
+    return out.sort((a,b) => (a.days ?? 9999) - (b.days ?? 9999));
+  }
+  function notificationStats(notifs) {
+    return {
+      total: notifs.length,
+      unread: notifs.filter(n => !state.notificationReads.includes(n.id)).length,
+      overdue: notifs.filter(n => n.severity === "overdue").length,
+      soon: notifs.filter(n => n.severity === "soon").length
+    };
+  }
+  function renderNotificationsPanel() {
+    const el = document.getElementById("notifications");
+    if (!el) return;
+    const rows = buildNotifications();
+    const stats = notificationStats(rows);
+    const list = rows.length ? rows.map(n => `<div class="notification-item ${n.severity} ${state.notificationReads.includes(n.id)?"done":""}"><div><h4>${escapeHtml(n.title)} ${deadlineBadge(n.date)}</h4><p>${escapeHtml(n.text)}<br><strong>İlgili kayıt:</strong> ${escapeHtml(n.auditId || "-")} | ${escapeHtml(n.org || "-")}</p></div><div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end"><button class="btn primary" onclick="openNotification('${jsArg(n.id)}')">${escapeHtml(n.actionText || "Aç")}</button><button class="btn" onclick="markNotificationRead('${jsArg(n.id)}')">Okundu</button></div></div>`).join("") : `<div class="empty">Açık bildirim veya gecikme uyarısı bulunmuyor.</div>`;
+    el.innerHTML = `<div class="info-banner"><strong>Faz 7 Bildirim Merkezi:</strong> Kritik tarihler, gecikmeler ve 14 gün içindeki yaklaşan görevler bu ekranda toplanır. Statik GitHub Pages ortamında arka plan zamanlayıcı olmadığı için uyarılar sayfa açıldığında ve yenilendiğinde hesaplanır.</div><div class="notification-strip"><div class="notification-stat"><b>${stats.total}</b><span>Toplam uyarı</span></div><div class="notification-stat"><b>${stats.unread}</b><span>Okunmamış</span></div><div class="notification-stat"><b>${stats.overdue}</b><span>Geciken</span></div><div class="notification-stat"><b>${stats.soon}</b><span>7 gün içinde</span></div></div><div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px"><button class="btn success" onclick="markAllNotificationsRead()">Tümünü Okundu Yap</button><button class="btn warning" onclick="applyAutomaticDeadlineTransitions(true)">Süreleri Kontrol Et</button></div><div class="notification-list">${list}</div>`;
+  }
+  window.markNotificationRead = function(id) {
+    if (!state.notificationReads.includes(id)) state.notificationReads.push(id);
+    localStorage.setItem("usoap_phase7_notification_reads", JSON.stringify(state.notificationReads));
+    renderNotificationsPanel(); renderAuthState();
+  };
+  window.markAllNotificationsRead = function() {
+    state.notificationReads = [...new Set([...state.notificationReads, ...buildNotifications().map(n => n.id)])];
+    localStorage.setItem("usoap_phase7_notification_reads", JSON.stringify(state.notificationReads));
+    renderNotificationsPanel(); renderAuthState();
+  };
+  window.openNotification = function(id) {
+    const n = buildNotifications().find(x => x.id === id);
+    if (!n) return;
+    window.markNotificationRead(id);
+    if (n.auditId) {
+      if (n.section === "reportsAudit") state.currentFinalReportAuditId = n.auditId;
+      if (n.section === "preEvaluation") state.currentPreEvaluationAuditId = n.auditId;
+      if (n.section === "auditExecution") state.currentAuditExecutionId = n.auditId;
+      if (n.section === "auditeeObjections" || n.section === "objectionAudits") state.currentObjectionAuditId = n.auditId;
+    }
+    showSection(n.section || "notifications");
+  };
+
+  // Override renderAuditList to apply user-based visibility and clearer deadline warnings.
+  renderAuditList = function(sectionId, statuses, title, subtitle) {
+    const baseRowsAll = state.audits.filter(a => statuses.includes(a.status));
+    const baseRows = visibleAuditsForCurrentUser(baseRowsAll);
+    const rows = applyAuditFilters(baseRows);
+    const dueSoon = rows.filter(a => { const d = daysBetween(nextCriticalDate(a)); return d !== null && d >= 0 && d <= 7; }).length;
+    const overdue = rows.filter(a => { const d = daysBetween(nextCriticalDate(a)); return d !== null && d < 0; }).length;
+    const roleNote = isAuthLocked() ? `<div class="auth-lock-note">Bu liste kullanıcı profilinize göre filtrelenmiştir. Rol: <strong>${escapeHtml(ROLES[state.role] || state.role)}</strong>${state.role === "auditee" ? ` | Kuruluş: <strong>${escapeHtml(state.orgContext)}</strong>` : ""}</div>` : "";
+    document.getElementById(sectionId).innerHTML = `${roleNote}<div class="info-banner"><strong>${escapeHtml(title)}:</strong> ${escapeHtml(subtitle)}</div><div class="summary-strip"><div class="mini-stat"><strong>${baseRows.length}</strong><span>Yetkili kayıt</span></div><div class="mini-stat"><strong>${rows.length}</strong><span>Filtre sonrası</span></div><div class="mini-stat"><strong>${dueSoon}</strong><span>7 gün içinde kritik</span></div><div class="mini-stat"><strong>${overdue}</strong><span>Geciken kritik tarih</span></div></div>${auditFilterToolbar()}<div class="list">${rows.map(renderAuditCard).join("") || `<div class="empty">Bu statüde veya filtreye uygun denetim kaydı bulunmuyor.</div>`}</div>`;
+  };
+
+  // Override critical date text with stronger visual warnings.
+  criticalDateText = function(audit) {
+    return deadlineBadge(nextCriticalDate(audit));
+  };
+
+  // Override settings with user management and security rules guidance.
+  renderSettings = function() {
+    const collectionsJson = JSON.stringify(COLLECTIONS, null, 2);
+    const profile = state.userProfile;
+    const rulesNote = `rules_version = '2';\nservice cloud.firestore {\n  match /databases/{database}/documents {\n    function signedIn() { return request.auth != null; }\n    function profile() { return get(/databases/$(database)/documents/users/$(request.auth.uid)).data; }\n    function role() { return signedIn() && exists(/databases/$(database)/documents/users/$(request.auth.uid)) ? profile().role : 'none'; }\n    function active() { return signedIn() && exists(/databases/$(database)/documents/users/$(request.auth.uid)) && profile().active == true; }\n    function admin() { return active() && role() == 'admin'; }\n    function staff() { return active() && role() in ['admin','program_manager','lead_auditor','auditor','viewer']; }\n    function auditeeOrg(orgId) { return active() && role() == 'auditee' && profile().organizationId == orgId; }\n\n    match /users/{uid} {\n      allow read: if active() && (admin() || request.auth.uid == uid);\n      allow create, update, delete: if admin();\n    }\n    match /auditPrograms/{id} { allow read: if staff(); allow write: if active() && role() in ['admin','program_manager']; }\n    match /audits/{id} {\n      allow read: if staff() || auditeeOrg(resource.data.organizationId);\n      allow create, update: if active() && role() in ['admin','program_manager','lead_auditor'];\n      allow delete: if admin();\n    }\n    match /organizationResponses/{id} {\n      allow read: if staff() || auditeeOrg(resource.data.organizationId);\n      allow create, update: if active() && (staff() || auditeeOrg(request.resource.data.organizationId));\n    }\n    match /findings/{id} { allow read: if staff() || auditeeOrg(resource.data.organizationId); allow write: if active() && role() in ['admin','program_manager','lead_auditor','auditor']; }\n    match /capPlans/{id} { allow read: if staff() || auditeeOrg(resource.data.organizationId); allow create, update: if active() && (staff() || auditeeOrg(request.resource.data.organizationId)); }\n    match /capSteps/{id} { allow read: if staff() || auditeeOrg(resource.data.organizationId); allow create, update: if active() && (staff() || auditeeOrg(request.resource.data.organizationId)); }\n    match /{document=**} { allow read, write: if admin(); }\n  }\n}`;
+    document.getElementById("settings").innerHTML = `<div class="grid"><div class="card span-6"><h3>Giriş / Yetki Durumu</h3><p>${isAuthLocked() ? "Gerçek kullanıcı girişi aktif." : "Demo/Test modu aktif veya kullanıcı girişi yapılmadı."}</p><div class="detail-grid"><div class="detail-box"><b>Kullanıcı</b>${escapeHtml(state.authUser?.email || "Demo/Test")}</div><div class="detail-box"><b>Rol</b>${escapeHtml(ROLES[state.role] || state.role)}</div><div class="detail-box"><b>Kuruluş</b>${escapeHtml(state.orgContext || "-")}</div><div class="detail-box"><b>Profil Durumu</b>${profile?.active === false ? "Pasif/Beklemede" : "Aktif"}</div></div></div><div class="card span-6"><h3>Bağlantı Durumu</h3><p>${escapeHtml(state.firebaseMessage)}</p><p>Gerçek yetkilendirme için Firebase Authentication kullanıcıları, <code>users</code> profil kayıtları ve Firestore Security Rules birlikte kullanılmalıdır.</p></div><div class="card span-12"><h3>Kullanıcı Profilleri</h3>${userRowsHtml()}</div>${newUserFormHtml()}<div class="card span-12"><h3>Firestore Security Rules Taslağı</h3><p>Bu taslak dosya paket içindeki <strong>firestore.rules</strong> dosyasına da eklendi. Firebase Console > Firestore Database > Rules bölümünden uyarlayarak yayımlayın.</p><pre class="model-code">${escapeHtml(rulesNote)}</pre></div><div class="card span-12"><h3>Firestore Koleksiyon Omurgası</h3><pre class="model-code">${escapeHtml(collectionsJson)}</pre></div><div class="card span-12"><h3>Faz 7 Kapsamı</h3><p><strong>Faz 7:</strong> Bildirim merkezi, gecikme uyarıları, kullanıcı profil yönetimi, Auth tabanlı rol kilidi ve Firestore Rules taslağı. Arka plan e-posta bildirimi için ileride Firebase Cloud Functions gerekir.</p></div></div>`;
+  };
+
   async function init() {
     renderRoleSelect();
     renderMenu();
     setTitle("Yükleniyor", `${DATA_FILE} okunuyor...`);
     try {
       await initFirebase();
+      await initAuthGate();
       await loadMasterModel();
       await loadData();
       renderAll();
