@@ -345,13 +345,13 @@
         <button class="btn primary" onclick="loginWithEmail()">Giriş Yap</button>
         <button class="btn" onclick="continueDemoMode()">Demo/Test Modunda Devam Et</button>
       </div>
-      <p style="margin-top:12px">İlk kurulumda Firebase Authentication kullanıcılarını Firebase Console üzerinden oluşturup, ardından <strong>Ayarlar / Yetkiler</strong> ekranında UID, rol ve kuruluş eşlemesini tanımlayın.</p>
+      <p style="margin-top:12px">Yeni kullanıcılar e-posta/şifre ile ilk kez giriş yaptığında sistem otomatik <strong>Onay Bekleyen Kullanıcı</strong> profili oluşturur. Yönetici yalnızca rol ve kuruluş atayıp kullanıcıyı aktifleştirir. Manuel UID girişi teknik/yedek kullanım içindir.</p>
     </div>
   </div>
   <aside class="sidebar">
     <div class="brand">
       <h1>USOAP CMA<br>Denetim ve CAP Yönetimi</h1>
-      <p>Faz 7 sürümü: bildirimler, gecikme uyarıları ve kullanıcı bazlı yetkilendirme eklendi.</p>
+      <p>Faz 7.1 sürümü: bildirimler, gecikme uyarıları ve otomatik kullanıcı onay akışı eklendi.</p>
     </div>
     <div class="role-box">
       <label for="roleSelect">Test Rolü</label>
@@ -359,7 +359,7 @@
       <label for="orgContextSelect">Kuruluş Bağlamı / Test Kuruluşu</label>
       <select id="orgContextSelect" onchange="setOrgContext(this.value)"></select>
       <input id="orgContextInput" value="org_demo" onchange="setOrgContext(this.value)" placeholder="Manuel Organization ID" />
-      <small style="color:#94a3b8;line-height:1.45;display:block;">Kuruluş Portalı testinde artık ID ezberlemek gerekmez. Liste, oluşturduğun denetimlerdeki kuruluşlardan otomatik oluşur. Gerçek kullanıcı güvenliği sonraki fazda Firebase Auth + Firestore Rules ile uygulanacak.</small>
+      <small style="color:#94a3b8;line-height:1.45;display:block;">Demo modunda rol ve kuruluş bağlamı buradan test edilir. Gerçek girişte rol/kuruluş users profil kaydından gelir ve kuruluş kullanıcılarında bu alan kilitlenir.</small>
     </div>
     <div id="menuRoot"></div>
   </aside>
@@ -368,7 +368,7 @@
     <div class="topbar">
       <div>
         <h2 id="pageTitle">Ana Sayfa</h2>
-        <p id="pageSubtitle">Faz 7 bildirimler, gecikme uyarıları ve kullanıcı bazlı yetkilendirme test sürümü.</p>
+        <p id="pageSubtitle">Faz 7.1 bildirimler, gecikme uyarıları ve otomatik kullanıcı onay akışı test sürümü.</p>
       </div>
       <div class="top-actions">
         <span id="authStatusBadge" class="auth-status demo">Demo/Test</span>
@@ -3521,6 +3521,7 @@ ${escapeHtml(finding.reviewedEvidence || "-")}</div><div class="grid"><div class
   function profileOrg() { return state.userProfile?.organizationId || state.orgContext || ""; }
   function authLabel() {
     if (state.demoMode) return "Demo/Test Modu";
+    if (state.authUser && userIsPending(state.userProfile)) return `${state.authUser.email || state.authUser.uid} / Onay Bekliyor`;
     if (state.authUser) return `${state.authUser.email || state.authUser.uid} / ${ROLES[state.role] || state.role}`;
     return "Giriş bekleniyor";
   }
@@ -3551,6 +3552,44 @@ ${escapeHtml(finding.reviewedEvidence || "-")}</div><div class="grid"><div class
       }, () => resolve());
     });
   }
+  function makePendingUserProfile() {
+    const now = new Date().toISOString();
+    return {
+      id: state.authUser.uid,
+      uid: state.authUser.uid,
+      email: state.authUser.email || "",
+      displayName: state.authUser.displayName || state.authUser.email || state.authUser.uid,
+      role: "viewer",
+      organizationId: "",
+      active: false,
+      pendingProfile: true,
+      approvalStatus: "pending",
+      selfRegistered: true,
+      createdAt: now,
+      updatedAt: now,
+      lastLoginAt: now
+    };
+  }
+
+  function makeBootstrapAdminProfile() {
+    const now = new Date().toISOString();
+    return {
+      id: state.authUser.uid,
+      uid: state.authUser.uid,
+      email: state.authUser.email || "",
+      displayName: state.authUser.displayName || state.authUser.email || "İlk Yönetici",
+      role: "admin",
+      organizationId: "org_shgm",
+      active: true,
+      pendingProfile: false,
+      approvalStatus: "approved",
+      bootstrapAdmin: true,
+      createdAt: now,
+      updatedAt: now,
+      lastLoginAt: now
+    };
+  }
+
   function applyAuthProfile() {
     if (state.demoMode) return;
     if (!state.authUser) {
@@ -3558,34 +3597,33 @@ ${escapeHtml(finding.reviewedEvidence || "-")}</div><div class="grid"><div class
       state.role = "viewer";
       return;
     }
-    let profile = state.users.find(u => (u.uid || u.id) === state.authUser.uid || String(u.email || "").toLowerCase() === String(state.authUser.email || "").toLowerCase());
+
+    let profile = state.users.find(u =>
+      (u.uid || u.id) === state.authUser.uid ||
+      String(u.email || "").toLowerCase() === String(state.authUser.email || "").toLowerCase()
+    );
+
     if (!profile && state.users.length === 0) {
-      profile = {
-        id: state.authUser.uid,
-        uid: state.authUser.uid,
-        email: state.authUser.email || "",
-        displayName: state.authUser.displayName || state.authUser.email || "İlk Yönetici",
-        role: "admin",
-        organizationId: "org_shgm",
-        active: true,
-        bootstrapAdmin: true,
-        createdAt: new Date().toISOString()
-      };
+      profile = makeBootstrapAdminProfile();
       state.users.push(profile);
-      saveRecord(COLLECTIONS.users, state.authUser.uid, profile);
+      saveRecord(COLLECTIONS.users, state.authUser.uid, profile).catch(err => console.warn("İlk yönetici profili kaydedilemedi", err));
+    } else if (!profile) {
+      profile = makePendingUserProfile();
+      state.users.push(profile);
+      saveRecord(COLLECTIONS.users, state.authUser.uid, profile).catch(err => console.warn("Onay bekleyen kullanıcı profili kaydedilemedi", err));
+    } else {
+      const patch = { lastLoginAt: new Date().toISOString() };
+      if (!profile.email && state.authUser.email) patch.email = state.authUser.email;
+      if (!profile.displayName && (state.authUser.displayName || state.authUser.email)) patch.displayName = state.authUser.displayName || state.authUser.email;
+      Object.assign(profile, patch);
+      updateRecord(COLLECTIONS.users, state.authUser.uid, patch).catch(err => console.warn("Son giriş bilgisi güncellenemedi", err));
     }
-    state.userProfile = profile || {
-      uid: state.authUser.uid,
-      email: state.authUser.email || "",
-      displayName: state.authUser.email || state.authUser.uid,
-      role: "viewer",
-      organizationId: "",
-      active: false,
-      pendingProfile: true
-    };
-    state.role = state.userProfile.active === false ? "viewer" : (state.userProfile.role || "viewer");
-    if (state.userProfile.organizationId) {
-      state.orgContext = state.userProfile.organizationId;
+
+    state.userProfile = profile;
+    const pending = userIsPending(profile);
+    state.role = pending ? "viewer" : (profile.role || "viewer");
+    if (profile.organizationId) {
+      state.orgContext = profile.organizationId;
       localStorage.setItem("usoap_phase1_org", state.orgContext);
     }
   }
@@ -3625,23 +3663,49 @@ ${escapeHtml(finding.reviewedEvidence || "-")}</div><div class="grid"><div class
     renderAuthState();
   };
 
+  function userIsPending(user) {
+    if (!user) return false;
+    return user.pendingProfile === true || user.approvalStatus === "pending" || user.active === false;
+  }
+  function profileStatusText(user) {
+    if (!user) return "Profil yok";
+    if (userIsPending(user)) return "Onay Bekliyor";
+    return "Aktif";
+  }
   function userCanManageUsers() { return state.role === "admin"; }
+  function pendingUsersSummaryHtml() {
+    const pending = state.users.filter(userIsPending);
+    if (!pending.length) return `<div class="info-banner"><strong>Onay bekleyen kullanıcı yok.</strong> Yeni kullanıcılar ilk giriş yaptığında burada otomatik görünür.</div>`;
+    const rows = pending.map(u => `<li><strong>${escapeHtml(u.displayName || u.email || u.uid || "Kullanıcı")}</strong> — ${escapeHtml(u.email || "-")} <span class="pill yellow">Onay Bekliyor</span></li>`).join("");
+    return `<div class="warn-banner"><strong>${pending.length} kullanıcı onay bekliyor.</strong><ul style="margin:8px 0 0 18px">${rows}</ul></div>`;
+  }
+
   function userRowsHtml() {
-    const rows = state.users.slice().sort((a,b)=>String(a.email||a.displayName||"").localeCompare(String(b.email||b.displayName||""), "tr"));
+    const rows = state.users.slice().sort((a,b)=>{
+      const ap = userIsPending(a) ? 0 : 1;
+      const bp = userIsPending(b) ? 0 : 1;
+      if (ap !== bp) return ap - bp;
+      return String(a.email||a.displayName||"").localeCompare(String(b.email||b.displayName||""), "tr");
+    });
     const body = rows.map(u => {
       const id = u.uid || u.id;
-      return `<tr><td><input id="u_uid_${escapeHtml(id)}" value="${escapeHtml(id)}" disabled></td><td><input id="u_name_${escapeHtml(id)}" value="${escapeHtml(u.displayName || "")}" ${userCanManageUsers()?"":"disabled"}></td><td><input id="u_email_${escapeHtml(id)}" value="${escapeHtml(u.email || "")}" ${userCanManageUsers()?"":"disabled"}></td><td><select id="u_role_${escapeHtml(id)}" ${userCanManageUsers()?"":"disabled"}>${Object.entries(ROLES).map(([k,l])=>`<option value="${k}" ${k===(u.role||"viewer")?"selected":""}>${escapeHtml(l)}</option>`).join("")}</select></td><td><input id="u_org_${escapeHtml(id)}" value="${escapeHtml(u.organizationId || "")}" ${userCanManageUsers()?"":"disabled"}></td><td><select id="u_active_${escapeHtml(id)}" ${userCanManageUsers()?"":"disabled"}><option value="true" ${u.active!==false?"selected":""}>Aktif</option><option value="false" ${u.active===false?"selected":""}>Pasif</option></select></td><td>${userCanManageUsers()?`<button class="btn success" onclick="saveUserProfile('${jsArg(id)}')">Kaydet</button>`:"-"}</td></tr>`;
+      const pending = userIsPending(u);
+      const statusPill = pending ? `<span class="pill yellow">Onay Bekliyor</span>` : `<span class="pill green">Aktif</span>`;
+      const actionButtons = userCanManageUsers()
+        ? `<button class="btn success" onclick="saveUserProfile('${jsArg(id)}')">Kaydet</button>${pending ? `<button class="btn primary" onclick="activateUserProfile('${jsArg(id)}')">Aktifleştir</button>` : ""}`
+        : "-";
+      return `<tr><td><input id="u_uid_${escapeHtml(id)}" value="${escapeHtml(id)}" disabled></td><td><input id="u_name_${escapeHtml(id)}" value="${escapeHtml(u.displayName || "")}" ${userCanManageUsers()?"":"disabled"}></td><td><input id="u_email_${escapeHtml(id)}" value="${escapeHtml(u.email || "")}" ${userCanManageUsers()?"":"disabled"}></td><td><select id="u_role_${escapeHtml(id)}" ${userCanManageUsers()?"":"disabled"}>${Object.entries(ROLES).map(([k,l])=>`<option value="${k}" ${k===(u.role||"viewer")?"selected":""}>${escapeHtml(l)}</option>`).join("")}</select></td><td><input id="u_org_${escapeHtml(id)}" value="${escapeHtml(u.organizationId || "")}" ${userCanManageUsers()?"":"disabled"}></td><td>${statusPill}<select id="u_active_${escapeHtml(id)}" ${userCanManageUsers()?"":"disabled"} style="margin-top:6px"><option value="true" ${u.active!==false?"selected":""}>Aktif</option><option value="false" ${u.active===false?"selected":""}>Pasif / Beklemede</option></select></td><td>${actionButtons}</td></tr>`;
     }).join("");
-    return `<div class="table-wrap"><table class="user-table"><thead><tr><th>UID</th><th>Ad Soyad</th><th>E-posta</th><th>Rol</th><th>Kuruluş ID</th><th>Durum</th><th>İşlem</th></tr></thead><tbody>${body || `<tr><td colspan="7">Kullanıcı profili yok. Firebase Auth kullanıcısını oluşturduktan sonra aşağıdaki formdan profil ekleyin.</td></tr>`}</tbody></table></div>`;
+    return `<div class="table-wrap"><table class="user-table"><thead><tr><th>UID</th><th>Ad Soyad</th><th>E-posta</th><th>Rol</th><th>Kuruluş ID</th><th>Durum</th><th>İşlem</th></tr></thead><tbody>${body || `<tr><td colspan="7">Kullanıcı profili yok. Gerçek giriş yapan kullanıcılar burada otomatik Onay Bekleyen Kullanıcı olarak görünecek.</td></tr>`}</tbody></table></div>`;
   }
   function newUserFormHtml() {
-    if (!userCanManageUsers()) return `<div class="warn-banner">Kullanıcı profili yönetimi yalnızca Yönetici rolüyle yapılır.</div>`;
-    return `<div class="card span-12"><h3>Kullanıcı Profil Kaydı Ekle</h3><p>Firebase Authentication kullanıcısını Console üzerinden oluşturduktan sonra UID bilgisini buraya kaydedin. Gerçek yetki bu profil ve Firestore Rules üzerinden uygulanır.</p><div class="form-grid"><div class="field"><label>Firebase UID</label><input id="newUserUid" placeholder="Auth UID"></div><div class="field"><label>E-posta</label><input id="newUserEmail" placeholder="kullanici@..." type="email"></div><div class="field"><label>Ad Soyad</label><input id="newUserName" placeholder="Ad Soyad"></div><div class="field"><label>Rol</label><select id="newUserRole">${Object.entries(ROLES).map(([k,l])=>`<option value="${k}">${escapeHtml(l)}</option>`).join("")}</select></div><div class="field"><label>Kuruluş ID</label><input id="newUserOrg" placeholder="org_001 / org_shgm"></div><div class="field"><label>Durum</label><select id="newUserActive"><option value="true">Aktif</option><option value="false">Pasif</option></select></div></div><button class="btn success" style="margin-top:10px" onclick="createUserProfile()">Profil Kaydet</button></div>`;
+    if (!userCanManageUsers()) return `<div class="warn-banner">Kullanıcı profili yönetimi yalnızca Yönetici rolüyle yapılır. Giriş yaptıysanız ve onay bekliyorsanız, yöneticinin profilinizi aktifleştirmesi gerekir.</div>`;
+    return `<div class="card span-12"><h3>Manuel / Yedek Kullanıcı Profil Kaydı</h3><p>Ana yöntem artık otomatik profildir: kullanıcı ilk kez giriş yapar, sistem onu <strong>Onay Bekleyen Kullanıcı</strong> olarak kaydeder. Bu form yalnızca Firebase Console’dan UID ile manuel profil açmak gereken teknik durumlar içindir.</p><div class="form-grid"><div class="field"><label>Firebase UID <small>(teknik/yedek)</small></label><input id="newUserUid" placeholder="Auth UID"></div><div class="field"><label>E-posta</label><input id="newUserEmail" placeholder="kullanici@..." type="email"></div><div class="field"><label>Ad Soyad</label><input id="newUserName" placeholder="Ad Soyad"></div><div class="field"><label>Rol</label><select id="newUserRole">${Object.entries(ROLES).map(([k,l])=>`<option value="${k}">${escapeHtml(l)}</option>`).join("")}</select></div><div class="field"><label>Kuruluş ID</label><input id="newUserOrg" placeholder="org_001 / org_shgm"></div><div class="field"><label>Durum</label><select id="newUserActive"><option value="true">Aktif</option><option value="false">Pasif / Beklemede</option></select></div></div><button class="btn success" style="margin-top:10px" onclick="createUserProfile()">Manuel Profil Kaydet</button></div>`;
   }
   window.createUserProfile = async function() {
     if (!userCanManageUsers()) return alert("Yalnızca yönetici kullanıcı profili ekleyebilir.");
     const uidVal = document.getElementById("newUserUid")?.value.trim();
-    if (!uidVal) return alert("Firebase UID zorunludur.");
+    if (!uidVal) return alert("Manuel profil için Firebase UID gerekir. Normal kullanımda kullanıcı önce giriş yapar ve sistem profili otomatik oluşturur.");
     const row = {
       id: uidVal,
       uid: uidVal,
@@ -3650,6 +3714,10 @@ ${escapeHtml(finding.reviewedEvidence || "-")}</div><div class="grid"><div class
       role: document.getElementById("newUserRole")?.value || "viewer",
       organizationId: document.getElementById("newUserOrg")?.value.trim() || "",
       active: document.getElementById("newUserActive")?.value !== "false",
+      pendingProfile: document.getElementById("newUserActive")?.value === "false",
+      approvalStatus: document.getElementById("newUserActive")?.value === "false" ? "pending" : "approved",
+      approvedBy: document.getElementById("newUserActive")?.value === "false" ? null : activeUid(),
+      approvedAt: document.getElementById("newUserActive")?.value === "false" ? null : new Date().toISOString(),
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     };
@@ -3669,11 +3737,40 @@ ${escapeHtml(finding.reviewedEvidence || "-")}</div><div class="grid"><div class
       role: document.getElementById(`u_role_${uidVal}`)?.value || "viewer",
       organizationId: document.getElementById(`u_org_${uidVal}`)?.value.trim() || "",
       active: document.getElementById(`u_active_${uidVal}`)?.value !== "false",
+      pendingProfile: document.getElementById(`u_active_${uidVal}`)?.value === "false",
+      approvalStatus: document.getElementById(`u_active_${uidVal}`)?.value === "false" ? "pending" : "approved",
+      approvedBy: document.getElementById(`u_active_${uidVal}`)?.value === "false" ? (existing.approvedBy || null) : (existing.approvedBy || activeUid()),
+      approvedAt: document.getElementById(`u_active_${uidVal}`)?.value === "false" ? (existing.approvedAt || null) : (existing.approvedAt || new Date().toISOString()),
       updatedAt: new Date().toISOString()
     };
     await saveRecord(COLLECTIONS.users, uidVal, row);
     await loadData(); renderAll(); showSection("settings");
     alert("Kullanıcı profili güncellendi.");
+  };
+  window.activateUserProfile = async function(uidVal) {
+    if (!userCanManageUsers()) return alert("Yalnızca yönetici kullanıcı aktifleştirebilir.");
+    const existing = state.users.find(u => (u.uid || u.id) === uidVal) || {};
+    const role = document.getElementById(`u_role_${uidVal}`)?.value || existing.role || "viewer";
+    const organizationId = document.getElementById(`u_org_${uidVal}`)?.value.trim() || existing.organizationId || "";
+    if (role === "auditee" && !organizationId) return alert("Denetlenen Kuruluş rolü için Kuruluş ID zorunludur.");
+    const row = {
+      ...existing,
+      id: uidVal,
+      uid: uidVal,
+      displayName: document.getElementById(`u_name_${uidVal}`)?.value.trim() || existing.displayName || "",
+      email: document.getElementById(`u_email_${uidVal}`)?.value.trim() || existing.email || "",
+      role,
+      organizationId,
+      active: true,
+      pendingProfile: false,
+      approvalStatus: "approved",
+      approvedBy: activeUid(),
+      approvedAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    };
+    await saveRecord(COLLECTIONS.users, uidVal, row);
+    await loadData(); renderAll(); showSection("settings");
+    alert("Kullanıcı aktifleştirildi. Kullanıcı çıkış yapıp tekrar giriş yaptığında yeni rol ve kuruluş yetkisi uygulanır.");
   };
 
   function renderAuthState() {
@@ -3713,6 +3810,9 @@ ${escapeHtml(finding.reviewedEvidence || "-")}</div><div class="grid"><div class
 
   sectionAllowed = function(sectionId) {
     if (sectionId === "notifications") return true;
+    if (isAuthLocked() && userIsPending(state.userProfile)) {
+      return ["home", "settings", "notifications"].includes(sectionId);
+    }
     const allowed = ROLE_SECTIONS[state.role];
     return allowed === "all" || (Array.isArray(allowed) && allowed.includes(sectionId));
   };
@@ -3853,8 +3953,48 @@ ${escapeHtml(finding.reviewedEvidence || "-")}</div><div class="grid"><div class
   renderSettings = function() {
     const collectionsJson = JSON.stringify(COLLECTIONS, null, 2);
     const profile = state.userProfile;
-    const rulesNote = `rules_version = '2';\nservice cloud.firestore {\n  match /databases/{database}/documents {\n    function signedIn() { return request.auth != null; }\n    function profile() { return get(/databases/$(database)/documents/users/$(request.auth.uid)).data; }\n    function role() { return signedIn() && exists(/databases/$(database)/documents/users/$(request.auth.uid)) ? profile().role : 'none'; }\n    function active() { return signedIn() && exists(/databases/$(database)/documents/users/$(request.auth.uid)) && profile().active == true; }\n    function admin() { return active() && role() == 'admin'; }\n    function staff() { return active() && role() in ['admin','program_manager','lead_auditor','auditor','viewer']; }\n    function auditeeOrg(orgId) { return active() && role() == 'auditee' && profile().organizationId == orgId; }\n\n    match /users/{uid} {\n      allow read: if active() && (admin() || request.auth.uid == uid);\n      allow create, update, delete: if admin();\n    }\n    match /auditPrograms/{id} { allow read: if staff(); allow write: if active() && role() in ['admin','program_manager']; }\n    match /audits/{id} {\n      allow read: if staff() || auditeeOrg(resource.data.organizationId);\n      allow create, update: if active() && role() in ['admin','program_manager','lead_auditor'];\n      allow delete: if admin();\n    }\n    match /organizationResponses/{id} {\n      allow read: if staff() || auditeeOrg(resource.data.organizationId);\n      allow create, update: if active() && (staff() || auditeeOrg(request.resource.data.organizationId));\n    }\n    match /findings/{id} { allow read: if staff() || auditeeOrg(resource.data.organizationId); allow write: if active() && role() in ['admin','program_manager','lead_auditor','auditor']; }\n    match /capPlans/{id} { allow read: if staff() || auditeeOrg(resource.data.organizationId); allow create, update: if active() && (staff() || auditeeOrg(request.resource.data.organizationId)); }\n    match /capSteps/{id} { allow read: if staff() || auditeeOrg(resource.data.organizationId); allow create, update: if active() && (staff() || auditeeOrg(request.resource.data.organizationId)); }\n    match /{document=**} { allow read, write: if admin(); }\n  }\n}`;
-    document.getElementById("settings").innerHTML = `<div class="grid"><div class="card span-6"><h3>Giriş / Yetki Durumu</h3><p>${isAuthLocked() ? "Gerçek kullanıcı girişi aktif." : "Demo/Test modu aktif veya kullanıcı girişi yapılmadı."}</p><div class="detail-grid"><div class="detail-box"><b>Kullanıcı</b>${escapeHtml(state.authUser?.email || "Demo/Test")}</div><div class="detail-box"><b>Rol</b>${escapeHtml(ROLES[state.role] || state.role)}</div><div class="detail-box"><b>Kuruluş</b>${escapeHtml(state.orgContext || "-")}</div><div class="detail-box"><b>Profil Durumu</b>${profile?.active === false ? "Pasif/Beklemede" : "Aktif"}</div></div></div><div class="card span-6"><h3>Bağlantı Durumu</h3><p>${escapeHtml(state.firebaseMessage)}</p><p>Gerçek yetkilendirme için Firebase Authentication kullanıcıları, <code>users</code> profil kayıtları ve Firestore Security Rules birlikte kullanılmalıdır.</p></div><div class="card span-12"><h3>Kullanıcı Profilleri</h3>${userRowsHtml()}</div>${newUserFormHtml()}<div class="card span-12"><h3>Firestore Security Rules Taslağı</h3><p>Bu taslak dosya paket içindeki <strong>firestore.rules</strong> dosyasına da eklendi. Firebase Console > Firestore Database > Rules bölümünden uyarlayarak yayımlayın.</p><pre class="model-code">${escapeHtml(rulesNote)}</pre></div><div class="card span-12"><h3>Firestore Koleksiyon Omurgası</h3><pre class="model-code">${escapeHtml(collectionsJson)}</pre></div><div class="card span-12"><h3>Faz 7 Kapsamı</h3><p><strong>Faz 7:</strong> Bildirim merkezi, gecikme uyarıları, kullanıcı profil yönetimi, Auth tabanlı rol kilidi ve Firestore Rules taslağı. Arka plan e-posta bildirimi için ileride Firebase Cloud Functions gerekir.</p></div></div>`;
+    const rulesNote = `rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    function hasProfile() { return signedIn() && exists(/databases/$(database)/documents/users/$(request.auth.uid)); }
+    function profile() { return get(/databases/$(database)/documents/users/$(request.auth.uid)).data; }
+    function active() { return hasProfile() && profile().active == true; }
+    function role() { return active() ? profile().role : 'none'; }
+    function admin() { return role() == 'admin'; }
+    function staff() { return role() in ['admin','program_manager','lead_auditor','auditor','viewer']; }
+    function auditeeOrg(orgId) { return role() == 'auditee' && profile().organizationId == orgId; }
+    function selfPendingCreate(uid) {
+      return signedIn() && request.auth.uid == uid
+        && request.resource.data.uid == uid
+        && request.resource.data.role == 'viewer'
+        && request.resource.data.active == false
+        && request.resource.data.pendingProfile == true
+        && request.resource.data.approvalStatus == 'pending';
+    }
+
+    match /users/{uid} {
+      allow read: if signedIn() && (admin() || request.auth.uid == uid);
+      allow create: if admin() || selfPendingCreate(uid);
+      allow update, delete: if admin();
+    }
+    match /auditPrograms/{id} { allow read: if staff(); allow write: if active() && role() in ['admin','program_manager']; }
+    match /audits/{id} {
+      allow read: if staff() || auditeeOrg(resource.data.organizationId);
+      allow create, update: if active() && role() in ['admin','program_manager','lead_auditor'];
+      allow delete: if admin();
+    }
+    match /organizationResponses/{id} {
+      allow read: if staff() || auditeeOrg(resource.data.organizationId);
+      allow create, update: if active() && (staff() || auditeeOrg(request.resource.data.organizationId));
+    }
+    match /findings/{id} { allow read: if staff() || auditeeOrg(resource.data.organizationId); allow write: if active() && role() in ['admin','program_manager','lead_auditor','auditor']; }
+    match /capPlans/{id} { allow read: if staff() || auditeeOrg(resource.data.organizationId); allow create, update: if active() && (staff() || auditeeOrg(request.resource.data.organizationId)); }
+    match /capSteps/{id} { allow read: if staff() || auditeeOrg(resource.data.organizationId); allow create, update: if active() && (staff() || auditeeOrg(request.resource.data.organizationId)); }
+    match /{document=**} { allow read, write: if admin(); }
+  }
+}`;
+    document.getElementById("settings").innerHTML = `<div class="grid"><div class="card span-6"><h3>Giriş / Yetki Durumu</h3><p>${isAuthLocked() ? "Gerçek kullanıcı girişi aktif." : "Demo/Test modu aktif veya kullanıcı girişi yapılmadı."}</p><div class="detail-grid"><div class="detail-box"><b>Kullanıcı</b>${escapeHtml(state.authUser?.email || "Demo/Test")}</div><div class="detail-box"><b>Rol</b>${escapeHtml(ROLES[state.role] || state.role)}</div><div class="detail-box"><b>Kuruluş</b>${escapeHtml(state.orgContext || "-")}</div><div class="detail-box"><b>Profil Durumu</b>${escapeHtml(profileStatusText(profile))}</div></div></div><div class="card span-6"><h3>Bağlantı Durumu</h3><p>${escapeHtml(state.firebaseMessage)}</p><p>Gerçek yetkilendirme için Firebase Authentication kullanıcıları, <code>users</code> profil kayıtları ve Firestore Security Rules birlikte kullanılmalıdır.</p></div><div class="card span-12"><h3>Onay Bekleyen Kullanıcılar</h3>${pendingUsersSummaryHtml()}</div><div class="card span-12"><h3>Kullanıcı Profilleri</h3>${userRowsHtml()}</div>${newUserFormHtml()}<div class="card span-12"><h3>Firestore Security Rules Taslağı</h3><p>Bu taslak dosya paket içindeki <strong>firestore.rules</strong> dosyasına da eklendi. Firebase Console > Firestore Database > Rules bölümünden uyarlayarak yayımlayın.</p><pre class="model-code">${escapeHtml(rulesNote)}</pre></div><div class="card span-12"><h3>Firestore Koleksiyon Omurgası</h3><pre class="model-code">${escapeHtml(collectionsJson)}</pre></div><div class="card span-12"><h3>Faz 7 Kapsamı</h3><p><strong>Faz 7.1:</strong> Bildirim merkezi, gecikme uyarıları, otomatik onay bekleyen kullanıcı profili, yönetici onayı, Auth tabanlı rol kilidi ve Firestore Rules taslağı. Arka plan e-posta bildirimi için ileride Firebase Cloud Functions gerekir.</p></div></div>`;
   };
 
   async function init() {
