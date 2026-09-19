@@ -381,6 +381,7 @@
       </div>
       <div class="top-actions">
         <span id="authStatusBadge" class="auth-status demo">Demo/Test</span>
+        <button id="realLoginButton" class="btn primary" onclick="exitDemoMode()">Gerçek Girişe Geç</button>
         <button id="notificationTopButton" class="btn warning" onclick="showSection('notifications')">Bildirimler</button>
         <button id="logoutButton" class="btn" onclick="logoutCurrentUser()">Çıkış</button>
         <button class="btn" onclick="refreshAll()">Yenile</button>
@@ -3802,6 +3803,13 @@ ${escapeHtml(finding.reviewedEvidence || "-")}</div><div class="grid"><div class
     }
   };
   window.continueDemoMode = async function() {
+    // Faz 8A.1: Demo ve gerçek oturum birbirine karışmasın.
+    // Demo moduna geçerken varsa gerçek Firebase oturumu kapatılır.
+    if (state.auth?.currentUser) {
+      try { await signOut(state.auth); } catch (err) { console.warn("Demo moduna geçerken Firebase oturumu kapatılamadı", err); }
+    }
+    state.authUser = null;
+    state.userProfile = null;
     state.demoMode = true;
     localStorage.setItem("usoap_phase7_demo_mode", "true");
     showAuthOverlay(false);
@@ -3809,6 +3817,29 @@ ${escapeHtml(finding.reviewedEvidence || "-")}</div><div class="grid"><div class
     renderAll();
     showSection("home");
   };
+
+  window.exitDemoMode = async function() {
+    // Demo modundan çıkış her zaman gerçek giriş ekranına döner.
+    // Önceki Firebase oturumu varsa temizlenir; böylece kullanıcı hangi hesapla
+    // gerçek moda geçtiğini açıkça bilir. Demo localStorage kayıtları silinmez.
+    try {
+      if (state.auth?.currentUser) await signOut(state.auth);
+    } catch (err) {
+      console.warn("Gerçek girişe geçerken önceki Firebase oturumu kapatılamadı", err);
+    }
+    state.demoMode = false;
+    localStorage.removeItem("usoap_phase7_demo_mode");
+    state.authUser = null;
+    state.userProfile = null;
+    state.role = "viewer";
+    localStorage.setItem("usoap_phase1_role", "viewer");
+    state.currentSection = "home";
+    renderRoleSelect();
+    renderMenu();
+    renderAuthState();
+    showAuthOverlay(true, "Demo/Test modundan çıkıldı. Gerçek kullanıcı hesabınızla giriş yapın.");
+  };
+
   window.logoutCurrentUser = async function() {
     if (state.auth && state.authUser) await signOut(state.auth);
     state.authUser = null;
@@ -3931,11 +3962,13 @@ ${escapeHtml(finding.reviewedEvidence || "-")}</div><div class="grid"><div class
 
   function renderAuthState() {
     const badge = document.getElementById("authStatusBadge");
+    const realLogin = document.getElementById("realLoginButton");
     const logout = document.getElementById("logoutButton");
     if (badge) {
       badge.className = `auth-status ${isAuthLocked()?"locked":"demo"}`;
       badge.innerHTML = `${isAuthLocked()?"🔒":"🧪"} ${escapeHtml(authLabel())}`;
     }
+    if (realLogin) realLogin.style.display = state.demoMode ? "inline-flex" : "none";
     if (logout) logout.style.display = state.authUser && !state.demoMode ? "inline-flex" : "none";
     const btn = document.getElementById("notificationTopButton");
     if (btn) {
