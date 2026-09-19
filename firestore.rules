@@ -1,0 +1,166 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    function hasProfile() {
+      return signedIn() && exists(/databases/$(database)/documents/users/$(request.auth.uid));
+    }
+    function profile() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data;
+    }
+    function active() { return hasProfile() && profile().active == true; }
+    function role() { return active() ? profile().role : 'none'; }
+    function admin() { return role() == 'admin'; }
+    function programManager() { return role() in ['admin', 'program_manager']; }
+    function leadOrManager() { return role() in ['admin', 'program_manager', 'lead_auditor']; }
+    function auditorStaff() { return role() in ['admin', 'program_manager', 'lead_auditor', 'auditor']; }
+    function staffRead() { return role() in ['admin', 'program_manager', 'lead_auditor', 'auditor', 'viewer']; }
+    function auditeeFor(orgId) {
+      return role() == 'auditee' && profile().organizationId == orgId;
+    }
+    function auditeeCreateOwnOrg() {
+      return role() == 'auditee' && request.resource.data.organizationId == profile().organizationId;
+    }
+    function auditeeUpdateOwnOrg() {
+      return role() == 'auditee'
+        && resource.data.organizationId == profile().organizationId
+        && request.resource.data.organizationId == resource.data.organizationId;
+    }
+    function selfPendingCreate(uid) {
+      return signedIn()
+        && request.auth.uid == uid
+        && request.resource.data.uid == uid
+        && request.resource.data.role == 'viewer'
+        && request.resource.data.active == false
+        && request.resource.data.pendingProfile == true
+        && request.resource.data.approvalStatus == 'pending';
+    }
+    function selfProfileHeartbeat(uid) {
+      return signedIn()
+        && request.auth.uid == uid
+        && request.resource.data.uid == resource.data.uid
+        && request.resource.data.role == resource.data.role
+        && request.resource.data.active == resource.data.active
+        && request.resource.data.organizationId == resource.data.organizationId
+        && request.resource.data.pendingProfile == resource.data.pendingProfile
+        && request.resource.data.approvalStatus == resource.data.approvalStatus
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+          'lastLoginAt', 'email', 'displayName', 'updatedAt'
+        ]);
+    }
+
+    match /users/{uid} {
+      allow read: if signedIn() && (admin() || request.auth.uid == uid);
+      allow create: if admin() || selfPendingCreate(uid);
+      allow update: if admin() || selfProfileHeartbeat(uid);
+      allow delete: if admin();
+    }
+
+    match /organizations/{id} {
+      allow read: if staffRead() || (role() == 'auditee' && id == profile().organizationId);
+      allow create, update: if programManager();
+      allow delete: if admin();
+    }
+
+    match /masterForms/{id} {
+      allow read: if staffRead();
+      allow write: if admin();
+    }
+
+    match /formRevisions/{id} {
+      allow read: if staffRead();
+      allow write: if admin();
+    }
+
+    match /auditPrograms/{id} {
+      allow read: if staffRead();
+      allow create, update: if programManager();
+      allow delete: if admin();
+    }
+
+    match /audits/{id} {
+      allow read: if staffRead() || auditeeFor(resource.data.organizationId);
+      allow create, update: if leadOrManager();
+      allow delete: if admin();
+    }
+
+    match /auditAssignments/{id} {
+      allow read: if staffRead();
+      allow create, update: if leadOrManager();
+      allow delete: if admin();
+    }
+
+    match /organizationResponses/{id} {
+      allow read: if staffRead() || auditeeFor(resource.data.organizationId);
+      allow create: if auditorStaff() || auditeeCreateOwnOrg();
+      allow update: if auditorStaff() || auditeeUpdateOwnOrg();
+      allow delete: if admin();
+    }
+
+    match /auditPreEvaluations/{id} {
+      allow read: if staffRead();
+      allow create, update: if auditorStaff();
+      allow delete: if admin();
+    }
+
+    match /auditResponses/{id} {
+      allow read: if staffRead();
+      allow create, update: if role() in ['admin', 'lead_auditor', 'auditor'];
+      allow delete: if admin();
+    }
+
+    match /findings/{id} {
+      allow read: if staffRead() || auditeeFor(resource.data.organizationId);
+      allow create, update: if auditorStaff();
+      allow delete: if admin();
+    }
+
+    match /capPlans/{id} {
+      allow read: if staffRead() || auditeeFor(resource.data.organizationId);
+      allow create: if auditorStaff() || auditeeCreateOwnOrg();
+      allow update: if auditorStaff() || (
+        auditeeUpdateOwnOrg()
+        && request.resource.data.auditId == resource.data.auditId
+        && request.resource.data.findingId == resource.data.findingId
+        && request.resource.data.capPlanId == resource.data.capPlanId
+      );
+      allow delete: if admin();
+    }
+
+    match /capSteps/{id} {
+      allow read: if staffRead() || auditeeFor(resource.data.organizationId);
+      allow create: if auditorStaff() || auditeeCreateOwnOrg();
+      allow update: if auditorStaff() || (
+        auditeeUpdateOwnOrg()
+        && request.resource.data.auditId == resource.data.auditId
+        && request.resource.data.findingId == resource.data.findingId
+        && request.resource.data.capPlanId == resource.data.capPlanId
+        && request.resource.data.capStepId == resource.data.capStepId
+      );
+      allow delete: if admin();
+    }
+
+    match /reports/{id} {
+      allow read: if staffRead() || auditeeFor(resource.data.organizationId);
+      allow create, update: if leadOrManager();
+      allow delete: if admin();
+    }
+
+    match /evidenceReferences/{id} {
+      allow read: if staffRead() || auditeeFor(resource.data.organizationId);
+      allow create: if auditorStaff() || auditeeCreateOwnOrg();
+      allow update: if auditorStaff() || auditeeUpdateOwnOrg();
+      allow delete: if admin();
+    }
+
+    match /auditLogs/{id} {
+      allow read: if staffRead();
+      allow create: if active();
+      allow update, delete: if false;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

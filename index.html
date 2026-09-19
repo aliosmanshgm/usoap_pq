@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>USOAP CMA Denetim ve CAP Yönetim Sistemi - Faz 8B.1</title>
+  <link rel="stylesheet" href="./css/app.css" />
+</head>
+<body>
+  <div id="authOverlay" class="auth-overlay hidden">
+    <div class="auth-card">
+      <h2>USOAP CMA Giriş</h2>
+      <p>Gerçek yetkilendirme için Firebase Authentication ile giriş yapın. Kullanıcı rolü <strong>users</strong> koleksiyonundaki profil kaydından okunur.</p>
+      <input type="email" id="authEmail" placeholder="E-posta">
+      <input type="password" id="authPassword" placeholder="Şifre">
+      <div id="authMessage" class="warn-banner hidden" style="margin:8px 0 0 0"></div>
+      <div class="auth-actions">
+        <button class="btn primary" onclick="loginWithEmail()">Giriş Yap</button>
+        <button class="btn" onclick="continueDemoMode()">Demo/Test Modunda Devam Et</button>
+      </div>
+      <p style="margin-top:12px">Yeni kullanıcılar e-posta/şifre ile ilk kez giriş yaptığında sistem otomatik <strong>Onay Bekleyen Kullanıcı</strong> profili oluşturur. İlk yönetici hesabı güvenlik nedeniyle otomatik atanmaz; Firebase Console üzerinden kontrollü olarak oluşturulur. Yönetici diğer kullanıcıların rol ve kuruluşunu atayıp aktifleştirir.</p>
+    </div>
+  </div>
+  <aside class="sidebar">
+    <div class="brand">
+      <h1>USOAP CMA<br>Denetim ve CAP Yönetimi</h1>
+      <p>Faz 8B.1: modüler mimari + Faz 8A stabilizasyonu.</p>
+    </div>
+    <div class="role-box">
+      <label for="roleSelect">Test Rolü</label>
+      <select id="roleSelect" onchange="setRole(this.value)"></select>
+      <label for="orgContextSelect">Kuruluş Bağlamı / Test Kuruluşu</label>
+      <select id="orgContextSelect" onchange="setOrgContext(this.value)"></select>
+      <input id="orgContextInput" value="org_demo" onchange="setOrgContext(this.value)" placeholder="Manuel Organization ID" />
+      <small style="color:#94a3b8;line-height:1.45;display:block;">Demo modunda rol ve kuruluş bağlamı buradan test edilir. Gerçek girişte rol/kuruluş users profil kaydından gelir ve kuruluş kullanıcılarında bu alan kilitlenir.</small>
+    </div>
+    <div id="menuRoot"></div>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <div>
+        <h2 id="pageTitle">Ana Sayfa</h2>
+        <p id="pageSubtitle">Faz 8B.1 modüler mimari sürümü; Faz 8A güvenlik ve veri bütünlüğü korunur.</p>
+      </div>
+      <div class="top-actions">
+        <span id="authStatusBadge" class="auth-status demo">Demo/Test</span>
+        <button id="realLoginButton" class="btn primary" onclick="exitDemoMode()">Gerçek Girişe Geç</button>
+        <button id="notificationTopButton" class="btn warning" onclick="showSection('notifications')">Bildirimler</button>
+        <button id="logoutButton" class="btn" onclick="logoutCurrentUser()">Çıkış</button>
+        <button class="btn" onclick="refreshAll()">Yenile</button>
+        <button class="btn" onclick="exportPhase1Json()">Veri JSON Dışa Aktar</button>
+        <button class="btn primary" onclick="window.print()">Yazdır / PDF</button>
+      </div>
+    </div>
+
+    <section id="home" class="section active"></section>
+    <section id="notifications" class="section"></section>
+    <section id="masterLibrary" class="section"></section>
+    <section id="formRevisions" class="section"></section>
+    <section id="revisionArchive" class="section"></section>
+    <section id="programCreate" class="section"></section>
+    <section id="annualPrograms" class="section"></section>
+    <section id="programAddAudit" class="section"></section>
+    <section id="auditFile" class="section"></section>
+    <section id="plannedAudits" class="section"></section>
+    <section id="waitingAuditeeResponse" class="section"></section>
+    <section id="preEvaluation" class="section"></section>
+    <section id="activeAudits" class="section"></section>
+    <section id="auditExecution" class="section"></section>
+    <section id="objectionAudits" class="section"></section>
+    <section id="finalReportAudits" class="section"></section>
+    <section id="auditeeAssigned" class="section"></section>
+    <section id="auditeeResponses" class="section"></section>
+    <section id="auditeeObjections" class="section"></section>
+    <section id="auditeeCap" class="section"></section>
+    <section id="findingsOpen" class="section"></section>
+    <section id="capWaiting" class="section"></section>
+    <section id="capReview" class="section"></section>
+    <section id="capMonitoring" class="section"></section>
+    <section id="closedFindings" class="section"></section>
+    <section id="reportsAudit" class="section"></section>
+    <section id="reportsProgram" class="section"></section>
+    <section id="reportsCap" class="section"></section>
+    <section id="archive" class="section"></section>
+    <section id="settings" class="section"></section>
+  </main>
+
+<script type="module" src="./js/app.js"></script>
+</body>
+</html>
