@@ -1,0 +1,36 @@
+USOAP CMA Denetim ve CAP Yönetimi - Faz 8A Stabilizasyon
+
+Bu paket, Faz 7.1 referans index.html dosyasından üretilmiştir.
+
+Uygulanan temel değişiklikler
+1. Tarih hesapları yerel takvim mantığına taşındı; toISOString().slice(0,10) kaynaklı bir gün kayma riski giderildi.
+2. Demo ve gerçek veri modu ayrıldı:
+   - Demo: localStorage
+   - Gerçek kullanıcı girişi: yalnızca Firestore
+   Firebase hatasında gerçek mod localStorage'a geri dönmez.
+3. Firestore okumaları role/kuruluş bağlamına göre sorgulanır. Denetlenen kuruluş için organizationId filtreli sorgular kullanılır.
+4. Firestore Security Rules güçlendirildi. Viewer yazma yetkisi kaldırıldı; kuruluş kullanıcısında sahiplik değişikliği engellendi; eksik koleksiyon kuralları eklendi.
+5. İlk kullanıcı artık otomatik admin yapılmaz. İlk admin users profili Firebase Console'dan kontrollü olarak oluşturulmalıdır.
+6. CAP adımlarında soft-delete kayıtları tüm hesaplardan çıkarılır.
+7. Yeni/yenilenen CAP adımlarına organizationId yazılır.
+8. Audit üst CAP statüsü tek CAP planı tarafından ezilmez; tüm CAP planlarının birleşik durumundan türetilir.
+9. Sayfa açılışında itiraz/statü kaydı otomatik değiştirilmez. Süre geçişi ancak kullanıcı onayıyla uygulanır.
+10. Eksik summary-strip / mini-stat / progress-line CSS tanımları eklendi.
+11. Type=module içinde inline olaylardan çağrılan render fonksiyonlarının global erişim sorunu giderildi.
+
+Önerilen kurulum/test sırası
+A. Mevcut Firestore verisini yedekleyin.
+B. index.html dosyasını GitHub Pages'e yükleyin.
+C. Mevcut Yönetici hesabıyla giriş yapın.
+D. Ayarlar / Yetkiler > Faz 8A Veri Bakım Araçları bölümünde önce:
+   - CAP Adımlarına Kuruluş ID Onarımı
+   - Denetim CAP Statülerini Yeniden Hesapla
+   işlemlerini çalıştırın.
+E. firestore.rules içeriğini Firebase Console > Firestore Database > Rules bölümünde yayımlayın.
+F. Yönetici, Denetçi ve Denetlenen Kuruluş hesaplarıyla ayrı ayrı test edin.
+
+Önemli
+- PQ_JSON_Model.json değiştirilmemiştir.
+- Master PQ revizyon snapshot yapısı bu pakette henüz değiştirilmedi.
+- Auditor/Lead Auditor için Firestore seviyesinde yalnızca atanmış denetimleri okuma kısıtı bir sonraki güvenlik paketinde ele alınmalıdır.
+- Cloud Functions/e-posta bildirimleri bu paketin kapsamında değildir.
