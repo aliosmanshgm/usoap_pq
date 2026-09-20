@@ -1,45 +1,55 @@
-# USOAP CMA - Faz 8B.4 Modülerleştirme
+# USOAP CMA - Faz 8B.5 Modülerleştirme
 
-Bu paket Faz 8B.3 çalışan sürümünün devamıdır. İş kuralları değiştirilmeden İtiraz ve Nihai Rapor alanları `app.js` dışına alınmıştır.
+Bu paket Faz 8B.4 çalışan sürümünün devamıdır. İş kuralları değiştirilmeden Bulgular ve CAP yaşam döngüsü `app.js` dışına alınmıştır.
 
 ## Yeni modüller
 
-- `js/modules/objections.js`
-  - İtiraz için uygun denetim seçimi
-  - Kuruluşun itiraz var / yok bildirimi
-  - Taslak ve gönderim işlemleri
-  - İtiraz statü göstergesi
-  - Süresi geçen itirazların kullanıcı onayıyla "itiraz yoktur" olarak tamamlanması
+- `js/modules/findings.js`
+  - Açık/kapatılmış bulgu listeleri
+  - Bulgu tablo gösterimi
+- `js/modules/cap.js`
+  - Kuruluş CAP girişi ve çoklu CAP adımları
+  - Taslak / toplu sunum
+  - CAP değerlendirme
+  - CAP izleme, ilerleme ve tamamlandı bildirimi
+  - Adım doğrulama ve bulgu kapatma
+  - Denetim üst CAP statüsünün türetilmesi
+  - Eski CAP kayıtları için bakım/onarma araçları
+  - CAP durum raporu / Kanban
 
-- `js/modules/final-reports.js`
-  - Nihai rapor denetim seçimi
-  - Nihai rapor taslağı ve önizlemesi
-  - Nihai rapor gönderimi
-  - Rapor statü göstergesi
-  - Gönderim sonrası açık bulgular için CAP planı başlangıcı ve 45 günlük sürenin hesaplanması
+## Korunan davranışlar
 
-## Korunan yapı
-
-Faz 8A veri güvenliği ve Faz 8B.1-8B.3 modülleri korunmuştur. `PQ_JSON_Model.json`, `firestore.rules` ve `css/app.css` üzerinde bu fazda içerik değişikliği yapılmamıştır.
+- Nihai rapor gönderiminden sonra açık bulgular için CAP planı oluşturma davranışı `final-reports.js` içinde aynen korunur.
+- CAP son tarihi varsayılan olarak nihai rapor gönderim tarihinden itibaren 45 gündür.
+- Silinmiş CAP adımları ilerleme ve kapanış hesabına dahil edilmez.
+- Bir denetimin CAP üst statüsü tek bir CAP planından değil, denetimdeki tüm CAP planlarından türetilir.
+- Demo/localStorage ile gerçek Firebase modu ayrımı korunur.
+- `PQ_JSON_Model.json`, `firestore.rules` ve `css/app.css` bu fazda değiştirilmemiştir.
 
 ## GitHub'a yükleme
 
-ZIP içindeki klasör yapısını aynen repository köküne yükleyin. Özellikle aşağıdaki iki yeni dosyanın bulunduğunu kontrol edin:
+ZIP içeriğini klasör yapısını koruyarak repository köküne yükleyin. Özellikle şu yeni dosyaların bulunduğunu kontrol edin:
 
-- `js/modules/objections.js`
-- `js/modules/final-reports.js`
+```text
+js/modules/findings.js
+js/modules/cap.js
+```
 
-## Faz 8B.4 smoke test
+`index.html` ve `js/app.js` de Faz 8B.5 sürümleriyle birlikte güncellenmelidir.
 
-1. Gerçek veya Demo/Test modunda uygulamanın normal açıldığını kontrol edin.
-2. İtiraz Süreci ekranını açın; denetim seçimi ve süre bilgileri görünmeli.
-3. Denetlenen Kuruluş rolünde test kaydı için "İtiraz yoktur" taslağı kaydedin ve mümkünse gönderin.
-4. İtirazlı senaryoda açıklama boşken gönderimin engellendiğini kontrol edin.
-5. Yönetici / Program Yöneticisi / Baş Denetçi rolünde İtiraz Sürecini Tamamla işlemini test edin.
-6. "Süreleri Kontrol Et / Uygula" butonunun onay almadan kayıt değiştirmediğini kontrol edin.
-7. Nihai Rapor ekranını açın; Yönetici Özeti, Sonuç/Takip Notu ve Dağıtım Notu alanları görünmeli.
-8. Taslak rapor kaydedip sayfa yenilendiğinde verinin geri geldiğini kontrol edin.
-9. Test denetiminde Nihai Raporu Gönder işlemi sonrası denetimin `CAP Bekleniyor` aşamasına geçtiğini ve açık NS bulgular için CAP planlarının oluştuğunu kontrol edin.
-10. Denetim kartı / detay modalından İtiraz Süreci ve Nihai Rapor butonlarının çalıştığını kontrol edin.
+## Faz 8B.5 smoke test
 
-Not: Gerçek veride rapor gönderimi ve CAP başlangıcı geri dönüşü zor bir iş akışı olduğundan mümkünse önce Demo/Test kaydıyla doğrulayın.
+1. Uygulama açılışı ve konsolda module/404 hatası olmaması.
+2. Açık Bulgular ve Kapatılan Bulgular ekranlarının açılması.
+3. Demo kuruluş rolünde `Kuruluş Portalı -> CAP Girişi` ekranının açılması.
+4. Bir CAP planında kök neden, genel eylem özeti ve koordinatör alanlarının Taslak Kaydet ile korunması.
+5. CAP adımı ekleme; sorumlu birim, uygulama tarihi, ilerleme ve kanıt alanlarının kaydı.
+6. Birden fazla açık CAP varsa planlar arasında geçiş yapıldığında verilerin birbirine karışmaması.
+7. `Tüm CAP Planlarını Onaya Sun` akışı.
+8. Baş Denetçi/Yönetici rolünde CAP kabul, kısmen kabul/revizyon ve iade kararları.
+9. Kabul edilmiş CAP'te ilerleme -> tamamlandı bildirimi -> doğrulama -> bulgu kapatma.
+10. Raporlar -> CAP Durum Raporu ekranının açılması ve Kanban/sayaçların görünmesi.
+11. Ayarlar -> Faz 8A Veri Bakım Araçları butonlarının hâlâ çalışması.
+12. Bildirim Merkezi'nde CAP planı ve CAP adımı süre uyarılarının görünmesi.
+
+Gerçek kayıt üzerinde kapanış testi yapmadan önce Demo/Test modu kullanılması önerilir.
