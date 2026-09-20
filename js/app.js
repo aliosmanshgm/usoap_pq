@@ -4,8 +4,8 @@ import {
 import { state } from "./state.js";
 import { escapeHtml, today } from "./utils.js";
 import {
-  createFirebaseClient, collection, doc, getDocs, getDoc, setDoc, updateDoc, query, where
-} from "./firebase-client.js";
+  initRepository, isProductionDataMode, dataModeLabel, readDocument, readCollection, saveRecord, updateRecord
+} from "./repository.js";
 import { getRowsFromModel, normalizeRow } from "./master-data.js";
 import { runtime, register } from "./runtime.js";
 import {
@@ -25,161 +25,34 @@ import { renderAuditeeObjections } from "./modules/objections.js";
 import { renderFinalReportModule } from "./modules/final-reports.js";
 import { renderFindingsAndCap, renderCapReportModule } from "./modules/cap.js";
 import {
-  initAuthGate, makePendingUserProfile, applyAuthProfile, userIsPending, renderAuthState
+  initAuthGate, makePendingUserProfile, applyAuthProfile, renderAuthState
 } from "./modules/auth-users.js";
 import { renderNotificationsPanel } from "./modules/notifications.js";
 import { renderSettings } from "./modules/settings.js";
 
-// Faz 8A: Demo ve gerçek veri modu kesin olarak ayrılır.
-  // Demo modu localStorage kullanır; gerçek kullanıcı girişi yalnızca Firestore kullanır.
-  function isProductionDataMode() {
-    return !state.demoMode && !!state.authUser;
-  }
-  function dataModeLabel() {
-    return isProductionDataMode() ? "Firebase / Gerçek Veri" : "Demo / Yerel Veri";
-  }
-  function localKey(collectionName) { return `usoap_phase1_${collectionName}`; }
-  function localRead(collectionName) {
-    try { return JSON.parse(localStorage.getItem(localKey(collectionName)) || "[]"); }
-    catch { return []; }
-  }
-  function localWrite(collectionName, rows) {
-    localStorage.setItem(localKey(collectionName), JSON.stringify(rows || []));
-  }
-  function recordIdOf(collectionName, row) {
-    return row?.id || row?.[`${collectionName.slice(0,-1)}Id`] || row?.auditId || row?.programId || row?.findingId || row?.capPlanId || row?.capStepId || row?.revisionId || row?.organizationId || "";
-  }
-  function productionDataError(action, collectionName, err) {
-    const detail = err?.message || String(err || "Bilinmeyen hata");
-    state.firebaseMessage = `Firebase ${action} hatası (${collectionName}): ${detail}`;
-    console.error(state.firebaseMessage, err);
-    throw new Error(`Gerçek veri modunda işlem tamamlanamadı. ${collectionName}: ${detail}`);
-  }
-  async function saveRecord(collectionName, id, data) {
-    const row = { ...data, id };
-    if (isProductionDataMode()) {
-      if (!state.db) throw new Error("Gerçek veri modunda Firebase bağlantısı hazır değil. Yerel kopyaya geri dönülmedi.");
-      try {
-        await setDoc(doc(state.db, collectionName, id), row, { merge: true });
-        return row;
-      } catch (err) {
-        productionDataError("kayıt", collectionName, err);
-      }
-    }
-    const rows = localRead(collectionName);
-    const existingIndex = rows.findIndex(x => recordIdOf(collectionName, x) === id);
-    if (existingIndex >= 0) rows[existingIndex] = row;
-    else rows.push(row);
-    localWrite(collectionName, rows);
-    return row;
-  }
-  async function updateRecord(collectionName, id, patch) {
-    const updatedAt = new Date().toISOString();
-    if (isProductionDataMode()) {
-      if (!state.db) throw new Error("Gerçek veri modunda Firebase bağlantısı hazır değil. Yerel kopyaya geri dönülmedi.");
-      try {
-        await updateDoc(doc(state.db, collectionName, id), { ...patch, updatedAt });
-        return;
-      } catch (err) {
-        productionDataError("güncelleme", collectionName, err);
-      }
-    }
-    const rows = localRead(collectionName);
-    const idx = rows.findIndex(x => recordIdOf(collectionName, x) === id);
-    if (idx >= 0) rows[idx] = { ...rows[idx], ...patch, updatedAt };
-    localWrite(collectionName, rows);
-  }
-
-  const AUDITEE_ORG_SCOPED_COLLECTIONS = new Set([
-    COLLECTIONS.audits,
-    COLLECTIONS.organizationResponses,
-    COLLECTIONS.findings,
-    COLLECTIONS.capPlans,
-    COLLECTIONS.capSteps,
-    COLLECTIONS.reports,
-    COLLECTIONS.evidenceReferences
-  ]);
-  const AUDITEE_INTERNAL_COLLECTIONS = new Set([
-    COLLECTIONS.auditPrograms,
-    COLLECTIONS.auditAssignments,
-    COLLECTIONS.auditResponses,
-    COLLECTIONS.auditPreEvaluations,
-    COLLECTIONS.masterForms,
-    COLLECTIONS.formRevisions,
-    COLLECTIONS.auditLogs
-  ]);
-  async function firestoreRows(ref) {
-    const snap = await getDocs(ref);
-    return snap.docs.map(d => ({ id: d.id, ...d.data() }));
-  }
+// Faz 8B.7: Demo/gerçek veri ayrımı ve Firestore/localStorage erişimi repository.js içine taşındı.
   async function ensureCurrentUserProfile() {
     if (!isProductionDataMode()) return null;
     if (!state.db || !state.authUser) throw new Error("Firebase kullanıcı oturumu hazır değil.");
-    const userRef = doc(state.db, COLLECTIONS.users, state.authUser.uid);
-    let profile;
-    try {
-      const snap = await getDoc(userRef);
-      if (snap.exists()) {
-        profile = { id: snap.id, ...snap.data() };
-        const heartbeat = { lastLoginAt: new Date().toISOString(), updatedAt: new Date().toISOString() };
-        if (!profile.email && state.authUser.email) heartbeat.email = state.authUser.email;
-        if (!profile.displayName && (state.authUser.displayName || state.authUser.email)) heartbeat.displayName = state.authUser.displayName || state.authUser.email;
-        await updateDoc(userRef, heartbeat);
-        profile = { ...profile, ...heartbeat };
-      } else {
-        profile = makePendingUserProfile();
-        await setDoc(userRef, profile, { merge: false });
+
+    let profile = await readDocument(COLLECTIONS.users, state.authUser.uid);
+    if (profile) {
+      const heartbeat = { lastLoginAt: new Date().toISOString(), updatedAt: new Date().toISOString() };
+      if (!profile.email && state.authUser.email) heartbeat.email = state.authUser.email;
+      if (!profile.displayName && (state.authUser.displayName || state.authUser.email)) {
+        heartbeat.displayName = state.authUser.displayName || state.authUser.email;
       }
-    } catch (err) {
-      productionDataError("kullanıcı profili", COLLECTIONS.users, err);
+      await updateRecord(COLLECTIONS.users, state.authUser.uid, heartbeat);
+      profile = { ...profile, ...heartbeat };
+    } else {
+      profile = makePendingUserProfile();
+      await saveRecord(COLLECTIONS.users, state.authUser.uid, profile);
     }
+
     state.userProfile = profile;
     state.users = profile ? [profile] : [];
     applyAuthProfile();
     return profile;
-  }
-  async function readCollection(collectionName) {
-    if (!isProductionDataMode()) return localRead(collectionName);
-    if (!state.db || !state.authUser) return [];
-    try {
-      if (collectionName === COLLECTIONS.users) {
-        if (state.role === "admin" && state.userProfile?.active === true) {
-          return await firestoreRows(collection(state.db, collectionName));
-        }
-        const snap = await getDoc(doc(state.db, collectionName, state.authUser.uid));
-        return snap.exists() ? [{ id: snap.id, ...snap.data() }] : [];
-      }
-      if (!state.userProfile || userIsPending(state.userProfile) || state.userProfile.active !== true) return [];
-      if (state.role === "auditee") {
-        if (collectionName === COLLECTIONS.organizations) {
-          if (!state.orgContext) return [];
-          const snap = await getDoc(doc(state.db, collectionName, state.orgContext));
-          return snap.exists() ? [{ id: snap.id, ...snap.data() }] : [];
-        }
-        if (AUDITEE_INTERNAL_COLLECTIONS.has(collectionName)) return [];
-        if (AUDITEE_ORG_SCOPED_COLLECTIONS.has(collectionName)) {
-          if (!state.orgContext) return [];
-          return await firestoreRows(query(collection(state.db, collectionName), where("organizationId", "==", state.orgContext)));
-        }
-        return [];
-      }
-      return await firestoreRows(collection(state.db, collectionName));
-    } catch (err) {
-      productionDataError("okuma", collectionName, err);
-    }
-  }
-
-  async function initFirebase() {
-    try {
-      const client = createFirebaseClient();
-      state.db = client.db;
-      state.auth = client.auth;
-      state.firebaseReady = true;
-      state.firebaseMessage = "Firestore/Firebase Auth hazır. Yetki rolü users koleksiyonundan ve Firestore Rules kurallarından gelir.";
-    } catch (err) {
-      state.firebaseReady = false;
-      state.firebaseMessage = "Firebase başlatılamadı. Demo modunda yerel kayıt kullanılabilir; gerçek modda işlem durdurulur.";
-    }
   }
 
   async function loadMasterModel() {
@@ -273,7 +146,7 @@ import { renderSettings } from "./modules/settings.js";
     const findings = state.findings.filter(f => f.status !== "closed" && f.status !== "finding_closed").length;
     document.getElementById("home").innerHTML = `
       <div class="info-banner">
-        <strong>Faz 8B.6 modüler mimari / Faz 8A stabilizasyonu:</strong> Gerçek Firebase veri modu localStorage'dan ayrıldı; tarih ve CAP veri bütünlüğü güçlendirildi.
+        <strong>Faz 8B.7 veri erişim katmanı / Faz 8A stabilizasyonu:</strong> Gerçek Firebase veri modu localStorage'dan ayrıldı; tarih ve CAP veri bütünlüğü güçlendirildi.
       </div>
       <div class="data-mode-note ${isProductionDataMode() ? "production" : "demo"}"><strong>Veri modu:</strong> ${escapeHtml(dataModeLabel())}. ${isProductionDataMode() ? "Kayıtlar yalnızca Firestore üzerinden okunur/yazılır; Firebase hatasında yerel kopyaya geri dönülmez." : "Test kayıtları localStorage üzerinde tutulur ve gerçek Firebase verisinden ayrıdır."}</div>
       <div class="grid">
@@ -377,7 +250,9 @@ import { renderSettings } from "./modules/settings.js";
 
   // Faz 8B.6: Auth/kullanıcı, bildirim ve ayarlar modüllere taşındı.
 
-  // Faz 8B.6: app.js yalnızca veri/orkestrasyon callbacklerini kaydeder; domain modülleri kendi callbacklerini kaydeder.
+  // Faz 8B.7: Firestore/localStorage veri erişimi js/repository.js içine taşındı.
+
+  // Faz 8B.7: veri erişimi repository.js içindedir; app.js orkestrasyon callbacklerini kaydeder.
   register("saveRecord", saveRecord);
   register("updateRecord", updateRecord);
   register("loadData", loadData);
@@ -385,7 +260,7 @@ import { renderSettings } from "./modules/settings.js";
   register("renderReports", renderReports);
   register("dataModeLabel", dataModeLabel);
 
-  // Faz 8B.6: app.js içinde kalan inline HTML olaylarının erişmesi gereken render fonksiyonları.
+  // Faz 8B.7: app.js içinde kalan inline HTML olaylarının erişmesi gereken render fonksiyonları.
   window.renderAuditFile = renderAuditFile;
   window.renderProgramCreate = renderProgramCreate;
 
@@ -403,7 +278,7 @@ ${message}`);
     renderMenu();
     setTitle("Yükleniyor", `${DATA_FILE} okunuyor...`);
     try {
-      await initFirebase();
+      await initRepository();
       await initAuthGate();
       await loadMasterModel();
       await loadData();
