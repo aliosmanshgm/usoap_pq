@@ -1,68 +1,45 @@
-# USOAP CMA - Faz 8B.3 Modüler Mimari
+# USOAP CMA - Faz 8B.4 Modülerleştirme
 
-Bu paket, test edilen Faz 8B.2 sürümünü temel alır. İş akışı veya veri modeli değiştirilmeden üç yoğun süreç `app.js` dışına ayrılmıştır: kuruluş ön cevabı, denetçi ön değerlendirmesi ve kriter bazlı denetim icrası. Faz 8A veri bütünlüğü/güvenlik davranışı korunmuştur.
+Bu paket Faz 8B.3 çalışan sürümünün devamıdır. İş kuralları değiştirilmeden İtiraz ve Nihai Rapor alanları `app.js` dışına alınmıştır.
 
-## Klasör yapısı
+## Yeni modüller
 
-```text
-/
-├── index.html
-├── PQ_JSON_Model.json
-├── firestore.rules
-├── css/
-│   └── app.css
-└── js/
-    ├── app.js
-    ├── config.js
-    ├── firebase-client.js
-    ├── master-data.js
-    ├── runtime.js
-    ├── selectors.js
-    ├── state.js
-    ├── utils.js
-    └── modules/
-        ├── ui-shell.js
-        ├── master-forms.js
-        ├── programs.js
-        ├── audits.js
-        ├── assignments.js
-        ├── workflow-context.js
-        ├── auditee-responses.js
-        ├── pre-evaluation.js
-        └── audit-execution.js
-```
+- `js/modules/objections.js`
+  - İtiraz için uygun denetim seçimi
+  - Kuruluşun itiraz var / yok bildirimi
+  - Taslak ve gönderim işlemleri
+  - İtiraz statü göstergesi
+  - Süresi geçen itirazların kullanıcı onayıyla "itiraz yoktur" olarak tamamlanması
 
-## Faz 8B.3'te ayrılan yeni modüller
+- `js/modules/final-reports.js`
+  - Nihai rapor denetim seçimi
+  - Nihai rapor taslağı ve önizlemesi
+  - Nihai rapor gönderimi
+  - Rapor statü göstergesi
+  - Gönderim sonrası açık bulgular için CAP planı başlangıcı ve 45 günlük sürenin hesaplanması
 
-- `workflow-context.js`: denetim kapsamındaki PQ satırları, PQ anahtarı ve ön cevap/ön değerlendirme/denetim cevabı seçicileri; kuruluş görünürlüğü.
-- `auditee-responses.js`: kuruluş ön cevap ekranı, PQ bazlı cevap/kanıt girişi, taslak/gönderim akışı ve kuruluş cevap durumu rozeti.
-- `pre-evaluation.js`: kuruluş cevaplarının denetçi tarafından ön değerlendirilmesi, PQ bazlı odak/saha doğrulama notları ve tamamlanma akışı.
-- `audit-execution.js`: kriter bazlı S/NS/NA değerlendirmesi, otomatik PQ sonucu, doğrulama, bulgu senkronizasyonu ve denetim cevaplarının tamamlanması.
+## Korunan yapı
 
-Önceki Faz 8B.2 modülleri (`ui-shell`, `master-forms`, `programs`, `audits`, `assignments`) aynen korunmuştur.
+Faz 8A veri güvenliği ve Faz 8B.1-8B.3 modülleri korunmuştur. `PQ_JSON_Model.json`, `firestore.rules` ve `css/app.css` üzerinde bu fazda içerik değişikliği yapılmamıştır.
 
-## Değişmeyen veri/güvenlik dosyaları
+## GitHub'a yükleme
 
-- `PQ_JSON_Model.json`: Faz 8B.2 ile birebir aynı.
-- `firestore.rules`: Faz 8B.2 ile birebir aynı.
-- `css/app.css`: Faz 8B.2 ile birebir aynı.
+ZIP içindeki klasör yapısını aynen repository köküne yükleyin. Özellikle aşağıdaki iki yeni dosyanın bulunduğunu kontrol edin:
 
-Bu faz yalnızca kod organizasyonudur; Firestore şeması, statüler ve iş kuralları değiştirilmemiştir.
+- `js/modules/objections.js`
+- `js/modules/final-reports.js`
 
-## GitHub Pages yükleme
+## Faz 8B.4 smoke test
 
-ZIP içindeki klasör yapısını repository ana dizinine aynen yükleyin. Özellikle `js/modules/` altındaki dört yeni dosyayı da ekleyin. Eski `index.html` ve `js/app.js` dosyalarının yeni sürümleriyle değiştirildiğinden emin olun.
+1. Gerçek veya Demo/Test modunda uygulamanın normal açıldığını kontrol edin.
+2. İtiraz Süreci ekranını açın; denetim seçimi ve süre bilgileri görünmeli.
+3. Denetlenen Kuruluş rolünde test kaydı için "İtiraz yoktur" taslağı kaydedin ve mümkünse gönderin.
+4. İtirazlı senaryoda açıklama boşken gönderimin engellendiğini kontrol edin.
+5. Yönetici / Program Yöneticisi / Baş Denetçi rolünde İtiraz Sürecini Tamamla işlemini test edin.
+6. "Süreleri Kontrol Et / Uygula" butonunun onay almadan kayıt değiştirmediğini kontrol edin.
+7. Nihai Rapor ekranını açın; Yönetici Özeti, Sonuç/Takip Notu ve Dağıtım Notu alanları görünmeli.
+8. Taslak rapor kaydedip sayfa yenilendiğinde verinin geri geldiğini kontrol edin.
+9. Test denetiminde Nihai Raporu Gönder işlemi sonrası denetimin `CAP Bekleniyor` aşamasına geçtiğini ve açık NS bulgular için CAP planlarının oluştuğunu kontrol edin.
+10. Denetim kartı / detay modalından İtiraz Süreci ve Nihai Rapor butonlarının çalıştığını kontrol edin.
 
-## Önerilen Faz 8B.3 smoke test
-
-1. Giriş/Demo geçişi ve ana menü normal açılıyor mu?
-2. Kuruluş Ön Cevapları: denetim seçimi, taslak kaydetme ve gönderme çalışıyor mu?
-3. Ön Değerlendirme: denetim seçimi, genel/PQ notları, saha doğrulama kutusu, taslak/tamamlama çalışıyor mu?
-4. Denetim Çalışması: PQ kartları açılıp kapanıyor mu; kriterlerde S/NS/NA ve zorunlu alan kontrolü çalışıyor mu?
-5. Tamamlanan NS PQ kayıtları Bulgular ekranına aktarılıyor mu?
-6. Denetim kartı ve Denetim Detayı içinde Kuruluş Cevabı / Ön Değerlendirme / Denetim Çalışması rozetleri görünüyor mu?
-7. İtiraz, Nihai Rapor ve CAP ekranları en azından açılış regresyon testinden geçiyor mu?
-
-## Teknik doğrulama
-
-Paket oluşturulurken tüm yerel JavaScript dosyaları `node --check` ile doğrulanmalı, yerel import yolları kontrol edilmeli ve ZIP bütünlüğü test edilmelidir.
+Not: Gerçek veride rapor gönderimi ve CAP başlangıcı geri dönüşü zor bir iş akışı olduğundan mümkünse önce Demo/Test kaydıyla doğrulayın.

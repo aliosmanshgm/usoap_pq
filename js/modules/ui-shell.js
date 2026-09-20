@@ -70,7 +70,7 @@ export function setTitle(title, subtitle) {
 
 export function renderSection(sectionId) {
   const map = {
-    home: ["Ana Sayfa", "Faz 8B.3: kuruluş ön cevabı, ön değerlendirme ve denetim icrası da modüllere ayrıldı; Faz 8A veri güvenliği korunur."],
+    home: ["Ana Sayfa", "Faz 8B.4: itiraz ve nihai rapor akışları da modüllere ayrıldı; Faz 8A veri güvenliği korunur."],
     notifications: ["Bildirimler / Gecikme Uyarıları", "Kritik tarihler, geciken işler, yaklaşan görevler ve CAP uyarıları."],
     masterLibrary: ["Master Kontrol Formları / Form Kütüphanesi", "JSON kaynaklı read-only PQ master kütüphanesi."],
     formRevisions: ["Form Revizyonları", "Yönetici rolü için master kontrol formu revizyon omurgası."],
